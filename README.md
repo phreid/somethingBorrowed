@@ -67,3 +67,7 @@ Let users in a supported area lend and borrow items from each other.
 ### Adding an item 
 ![Add Item to Profile](https://user-images.githubusercontent.com/6674293/170805893-09b067b2-daf5-4f9f-a895-4a8579ec9e7d.jpg)
 
+### User home page
+![pasted image 0](https://user-images.githubusercontent.com/6674293/170806017-3dae5203-5f66-4fe4-87cc-a66d1feb7c1b.png)
+
+
