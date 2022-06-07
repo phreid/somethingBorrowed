@@ -1,6 +1,6 @@
 import {useSelector, useDispatch} from 'react-redux';
 
-export default function ItemCard(props) {
+export default function ItemGroup(props) {
     const dynamicList = useSelector(state => state.reducerSD);
     return (
         <div>
