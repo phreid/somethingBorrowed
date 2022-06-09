@@ -1,1 +1,0 @@
-const recipeList = [[ JSON.stringify({"content":"Sample Title%Love 1g; Patient 1g%Love;Patient"}), false]];
