@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import './styles.css';
+import NavBar from './components/NavBar';
 
 import AddItemForm from "./components/AddItemForm";
 
@@ -9,8 +10,8 @@ function App() {
   })
 
   return (
-    <div className="App">
-    </div>
+      <div className="App">
+      </div>
   )
 }
 
