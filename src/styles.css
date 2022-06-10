@@ -1,0 +1,63 @@
+.item-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    grid-gap:4rem;
+    justify-content: center;
+}
+.item-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition:transform 200ms ease-in;
+    background: #ffffff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #cccccc;
+    padding: 10px;
+    width: 240px;
+    margin: 16px;
+    float: left;
+}
+
+.item-image{
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 2px solid grey;
+    height: 12rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.item-name {
+    font-family: "Source Sans Pro", sans-serif;
+    display: block;
+    text-align: left;
+    font-size: 18px;
+    color: black;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.item-description {
+    font-family: "Source Sans Pro", sans-serif;
+    display: block;
+    text-align: left;
+    font-size: 18px;
+    height: 80px;
+    color: grey;
+    font-weight: 400;
+    overflow: hidden;
+}
+
+.item-type, .item-location {
+    font-family: "Source Sans Pro", sans-serif;
+    display: block;
+    text-align: left;
+    font-size: 18px;
+    height: 80px;
+    color: grey;
+    font-weight: 400;
+    overflow: hidden;
+}
