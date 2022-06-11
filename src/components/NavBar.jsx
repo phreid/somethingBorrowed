@@ -3,6 +3,11 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavLink from 'react-bootstrap/NavLink';
+import {LinkContainer} from 'react-router-bootstrap'
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+
+import AddItemPage from './AddItemPage';
+import App from '../App';
 
 
 import '../styles.css';
@@ -11,6 +16,7 @@ import '../styles.css';
 
 export default function NavBar(prop) {
     return (
+   <>
       <Navbar className="navbar-parent">
           <Container>
             <Navbar.Brand href="#home">
@@ -24,11 +30,17 @@ export default function NavBar(prop) {
               </Navbar.Brand>
           </Container>
           <Container>
-               <Nav className="navbar-links">
-                  <NavLink className="navBarItemsBox" href="#home">Home</NavLink>
-                  <NavLink className="navBarItemsBox" href="#link">Link</NavLink>
-             </Nav>
+          <Routes>
+          {/* <Route path="/" element={<Layout />}> */}
+        <Route path="home" element={<App />} />
+        <Route path="addItem" element={<AddItemPage />} />
+        {/* </Route> */}
+      </Routes>
+    <Link to="home">Home</Link>
+    <Link to="addItem">Add Item To Profile</Link>
          </Container>
       </Navbar>
+   
+            </>
     )
 }
