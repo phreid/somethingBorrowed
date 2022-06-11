@@ -1,0 +1,76 @@
+body {
+    background-color: lightgrey;
+}
+
+.navBar {
+    border-radius: 5px;
+    background-color: #069c99;
+    width: 100%;
+    margin: 10px;
+    height: auto;
+}
+
+#navItem {
+    color: black;
+    font-size: 24px;
+    font-style: bold;
+    margin: 20px;
+    text-decoration: none;
+    position: relative;
+    border-radius: 5px;
+    border-color: black;
+    border-style: solid;
+    background-color: lightgrey;
+    padding-left: 10px;
+    padding-right: 10px;
+} 
+
+#navItem:hover {
+    color: black;
+    background-color: lightyellow;
+}
+
+.add-items-page-body{
+    display: flex;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.page-title {
+    text-align: center;
+}
+
+.page-container {
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
+    max-height: 768px;
+}
+
+#container-border {
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.item-card {
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.item-image{
+    padding: 5px;
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    box-sizing: border-box;
+    border-right: 2px solid black;
+    height: 12rem;
+    width: 100%;
+    object-fit: contain;
+}
