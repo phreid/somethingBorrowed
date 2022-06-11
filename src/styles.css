@@ -1,7 +1,3 @@
-body {
-    background-color: lightgrey;
-}
-
 .navBar {
     border-radius: 5px;
     background-color: #069c99;
@@ -73,4 +69,8 @@ body {
     height: 12rem;
     width: 100%;
     object-fit: contain;
+}
+
+.navbar-parent{
+    background-color: lightblue;
 }

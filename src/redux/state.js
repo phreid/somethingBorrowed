@@ -8,7 +8,7 @@ export let baseItems = [
         key: "1",
         id: 1,
         image: cricut,
-        name:"Cricut crafting tool",
+        name:"Circut crafting tool",
         type:"DIY",
         description:"Good condition crafting tool, updated with latest software.",
         location:"UBC Campus"
@@ -17,7 +17,7 @@ export let baseItems = [
         key: "2",
         id: 2,
         image: bicyclePump,
-        name:"Cricut crafting tool",
+        name:"Circut crafting tool",
         type:"DIY",
         description:"Good condition crafting tool, updated with latest software.",
         location:"UBC Campus"
@@ -26,7 +26,7 @@ export let baseItems = [
         key: "3",
         id: 3,
         image: gardenTools,
-        name:"Cricut crafting tool",
+        name:"Circut crafting tool",
         type:"DIY",
         description:"Good condition crafting tool, updated with latest software.",
         location:"UBC Campus"
@@ -35,7 +35,7 @@ export let baseItems = [
         key: "4",
         id: 4,
         image: handBlender,
-        name:"Cricut crafting tool",
+        name:"Circut crafting tool",
         type:"DIY",
         description:"Good condition crafting tool, updated with latest software.",
         location:"UBC Campus"

@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import AddItemForm from './AddItemForm';
+import ItemContainer from "./ItemContainer";
+import NavBar from './NavBar';
 
 import '../styles.css';
-import ItemContainer from "./ItemContainer";
 
 function AddItemPage(){
 
 
     return(
         <>
+        <NavBar />
             <h1 className="page-title">Add Item to Profile</h1>
             <div className="grid-container">
                 <div className="grid-child page-container">
