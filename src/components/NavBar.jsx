@@ -9,10 +9,7 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import AddItemPage from './AddItemPage';
 import App from '../App';
 
-
 import '../styles.css';
-
-
 
 export default function NavBar(prop) {
     return (
@@ -30,17 +27,10 @@ export default function NavBar(prop) {
               </Navbar.Brand>
           </Container>
           <Container>
-          <Routes>
-          {/* <Route path="/" element={<Layout />}> */}
-        <Route path="home" element={<App />} />
-        <Route path="addItem" element={<AddItemPage />} />
-        {/* </Route> */}
-      </Routes>
-    <Link to="home">Home</Link>
-    <Link to="addItem">Add Item To Profile</Link>
+              <Link to="home">Home</Link>
+              <Link to="addItem">Add Item To Profile</Link>
          </Container>
       </Navbar>
-   
             </>
     )
 }
