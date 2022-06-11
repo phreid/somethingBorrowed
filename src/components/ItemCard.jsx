@@ -11,13 +11,13 @@ function ItemCard(props){
                 <div className="col-md-8">
                     <Card.Title className="item-name">{props.name}</Card.Title>
                     <Card.Text className="item-description">
-                        {props.description}
+                        <strong>Description:</strong> {props.description}
                     </Card.Text >
                     <Card.Text className="item-type">
-                        {props.type}
+                         <strong>Type:</strong> {props.type}
                     </Card.Text>
                     <Card.Text className="item-location">
-                        {props.location}
+                        <strong>Location:</strong> {props.location}
                     </Card.Text>
                 </div>
             </Row>
