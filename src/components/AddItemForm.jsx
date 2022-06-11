@@ -8,6 +8,7 @@ const ITEM_TYPES = [
     {id: 0, name: 'Kitchen'},
     {id: 1, name: 'Tools'},
     {id: 2, name: 'Outdoors'},
+    {id: 3, name: 'DIY'},
 ];
 
 const LOCATIONS = [

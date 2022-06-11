@@ -9,20 +9,21 @@ export default function NavBar(prop) {
     return (
    <>
       <Navbar className="navbar-parent">
-          <Container>
+          <Container fluid>
             <Navbar.Brand href="#home">
-                  <img
+                  {/* <img
                     src="image"
                     width="30"
                     height="30"
                     className="App-logo"
                     alt="Something Borrowed"
-                  />
-              </Navbar.Brand>
-          </Container>
-          <Container>
+                  /> */}
+                  Something Borrowed
+            </Navbar.Brand>
+            <Nav>
               <Nav.Link to="home">Home</Nav.Link>
               <Nav.Link to="addItem">Add Item To Profile</Nav.Link>
+            </Nav>
          </Container>
       </Navbar>
     </>
