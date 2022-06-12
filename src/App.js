@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
-import './styles.css';
+import './styles.css'
 
-import AddItemForm from "./components/AddItemForm";
-
-function App() {
-  useEffect(()=>{
-    document.title="Something Borrowed";
+function App () {
+  useEffect(() => {
+    document.title = 'Something Borrowed'
   })
 
   return (
@@ -14,4 +12,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
