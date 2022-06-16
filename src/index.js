@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
-import AddItemPage from './components/AddItemPage'
+import LoginPage from './components/LoginPage'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 
@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AddItemPage />
+      <LoginPage />
     </Provider>
   </React.StrictMode>
 )

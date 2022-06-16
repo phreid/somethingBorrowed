@@ -11,20 +11,20 @@ export default function SignUpForm () {
 
   return (
     <>
-    <Form onSubmit={handleSubmit}>
-      <Stack gap={4} className="mx-auto">
-        <Stack gap={2}>
-          <Form.Control type="email" placeholder="Email" />
-          <Form.Control type="text" placeholder="User name" />
-          <Form.Control type="password" placeholder="Password" />
+      <Form onSubmit={handleSubmit}>
+        <Stack gap={4} className="mx-auto">
+          <Stack gap={2}>
+            <Form.Control type="email" placeholder="Email" />
+            <Form.Control type="text" placeholder="User name" />
+            <Form.Control type="password" placeholder="Password" />
+          </Stack>
+          <Stack gap={2}>
+            <Button variant="primary" type="submit">
+              Sign up
+            </Button>
+          </Stack>
         </Stack>
-        <Stack gap={2}>
-          <Button variant="primary" type="submit">
-            Sign up
-          </Button>
-        </Stack>
-      </Stack>
-    </Form>
+      </Form>
     </>
   )
 }
