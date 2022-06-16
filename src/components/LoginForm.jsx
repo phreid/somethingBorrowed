@@ -15,7 +15,10 @@ export default function LoginForm () {
     // Just doing fake login so don't even check the password
     console.log(password)
 
+<<<<<<< HEAD
     localStorage.setItem('user', username)
+=======
+>>>>>>> b82c9b2897c171018e34d62e647f4959c7c5c251
     dispatch(loginUser({ username, isLoggedIn: true }))
     // When we have react-router set up, can uncomment the line below (and maybe fix the path)
     // so the login button redirects to the home page
