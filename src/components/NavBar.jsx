@@ -15,15 +15,15 @@ export default function NavBar(props) {
     return <div className='navBar' key={uuid()}>
         <img src={logo} className="App-logo" alt="logo"/>
         <div className='navBarItemsBox'>
-            <nav> 
+           
             {dynamicList.map(function(number){
                 if(number===props.currPage){
-                  return <div key={uuid()}><Link to={"/"+number} className='navBarItems' style={linkStyle}>{number}</Link><div className='verticalLine'></div></div>;
+                  return <><Link to={"/"+number} className='navBarItems' style={linkStyle}>{number}</Link><div className='verticalLine'></div></>;
                 }  
-                return <div key={uuid()}><Link to={"/"+number} className='navBarItems' >{number}</Link><div className='verticalLine'></div></div>;
+                return <><Link to={"/"+number} className='navBarItems' >{number}</Link><div className='verticalLine'></div></>;
               } 
             )}
-            </nav>
+           
         </div>
         
     </div>;

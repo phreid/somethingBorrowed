@@ -1,11 +1,3 @@
-.navBar {
-    border-radius: 5px;
-    background-color: #069c99;
-    width: 100%;
-    margin: 10px;
-    height: auto;
-}
-
 .add-items-page-body{
     display: flex;
 }
@@ -51,41 +43,62 @@
     object-fit: contain;
 }
 
-.navbar-parent{
-    background-color: lightblue;
-}
-
 .App-logo {
     height: 8vmin;
     width: 19vmin;
     display:inline-block;
     margin-right:660px;
     float: left
-  }
-  .navBar {
+}
+
+
+
+
+
+.navBar {
     background-color: #82a9d1;
     height: 8vmin;
-  }
-  
-  .verticalLine {
+}
+.navBarItemsBox {
+    position: absolute;
+    bottom: 93%;
+    left: 85%;
+}
+
+.verticalLine {
     border-left: 1px solid rgb(9, 9, 7);
     height: 12px;
-    margin-right:5px;
-    display:inline-block;
-  }
-  .navBarItemsBox {
-    position: relative;
-    bottom: -29px;
-    left: 480px;
-  }
-  
-  .navBarItems {
+    margin-right:3px;
+    margin-left:3px;
+    display: inline-block;
+}
+
+.navBarItems {
     color: black;
-    display:inline-block;
-    margin-right:5px;
+    display: inline-block;
+    margin-right:3px;
+    margin-left:3px;
     font-size: 10px;
-    text-decoration: none;
-    position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+}
+
+.Marketplace-search{
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
+    height: 695px;
+    width: 350px;
+    position: absolute;
+    top: 120px;
+}
+
+.Marketplace-items{
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
+    max-height: 695.3px;
+    width: 800px;
+    overflow-y: scroll;
+    position: absolute;
+    left: 540px;
+    top: 120px;
+}

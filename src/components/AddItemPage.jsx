@@ -11,7 +11,7 @@ function AddItemPage(){
 
     return(
         <>
-        <NavBar currpage="UserHome"/>
+        <NavBar currPage="UserHome"/>
             <h1 className="page-title">Add Item to Profile</h1>
             <div className="grid-container">
                 <div className="grid-child page-container">
