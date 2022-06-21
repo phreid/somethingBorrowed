@@ -1,0 +1,1 @@
+export let navBarItems = ["HomePage", "UserHome", "Marketplace"];

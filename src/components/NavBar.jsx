@@ -1,30 +1,30 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-
+import logo from '../images/logo.png'
 import '../styles.css';
+import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
+import { navBarItems } from '../redux/navBarItems';
+var { v4: uuid } = require('uuid');
 
-export default function NavBar(prop) {
-    return (
-   <>
-      <Navbar className="navbar-parent">
-          <Container>
-            <Navbar.Brand href="#home">
-                  <img
-                    src="image"
-                    width="30"
-                    height="30"
-                    className="App-logo"
-                    alt="Something Borrowed"
-                  />
-              </Navbar.Brand>
-          </Container>
-          <Container>
-              <Nav.Link to="home">Home</Nav.Link>
-              <Nav.Link to="addItem">Add Item To Profile</Nav.Link>
-         </Container>
-      </Navbar>
-    </>
-    )
+export default function NavBar(props) {
+    const dynamicList = useSelector(state => navBarItems);
+    // alert(dynamicList);
+    
+    const linkStyle = {
+        color: 'blue'
+      };
+    return <div className='navBar' key={uuid()}>
+        <img src={logo} className="App-logo" alt="logo"/>
+        <div className='navBarItemsBox'>
+            <nav> 
+            {dynamicList.map(function(number){
+                if(number===props.currPage){
+                  return <div key={uuid()}><Link to={"/"+number} className='navBarItems' style={linkStyle}>{number}</Link><div className='verticalLine'></div></div>;
+                }  
+                return <div key={uuid()}><Link to={"/"+number} className='navBarItems' >{number}</Link><div className='verticalLine'></div></div>;
+              } 
+            )}
+            </nav>
+        </div>
+        
+    </div>;
 }

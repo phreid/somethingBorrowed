@@ -6,26 +6,6 @@
     height: auto;
 }
 
-#navItem {
-    color: black;
-    font-size: 24px;
-    font-style: bold;
-    margin: 20px;
-    text-decoration: none;
-    position: relative;
-    border-radius: 5px;
-    border-color: black;
-    border-style: solid;
-    background-color: lightgrey;
-    padding-left: 10px;
-    padding-right: 10px;
-} 
-
-#navItem:hover {
-    color: black;
-    background-color: lightyellow;
-}
-
 .add-items-page-body{
     display: flex;
 }
@@ -74,3 +54,38 @@
 .navbar-parent{
     background-color: lightblue;
 }
+
+.App-logo {
+    height: 8vmin;
+    width: 19vmin;
+    display:inline-block;
+    margin-right:660px;
+    float: left
+  }
+  .navBar {
+    background-color: #82a9d1;
+    height: 8vmin;
+  }
+  
+  .verticalLine {
+    border-left: 1px solid rgb(9, 9, 7);
+    height: 12px;
+    margin-right:5px;
+    display:inline-block;
+  }
+  .navBarItemsBox {
+    position: relative;
+    bottom: -29px;
+    left: 480px;
+  }
+  
+  .navBarItems {
+    color: black;
+    display:inline-block;
+    margin-right:5px;
+    font-size: 10px;
+    text-decoration: none;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
