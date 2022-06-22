@@ -17,7 +17,9 @@ const id = () => nanoid.nanoid(ID_LENGTH)
  * @returns a list of user objects
  */
 router.get('/', (req, res) => {
-  res.send(users)
+  res.send({
+    data: users
+  })
 })
 
 /**
@@ -31,7 +33,9 @@ router.get('/', (req, res) => {
 router.get('/:username', (req, res) => {
   const { username } = req.params
   const user = users.find((user) => user.username === username)
-  res.send(user)
+  res.send({
+    data: user
+  })
 })
 
 /**
@@ -53,7 +57,9 @@ router.get('/:username/marketplace', isLoggedIn, isUser, (req, res) => {
     const owner = users.find((user) => user.id === ownerId)
     return { ...item, location: owner.location }
   })
-  res.send(itemsWithLocation)
+  res.send({
+    data: itemsWithLocation
+  })
 })
 
 /**
@@ -68,7 +74,9 @@ router.get('/:username/items', (req, res) => {
   const { username } = req.params
   const user = users.find((user) => user.username === username)
   const ownedItems = items.filter((item) => item.owner === user.id)
-  res.send(ownedItems)
+  res.send({
+    data: ownedItems
+  })
 })
 
 /**
@@ -83,7 +91,9 @@ router.get('/:username/items', (req, res) => {
 router.post('/', (req, res) => {
   const newUser = { id: id(), ...req.body }
   users.push(newUser)
-  res.send(newUser)
+  res.send({
+    data: newUser
+  })
 })
 
 /**
@@ -98,7 +108,9 @@ router.delete('/:username', isLoggedIn, isUser, (req, res) => {
   const { username } = req.params
   const idx = users.findIndex((user) => user.username === username)
   const [deleted] = users.splice(idx, 1)
-  res.send(deleted)
+  res.send({
+    data: deleted
+  })
 })
 
 /**
@@ -115,7 +127,9 @@ router.patch('/:username', isLoggedIn, isUser, (req, res) => {
   const { username } = req.params
   const idx = users.findIndex((user) => user.username === username)
   users[idx] = { ...users[idx], ...req.body }
-  res.send(users[idx])
+  res.send({
+    data: users[idx]
+  })
 })
 
 module.exports = router

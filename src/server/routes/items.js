@@ -22,7 +22,9 @@ router.get('/', (req, res) => {
     const owner = users.find((user) => user.id === ownerId)
     return { ...item, location: owner.location }
   })
-  res.send(itemsWithLocation)
+  res.send({
+    data: itemsWithLocation
+  })
 })
 
 /**
@@ -36,7 +38,9 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const { id } = req.params
   const item = items.find((item) => item.id === id)
-  res.send(item)
+  res.send({
+    data: item
+  })
 })
 
 /**
@@ -53,7 +57,9 @@ router.post('/', isLoggedIn, (req, res) => {
   const owner = users.find((user) => user.username === req.session.user)
   const newItem = { id: id(), owner: owner.id, ...req.body }
   items.push(newItem)
-  res.send(newItem)
+  res.send({
+    data: newItem
+  })
 })
 
 /**
@@ -69,7 +75,9 @@ router.delete('/:id', isLoggedIn, isItemOwner, (req, res) => {
   const { id } = req.params
   const idx = items.findIndex((item) => item.id === id)
   const [deleted] = items.splice(idx, 1)
-  res.send(deleted)
+  res.send({
+    data: deleted
+  })
 })
 
 /**
@@ -87,7 +95,9 @@ router.patch('/:id', isLoggedIn, isItemOwner, (req, res) => {
   const { id } = req.params
   const idx = items.findIndex((item) => item.id === id)
   items[idx] = { ...items[idx], ...req.body }
-  res.send(items[idx])
+  res.send({
+    data: items[idx]
+  })
 })
 
 module.exports = router

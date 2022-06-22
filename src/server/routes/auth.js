@@ -25,7 +25,9 @@ router.post('/login', (req, res) => {
   console.log(password)
 
   req.session.user = username
-  res.send(username)
+  res.send({
+    data: username
+  })
 })
 
 /**
