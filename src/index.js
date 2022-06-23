@@ -1,22 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-
-import AddItemPage from "./components/AddItemPage";
-import {store} from "./redux/store";
-import {Provider} from "react-redux";
-
-import HomePage from './routes/HomePage';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.css'
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
+import HomePage from './routes/HomePage'
 import {
   BrowserRouter,
   Routes,
-  Route,
-} from "react-router-dom";
-import UserHome from './routes/UserHome';
-import MarketplacePage from './routes/MarketplacePage';
+  Route
+} from 'react-router-dom'
+import UserHome from './routes/UserHome'
+import MarketplacePage from './routes/MarketplacePage'
+import AddItemPage from './components/AddItemPage'
+const root = ReactDOM.createRoot(document.getElementById('root'))
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <Provider store={store}>
@@ -39,5 +36,4 @@ root.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
-);
-
+)

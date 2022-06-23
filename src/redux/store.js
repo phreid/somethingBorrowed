@@ -1,5 +1,11 @@
-import { createStore } from "redux";
-import {reducer} from "./reducer";
+import { configureStore } from '@reduxjs/toolkit'
+import itemReducer from './items/items'
+import userReducer from './users/user'
 
-export let store = createStore(reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
+export const store = configureStore({
+  reducer: {
+    items: itemReducer,
+    user: userReducer
+  },
+  devTools: true
+})

@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import AddItemForm from './AddItemForm';
-import ItemContainer from "./ItemContainer";
-import NavBar from './NavBar';
+import AddItemForm from './AddItemForm'
+import ItemContainer from './ItemContainer'
+import NavBar from './NavBar'
 
-import '../styles.css';
+import '../styles.css'
 
 function AddItemPage(){
 
@@ -25,4 +25,4 @@ function AddItemPage(){
     )
 }
 
-export default AddItemPage;
+export default AddItemPage
