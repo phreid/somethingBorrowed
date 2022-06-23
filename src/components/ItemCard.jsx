@@ -1,7 +1,19 @@
-import React from 'react'
-import { Card, Row } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Button, Card, Row } from 'react-bootstrap'
 
 function ItemCard (props) {
+  const [borrowed, setBorrowed] = useState(false)
+  const [buttonText, setButtonText] = useState('Borrow Item')
+
+  function handleBorrowItem () {
+    if (borrowed === true) {
+      return
+    }
+
+    setBorrowed(true)
+    setButtonText('Borrowed')
+  }
+
   return (
     <Card className="item-card" style={{ width: '' }}>
       <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
@@ -19,6 +31,7 @@ function ItemCard (props) {
           <Card.Text className="item-location">
             <strong>Location:</strong> {props.location}
           </Card.Text>
+          {props.borrow ? <Button onClick={handleBorrowItem}>{buttonText}</Button> : null }
         </div>
       </Row>
     </Card>

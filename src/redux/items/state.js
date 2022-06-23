@@ -1,4 +1,4 @@
-import cricut from '../../images/cricut.jpg'
+import circuit from '../../images/circuit.jpg'
 import bicyclePump from '../../images/bicyclePump.jpg'
 import gardenTools from '../../images/gardenTools.jpg'
 import handBlender from '../../images/handBlender.jpg'
@@ -7,8 +7,8 @@ export const baseItems = [
   {
     key: '1',
     id: 1,
-    image: cricut,
-    name: 'Cricut crafting tool',
+    image: circuit,
+    name: 'Circuit crafting tool',
     type: 'DIY',
     description: 'Good condition crafting tool, updated with latest software.',
     location: 'UBC Campus'
@@ -17,7 +17,7 @@ export const baseItems = [
     key: '2',
     id: 2,
     image: bicyclePump,
-    name: 'Bicyle pump',
+    name: 'Bicycle pump',
     type: 'Outdoors',
     description: 'Bicycle pump with three valve attachments.',
     location: 'UBC Campus'

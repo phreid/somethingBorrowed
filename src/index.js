@@ -2,15 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
-import LoginPage from './components/LoginPage'
+// import LoginPage from './components/LoginPage'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import Marketplace from './components/Marketplace'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <LoginPage />
+      <Marketplace />
     </Provider>
   </React.StrictMode>
 )
