@@ -3,6 +3,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Button } from 'react-bootstrap'
 import { useState } from 'react'
+import { addItem } from '../redux/items/items'
+import { useDispatch } from 'react-redux'
 
 const ITEM_TYPES = [
   { id: 0, name: 'Kitchen' },
@@ -25,6 +27,12 @@ export default function AddItemForm (props) {
   })
 
   const [switchIsAvailable, setSwitchIsAvailable] = useState(true)
+  const [name, setName] = useState('')
+  const [type, setType] = useState('')
+  const [location, setLocation] = useState('')
+  const [description, setDescription] = useState('')
+
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -32,19 +40,21 @@ export default function AddItemForm (props) {
       <Form>
         <Form.Group className="mb-3">
           <Form.Label>Item Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter the name of your item"></Form.Control>
+          <Form.Control type="text" placeholder="Enter the name of your item" value={name}
+            onChange={(e) => setName(e.target.value)}></Form.Control>
         </Form.Group>
         <Row>
           <Form.Group as={Col} sm className="mb-3">
             <Form.Label>Type</Form.Label>
-            <Form.Select>
+            <Form.Select value={type} onChange={(e) => setType(e.target.value)}>
               <option>Select an item type...</option>
               {itemTypeDropdowns}
             </Form.Select>
           </Form.Group>
           <Form.Group as={Col} sm className="mb-3">
             <Form.Label>Location</Form.Label>
-            <Form.Select disabled>
+            <Form.Select value={location} onChange={(e) => setLocation(e.target.value)}>
+              <option>Select a location...</option>
               {locationDropdowns}
             </Form.Select>
           </Form.Group>
@@ -64,9 +74,19 @@ export default function AddItemForm (props) {
         </Row>
         <Form.Group className="mb-3">
           <Form.Label>Description</Form.Label>
-          <Form.Control as="textarea" rows={3} placeholder="Enter a description of your item"></Form.Control>
+          <Form.Control as="textarea" rows={3} placeholder="Enter a description of your item" value={description}
+            onChange={(e) => setDescription(e.target.value)}></Form.Control>
         </Form.Group>
-        <Button variant="primary" type="submit" className="me-1">Submit</Button>
+        <Button variant="primary" type="submit" className="me-1"
+          onClick={(e) => {
+            e.preventDefault()
+            dispatch(addItem({
+              name,
+              type,
+              location,
+              description
+            }))
+          }}>Submit</Button>
         <Button variant="danger" type="reset">Reset</Button>
       </Form>
     </>

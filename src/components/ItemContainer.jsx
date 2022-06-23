@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Container } from 'react-bootstrap'
 
 function ItemContainer () {
-  const items = useSelector(state => state.items.list)
+  const items = useSelector(state => state.itemsSlice.items)
 
   return (
     <Container fluid className="item-container">
@@ -15,7 +15,6 @@ function ItemContainer () {
           description={item.description}
           type={item.type}
           location={item.location}
-
         />
       })}
     </Container>
