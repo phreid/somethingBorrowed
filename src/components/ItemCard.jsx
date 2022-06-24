@@ -43,7 +43,7 @@ function ItemCard (props) {
         </div>
         <div className="col-md-8">
           {props.edit ? <Button onClick={handleEditItem} >Edit Item</Button> : null }
-          <CardModal modalOpen={editOpen} setShow={handleCloseModal} />
+          <CardModal modalOpen={editOpen} setShow={handleCloseModal} name={props.name} description={props.description} type={props.type} />
           <Card.Title className="item-name">{props.name}</Card.Title>
           <Button variant="outline-danger" size="sm" className="position-absolute top-0 end-0" onClick={(e) => dispatch(deleteItem(props))}>Delete</Button>
           <br/>

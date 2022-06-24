@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
 import { Button } from 'react-bootstrap'
 import { useState } from 'react'
-import { addItem } from '../redux/items/items'
+import { editItem } from '../redux/items/items'
 import { useDispatch } from 'react-redux'
 
 const ITEM_TYPES = [
@@ -35,6 +35,13 @@ export default function CardModal (props) {
   const [location, setLocation] = useState('')
   const [description, setDescription] = useState('')
 
+  const handleNameChange = (e) => {
+    if (!e.target.value) {
+      setName(props.name)
+    }
+    setName(e.target.value)
+  }
+
   return (
     <>
       <Modal
@@ -43,25 +50,26 @@ export default function CardModal (props) {
         backdrop="static"
         keyboard={false}
       >
-        <h1>Edit Item Details</h1>
-        <Button variant="primary" onClick={() => props.setShow(false)}>Close</Button>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Your Item</Modal.Title>
+        </Modal.Header>
         <Form>
           <Form.Group className="mb-3">
             <Form.Label>Item Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter the name of your item" value={props.name}
-              onChange={(e) => setName(e.target.value)}></Form.Control>
+            <Form.Control type="text" placeholder={props.name} value={name}
+              onChange={handleNameChange}></Form.Control>
           </Form.Group>
           <Row>
             <Form.Group as={Col} sm className="mb-3">
               <Form.Label>Type</Form.Label>
-              <Form.Select value={props.type} onChange={(e) => setType(e.target.value)}>
+              <Form.Select placeholder={props.type} value={type} onChange={(e) => setType(e.target.value)}>
                 <option>Select an item type...</option>
                 {itemTypeDropdowns}
               </Form.Select>
             </Form.Group>
             <Form.Group as={Col} sm className="mb-3">
               <Form.Label>Location</Form.Label>
-              <Form.Select value={props.location} onChange={(e) => setLocation(e.target.value)}>
+              <Form.Select value={location} onChange={(e) => setLocation(e.target.value)}>
                 <option>Select a location...</option>
                 {locationDropdowns}
               </Form.Select>
@@ -82,19 +90,19 @@ export default function CardModal (props) {
           </Row>
           <Form.Group className="mb-3">
             <Form.Label>Description</Form.Label>
-            <Form.Control as="textarea" rows={3} placeholder="Enter a description of your item" value={props.description}
+            <Form.Control as="textarea" rows={3} placeholder={props.description} value={description}
               onChange={(e) => setDescription(e.target.value)}></Form.Control>
           </Form.Group>
           <Button variant="primary" type="submit" className="me-1"
             onClick={(e) => {
               e.preventDefault()
-              dispatch(addItem({
+              dispatch(editItem({
                 name,
                 type,
                 location,
                 description
               }))
-            }}>Submit</Button>
+            }}>Submit Changes</Button>
           <Button variant="danger" type="reset">Reset</Button>
         </Form>
       </Modal>
