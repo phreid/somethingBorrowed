@@ -31,6 +31,9 @@ function ItemCard (props) {
           <Card.Text className="item-location">
             <strong>Location:</strong> {props.location}
           </Card.Text>
+          <Card.Text className="item-status">
+            <strong>Status:</strong> {props.status}
+          </Card.Text>
           {props.borrow ? <Button onClick={handleBorrowItem}>{buttonText}</Button> : null }
         </div>
       </Row>

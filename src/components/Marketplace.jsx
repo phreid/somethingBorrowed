@@ -27,6 +27,7 @@ function Marketplace () {
                 description={item.description}
                 type={item.type}
                 location={item.location}
+                status={item.status}
                 borrow
               />
             })}

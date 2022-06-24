@@ -8,10 +8,11 @@ export const baseItems = [
     key: '1',
     id: 1,
     image: circuit,
-    name: 'Circuit crafting tool',
+    name: 'Cricut crafting tool',
     type: 'DIY',
     description: 'Good condition crafting tool, updated with latest software.',
-    location: 'UBC Campus'
+    location: 'UBC Campus',
+    status: 'Available'
   },
   {
     key: '2',
@@ -20,7 +21,8 @@ export const baseItems = [
     name: 'Bicycle pump',
     type: 'Outdoors',
     description: 'Bicycle pump with three valve attachments.',
-    location: 'UBC Campus'
+    location: 'UBC Campus',
+    status: 'Available'
   },
   {
     key: '3',
@@ -29,7 +31,8 @@ export const baseItems = [
     name: 'Gardening tools',
     type: 'Tools',
     description: 'Spade and clippers.',
-    location: 'UBC Campus'
+    location: 'UBC Campus',
+    status: 'Available'
   },
   {
     key: '4',
@@ -38,6 +41,7 @@ export const baseItems = [
     name: 'Hand blender',
     type: 'Kitchen',
     description: 'Kitchen-aid hand blender with whisk attachment.',
-    location: 'UBC Campus'
+    location: 'UBC Campus',
+    status: 'Available'
   }
 ]
