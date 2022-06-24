@@ -46,17 +46,16 @@ function ItemCard (props) {
           <Button variant="outline-danger" size="sm" className="card-buttons" onClick={(e) => dispatch(deleteItem(props))}>Delete</Button>
           <CardModal modalOpen={editOpen} setShow={handleCloseModal} name={props.name} description={props.description} type={props.type} />
           <Card.Title className="item-name"><strong>{props.name}</strong></Card.Title>
-          <br/>
-          <Card.Text className="item-description">
+          <Card.Text className="card-text">
             <strong>Description:</strong> {props.description}
           </Card.Text >
-          <Card.Text className="item-type">
+          <Card.Text className="card-text">
             <strong>Type:</strong> {props.type}
           </Card.Text>
-          <Card.Text className="item-location">
+          <Card.Text className="card-text">
             <strong>Location:</strong> {props.location}
           </Card.Text>
-          <Card.Text className="item-status">
+          <Card.Text className="card-text">
             <strong>Status:</strong> {props.status}
           </Card.Text>
           {props.borrow ? <Button disabled={borrowed} onClick={handleBorrowItem}>{buttonText}</Button> : null }

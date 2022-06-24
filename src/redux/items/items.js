@@ -20,7 +20,10 @@ export const itemSlice = createSlice({
     },
     editItem: (state, action) => {
       const index = state.items.findIndex(item => item.key === action.payload.key)
-      state.items[index] = action.payload
+      state.items[index].name = action.payload.name
+      state.items[index].type = action.payload.type
+      state.items[index].description = action.payload.description
+      state.items[index].location = action.payload.location
     }
   }
 })

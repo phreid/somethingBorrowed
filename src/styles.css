@@ -71,6 +71,7 @@ Form {
     font-family: 'Montserrat Bold', sans-serif;
     border: 2px solid black;
     margin: 10px;
+    padding: 10px;
 }
 
 .item-img {
@@ -93,4 +94,5 @@ Form {
 .card-buttons{
     display: inline-block;
     float: right;
+    margin-left: 10px;
 }
