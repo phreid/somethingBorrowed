@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
-import { Button, Card, CloseButton, Row } from 'react-bootstrap'
+
+import React from 'react'
+import { Button, Card, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { deleteItem, updateStatus } from '../redux/items/items'
+import { deleteItem } from '../redux/items/items'
+import diy from '../images/defaultImages/diy.jpg'
+import kitchen from '../images/defaultImages/kitchen.jpg'
+import outdoors from '../images/defaultImages/outdoors.jpg'
+import tools from '../images/defaultImages/tools.jpg'
+
 
 function ItemCard (props) {
   const [borrowed, setBorrowed] = useState(false)
@@ -22,11 +28,21 @@ function ItemCard (props) {
     <Card className="item-card" style={{ width: '' }}>
       <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
         <div className="col-md-4">
-          <Card.Img className="item-image" src={props.image} />
+          <Card.Img className="item-img" src={
+            props.image ||
+              ((props.type === 'DIY') && diy) ||
+              ((props.type === 'Kitchen') && kitchen) ||
+              ((props.type === 'Outdoors') && outdoors) ||
+              ((props.type === 'Tools') && tools)
+          } />
         </div>
         <div className="col-md-8">
-          {props.delete ? <CloseButton className="item-close" onClick={(e) => dispatch(deleteItem(props))}/> : null }
-          <Card.Title className="item-name">{props.name}</Card.Title>
+
+          <Button variant="outline-danger" size="sm" className="position-absolute top-0 end-0" onClick={(e) => dispatch(deleteItem(props))}>Delete</Button>
+          <br/>
+          <Card.Title className="item-name"><strong>{props.name}</strong></Card.Title>
+          <br/>
+
           <Card.Text className="item-description">
             <strong>Description:</strong> {props.description}
           </Card.Text >
