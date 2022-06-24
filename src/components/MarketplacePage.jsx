@@ -1,10 +1,11 @@
 import NavBar from './NavBar'
+import SearchSideBar from './SearchSideBar'
 
 function MarketplacePage () {
   return (
     <>
       <NavBar />
-      <h1>Marketplace</h1>
+	  <SearchSideBar />
     </>
   )
 }
