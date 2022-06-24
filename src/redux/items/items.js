@@ -17,13 +17,9 @@ export const itemSlice = createSlice({
     updateStatus: (state, action) => {
       const index = state.items.findIndex(item => item.name === action.payload.name)
       state.items[index].status = 'Borrowed'
-    },
-    closeModal: (state, action) => {
-      const index = state.items.findIndex(item => item.name === action.payload.name)
-      state.items[index].show = false
     }
   }
 })
 
-export const { addItem, deleteItem, updateStatus, closeModal } = itemSlice.actions
+export const { addItem, deleteItem, updateStatus } = itemSlice.actions
 export default itemSlice.reducer

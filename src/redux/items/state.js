@@ -13,8 +13,7 @@ export const baseItems = [
     type: 'DIY',
     description: 'Good condition crafting tool, updated with latest software.',
     location: 'UBC Campus',
-    status: 'Available',
-    modalOpen: false
+    status: 'Available'
   },
   {
     id: nanoid(11),
@@ -23,8 +22,7 @@ export const baseItems = [
     type: 'Outdoors',
     description: 'Bicycle pump with three valve attachments.',
     location: 'UBC Campus',
-    status: 'Available',
-    modalOpen: false
+    status: 'Available'
   },
   {
     id: nanoid(11),
@@ -33,8 +31,7 @@ export const baseItems = [
     type: 'Tools',
     description: 'Spade and clippers.',
     location: 'UBC Campus',
-    status: 'Available',
-    modalOpen: false
+    status: 'Available'
   },
   {
     id: nanoid(11),
@@ -43,7 +40,6 @@ export const baseItems = [
     type: 'Kitchen',
     description: 'Kitchen-aid hand blender with whisk attachment.',
     location: 'UBC Campus',
-    status: 'Available',
-    modalOpen: false
+    status: 'Available'
   }
 ]

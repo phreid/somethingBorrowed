@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
 import { Button } from 'react-bootstrap'
 import { useState } from 'react'
-import { addItem, closeModal } from '../redux/items/items'
+import { addItem } from '../redux/items/items'
 import { useDispatch } from 'react-redux'
 
 const ITEM_TYPES = [
@@ -19,17 +19,7 @@ const LOCATIONS = [
 ]
 
 export default function CardModal (props) {
-  const [close, setClose] = useState(props.modalOpen)
-
   const dispatch = useDispatch()
-
-  const handleClose = () => {
-    if (close === true) {
-      return
-    }
-    console.log(setClose(close))
-    dispatch(closeModal(props))
-  }
 
   const itemTypeDropdowns = ITEM_TYPES.map((type) => {
     return <option key={type.id}>{type.name}</option>
@@ -49,11 +39,12 @@ export default function CardModal (props) {
     <>
       <Modal
         show={props.modalOpen}
+        onHide={() => props.setShow(false)}
         backdrop="static"
         keyboard={false}
       >
         <h1>Edit Item Details</h1>
-        <Button variant="primary" onClick={handleClose}>Close</Button>
+        <Button variant="primary" onClick={() => props.setShow(false)}>Close</Button>
         <Form>
           <Form.Group className="mb-3">
             <Form.Label>Item Name</Form.Label>
