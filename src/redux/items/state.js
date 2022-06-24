@@ -1,4 +1,4 @@
-import circuit from '../../images/circuit.jpg'
+import cricut from '../../images/cricut.jpg'
 import bicyclePump from '../../images/bicyclePump.jpg'
 import gardenTools from '../../images/gardenTools.jpg'
 import handBlender from '../../images/handBlender.jpg'
@@ -7,7 +7,7 @@ export const baseItems = [
   {
     key: '1',
     id: 1,
-    image: circuit,
+    image: cricut,
     name: 'Cricut crafting tool',
     type: 'DIY',
     description: 'Good condition crafting tool, updated with latest software.',

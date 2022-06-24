@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
-// import LoginPage from './components/LoginPage'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import Marketplace from './components/Marketplace'

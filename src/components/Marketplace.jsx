@@ -9,11 +9,11 @@ import NavBar from './NavBar'
 import '../styles.css'
 
 function Marketplace () {
-  const items = useSelector(state => state.items.list)
+  const items = useSelector(state => state.itemsSlice.items)
   return (
     <>
       <NavBar />
-      <h1 className="page-title">Add Item to Profile</h1>
+      <h1 className="page-title">Marketplace</h1>
       <div className="grid-container">
         <div className="grid-child page-container">
           <p>placeholder</p>

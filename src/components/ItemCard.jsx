@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import { Button, Card, Row } from 'react-bootstrap'
+import { Button, Card, CloseButton, Row } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { deleteItem, updateStatus } from '../redux/items/items'
 
 function ItemCard (props) {
   const [borrowed, setBorrowed] = useState(false)
   const [buttonText, setButtonText] = useState('Borrow Item')
+  const dispatch = useDispatch()
 
   function handleBorrowItem () {
     if (borrowed === true) {
@@ -12,6 +15,7 @@ function ItemCard (props) {
 
     setBorrowed(true)
     setButtonText('Borrowed')
+    dispatch(updateStatus(props))
   }
 
   return (
@@ -21,6 +25,7 @@ function ItemCard (props) {
           <Card.Img className="item-image" src={props.image} />
         </div>
         <div className="col-md-8">
+          {props.delete ? <CloseButton className="item-close" onClick={(e) => dispatch(deleteItem(props))}/> : null }
           <Card.Title className="item-name">{props.name}</Card.Title>
           <Card.Text className="item-description">
             <strong>Description:</strong> {props.description}
@@ -34,7 +39,7 @@ function ItemCard (props) {
           <Card.Text className="item-status">
             <strong>Status:</strong> {props.status}
           </Card.Text>
-          {props.borrow ? <Button onClick={handleBorrowItem}>{buttonText}</Button> : null }
+          {props.borrow ? <Button disabled={borrowed} onClick={handleBorrowItem}>{buttonText}</Button> : null }
         </div>
       </Row>
     </Card>
