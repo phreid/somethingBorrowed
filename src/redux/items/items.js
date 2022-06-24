@@ -24,9 +24,20 @@ export const itemSlice = createSlice({
           ...state.items.slice(index + 1)
         ]
       }
+    },
+    closeModal: (state, action) => {
+      const index = state.items.findIndex(item => item.name === action.payload.name)
+      return {
+        ...state,
+        items: [
+          ...state.items.slice(0, index),
+          { ...state.items[index], show: false },
+          ...state.items.slice(index + 1)
+        ]
+      }
     }
   }
 })
 
-export const { addItem, deleteItem, updateStatus } = itemSlice.actions
+export const { addItem, deleteItem, updateStatus, closeModal } = itemSlice.actions
 export default itemSlice.reducer

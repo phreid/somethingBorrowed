@@ -3,9 +3,13 @@ import { Button, Card, CloseButton, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { deleteItem, updateStatus } from '../redux/items/items'
 
+import CardModal from './CardModal'
+
 function ItemCard (props) {
   const [borrowed, setBorrowed] = useState(false)
   const [buttonText, setButtonText] = useState('Borrow Item')
+  const [editOpen, setEditOpen] = useState(false)
+
   const dispatch = useDispatch()
 
   function handleBorrowItem () {
@@ -18,6 +22,14 @@ function ItemCard (props) {
     dispatch(updateStatus(props))
   }
 
+  function handleEditItem () {
+    if (editOpen === true) {
+      return
+    }
+
+    setEditOpen(true)
+  }
+
   return (
     <Card className="item-card" style={{ width: '' }}>
       <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
@@ -26,6 +38,8 @@ function ItemCard (props) {
         </div>
         <div className="col-md-8">
           {props.delete ? <CloseButton className="item-close" onClick={(e) => dispatch(deleteItem(props))}/> : null }
+          {props.edit ? <Button onClick={handleEditItem} >Edit Item</Button> : null }
+          <CardModal show={editOpen} />
           <Card.Title className="item-name">{props.name}</Card.Title>
           <Card.Text className="item-description">
             <strong>Description:</strong> {props.description}
