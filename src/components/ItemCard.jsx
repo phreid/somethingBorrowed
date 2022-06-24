@@ -42,11 +42,9 @@ function ItemCard (props) {
           <Card.Img className="item-img" src={props.image || placeholder } />
         </div>
         <div className="col-md-8">
-          {props.edit ? <Button onClick={handleEditItem} >Edit Item</Button> : null }
+          {props.edit ? <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleEditItem}>Edit Item</Button> : null }
+          <Button variant="outline-danger" size="sm" className="card-buttons" onClick={(e) => dispatch(deleteItem(props))}>Delete</Button>
           <CardModal modalOpen={editOpen} setShow={handleCloseModal} name={props.name} description={props.description} type={props.type} />
-          <Card.Title className="item-name">{props.name}</Card.Title>
-          <Button variant="outline-danger" size="sm" className="position-absolute top-0 end-0" onClick={(e) => dispatch(deleteItem(props))}>Delete</Button>
-          <br/>
           <Card.Title className="item-name"><strong>{props.name}</strong></Card.Title>
           <br/>
           <Card.Text className="item-description">

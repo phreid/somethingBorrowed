@@ -89,3 +89,8 @@ Form {
 .navbar-parent{
     background-color: lightblue;
 }
+
+.card-buttons{
+    display: inline-block;
+    float: right;
+}
