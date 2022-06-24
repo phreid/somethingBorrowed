@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { Form, Button, Stack } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../redux/users/user'
+import { useNavigate } from 'react-router-dom'
 
 export default function LoginForm () {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -19,7 +21,7 @@ export default function LoginForm () {
     dispatch(loginUser({ username, isLoggedIn: true }))
     // When we have react-router set up, can uncomment the line below (and maybe fix the path)
     // so the login button redirects to the home page
-    // useNavigate('/')
+    navigate('/marketplace')
   }
 
   return (

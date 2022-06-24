@@ -8,7 +8,7 @@ import NavBar from './NavBar'
 
 import '../styles.css'
 
-function Marketplace () {
+function MarketplacePage () {
   const items = useSelector(state => state.itemsSlice.items)
   return (
     <>
@@ -38,4 +38,4 @@ function Marketplace () {
   )
 }
 
-export default Marketplace
+export default MarketplacePage
