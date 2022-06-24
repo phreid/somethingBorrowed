@@ -1,7 +1,23 @@
-import React from 'react'
-import { Card, Row } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Button, Card, CloseButton, Row } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { deleteItem, updateStatus } from '../redux/items/items'
 
 function ItemCard (props) {
+  const [borrowed, setBorrowed] = useState(false)
+  const [buttonText, setButtonText] = useState('Borrow Item')
+  const dispatch = useDispatch()
+
+  function handleBorrowItem () {
+    if (borrowed === true) {
+      return
+    }
+
+    setBorrowed(true)
+    setButtonText('Borrowed')
+    dispatch(updateStatus(props))
+  }
+
   return (
     <Card className="item-card" style={{ width: '' }}>
       <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
@@ -9,6 +25,7 @@ function ItemCard (props) {
           <Card.Img className="item-image" src={props.image} />
         </div>
         <div className="col-md-8">
+          {props.delete ? <CloseButton className="item-close" onClick={(e) => dispatch(deleteItem(props))}/> : null }
           <Card.Title className="item-name">{props.name}</Card.Title>
           <Card.Text className="item-description">
             <strong>Description:</strong> {props.description}
@@ -19,6 +36,10 @@ function ItemCard (props) {
           <Card.Text className="item-location">
             <strong>Location:</strong> {props.location}
           </Card.Text>
+          <Card.Text className="item-status">
+            <strong>Status:</strong> {props.status}
+          </Card.Text>
+          {props.borrow ? <Button disabled={borrowed} onClick={handleBorrowItem}>{buttonText}</Button> : null }
         </div>
       </Row>
     </Card>
