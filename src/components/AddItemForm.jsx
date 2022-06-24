@@ -40,21 +40,21 @@ export default function AddItemForm (props) {
       <Form>
         <Form.Group className="mb-3">
           <Form.Label>Item Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter the name of your item" value={name}
+          <Form.Control className="item-input" type="text" placeholder="Enter item name" value={name}
             onChange={(e) => setName(e.target.value)}></Form.Control>
         </Form.Group>
         <Row>
           <Form.Group as={Col} sm className="mb-3">
             <Form.Label>Type</Form.Label>
             <Form.Select value={type} onChange={(e) => setType(e.target.value)}>
-              <option>Select an item type...</option>
+              <option>Select item type...</option>
               {itemTypeDropdowns}
             </Form.Select>
           </Form.Group>
           <Form.Group as={Col} sm className="mb-3">
             <Form.Label>Location</Form.Label>
             <Form.Select value={location} onChange={(e) => setLocation(e.target.value)}>
-              <option>Select a location...</option>
+              <option>Select item location...</option>
               {locationDropdowns}
             </Form.Select>
           </Form.Group>
@@ -74,10 +74,10 @@ export default function AddItemForm (props) {
         </Row>
         <Form.Group className="mb-3">
           <Form.Label>Description</Form.Label>
-          <Form.Control as="textarea" rows={3} placeholder="Enter a description of your item" value={description}
+          <Form.Control className="item-input" as="textarea" rows={3} placeholder="Enter item description" value={description}
             onChange={(e) => setDescription(e.target.value)}></Form.Control>
         </Form.Group>
-        <Button variant="primary" type="submit" className="me-1"
+        <Button variant="outline-primary" type="submit" className="me-1"
           onClick={(e) => {
             e.preventDefault()
             dispatch(addItem({
@@ -87,7 +87,7 @@ export default function AddItemForm (props) {
               description
             }))
           }}>Submit</Button>
-        <Button variant="danger" type="reset">Reset</Button>
+        <Button variant="outline-danger" type="reset">Reset</Button>
       </Form>
     </>
   )

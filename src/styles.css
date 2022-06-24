@@ -9,7 +9,7 @@
 #navItem {
     color: black;
     font-size: 24px;
-    font-style: bold;
+    font-style: normal;
     margin: 20px;
     text-decoration: none;
     position: relative;
@@ -23,7 +23,6 @@
 
 #navItem:hover {
     color: black;
-    background-color: lightyellow;
 }
 
 .add-items-page-body{
@@ -37,7 +36,20 @@
 }
 
 .page-title {
+    margin-top: 10px;
+    font-family: 'Montserrat Bold', sans-serif;
     text-align: center;
+}
+
+h2 {
+    font-family: 'Montserrat Bold', sans-serif;
+    text-align: center;
+}
+
+Form {
+    font-family: 'Montserrat Bold', sans-serif;
+    align-items: center;
+    font-size: 1.2rem;
 }
 
 .page-container {
@@ -56,25 +68,24 @@
 }
 
 .item-card {
+    font-family: 'Montserrat Bold', sans-serif;
     border: 2px solid black;
     margin: 10px;
 }
 
-.item-image{
-    padding: 5px;
-    /*-webkit-box-sizing: border-box;*/
-    /*-moz-box-sizing: border-box;*/
-    box-sizing: border-box;
-    border-right: 2px solid black;
-    height: 12rem;
+.item-img {
     width: 100%;
+    height: 245px;
+}
+
+.item-img--cover {
+    object-fit: cover;
+}
+
+.item-img--contain{
     object-fit: contain;
 }
 
 .navbar-parent{
     background-color: lightblue;
-}
-
-.item-close {
-
 }
