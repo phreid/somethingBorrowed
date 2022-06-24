@@ -20,7 +20,7 @@ const LOCATIONS = [
   { id: 0, name: 'UBC Campus' }
 ]
 
-export default function CardModal (props) {
+export default function EditCardModal (props) {
   const dispatch = useDispatch()
 
   const itemTypeDropdowns = ITEM_TYPES.map((type) => {

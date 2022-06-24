@@ -3,7 +3,7 @@ import { Button, Card, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { deleteItem, updateStatus } from '../redux/items/items'
 
-import CardModal from './CardModal'
+import EditCardModal from './EditCardModal'
 import placeholder from '../images/placeholder.jpg'
 
 function ItemCard (props) {
@@ -44,7 +44,7 @@ function ItemCard (props) {
         <div className="col-md-8">
           {props.edit ? <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleEditItem}>Edit Item</Button> : null }
           {props.delete ? <Button variant="outline-danger" size="sm" className="card-buttons" onClick={(e) => dispatch(deleteItem(props))}>Delete</Button> : null }
-          <CardModal modalOpen={editOpen} setShow={handleCloseModal} name={props.name} description={props.description} type={props.type} />
+          <EditCardModal modalOpen={editOpen} setShow={handleCloseModal} name={props.name} description={props.description} type={props.type} />
           <Card.Title className="item-name"><strong>{props.name}</strong></Card.Title>
           <Card.Text className="card-text">
             <strong>Description:</strong> {props.description}
