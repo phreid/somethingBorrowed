@@ -15,6 +15,8 @@ function ItemContainer () {
           description={item.description}
           type={item.type}
           location={item.location}
+          status={item.status}
+          delete
         />
       })}
     </Container>

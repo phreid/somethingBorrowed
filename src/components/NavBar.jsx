@@ -1,31 +1,22 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+import { Navbar, Container, Nav } from 'react-bootstrap'
+import { NavLink } from 'react-router-dom'
 
 import '../styles.css'
 
-export default function NavBar (prop) {
+export default function NavBar () {
   return (
-    <>
-      <Navbar className="navbar-parent">
-        <Container fluid>
-          <Navbar.Brand href="#home">
-            {/* <img
-              src="image"
-              width="30"
-              height="30"
-              className="App-logo"
-              alt="Something Borrowed"
-            /> */}
-            Something Borrowed
-          </Navbar.Brand>
-          <Nav>
-            <Nav.Link to="home">Home</Nav.Link>
-            <Nav.Link to="addItem">Add Item To Profile</Nav.Link>
+    <Navbar bg="light" expand="lg">
+      <Container fluid>
+        <Navbar.Brand as={NavLink} to="/marketplace">Something Borrowed</Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link as={NavLink} to="/marketplace">Marketplace</Nav.Link>
+            <Nav.Link as={NavLink} to="/my-items">My Items</Nav.Link>
+            <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>
           </Nav>
-        </Container>
-      </Navbar>
-    </>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
