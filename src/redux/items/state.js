@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid'
+
 import cricut from '../../images/cricut.jpg'
 import bicyclePump from '../../images/bicyclePump.jpg'
 import gardenTools from '../../images/gardenTools.jpg'
@@ -5,43 +7,43 @@ import handBlender from '../../images/handBlender.jpg'
 
 export const baseItems = [
   {
-    key: '1',
-    id: 1,
+    id: nanoid(11),
     image: cricut,
     name: 'Cricut crafting tool',
     type: 'DIY',
     description: 'Good condition crafting tool, updated with latest software.',
     location: 'UBC Campus',
-    status: 'Available'
+    status: 'Available',
+    modalOpen: false
   },
   {
-    key: '2',
-    id: 2,
+    id: nanoid(11),
     image: bicyclePump,
     name: 'Bicycle pump',
     type: 'Outdoors',
     description: 'Bicycle pump with three valve attachments.',
     location: 'UBC Campus',
-    status: 'Available'
+    status: 'Available',
+    modalOpen: false
   },
   {
-    key: '3',
-    id: 3,
+    id: nanoid(11),
     image: gardenTools,
     name: 'Gardening tools',
     type: 'Tools',
     description: 'Spade and clippers.',
     location: 'UBC Campus',
-    status: 'Available'
+    status: 'Available',
+    modalOpen: false
   },
   {
-    key: '4',
-    id: 4,
+    id: nanoid(11),
     image: handBlender,
     name: 'Hand blender',
     type: 'Kitchen',
     description: 'Kitchen-aid hand blender with whisk attachment.',
     location: 'UBC Campus',
-    status: 'Available'
+    status: 'Available',
+    modalOpen: false
   }
 ]

@@ -8,7 +8,7 @@ import CardModal from './CardModal'
 function ItemCard (props) {
   const [borrowed, setBorrowed] = useState(false)
   const [buttonText, setButtonText] = useState('Borrow Item')
-  const [editOpen, setEditOpen] = useState(false)
+  const [editOpen, setEditOpen] = useState(props.modalOpen)
 
   const dispatch = useDispatch()
 
@@ -39,7 +39,7 @@ function ItemCard (props) {
         <div className="col-md-8">
           {props.delete ? <CloseButton className="item-close" onClick={(e) => dispatch(deleteItem(props))}/> : null }
           {props.edit ? <Button onClick={handleEditItem} >Edit Item</Button> : null }
-          <CardModal show={editOpen} />
+          <CardModal modalOpen={editOpen} />
           <Card.Title className="item-name">{props.name}</Card.Title>
           <Card.Text className="item-description">
             <strong>Description:</strong> {props.description}

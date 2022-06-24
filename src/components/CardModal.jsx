@@ -19,7 +19,7 @@ const LOCATIONS = [
 ]
 
 export default function CardModal (props) {
-  const [close, setClose] = useState(false)
+  const [close, setClose] = useState(props.modalOpen)
 
   const dispatch = useDispatch()
 
@@ -27,7 +27,7 @@ export default function CardModal (props) {
     if (close === true) {
       return
     }
-    console.log(setClose())
+    console.log(setClose(close))
     dispatch(closeModal(props))
   }
 
@@ -48,8 +48,7 @@ export default function CardModal (props) {
   return (
     <>
       <Modal
-        show={props.show}
-        onHide={handleClose}
+        show={props.modalOpen}
         backdrop="static"
         keyboard={false}
       >

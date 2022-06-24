@@ -5,7 +5,6 @@ import { Container } from 'react-bootstrap'
 
 function ItemContainer () {
   const items = useSelector(state => state.itemsSlice.items)
-  console.log(items)
 
   return (
     <Container fluid className="item-container">
@@ -19,6 +18,7 @@ function ItemContainer () {
           status={item.status}
           delete
           edit
+          modalOpen={item.modalOpen}
         />
       })}
     </Container>
