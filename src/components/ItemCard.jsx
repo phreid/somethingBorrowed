@@ -43,7 +43,7 @@ function ItemCard (props) {
         </div>
         <div className="col-md-8">
           {props.edit ? <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleEditItem}>Edit Item</Button> : null }
-          <Button variant="outline-danger" size="sm" className="card-buttons" onClick={(e) => dispatch(deleteItem(props))}>Delete</Button>
+          {props.delete ? <Button variant="outline-danger" size="sm" className="card-buttons" onClick={(e) => dispatch(deleteItem(props))}>Delete</Button> : null }
           <CardModal modalOpen={editOpen} setShow={handleCloseModal} name={props.name} description={props.description} type={props.type} />
           <Card.Title className="item-name"><strong>{props.name}</strong></Card.Title>
           <Card.Text className="card-text">
@@ -58,7 +58,7 @@ function ItemCard (props) {
           <Card.Text className="card-text">
             <strong>Status:</strong> {props.status}
           </Card.Text>
-          {props.borrow ? <Button disabled={borrowed} onClick={handleBorrowItem}>{buttonText}</Button> : null }
+          {props.borrow ? <Button disabled={borrowed} variant="outline-primary" size="sm" onClick={handleBorrowItem}>{buttonText}</Button> : null }
         </div>
       </Row>
     </Card>
