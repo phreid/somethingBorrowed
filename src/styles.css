@@ -1,30 +1,3 @@
-.navBar {
-    border-radius: 5px;
-    background-color: #069c99;
-    width: 100%;
-    margin: 10px;
-    height: auto;
-}
-
-#navItem {
-    color: black;
-    font-size: 24px;
-    font-style: normal;
-    margin: 20px;
-    text-decoration: none;
-    position: relative;
-    border-radius: 5px;
-    border-color: black;
-    border-style: solid;
-    background-color: lightgrey;
-    padding-left: 10px;
-    padding-right: 10px;
-} 
-
-#navItem:hover {
-    color: black;
-}
-
 .add-items-page-body{
     display: flex;
 }
@@ -71,6 +44,7 @@ Form {
     font-family: 'Montserrat Bold', sans-serif;
     border: 2px solid black;
     margin: 10px;
+    padding: 10px;
 }
 
 .item-img {
@@ -86,6 +60,8 @@ Form {
     object-fit: contain;
 }
 
-.navbar-parent{
-    background-color: lightblue;
+.card-buttons{
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
 }

@@ -8,6 +8,13 @@
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ItemCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfilePage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/placeholder.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddItemForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddItemForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ItemCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/cricut.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/cricut.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1655960566111</updated>
       <workItem from="1655960572842" duration="12531000" />
-      <workItem from="1656050137216" duration="4934000" />
-      <workItem from="1656092315111" duration="5407000" />
+      <workItem from="1656050137216" duration="4549000" />
     </task>
     <servers />
   </component>

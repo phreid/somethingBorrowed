@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Card, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { deleteItem, updateStatus } from '../redux/items/items'
+import EditCardModal from './EditCardModal'
 import diy from '../images/defaultImages/diy.jpg'
 import kitchen from '../images/defaultImages/kitchen.jpg'
 import outdoors from '../images/defaultImages/outdoors.jpg'
@@ -10,6 +11,8 @@ import tools from '../images/defaultImages/tools.jpg'
 function ItemCard (props) {
   const [borrowed, setBorrowed] = useState(false)
   const [buttonText, setButtonText] = useState('Borrow Item')
+  const [editOpen, setEditOpen] = useState(props.modalOpen)
+
   const dispatch = useDispatch()
 
   function handleBorrowItem () {
@@ -20,6 +23,18 @@ function ItemCard (props) {
     setBorrowed(true)
     setButtonText('Borrowed')
     dispatch(updateStatus(props))
+  }
+
+  function handleEditItem () {
+    if (editOpen === true) {
+      return
+    }
+
+    setEditOpen(true)
+  }
+
+  function handleCloseModal () {
+    setEditOpen(false)
   }
 
   return (
@@ -35,25 +50,23 @@ function ItemCard (props) {
           } />
         </div>
         <div className="col-md-8">
-
-          <Button variant="outline-danger" size="sm" className="position-absolute top-0 end-0" onClick={(e) => dispatch(deleteItem(props))}>Delete</Button>
-          <br/>
+          {props.edit ? <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleEditItem}>Edit Item</Button> : null }
+          {props.delete ? <Button variant="outline-danger" size="sm" className="card-buttons" onClick={(e) => dispatch(deleteItem(props))}>Delete</Button> : null }
+          <EditCardModal modalOpen={editOpen} setShow={handleCloseModal} name={props.name} description={props.description} type={props.type} />
           <Card.Title className="item-name"><strong>{props.name}</strong></Card.Title>
-          <br/>
-
-          <Card.Text className="item-description">
+          <Card.Text className="card-text">
             <strong>Description:</strong> {props.description}
           </Card.Text >
-          <Card.Text className="item-type">
+          <Card.Text className="card-text">
             <strong>Type:</strong> {props.type}
           </Card.Text>
-          <Card.Text className="item-location">
+          <Card.Text className="card-text">
             <strong>Location:</strong> {props.location}
           </Card.Text>
-          <Card.Text className="item-status">
+          <Card.Text className="card-text">
             <strong>Status:</strong> {props.status}
           </Card.Text>
-          {props.borrow ? <Button disabled={borrowed} onClick={handleBorrowItem}>{buttonText}</Button> : null }
+          {props.borrow ? <Button disabled={borrowed} variant="outline-primary" size="sm" onClick={handleBorrowItem}>{buttonText}</Button> : null }
         </div>
       </Row>
     </Card>

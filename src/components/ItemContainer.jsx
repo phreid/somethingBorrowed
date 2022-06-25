@@ -17,6 +17,8 @@ function ItemContainer () {
           location={item.location}
           status={item.status}
           delete
+          edit
+          modalOpen={item.modalOpen}
         />
       })}
     </Container>
