@@ -19,9 +19,7 @@ export const itemSlice = createSlice({
       state.items[index].status = 'Borrowed'
     },
     editItem: (state, action) => {
-      console.log(action.payload)
       const index = state.items.findIndex(item => item.id === action.payload.itemId)
-      console.log(index)
       state.items[index].name = action.payload.name
       state.items[index].type = action.payload.type
       state.items[index].description = action.payload.description
