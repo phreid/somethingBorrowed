@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import { Button, Card, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { deleteItem, updateStatus } from '../redux/items/items'
-
 import EditCardModal from './EditCardModal'
-
 import diy from '../images/defaultImages/diy.jpg'
 import kitchen from '../images/defaultImages/kitchen.jpg'
 import outdoors from '../images/defaultImages/outdoors.jpg'
