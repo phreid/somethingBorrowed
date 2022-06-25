@@ -1,31 +1,3 @@
-.navBar {
-    border-radius: 5px;
-    background-color: #069c99;
-    width: 100%;
-    margin: 10px;
-    height: auto;
-}
-
-#navItem {
-    color: black;
-    font-size: 24px;
-    font-style: bold;
-    margin: 20px;
-    text-decoration: none;
-    position: relative;
-    border-radius: 5px;
-    border-color: black;
-    border-style: solid;
-    background-color: lightgrey;
-    padding-left: 10px;
-    padding-right: 10px;
-} 
-
-#navItem:hover {
-    color: black;
-    background-color: lightyellow;
-}
-
 .add-items-page-body{
     display: flex;
 }
@@ -37,7 +9,20 @@
 }
 
 .page-title {
+    margin-top: 10px;
+    font-family: 'Montserrat Bold', sans-serif;
     text-align: center;
+}
+
+h2 {
+    font-family: 'Montserrat Bold', sans-serif;
+    text-align: center;
+}
+
+Form {
+    font-family: 'Montserrat Bold', sans-serif;
+    align-items: center;
+    font-size: 1.2rem;
 }
 
 .page-container {
@@ -56,107 +41,103 @@
 }
 
 .item-card {
+    font-family: 'Montserrat Bold', sans-serif;
     border: 2px solid black;
     margin: 10px;
+    padding: 10px;
 }
 
-.item-image{
-    padding: 5px;
-    /*-webkit-box-sizing: border-box;*/
-    /*-moz-box-sizing: border-box;*/
-    box-sizing: border-box;
-    border-right: 2px solid black;
-    height: 12rem;
+.item-img {
     width: 100%;
+    height: 245px;
+}
+
+.item-img--cover {
+    object-fit: cover;
+}
+
+.item-img--contain{
     object-fit: contain;
 }
+
 
 .navbar-parent{
     background-color: lightblue;
 }
-
-
 /*SD
 source: https://www.youtube.com/watch?v=Mj5YkDDhtXw&ab_channel=Codingflag*/
+.nav-menu {
+background-color: #060b26;
+width: 250px;
+height: 100vh;
+display: flex;
+justify-content: center;
+position: fixed;
+top: 80;
+left: -100%;
+transition: 850ms;
+}
 
-  .nav-menu {
-	background-color: #060b26;
-	width: 250px;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	position: fixed;
-	top: 80;
-	left: -100%;
-	transition: 850ms;
-  }
-  
-  .nav-menu.active {
-	left: 0;
-	transition: 350ms;
-  }
-  .nav-menu .sidebar-menu{
-	margin:0px;
-	padding:0px;
-  }
-  .nav-menu .sidebar-menu .sidebar{
-	position: absolute;
-	top:0px;
-	left:0px;
-	width: 100pc;
-	height: 100pc;
-	padding:10px;
-	z-index: 5;
-  }
-  .nav-menu .sidebar-menu .sidebar .links .link {
-	margin: 10px 0px;
-  }
-  .nav-menu .sidebar-menu .sidebar .links .link > a{
-	text-decoration: none;
-	display: block;
-	padding: 10px 5px;
-	color: #069c99;
-	border-radius: 5px;
-	display: flex;
-	align-items: center;
-	gap:10px;
-  }
-  .nav-menu .sidebar-menu .sidebar .links .link .sub-menu{
-	margin-left: 5px;
-	padding-left: 10px;
-	border-left: 1px solid #069c99;
-  }
+.nav-menu.active {
+left: 0;
+transition: 350ms;
+}
+.nav-menu .sidebar-menu{
+margin:0px;
+padding:0px;
+}
+.nav-menu .sidebar-menu .sidebar{
+position: absolute;
+top:0px;
+left:0px;
+width: 100pc;
+height: 100pc;
+padding:10px;
+z-index: 5;
+}
+.nav-menu .sidebar-menu .sidebar .links .link {
+margin: 10px 0px;
+}
+.nav-menu .sidebar-menu .sidebar .links .link > a{
+text-decoration: none;
+display: block;
+padding: 10px 5px;
+color: #069c99;
+border-radius: 5px;
+display: flex;
+align-items: center;
+gap:10px;
+}
+.nav-menu .sidebar-menu .sidebar .links .link .sub-menu{
+margin-left: 5px;
+padding-left: 10px;
+border-left: 1px solid #069c99;
+}
 
-  .nav-menu .sidebar-menu .sidebar .links link.active .sub-menu{
-	max-height: 500px;
-  }
-  
-
-  .nav-menu .sidebar-menu .sidebar .links .link .sub-menu a{
-	text-decoration: none;
-	display:block;
-	padding:5px;
-	margin:5px 0px;
-	color: #069c99;
-	cursor: pointer;
-  } 
-
-  .sidebar-menu .sidebar .links .link.active >a,
-  .sidebar-menu .sidebar .links .link.active >a:hover{
-	background: #828b8b;
-	color: #069c99;
-  }
-
-  .sidebar-menu .sidebar .links .link .applyButton{
-	background: #069c99;
-	color:#060b26;
-  }
-  
+.nav-menu .sidebar-menu .sidebar .links link.active .sub-menu{
+max-height: 500px;
+}
 
 
+.nav-menu .sidebar-menu .sidebar .links .link .sub-menu a{
+text-decoration: none;
+display:block;
+padding:5px;
+margin:5px 0px;
+color: #069c99;
+cursor: pointer;
+} 
 
+.sidebar-menu .sidebar .links .link.active >a,
+.sidebar-menu .sidebar .links .link.active >a:hover{
+background: #828b8b;
+color: #069c99;
+}
 
-  
+.sidebar-menu .sidebar .links .link .applyButton{
+background: #069c99;
+color:#060b26;
+}
 
 
 
@@ -167,4 +148,17 @@ source: https://www.youtube.com/watch?v=Mj5YkDDhtXw&ab_channel=Codingflag*/
 
 
 
+
+
+
+
+
+
+
+
+.card-buttons{
+	display: inline-block;
+	float: right;
+	margin-left: 10px;
+}
 
