@@ -34,6 +34,20 @@ export default function AddItemForm (props) {
 
   const dispatch = useDispatch()
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(addItem({
+      name,
+      type,
+      location,
+      description
+    }))
+    setName('')
+    setType('')
+    setLocation('')
+    setDescription('')
+  }
+
   return (
     <>
       <h2>Lend a New Item</h2>
@@ -78,15 +92,7 @@ export default function AddItemForm (props) {
             onChange={(e) => setDescription(e.target.value)}></Form.Control>
         </Form.Group>
         <Button variant="outline-primary" type="submit" className="me-1"
-          onClick={(e) => {
-            e.preventDefault()
-            dispatch(addItem({
-              name,
-              type,
-              location,
-              description
-            }))
-          }}>Submit</Button>
+          onClick={handleSubmit}>Submit</Button>
         <Button variant="outline-danger" type="reset">Reset</Button>
       </Form>
     </>
