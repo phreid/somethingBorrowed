@@ -7,9 +7,5 @@ export const store = configureStore({
     itemsSlice,
     user: userReducer
   },
-  devTools: true,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: false
-    })
+  devTools: true
 })

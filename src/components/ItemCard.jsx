@@ -4,7 +4,11 @@ import { useDispatch } from 'react-redux'
 import { deleteItem, updateStatus } from '../redux/items/items'
 
 import EditCardModal from './EditCardModal'
-import placeholder from '../images/placeholder.jpg'
+
+import diy from '../images/defaultImages/diy.jpg'
+import kitchen from '../images/defaultImages/kitchen.jpg'
+import outdoors from '../images/defaultImages/outdoors.jpg'
+import tools from '../images/defaultImages/tools.jpg'
 
 function ItemCard (props) {
   const [borrowed, setBorrowed] = useState(false)
@@ -39,7 +43,13 @@ function ItemCard (props) {
     <Card className="item-card" style={{ width: '' }}>
       <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
         <div className="col-md-4">
-          <Card.Img className="item-img" src={props.image || placeholder } />
+          <Card.Img className="item-img" src={
+            props.image ||
+              ((props.type === 'DIY') && diy) ||
+              ((props.type === 'Kitchen') && kitchen) ||
+              ((props.type === 'Outdoors') && outdoors) ||
+              ((props.type === 'Tools') && tools)
+          } />
         </div>
         <div className="col-md-8">
           {props.edit ? <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleEditItem}>Edit Item</Button> : null }
