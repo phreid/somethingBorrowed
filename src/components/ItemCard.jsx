@@ -1,13 +1,11 @@
-
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Card, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { deleteItem } from '../redux/items/items'
+import { deleteItem, updateStatus } from '../redux/items/items'
 import diy from '../images/defaultImages/diy.jpg'
 import kitchen from '../images/defaultImages/kitchen.jpg'
 import outdoors from '../images/defaultImages/outdoors.jpg'
 import tools from '../images/defaultImages/tools.jpg'
-
 
 function ItemCard (props) {
   const [borrowed, setBorrowed] = useState(false)
