@@ -5,11 +5,13 @@ import { Container } from 'react-bootstrap'
 
 function ItemContainer () {
   const items = useSelector(state => state.itemsSlice.items)
+  console.log(items)
 
   return (
     <Container fluid className="item-container">
       {items.map(item => {
         return <ItemCard key={item.id}
+          id={item.id}
           image={item.image}
           name={item.name}
           description={item.description}

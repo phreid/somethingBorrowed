@@ -23,6 +23,8 @@ const LOCATIONS = [
 export default function EditCardModal (props) {
   const dispatch = useDispatch()
 
+  const itemId = props.id
+
   const itemTypeDropdowns = ITEM_TYPES.map((type) => {
     return <option key={type.id}>{type.name}</option>
   })
@@ -97,6 +99,7 @@ export default function EditCardModal (props) {
               onClick={(e) => {
                 e.preventDefault()
                 dispatch(editItem({
+                  itemId,
                   name,
                   type,
                   location,

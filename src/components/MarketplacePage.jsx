@@ -22,6 +22,7 @@ function MarketplacePage () {
           <Container fluid className="item-container">
             {items.map(item => {
               return <ItemCard key={item.id}
+                id={item.id}
                 image={item.image}
                 name={item.name}
                 description={item.description}
