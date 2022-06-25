@@ -12,7 +12,7 @@ function ProfilePage () {
         <Card className="text-center" style={{ width: '' }}>
           <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
             <div className="col-md-4">
-              <Card.Img variant="top" rounded src={profile} />
+              <Card.Img variant="top" src={profile} />
               <Card.Body>
                 <Card.Title>Jane Doe</Card.Title>
                 <Card.Text>I'm new to the neighbourhood and I enjoy baking! Looking forward to borrow many kitchen related items.</Card.Text>
