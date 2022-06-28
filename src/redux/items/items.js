@@ -1,32 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { baseItems } from './state'
-import { nanoid } from 'nanoid'
+import { getAllItemsAsync, addItemAsync, deleteItemAsync, updateItemAsync, borrowItemAsync } from './thunks'
+
+const INITIAL_STATE = {
+  list: []
+}
 
 export const itemSlice = createSlice({
   name: 'items',
-  initialState: {
-    items: baseItems
-  },
-  reducers: {
-    addItem: (state, action) => {
-      state.items.push({ id: nanoid(11), ...action.payload })
-    },
-    deleteItem: (state, action) => {
-      state.items = state.items.filter(item => item.name !== action.payload.name)
-    },
-    updateStatus: (state, action) => {
-      const index = state.items.findIndex(item => item.name === action.payload.name)
-      state.items[index].status = 'Borrowed'
-    },
-    editItem: (state, action) => {
-      console.log(action.payload)
-      const index = state.items.findIndex(item => item.id === action.payload.itemId)
-      console.log(index)
-      state.items[index].name = action.payload.name
-      state.items[index].type = action.payload.type
-      state.items[index].description = action.payload.description
-      state.items[index].location = action.payload.location
-    }
+  initialState: INITIAL_STATE,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllItemsAsync.fulfilled, (state, action) => {
+        state.list = action.payload
+      })
+      .addCase(addItemAsync.fulfilled, (state, action) => {
+        state.list.push(action.payload)
+      })
+      .addCase(deleteItemAsync.fulfilled, (state, action) => {
+        state.list = state.list.filter(item => item.id !== action.payload.id)
+      })
+      .addCase(updateItemAsync.fulfilled, (state, action) => {
+        const index = state.list.findIndex(item => item.id === action.payload.id)
+        state.list[index] = action.payload
+      })
+      .addCase(borrowItemAsync.fulfilled, (state, action) => {
+        const index = state.list.findIndex(item => item.id === action.payload.id)
+        state.list[index].status = action.payload.status
+      })
   }
 })
 
