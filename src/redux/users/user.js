@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { loginAsync } from './thunks'
 
 const INITIAL_STATE = {
   username: localStorage.getItem('user'),
@@ -8,11 +9,14 @@ const INITIAL_STATE = {
 const userSlice = createSlice({
   name: 'user',
   initialState: INITIAL_STATE,
-  reducers: {
-    loginUser: (state, action) => {
-      state.username = action.payload.username
-      state.isLoggedIn = true
-    }
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginAsync.fulfilled, (state, action) => {
+        state.username = action.payload
+        state.isLoggedIn = true
+        localStorage.setItem('user', action.payload)
+      })
   }
 })
 

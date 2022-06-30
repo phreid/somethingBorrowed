@@ -1,15 +1,21 @@
-import React from 'react'
-
-import { useSelector } from 'react-redux'
+import { React, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Container } from 'react-bootstrap'
 
 import ItemCard from './ItemCard'
 import NavBar from './NavBar'
+import { getAllItemsAsync } from '../redux/items/thunks'
 
 import '../styles.css'
 
 function MarketplacePage () {
-  const items = useSelector(state => state.itemsSlice.items)
+  const items = useSelector(state => state.items.list)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllItemsAsync())
+  }, [dispatch])
+
   return (
     <>
       <NavBar />
@@ -19,20 +25,23 @@ function MarketplacePage () {
           <p>placeholder</p>
         </div>
         <div className="grid-child page-container" id="container-border">
-          <Container fluid className="item-container">
-            {items.map(item => {
-              return <ItemCard key={item.id}
-                id={item.id}
-                image={item.image}
-                name={item.name}
-                description={item.description}
-                type={item.type}
-                location={item.location}
-                status={item.status}
-                borrow
-              />
-            })}
-          </Container>
+          {items.length
+            ? <Container fluid className="item-container">
+              {items.map(item =>
+                <ItemCard key={item.id}
+                  id={item.id}
+                  image={item.image}
+                  name={item.name}
+                  description={item.description}
+                  type={item.type}
+                  location={item.location}
+                  status={item.status}
+                  borrow
+                />
+              )}
+            </Container>
+            : <p>There are no items to display</p>
+          }
         </div>
       </div>
     </>

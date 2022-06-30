@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/Row'
 import { Button } from 'react-bootstrap'
 import { useState } from 'react'
-import { editItem } from '../redux/items/items'
+import { updateItemAsync } from '../redux/items/thunks'
 import { useDispatch } from 'react-redux'
 
 import '../styles.css'
@@ -41,6 +41,19 @@ export default function EditCardModal (props) {
 
   const handleClose = () => {
     props.setShow(false)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(updateItemAsync({
+      id: itemId,
+      name,
+      type,
+      location,
+      description
+    }))
+
+    handleClose()
   }
 
   return (
@@ -96,17 +109,7 @@ export default function EditCardModal (props) {
                 onChange={(e) => setDescription(e.target.value)}></Form.Control>
             </Form.Group>
             <Button variant="primary" type="submit" className="me-1"
-              onClick={(e) => {
-                e.preventDefault()
-                dispatch(editItem({
-                  itemId,
-                  name,
-                  type,
-                  location,
-                  description
-                }))
-                handleClose()
-              }}>Submit Changes</Button>
+              onClick={handleSubmit}>Submit Changes</Button>
             <Button variant="danger" type="reset">Reset</Button>
           </Form>
         </Modal.Body>

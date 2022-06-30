@@ -1,11 +1,16 @@
-import React from 'react'
-import ItemCard from './ItemCard'
-import { useSelector } from 'react-redux'
+import { React, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Container } from 'react-bootstrap'
+import ItemCard from './ItemCard'
+import { getAllItemsAsync } from '../redux/items/thunks'
 
 function ItemContainer () {
-  const items = useSelector(state => state.itemsSlice.items)
-  console.log(items)
+  const items = useSelector(state => state.items.list)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllItemsAsync())
+  }, [dispatch])
 
   return (
     <Container fluid className="item-container">

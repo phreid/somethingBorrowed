@@ -3,8 +3,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Button } from 'react-bootstrap'
 import { useState } from 'react'
-import { addItem } from '../redux/items/items'
 import { useDispatch } from 'react-redux'
+import { addItemAsync } from '../redux/items/thunks'
 
 const ITEM_TYPES = [
   { id: 0, name: 'Kitchen' },
@@ -36,7 +36,7 @@ export default function AddItemForm (props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(addItem({
+    dispatch(addItemAsync({
       name,
       type,
       location,
