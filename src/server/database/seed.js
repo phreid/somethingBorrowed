@@ -1,5 +1,6 @@
-// This file has temporary data for development. If the data in our dev
-// database is deleted, we can use this file to re-seed it.
+const connectToDatabase = require('.')
+const Item = require('../models/Item')
+const User = require('../models/User')
 
 const STATUS = {
   AVAILABLE: 'Available',
@@ -34,30 +35,54 @@ const items = [
     name: 'Cricut crafting tool',
     type: 'DIY',
     description: 'Good condition crafting tool, updated with latest software.',
-    owner: '62be9190cc9c93cb39110092',
+    owner: 'paul',
     status: STATUS.AVAILABLE
   },
   {
     name: 'Bicyle pump',
     type: 'Outdoors',
     description: 'Bicycle pump with three valve attachments.',
-    owner: '62be9190cc9c93cb39110093',
+    owner: 'imogene',
     status: STATUS.BORROWED
   },
   {
     name: 'Gardening tools',
     type: 'Tools',
     description: 'Spade and clippers.',
-    owner: '62be9190cc9c93cb39110090',
+    owner: 'anusha',
     status: STATUS.BORROWED
   },
   {
     name: 'Hand blender',
     type: 'Kitchen',
     description: 'Kitchen-aid hand blender with whisk attachment.',
-    owner: '62be9190cc9c93cb39110091',
+    owner: 'shirley',
     status: STATUS.AVAILABLE
   }
 ]
 
-module.exports = { items, users }
+const seedDatabase = async () => {
+  await connectToDatabase()
+  console.log('clearing collections...')
+
+  await Item.deleteMany({})
+  await User.deleteMany({})
+
+  console.log('adding users...')
+  for (const user of users) {
+    const document = new User({ ...user })
+    await document.save()
+  }
+
+  console.log('adding items...')
+  for (const item of items) {
+    const user = await User.findOne({ username: item.owner })
+    const document = new Item({ ...item, owner: user._id })
+    await document.save()
+  }
+  console.log('database seeded')
+
+  process.exit(0)
+}
+
+seedDatabase()

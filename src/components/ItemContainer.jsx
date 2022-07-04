@@ -15,13 +15,13 @@ function ItemContainer () {
   return (
     <Container fluid className="item-container">
       {items.map(item => {
-        return <ItemCard key={item.id}
-          id={item.id}
+        return <ItemCard key={item._id}
+          id={item._id}
           image={item.image}
           name={item.name}
           description={item.description}
           type={item.type}
-          location={item.location}
+          location={item.owner.location}
           status={item.status}
           delete
           edit

@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const { isLoggedIn } = require('../middleware')
-const { users } = require('../dev-data')
+const User = require('../models/User')
 
 /**
  * POST /auth/login
@@ -17,15 +17,15 @@ const { users } = require('../dev-data')
  *
  * @returns if successful, returns the logged in user's username.
  */
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   // fake login, don't check the password
   const { username } = req.body
 
-  const loggedInUser = users.find((user) => user.username === username)
+  const loggedInUser = await User.findOne({ username })
   if (loggedInUser) {
-    req.session.user = username
+    req.session.user = loggedInUser._id
     res.send({
-      result: username
+      result: loggedInUser._id
     })
   } else {
     res.sendStatus(404)

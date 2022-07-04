@@ -1,13 +1,10 @@
 const express = require('express')
-const nanoid = require('nanoid')
 
-const { items, users } = require('../dev-data')
 const { isLoggedIn, isUser } = require('../middleware')
+const User = require('../models/User')
+const Item = require('../models/Item')
 
 const router = express.Router()
-
-const ID_LENGTH = 9
-const id = () => nanoid.nanoid(ID_LENGTH)
 
 /**
  * GET /users
@@ -16,64 +13,58 @@ const id = () => nanoid.nanoid(ID_LENGTH)
  *
  * @returns a list of user objects
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+  const users = await User.find()
   res.send({
     result: users
   })
 })
 
 /**
- * GET /users/:username
+ * GET /users/:userId
  *
  * Retrieves a single user.
  *
- * @param username: the username of the user to retrieve
+ * @param userId: the user id of the user to retrieve
  * @returns a user object
  */
-router.get('/:username', (req, res) => {
-  const { username } = req.params
-  const user = users.find((user) => user.username === username)
+router.get('/:userId', async (req, res) => {
+  const { userId } = req.params
+  const user = await User.findById(userId)
   res.send({
     result: user
   })
 })
 
 /**
- * GET /users/:username/marketplace
+ * GET /users/:userId/marketplace
  *
  * Retrieves the items in a single user's marketplace - all items, except for
  * those owned by the user. Requires the sender to be logged in as the requested
  * user.
  *
- * @param username: the username of the user's marketplace to retrieve
+ * @param userId: the user id of the user's marketplace to retrieve
  * @returns a list of item objects
  */
-router.get('/:username/marketplace', isLoggedIn, isUser, (req, res) => {
-  const { username } = req.params
-  const user = users.find((user) => user.username === username)
-  const marketplaceItems = items.filter((item) => item.owner !== user.id)
-  const itemsWithLocation = marketplaceItems.map((item) => {
-    const ownerId = item.owner
-    const owner = users.find((user) => user.id === ownerId)
-    return { ...item, location: owner.location }
-  })
+router.get('/:userId/marketplace', isLoggedIn, isUser, async (req, res) => {
+  const { userId } = req.params
+  const items = await Item.find({ owner: { $ne: userId } })
   res.send({
-    result: itemsWithLocation
+    result: items
   })
 })
 
 /**
- * GET /users/:username/items
+ * GET /users/:userId/items
  *
  * Retrieves the items owned by a single user.
  *
- * @param username: the username of the user whose items to retrieve
+ * @param userId: the userId of the user whose items to retrieve
  * @returns a list of item objects
  */
-router.get('/:username/items', (req, res) => {
-  const { username } = req.params
-  const user = users.find((user) => user.username === username)
-  const ownedItems = items.filter((item) => item.owner === user.id)
+router.get('/:userId/items', async (req, res) => {
+  const { userId } = req.params
+  const ownedItems = await Item.find({ owner: userId })
   res.send({
     result: ownedItems
   })
@@ -88,47 +79,45 @@ router.get('/:username/items', (req, res) => {
  *
  * @returns the new user object
  */
-router.post('/', (req, res) => {
-  const newUser = { id: id(), ...req.body }
-  users.push(newUser)
+router.post('/', async (req, res) => {
+  const newUser = new User({ ...req.body })
+  await newUser.save()
   res.send({
     result: newUser
   })
 })
 
 /**
- * DELETE /users/:username
+ * DELETE /users/:userId
  *
  * Deletes a user. Requires the sender to be logged in as the requested user.
  *
- * @param username: the username to delete
+ * @param userId: the userId to delete
  * @returns the deleted user object
  */
-router.delete('/:username', isLoggedIn, isUser, (req, res) => {
-  const { username } = req.params
-  const idx = users.findIndex((user) => user.username === username)
-  const [deleted] = users.splice(idx, 1)
+router.delete('/:userId', isLoggedIn, isUser, async (req, res) => {
+  const { userId } = req.params
+  const deleted = await User.findByIdAndDelete(userId)
   res.send({
     result: deleted
   })
 })
 
 /**
- * PATCH /users/:username
+ * PATCH /users/:userId
  *
  * Updates a user. Requires the sender to be logged in as the requested user.
  *
  * Request body: an object with the updated user fields
  *
- * @param username: the username to update
+ * @param userId: the user id to update
  * @returns the updated user object
  */
-router.patch('/:username', isLoggedIn, isUser, (req, res) => {
-  const { username } = req.params
-  const idx = users.findIndex((user) => user.username === username)
-  users[idx] = { ...users[idx], ...req.body }
+router.patch('/:userId', isLoggedIn, isUser, async (req, res) => {
+  const { userId } = req.params
+  const updated = await User.findByIdAndUpdate(userId, req.body, { new: true })
   res.send({
-    result: users[idx]
+    result: updated
   })
 })
 

@@ -1,4 +1,4 @@
-const { items, users } = require('../dev-data')
+const Item = require('../models/Item')
 
 const isLoggedIn = (req, res, next) => {
   if (!req.session.user) { return res.sendStatus(401) }
@@ -6,17 +6,15 @@ const isLoggedIn = (req, res, next) => {
 }
 
 const isUser = (req, res, next) => {
-  const { username } = req.params
-  if (req.session.user !== username) { return res.sendStatus(401) }
+  const { userId } = req.params
+  if (req.session.user !== userId) { return res.sendStatus(401) }
   next()
 }
 
-const isItemOwner = (req, res, next) => {
+const isItemOwner = async (req, res, next) => {
   const { id } = req.params
-  const ownerId = items.find((item) => item.id === id).owner
-  const ownerName = users.find((user) => user.id === ownerId).username
-
-  if (req.session.user !== ownerName) { return res.sendStatus(401) }
+  const item = await Item.findById(id).populate('owner')
+  if (req.session.user !== item.owner._id.toString()) { return res.sendStatus(401) }
   next()
 }
 

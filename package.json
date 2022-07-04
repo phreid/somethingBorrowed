@@ -11,6 +11,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
+    "mongoose": "^6.4.1",
     "nanoid": "^3.3.4",
     "react": "^18.1.0",
     "react-bootstrap": "^2.4.0",
@@ -24,6 +25,9 @@
   "scripts": {
     "start": "react-scripts start",
     "start-server": "node src/server/index.js",
+    "start-server-local-db": "LOCAL_DB=true node src/server/index.js",
+    "seed-database": "node src/server/database/seed.js",
+    "seed-database-local": "LOCAL_DB=true node src/server/database/seed.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
