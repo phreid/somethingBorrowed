@@ -3,7 +3,7 @@ require('dotenv').config()
 
 let MONGO_URI
 if (process.env.LOCAL_DB) {
-  MONGO_URI = 'mongodb://localhost:27017'
+  MONGO_URI = 'mongodb://localhost:27017/dev'
 } else {
   MONGO_URI = process.env.MONGO_URI
 }
