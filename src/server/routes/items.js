@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
     return { ...item, location: owner.location }
   })
   res.send({
-    data: itemsWithLocation
+    result: itemsWithLocation
   })
 })
 
@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
   const { id } = req.params
   const item = items.find((item) => item.id === id)
   res.send({
-    data: item
+    result: item
   })
 })
 
@@ -58,7 +58,7 @@ router.post('/', isLoggedIn, (req, res) => {
   const newItem = { id: id(), owner: owner.id, ...req.body }
   items.push(newItem)
   res.send({
-    data: newItem
+    result: newItem
   })
 })
 
@@ -76,7 +76,7 @@ router.delete('/:id', isLoggedIn, isItemOwner, (req, res) => {
   const idx = items.findIndex((item) => item.id === id)
   const [deleted] = items.splice(idx, 1)
   res.send({
-    data: deleted
+    result: deleted
   })
 })
 
@@ -96,7 +96,26 @@ router.patch('/:id', isLoggedIn, isItemOwner, (req, res) => {
   const idx = items.findIndex((item) => item.id === id)
   items[idx] = { ...items[idx], ...req.body }
   res.send({
-    data: items[idx]
+    result: items[idx]
+  })
+})
+
+/**
+ * POST /items/:id/borrow
+ *
+ * Sets an items status to borrowed. Requires the sender to be logged in.
+ *
+ * Request body: { borrower: _username }
+ *
+ * @param id: the item id to borrow
+ * @return the updated item
+ */
+router.post('/:id/borrow', isLoggedIn, (req, res) => {
+  const { id } = req.params
+  const idx = items.findIndex((item) => item.id === id)
+  items[idx] = { ...items[idx], status: 'Borrowed' }
+  res.send({
+    result: items[idx]
   })
 })
 

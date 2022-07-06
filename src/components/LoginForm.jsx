@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Form, Button, Stack } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { loginUser } from '../redux/users/user'
 import { useNavigate } from 'react-router-dom'
+import { loginAsync } from '../redux/users/thunks'
 
 export default function LoginForm () {
   const dispatch = useDispatch()
@@ -11,17 +11,15 @@ export default function LoginForm () {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
-    // Just doing fake login so don't even check the password
-    console.log(password)
-
-    localStorage.setItem('user', username)
-    dispatch(loginUser({ username, isLoggedIn: true }))
-    // When we have react-router set up, can uncomment the line below (and maybe fix the path)
-    // so the login button redirects to the home page
-    navigate('/marketplace')
+    try {
+      await dispatch(loginAsync({ username, password })).unwrap()
+      navigate('/marketplace')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

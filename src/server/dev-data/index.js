@@ -16,7 +16,7 @@ const users = [
   {
     id: 'BKUYC_iWl',
     username: 'imogene',
-    location: 'UBC Campus'
+    location: 'login'
   },
   {
     id: 'wDEeJGsp9',
