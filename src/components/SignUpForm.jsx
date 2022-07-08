@@ -23,7 +23,7 @@ export default function SignUpForm () {
       await dispatch(loginAsync({ username, password })).unwrap()
       navigate('/marketplace')
     } catch (error) {
-      if (error.status && error.status === 403) {
+      if (error.status === 403) {
         setShowAlert(true)
       }
     }

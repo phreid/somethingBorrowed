@@ -6,9 +6,16 @@ const URL = 'http://localhost:4000'
 
 export const loginAsync = createAsyncThunk(
   'user/loginUser',
-  async ({ username, password }) => {
-    const response = await axios.post(`${URL}/auth/login`, { username, password })
-    return response.data.result
+  async ({ username, password }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`${URL}/auth/login`, { username, password })
+      return response.data.result
+    } catch (error) {
+      if (!error.response) { throw error }
+      return rejectWithValue({
+        status: error.response.status
+      })
+    }
   }
 )
 
