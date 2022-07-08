@@ -1,13 +1,9 @@
 const express = require('express')
-const nanoid = require('nanoid')
 const { isLoggedIn, isItemOwner } = require('../middleware')
 
-const { items, users } = require('../dev-data')
+const Item = require('../models/Item')
 
 const router = express.Router()
-
-const ID_LENGTH = 9
-const id = () => nanoid.nanoid(ID_LENGTH)
 
 /**
  * GET /items
@@ -16,14 +12,15 @@ const id = () => nanoid.nanoid(ID_LENGTH)
  *
  * @returns a list of item objects
  */
-router.get('/', (req, res) => {
-  const itemsWithLocation = items.map((item) => {
-    const ownerId = item.owner
-    const owner = users.find((user) => user.id === ownerId)
-    return { ...item, location: owner.location }
-  })
+router.get('/', async (req, res) => {
+  // const itemsWithLocation = items.map((item) => {
+  //   const ownerId = item.owner
+  //   const owner = users.find((user) => user.id === ownerId)
+  //   return { ...item, location: owner.location }
+  // })
+  const items = await Item.find().populate('owner')
   res.send({
-    result: itemsWithLocation
+    result: items
   })
 })
 
@@ -35,9 +32,9 @@ router.get('/', (req, res) => {
  * @param id: the item id to retrieve
  * @returns a single item object
  */
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const { id } = req.params
-  const item = items.find((item) => item.id === id)
+  const item = await Item.findById(id)
   res.send({
     result: item
   })
@@ -53,10 +50,9 @@ router.get('/:id', (req, res) => {
  *
  * @returns the newly created item object
  */
-router.post('/', isLoggedIn, (req, res) => {
-  const owner = users.find((user) => user.username === req.session.user)
-  const newItem = { id: id(), owner: owner.id, ...req.body }
-  items.push(newItem)
+router.post('/', isLoggedIn, async (req, res) => {
+  const newItem = new Item({ owner: req.session.user, ...req.body })
+  await newItem.save()
   res.send({
     result: newItem
   })
@@ -71,10 +67,9 @@ router.post('/', isLoggedIn, (req, res) => {
  * @param id: the item id to delete
  * @returns the deleted item object
  */
-router.delete('/:id', isLoggedIn, isItemOwner, (req, res) => {
+router.delete('/:id', isLoggedIn, isItemOwner, async (req, res) => {
   const { id } = req.params
-  const idx = items.findIndex((item) => item.id === id)
-  const [deleted] = items.splice(idx, 1)
+  const deleted = await Item.findByIdAndDelete(id)
   res.send({
     result: deleted
   })
@@ -91,12 +86,11 @@ router.delete('/:id', isLoggedIn, isItemOwner, (req, res) => {
  * @param id: the item id to update
  * @returns the updated item object
  */
-router.patch('/:id', isLoggedIn, isItemOwner, (req, res) => {
+router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
   const { id } = req.params
-  const idx = items.findIndex((item) => item.id === id)
-  items[idx] = { ...items[idx], ...req.body }
+  const updated = await Item.findByIdAndUpdate(id, req.body, { new: true })
   res.send({
-    result: items[idx]
+    result: updated
   })
 })
 
@@ -110,12 +104,13 @@ router.patch('/:id', isLoggedIn, isItemOwner, (req, res) => {
  * @param id: the item id to borrow
  * @return the updated item
  */
-router.post('/:id/borrow', isLoggedIn, (req, res) => {
+router.post('/:id/borrow', isLoggedIn, async (req, res) => {
   const { id } = req.params
-  const idx = items.findIndex((item) => item.id === id)
-  items[idx] = { ...items[idx], status: 'Borrowed' }
+  // const idx = items.findIndex((item) => item.id === id)
+  // items[idx] = { ...items[idx], status: 'Borrowed' }
+  const borrowed = await Item.findByIdAndUpdate(id, { status: 'Borrowed' }, { new: true })
   res.send({
-    result: items[idx]
+    result: borrowed
   })
 })
 

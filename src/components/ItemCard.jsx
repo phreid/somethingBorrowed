@@ -10,7 +10,7 @@ import { borrowItemAsync, deleteItemAsync } from '../redux/items/thunks'
 
 function ItemCard (props) {
   const borrowed = useSelector(state => {
-    return state.items.list.find((item) => item.id === props.id).status === 'Borrowed'
+    return state.items.list.find((item) => item._id === props.id).status === 'Borrowed'
   })
   const [buttonText, setButtonText] = useState(borrowed ? 'Borrowed' : 'Borrow Item')
   const [editOpen, setEditOpen] = useState(props.modalOpen)

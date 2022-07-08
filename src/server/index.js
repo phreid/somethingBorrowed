@@ -5,6 +5,7 @@ const session = require('express-session')
 const itemRouter = require('./routes/items')
 const userRouter = require('./routes/users')
 const authRouter = require('./routes/auth')
+const connectToDatabase = require('./database')
 
 const app = express()
 const port = 4000
@@ -21,6 +22,11 @@ app.use('/items', itemRouter)
 app.use('/users', userRouter)
 app.use('/auth', authRouter)
 
-app.listen(port, () => {
-  console.log(`listening on port ${port}`)
-})
+const startApp = async () => {
+  await connectToDatabase()
+  app.listen(port, () => {
+    console.log(`listening on port ${port}`)
+  })
+}
+
+startApp()
