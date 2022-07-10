@@ -18,14 +18,14 @@ export const itemSlice = createSlice({
         state.list.push(action.payload)
       })
       .addCase(deleteItemAsync.fulfilled, (state, action) => {
-        state.list = state.list.filter(item => item.id !== action.payload.id)
+        state.list = state.list.filter(item => item._id !== action.payload._id)
       })
       .addCase(updateItemAsync.fulfilled, (state, action) => {
-        const index = state.list.findIndex(item => item.id === action.payload.id)
+        const index = state.list.findIndex(item => item._id === action.payload._id)
         state.list[index] = action.payload
       })
       .addCase(borrowItemAsync.fulfilled, (state, action) => {
-        const index = state.list.findIndex(item => item.id === action.payload.id)
+        const index = state.list.findIndex(item => item._id === action.payload._id)
         state.list[index].status = action.payload.status
       })
   }

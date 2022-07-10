@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { loginAsync, getAllUsersAsync } from './thunks'
 
 const INITIAL_STATE = {
-  username: localStorage.getItem('user'),
+  user: localStorage.getItem('user'),
   isLoggedIn: 'user' in localStorage,
   list: []
 }
@@ -14,7 +14,7 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginAsync.fulfilled, (state, action) => {
-        state.username = action.payload
+        state.user = action.payload
         state.isLoggedIn = true
         localStorage.setItem('user', action.payload)
       })
