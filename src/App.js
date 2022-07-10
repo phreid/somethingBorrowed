@@ -4,6 +4,7 @@ import MyItemsPage from './components/MyItemsPage'
 import MarketplacePage from './components/MarketplacePage'
 import LoginPage from './components/LoginPage'
 import ProfilePage from './components/ProfilePage'
+import LogoutPage from './components/LogoutPage'
 
 import './styles.css'
 
@@ -15,6 +16,7 @@ function App () {
         <Route path="/my-items" element={<MyItemsPage />} />
         <Route path="/marketplace" element={<MarketplacePage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/logout" element={<LogoutPage />} />
         <Route
           path="*"
           element={

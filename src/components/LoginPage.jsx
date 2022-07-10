@@ -1,10 +1,11 @@
 import LoginForm from './LoginForm'
-import { Row, Col, Stack, Container, Button, Modal } from 'react-bootstrap'
+import { Row, Col, Stack, Container, Button, Modal, Alert } from 'react-bootstrap'
 import { useState } from 'react'
 import SignUpForm from './SignUpForm'
 
 export default function LoginPage () {
   const [showModal, setShowModal] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
 
   const handleClose = () => setShowModal(false)
   const handleShow = () => setShowModal(true)
@@ -17,11 +18,17 @@ export default function LoginPage () {
             <Stack gap={4}>
               <h2 className="mx-auto">Login</h2>
               <Stack gap={2}>
-                <LoginForm />
+                <LoginForm onLoginError={() => setShowAlert(true)} />
                 <Button variant="secondary" onClick={handleShow}>
                   Sign up
                 </Button>
               </Stack>
+              {
+                showAlert &&
+                <Alert className='p-2' variant='danger'>
+                  Incorrect username.
+                </Alert>
+              }
             </Stack>
           </Col>
         </Row>

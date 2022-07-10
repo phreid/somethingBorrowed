@@ -11,21 +11,25 @@ const users = [
   {
     username: 'paul',
     password: 'paul',
+    email: 'paul@example.com',
     location: 'UBC Campus'
   },
   {
     username: 'imogene',
     password: 'imogene',
+    email: 'imo@example.com',
     location: 'UBC Campus'
   },
   {
     username: 'anusha',
     password: 'anusha',
+    email: 'anusha@example.com',
     location: 'UBC Campus'
   },
   {
     username: 'shirley',
     password: 'shirley',
+    email: 'shirley@example.com',
     location: 'UBC Campus'
   }
 ]
