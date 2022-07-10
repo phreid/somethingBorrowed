@@ -90,13 +90,22 @@ router.get('/:userId/items', async (req, res) => {
 /**
  * POST /users
  *
- * Create a new user and add it to the collection.
+ * Create a new user. Requires the new user's username to be unique.
  *
- * Request body: a user object
+ * Request body:
  *
- * @returns the new user object
+ * {
+ *    'username': _,
+ *    'password': _,
+ *    'email': _
+ * }
+ *
+ * @returns if successful, returns the new user object
  */
 router.post('/', async (req, res) => {
+  const existingUser = await User.findOne({ username: req.body.username })
+  if (existingUser) { return res.sendStatus(403) }
+
   const newUser = new User({ ...req.body })
   await newUser.save()
   res.send({

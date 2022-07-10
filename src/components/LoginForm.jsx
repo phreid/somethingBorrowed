@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { loginAsync } from '../redux/users/thunks'
 
-export default function LoginForm () {
+export default function LoginForm ({ onLoginError }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -18,7 +18,11 @@ export default function LoginForm () {
       await dispatch(loginAsync({ username, password })).unwrap()
       navigate('/marketplace')
     } catch (error) {
-      console.log(error)
+      if (error.status === 404) {
+        onLoginError()
+      } else {
+        console.log(error)
+      }
     }
   }
 
