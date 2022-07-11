@@ -1,4 +1,5 @@
 const express = require('express')
+const { STATUS } = require('../../constants')
 const { isLoggedIn, isItemOwner } = require('../middleware')
 
 const Item = require('../models/Item')
@@ -13,11 +14,6 @@ const router = express.Router()
  * @returns a list of item objects
  */
 router.get('/', async (req, res) => {
-  // const itemsWithLocation = items.map((item) => {
-  //   const ownerId = item.owner
-  //   const owner = users.find((user) => user.id === ownerId)
-  //   return { ...item, location: owner.location }
-  // })
   const items = await Item.find().populate('owner')
   res.send({
     result: items
@@ -106,9 +102,7 @@ router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
  */
 router.post('/:id/borrow', isLoggedIn, async (req, res) => {
   const { id } = req.params
-  // const idx = items.findIndex((item) => item.id === id)
-  // items[idx] = { ...items[idx], status: 'Borrowed' }
-  const borrowed = await Item.findByIdAndUpdate(id, { status: 'Borrowed' }, { new: true })
+  const borrowed = await Item.findByIdAndUpdate(id, { status: STATUS.BORROWED }, { new: true })
   res.send({
     result: borrowed
   })

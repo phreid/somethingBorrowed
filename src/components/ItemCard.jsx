@@ -7,10 +7,11 @@ import kitchen from '../images/defaultImages/kitchen.jpg'
 import outdoors from '../images/defaultImages/outdoors.jpg'
 import tools from '../images/defaultImages/tools.jpg'
 import { borrowItemAsync, deleteItemAsync } from '../redux/items/thunks'
+import { ITEM_TYPES, STATUS } from '../constants'
 
 function ItemCard (props) {
   const borrowed = useSelector(state => {
-    return state.items.list.find((item) => item._id === props.id).status === 'Borrowed'
+    return state.items.list.find((item) => item._id === props.id).status === STATUS.BORROWED
   })
   const [buttonText, setButtonText] = useState(borrowed ? 'Borrowed' : 'Borrow Item')
   const [editOpen, setEditOpen] = useState(props.modalOpen)
@@ -47,10 +48,10 @@ function ItemCard (props) {
       <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
         <div className="col-md-4">
           <Card.Img className="item-img" src={
-            ((props.type === 'DIY') && diy) ||
-            ((props.type === 'Kitchen') && kitchen) ||
-            ((props.type === 'Outdoors') && outdoors) ||
-            ((props.type === 'Tools') && tools)
+            ((props.type === ITEM_TYPES.DIY) && diy) ||
+            ((props.type === ITEM_TYPES.KITCHEN) && kitchen) ||
+            ((props.type === ITEM_TYPES.OUTDOORS) && outdoors) ||
+            ((props.type === ITEM_TYPES.TOOLS) && tools)
           } />
         </div>
         <div className="col-md-8">

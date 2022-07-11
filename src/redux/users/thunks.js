@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { ITEM_TYPES } from '../../constants'
 
 axios.defaults.withCredentials = true
 const URL = 'http://localhost:4000'
@@ -27,7 +28,7 @@ export const signUpAsync = createAsyncThunk(
         username,
         password,
         email,
-        location: 'UBC Campus'
+        location: ITEM_TYPES.UBC_CAMPUS
       })
       return response.data.result
     } catch (error) {

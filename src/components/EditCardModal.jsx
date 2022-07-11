@@ -6,31 +6,21 @@ import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 import { updateItemAsync } from '../redux/items/thunks'
 import { useDispatch } from 'react-redux'
+import { ITEM_TYPES, LOCATIONS } from '../constants'
 
 import '../styles.css'
-
-const ITEM_TYPES = [
-  { id: 0, name: 'Kitchen' },
-  { id: 1, name: 'Tools' },
-  { id: 2, name: 'Outdoors' },
-  { id: 3, name: 'DIY' }
-]
-
-const LOCATIONS = [
-  { id: 0, name: 'UBC Campus' }
-]
 
 export default function EditCardModal (props) {
   const dispatch = useDispatch()
 
   const itemId = props.id
 
-  const itemTypeDropdowns = ITEM_TYPES.map((type) => {
-    return <option key={type.id}>{type.name}</option>
+  const itemTypeDropdowns = Object.values(ITEM_TYPES).map((type) => {
+    return <option key={type}>{type}</option>
   })
 
-  const locationDropdowns = LOCATIONS.map((location) => {
-    return <option key={location.id}>{location.name}</option>
+  const locationDropdowns = Object.values(LOCATIONS).map((location) => {
+    return <option key={location}>{location}</option>
   })
 
   const [switchIsAvailable, setSwitchIsAvailable] = useState(true)
