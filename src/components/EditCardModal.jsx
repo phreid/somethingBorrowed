@@ -24,10 +24,10 @@ export default function EditCardModal (props) {
   })
 
   const [switchIsAvailable, setSwitchIsAvailable] = useState(true)
-  const [name, setName] = useState('')
-  const [type, setType] = useState('')
-  const [location, setLocation] = useState('')
-  const [description, setDescription] = useState('')
+  const [name, setName] = useState(props.name)
+  const [type, setType] = useState(props.type)
+  const [location, setLocation] = useState(props.location)
+  const [description, setDescription] = useState(props.description)
 
   const handleClose = () => {
     props.setShow(false)
