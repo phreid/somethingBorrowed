@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const { LOCATIONS } = require('../../constants')
+
 const Schema = mongoose.Schema
 
 const UserSchema = Schema({
@@ -7,7 +9,7 @@ const UserSchema = Schema({
   email: String,
   location: {
     type: String,
-    enum: ['UBC Campus']
+    enum: Object.values(LOCATIONS)
   }
 })
 
