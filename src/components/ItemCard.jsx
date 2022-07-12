@@ -14,9 +14,12 @@ function ItemCard (props) {
     return state.items.list.find((item) => item._id === props.id).status === STATUS.BORROWED
   })
   const unavailable = useSelector(state => {
-    return state.items.list.find((item) => item._id === props.id).status === 'Not available'
+    return state.items.list.find((item) => item._id === props.id).status === STATUS.NOT_AVAILABLE
   })
-  const [buttonText, setButtonText] = useState(borrowed ? 'Borrowed' : 'Borrow Item')
+  const available = useSelector(state => {
+    return state.items.list.find((item) => item._id === props.id).status === STATUS.AVAILABLE
+  })
+  const [buttonText, setButtonText] = useState(available ? 'Borrow Item' : unavailable ? 'Not available' : 'Borrowed')
   const [editOpen, setEditOpen] = useState(props.modalOpen)
   const [unavailableItemText, setUnavailableItemText] = useState(unavailable ? 'Mark as available' : 'Mark as unavailable')
 
@@ -45,7 +48,7 @@ function ItemCard (props) {
 
   function handleMarkItemReturned () {
     const item = {
-      status: 'Available',
+      status: STATUS.AVAILABLE,
       id: props.id,
       name: props.name,
       type: props.type,
@@ -60,21 +63,20 @@ function ItemCard (props) {
   function handleUnavailableStatus () {
     let item
 
-    if (props.status === 'Not available') {
+    if (props.status === STATUS.NOT_AVAILABLE) {
+      item = {
+        status: STATUS.AVAILABLE,
+        id: props.id,
+        name: props.name,
+        type: props.type,
+        description: props.description,
+        location: props.location
+      }
+      dispatch(updateItemAsync(item))
       setUnavailableItemText('Mark not available')
-      item = {
-        status: 'Available',
-        id: props.id,
-        name: props.name,
-        type: props.type,
-        description: props.description,
-        location: props.location
-      }
-      dispatch(updateItemAsync(item))
     } else {
-      setUnavailableItemText('Mark as available')
       item = {
-        status: 'Not available',
+        status: STATUS.NOT_AVAILABLE,
         id: props.id,
         name: props.name,
         type: props.type,
@@ -82,6 +84,7 @@ function ItemCard (props) {
         location: props.location
       }
       dispatch(updateItemAsync(item))
+      setUnavailableItemText('Mark as available')
     }
   }
 
@@ -127,7 +130,7 @@ function ItemCard (props) {
           </Card.Text>
           {props.borrow
             ? (
-              <Button disabled={borrowed} variant="outline-primary" size="sm" onClick={handleBorrowItem}>
+              <Button disabled={!available} variant="outline-primary" size="sm" onClick={handleBorrowItem}>
                 {buttonText}
               </Button>
             )
