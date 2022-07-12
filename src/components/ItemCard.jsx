@@ -6,14 +6,14 @@ import diy from '../images/defaultImages/diy.jpg'
 import kitchen from '../images/defaultImages/kitchen.jpg'
 import outdoors from '../images/defaultImages/outdoors.jpg'
 import tools from '../images/defaultImages/tools.jpg'
-import { returnItemAsync, borrowItemAsync, deleteItemAsync, setItemUnavailableAsync, setItemAvailableAsync } from '../redux/items/thunks'
+import { getAllItemsAsync, borrowItemAsync, deleteItemAsync, updateItemAsync } from '../redux/items/thunks'
 
 function ItemCard (props) {
   const borrowed = useSelector(state => {
     return state.items.list.find((item) => item._id === props.id).status === 'Borrowed'
   })
   const unavailable = useSelector(state => {
-    return state.items.list.find((item) => item._id === props.id).status === 'Unavailable'
+    return state.items.list.find((item) => item._id === props.id).status === 'Not available'
   })
   const [buttonText, setButtonText] = useState(borrowed ? 'Borrowed' : 'Borrow Item')
   const [editOpen, setEditOpen] = useState(props.modalOpen)
@@ -22,14 +22,8 @@ function ItemCard (props) {
   const dispatch = useDispatch()
 
   function handleBorrowItem () {
-    const item = {
-      status: 'Borrowed',
-      ...props
-    }
-    console.log(item)
-
     setButtonText('Borrowed')
-    dispatch(borrowItemAsync(item))
+    dispatch(borrowItemAsync(props))
   }
 
   function handleDeleteItem () {
@@ -46,34 +40,51 @@ function ItemCard (props) {
 
   function handleCloseModal () {
     setEditOpen(false)
+    setUnavailableItemText('')
   }
 
-  function handleMarkItemReturned () {
-    console.log('mark returned')
+  async function handleMarkItemReturned () {
     const item = {
       status: 'Available',
-      ...props
-      // id: props.id,
-      // name: props.name,
-      // type: props.type,
-      // description: props.description,
-      // location: props.location
+      id: props.id,
+      name: props.name,
+      type: props.type,
+      description: props.description,
+      location: props.location
     }
-    console.log(item)
 
     setButtonText('Available')
-    dispatch(returnItemAsync(item))
+    await dispatch(updateItemAsync(item))
+    await dispatch(getAllItemsAsync())
   }
 
-  function handleToggleUnavailable () {
+  async function handleUnavailableStatus () {
+    let item
+
     if (props.status === 'Not available') {
-      console.log('mark availabe')
-      setUnavailableItemText('Available')
-      dispatch(setItemUnavailableAsync(props))
+      setUnavailableItemText('Mark not available')
+      item = {
+        status: 'Available',
+        id: props.id,
+        name: props.name,
+        type: props.type,
+        description: props.description,
+        location: props.location
+      }
+      await dispatch(updateItemAsync(item))
+      await dispatch(getAllItemsAsync())
     } else {
-      console.log('mark not available')
-      setUnavailableItemText('Not available')
-      dispatch(setItemAvailableAsync(props))
+      setUnavailableItemText('Mark as available')
+      item = {
+        status: 'Not available',
+        id: props.id,
+        name: props.name,
+        type: props.type,
+        description: props.description,
+        location: props.location
+      }
+      await dispatch(updateItemAsync(item))
+      await dispatch(getAllItemsAsync())
     }
   }
 
@@ -133,7 +144,7 @@ function ItemCard (props) {
             : null }
           {props.toggleUnavailable
             ? (
-              <Button className="card-buttons" disabled={borrowed} variant="outline-primary" size="sm" onClick={handleToggleUnavailable}>
+              <Button className="card-buttons" disabled={borrowed} variant="outline-primary" size="sm" onClick={handleUnavailableStatus}>
                 {unavailableItemText}
               </Button>
             )

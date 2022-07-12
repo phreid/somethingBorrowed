@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { returnItemAsync, getAllItemsAsync, addItemAsync, deleteItemAsync, updateItemAsync, borrowItemAsync } from './thunks'
+import { getAllItemsAsync, addItemAsync, deleteItemAsync, updateItemAsync, borrowItemAsync } from './thunks'
 
 const INITIAL_STATE = {
   list: []
@@ -25,13 +25,6 @@ export const itemSlice = createSlice({
         state.list[index] = action.payload
       })
       .addCase(borrowItemAsync.fulfilled, (state, action) => {
-        console.log('reducer status: ' + action.payload.status)
-        const index = state.list.findIndex(item => item._id === action.payload._id)
-        state.list[index].status = action.payload.status
-      })
-      .addCase(returnItemAsync.fulfilled, (state, action) => {
-        console.log('hits return reducer')
-        console.log(action.payload)
         const index = state.list.findIndex(item => item._id === action.payload._id)
         state.list[index].status = action.payload.status
       })

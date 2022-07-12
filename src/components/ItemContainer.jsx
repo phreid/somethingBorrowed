@@ -11,8 +11,6 @@ function ItemContainer (props) {
     return state.items.list.filter(item => item.owner._id === user.user)
   })
   const dispatch = useDispatch()
-  // console.log(user)
-  // console.log(items)
 
   useEffect(() => {
     dispatch(getAllItemsAsync())
@@ -35,6 +33,9 @@ function ItemContainer (props) {
           toggleUnavailable
           type={item.type}
           userId={item.userId}
+          // onChange={() => {
+          //   return dispatch(getAllItemsAsync())
+          // } }
         />
       })}
     </Container>
