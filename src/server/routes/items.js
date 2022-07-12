@@ -114,4 +114,23 @@ router.post('/:id/borrow', isLoggedIn, async (req, res) => {
   })
 })
 
+// router.patch('/:id', isLoggedIn, async (req, res) => {
+//   const { id } = req.params
+//   const updated = await Item.findByIdAndUpdate(id, req.body, { new: true })
+//   console.log(updated)
+//   res.send({
+//     result: updated
+//   })
+// })
+
+router.post('/:id/return', isLoggedIn, isItemOwner, async (req, res) => {
+  const { id } = req.params
+  // const idx = items.findIndex((item) => item.id === id)
+  // items[idx] = { ...items[idx], status: 'Borrowed' }
+  const returned = await Item.findByIdAndUpdate(id, { status: 'Available' }, { new: true })
+  res.send({
+    result: returned
+  })
+})
+
 module.exports = router

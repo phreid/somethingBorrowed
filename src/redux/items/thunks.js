@@ -39,6 +39,7 @@ export const deleteItemAsync = createAsyncThunk(
 export const updateItemAsync = createAsyncThunk(
   'items/updateItem',
   async (item) => {
+    console.log('thunk status: ' + item.status)
     const response = await axios.patch(`${URL}/${item.id}`, item)
     return response.data.result
   }
@@ -51,6 +52,26 @@ export const borrowItemAsync = createAsyncThunk(
     return response.data.result
   }
 )
+
+export const returnItemAsync = createAsyncThunk(
+  'items/returnItem',
+  async (item) => {
+    console.log('hits return thunk')
+    console.log(item)
+    const response = await axios.post(`${URL}/${item.id}/return`)
+    return response.data.result
+  }
+)
+
+// export const borrowItemAsync = createAsyncThunk(
+//   'items/borrowItem',
+//   async (item) => {
+//     console.log('borrow thunk')
+//     console.log(item)
+//     const response = await axios.patch(`${URL}/${item.id}`, item)
+//     return response.data.result
+//   }
+// )
 
 export const setItemReturnedAsync = createAsyncThunk(
   'items/updateItem',

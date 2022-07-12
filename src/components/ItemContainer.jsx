@@ -11,6 +11,8 @@ function ItemContainer (props) {
     return state.items.list.filter(item => item.owner._id === user.user)
   })
   const dispatch = useDispatch()
+  // console.log(user)
+  // console.log(items)
 
   useEffect(() => {
     dispatch(getAllItemsAsync())

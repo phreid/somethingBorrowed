@@ -6,7 +6,7 @@ import diy from '../images/defaultImages/diy.jpg'
 import kitchen from '../images/defaultImages/kitchen.jpg'
 import outdoors from '../images/defaultImages/outdoors.jpg'
 import tools from '../images/defaultImages/tools.jpg'
-import { borrowItemAsync, deleteItemAsync, setItemReturnedAsync, setItemUnavailableAsync, setItemAvailableAsync } from '../redux/items/thunks'
+import { returnItemAsync, borrowItemAsync, deleteItemAsync, setItemUnavailableAsync, setItemAvailableAsync } from '../redux/items/thunks'
 
 function ItemCard (props) {
   const borrowed = useSelector(state => {
@@ -22,8 +22,14 @@ function ItemCard (props) {
   const dispatch = useDispatch()
 
   function handleBorrowItem () {
+    const item = {
+      status: 'Borrowed',
+      ...props
+    }
+    console.log(item)
+
     setButtonText('Borrowed')
-    dispatch(borrowItemAsync(props))
+    dispatch(borrowItemAsync(item))
   }
 
   function handleDeleteItem () {
@@ -44,7 +50,19 @@ function ItemCard (props) {
 
   function handleMarkItemReturned () {
     console.log('mark returned')
-    dispatch(setItemReturnedAsync(props))
+    const item = {
+      status: 'Available',
+      ...props
+      // id: props.id,
+      // name: props.name,
+      // type: props.type,
+      // description: props.description,
+      // location: props.location
+    }
+    console.log(item)
+
+    setButtonText('Available')
+    dispatch(returnItemAsync(item))
   }
 
   function handleToggleUnavailable () {
