@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
  */
 router.get('/:id', async (req, res) => {
   const { id } = req.params
-  const item = await Item.findById(id)
+  const item = await Item.findById(id).populate('owner')
   res.send({
     result: item
   })
@@ -49,8 +49,9 @@ router.get('/:id', async (req, res) => {
 router.post('/', isLoggedIn, async (req, res) => {
   const newItem = new Item({ owner: req.session.user, ...req.body })
   await newItem.save()
+  const itemWithOwner = await newItem.populate('owner')
   res.send({
-    result: newItem
+    result: itemWithOwner
   })
 })
 
@@ -65,7 +66,7 @@ router.post('/', isLoggedIn, async (req, res) => {
  */
 router.delete('/:id', isLoggedIn, isItemOwner, async (req, res) => {
   const { id } = req.params
-  const deleted = await Item.findByIdAndDelete(id)
+  const deleted = await Item.findByIdAndDelete(id).populate('owner')
   res.send({
     result: deleted
   })
@@ -84,7 +85,7 @@ router.delete('/:id', isLoggedIn, isItemOwner, async (req, res) => {
  */
 router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
   const { id } = req.params
-  const updated = await Item.findByIdAndUpdate(id, req.body, { new: true })
+  const updated = await Item.findByIdAndUpdate(id, req.body, { new: true }).populate('owner')
   res.send({
     result: updated
   })
@@ -102,7 +103,7 @@ router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
  */
 router.post('/:id/borrow', isLoggedIn, async (req, res) => {
   const { id } = req.params
-  const borrowed = await Item.findByIdAndUpdate(id, { status: STATUS.BORROWED }, { new: true })
+  const borrowed = await Item.findByIdAndUpdate(id, { status: STATUS.BORROWED }, { new: true }).populate('owner')
   res.send({
     result: borrowed
   })

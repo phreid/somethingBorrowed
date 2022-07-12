@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addItemAsync } from '../redux/items/thunks'
-import { ITEM_TYPES, LOCATIONS } from '../constants'
+import { ITEM_TYPES, LOCATIONS, STATUS } from '../constants'
 
 export default function AddItemForm (props) {
   const itemTypeDropdowns = Object.values(ITEM_TYPES).map((type) => {
@@ -30,7 +30,8 @@ export default function AddItemForm (props) {
       name,
       type,
       location,
-      description
+      description,
+      status: switchIsAvailable ? STATUS.AVAILABLE : STATUS.NOT_AVAILABLE
     }))
     setName('')
     setType('')
