@@ -3,3 +3,5 @@ const STATUS = {
   BORROWED: 'Borrowed',
   NOT_AVAILABLE: 'Not available'
 }
+
+module.exports = STATUS

@@ -6,38 +6,27 @@ import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 import { updateItemAsync } from '../redux/items/thunks'
 import { useDispatch } from 'react-redux'
+import { ITEM_TYPES, LOCATIONS } from '../constants'
 
 import '../styles.css'
-
-const ITEM_TYPES = [
-  { id: 0, name: 'Kitchen' },
-  { id: 1, name: 'Tools' },
-  { id: 2, name: 'Outdoors' },
-  { id: 3, name: 'DIY' }
-]
-
-const LOCATIONS = [
-  { id: 0, name: 'UBC Campus' }
-]
 
 export default function EditCardModal (props) {
   const dispatch = useDispatch()
 
   const itemId = props.id
 
-  const itemTypeDropdowns = ITEM_TYPES.map((type) => {
-    return <option key={type.id}>{type.name}</option>
+  const itemTypeDropdowns = Object.values(ITEM_TYPES).map((type) => {
+    return <option key={type}>{type}</option>
   })
 
-  const locationDropdowns = LOCATIONS.map((location) => {
-    return <option key={location.id}>{location.name}</option>
+  const locationDropdowns = Object.values(LOCATIONS).map((location) => {
+    return <option key={location}>{location}</option>
   })
 
-  const [switchIsAvailable, setSwitchIsAvailable] = useState(true)
-  const [name, setName] = useState('')
-  const [type, setType] = useState('')
-  const [location, setLocation] = useState('')
-  const [description, setDescription] = useState('')
+  const [name, setName] = useState(props.name)
+  const [type, setType] = useState(props.type)
+  const [location, setLocation] = useState(props.location)
+  const [description, setDescription] = useState(props.description)
 
   const handleClose = () => {
     props.setShow(false)
@@ -88,19 +77,6 @@ export default function EditCardModal (props) {
                   <option>Select a location...</option>
                   {locationDropdowns}
                 </Form.Select>
-              </Form.Group>
-            </Row>
-            <Row>
-              <Form.Group as={Col} xs={8} controlId="formFileDisabled" >
-                <Form.Label>Upload an image</Form.Label>
-                <Form.Control type="file" disabled />
-              </Form.Group>
-              <Form.Group as={Col} sm className="d-flex align-items-end mb-3">
-                <Form.Switch
-                  checked={switchIsAvailable}
-                  onChange={() => setSwitchIsAvailable(!switchIsAvailable)}
-                  label={'Make item available'}
-                  className={switchIsAvailable ? '' : 'text-muted'} />
               </Form.Group>
             </Row>
             <Form.Group >

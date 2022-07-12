@@ -6,11 +6,12 @@ import diy from '../images/defaultImages/diy.jpg'
 import kitchen from '../images/defaultImages/kitchen.jpg'
 import outdoors from '../images/defaultImages/outdoors.jpg'
 import tools from '../images/defaultImages/tools.jpg'
-import { getAllItemsAsync, borrowItemAsync, deleteItemAsync, updateItemAsync } from '../redux/items/thunks'
+import { borrowItemAsync, deleteItemAsync, updateItemAsync } from '../redux/items/thunks'
+import { ITEM_TYPES, STATUS } from '../constants'
 
 function ItemCard (props) {
   const borrowed = useSelector(state => {
-    return state.items.list.find((item) => item._id === props.id).status === 'Borrowed'
+    return state.items.list.find((item) => item._id === props.id).status === STATUS.BORROWED
   })
   const unavailable = useSelector(state => {
     return state.items.list.find((item) => item._id === props.id).status === 'Not available'
@@ -40,10 +41,9 @@ function ItemCard (props) {
 
   function handleCloseModal () {
     setEditOpen(false)
-    setUnavailableItemText('')
   }
 
-  async function handleMarkItemReturned () {
+  function handleMarkItemReturned () {
     const item = {
       status: 'Available',
       id: props.id,
@@ -54,11 +54,10 @@ function ItemCard (props) {
     }
 
     setButtonText('Available')
-    await dispatch(updateItemAsync(item))
-    await dispatch(getAllItemsAsync())
+    dispatch(updateItemAsync(item))
   }
 
-  async function handleUnavailableStatus () {
+  function handleUnavailableStatus () {
     let item
 
     if (props.status === 'Not available') {
@@ -71,8 +70,7 @@ function ItemCard (props) {
         description: props.description,
         location: props.location
       }
-      await dispatch(updateItemAsync(item))
-      await dispatch(getAllItemsAsync())
+      dispatch(updateItemAsync(item))
     } else {
       setUnavailableItemText('Mark as available')
       item = {
@@ -83,8 +81,7 @@ function ItemCard (props) {
         description: props.description,
         location: props.location
       }
-      await dispatch(updateItemAsync(item))
-      await dispatch(getAllItemsAsync())
+      dispatch(updateItemAsync(item))
     }
   }
 
@@ -93,10 +90,10 @@ function ItemCard (props) {
       <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
         <div className="col-md-4">
           <Card.Img className="item-img" src={
-            ((props.type === 'DIY') && diy) ||
-            ((props.type === 'Kitchen') && kitchen) ||
-            ((props.type === 'Outdoors') && outdoors) ||
-            ((props.type === 'Tools') && tools)
+            ((props.type === ITEM_TYPES.DIY) && diy) ||
+            ((props.type === ITEM_TYPES.KITCHEN) && kitchen) ||
+            ((props.type === ITEM_TYPES.OUTDOORS) && outdoors) ||
+            ((props.type === ITEM_TYPES.TOOLS) && tools)
           } />
         </div>
         <div className="col-md-8">
@@ -114,7 +111,7 @@ function ItemCard (props) {
               </Button>
             )
             : null }
-          <EditCardModal modalOpen={editOpen} setShow={handleCloseModal} id={props.id} name={props.name} description={props.description} type={props.type} />
+          <EditCardModal modalOpen={editOpen} setShow={handleCloseModal} id={props.id} name={props.name} description={props.description} type={props.type} location={props.location} />
           <Card.Title className="item-name"><strong>{props.name}</strong></Card.Title>
           <Card.Text className="card-text">
             <strong>Description:</strong> {props.description}

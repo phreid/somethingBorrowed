@@ -1,17 +1,19 @@
 const mongoose = require('mongoose')
+const { ITEM_TYPES, STATUS } = require('../../constants')
+
 const Schema = mongoose.Schema
 
 const ItemSchema = new mongoose.Schema({
   name: String,
   type: {
     type: String,
-    enum: ['DIY', 'Outdoors', 'Tools', 'Kitchen']
+    enum: Object.values(ITEM_TYPES)
   },
   description: String,
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   status: {
     type: String,
-    enum: ['Available', 'Borrowed']
+    enum: Object.values(STATUS)
   }
 })
 

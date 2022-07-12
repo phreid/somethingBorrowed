@@ -33,9 +33,6 @@ function ItemContainer (props) {
           toggleUnavailable
           type={item.type}
           userId={item.userId}
-          // onChange={() => {
-          //   return dispatch(getAllItemsAsync())
-          // } }
         />
       })}
     </Container>
