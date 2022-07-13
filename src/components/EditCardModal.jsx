@@ -23,7 +23,6 @@ export default function EditCardModal (props) {
     return <option key={location}>{location}</option>
   })
 
-  const [switchIsAvailable, setSwitchIsAvailable] = useState(true)
   const [name, setName] = useState(props.name)
   const [type, setType] = useState(props.type)
   const [location, setLocation] = useState(props.location)
@@ -78,19 +77,6 @@ export default function EditCardModal (props) {
                   <option>Select a location...</option>
                   {locationDropdowns}
                 </Form.Select>
-              </Form.Group>
-            </Row>
-            <Row>
-              <Form.Group as={Col} xs={8} controlId="formFileDisabled" >
-                <Form.Label>Upload an image</Form.Label>
-                <Form.Control type="file" disabled />
-              </Form.Group>
-              <Form.Group as={Col} sm className="d-flex align-items-end mb-3">
-                <Form.Switch
-                  checked={switchIsAvailable}
-                  onChange={() => setSwitchIsAvailable(!switchIsAvailable)}
-                  label={'Make item available'}
-                  className={switchIsAvailable ? '' : 'text-muted'} />
               </Form.Group>
             </Row>
             <Form.Group >
