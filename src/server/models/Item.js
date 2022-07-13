@@ -17,7 +17,8 @@ const ItemSchema = new mongoose.Schema({
   },
   rating: {
     type: String,
-    enum: ['Unrated', '1', '2', '3', '4', '5']
+    enum: ['Unrated', '1', '2', '3', '4', '5'],
+    default: 'Unrated'
   },
   ratingComments: String
 })

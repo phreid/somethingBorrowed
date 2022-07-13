@@ -27,7 +27,7 @@ export default function UserHistoryPage () {
       <br></br>
       <div className="my-borrowed-items">
         <h2>My Borrowed Items</h2>
-        <Container fluid className="item-container">
+        <Container fluid className="borrwed-items-container">
           {items.map(item => {
             return <ItemCard key={item._id}
               description={item.description}
@@ -38,8 +38,8 @@ export default function UserHistoryPage () {
               status={item.status}
               type={item.type}
               userId={item.userId}
-              rating
-              ratingComments
+              rating={item.rating}
+              ratingComments={item.ratingComments}
               ratingOpen={item.ratingOpen}
             />
           })}

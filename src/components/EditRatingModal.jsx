@@ -37,6 +37,11 @@ export default function EditRatingModal (props) {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    if (rating === 'Select item rating...') {
+      alert('Please select a valid rating')
+      return
+    }
+
     const item = {
       id: itemId,
       name: props.name,

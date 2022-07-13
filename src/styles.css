@@ -74,3 +74,8 @@ Form {
     justify-content: center;
     width: auto;
 }
+
+.borrwed-items-container{
+    justify-content: center;
+    max-width: 800px;
+}
