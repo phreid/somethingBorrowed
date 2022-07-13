@@ -6,10 +6,11 @@ import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 import { rateItemAsync } from '../redux/items/thunks'
 import { useDispatch } from 'react-redux'
+// import { RATING } from '../constants'
 
 import '../styles.css'
 
-const RATING = [
+const RATINGS = [
   { id: '1', name: '1' },
   { id: '2', name: '2' },
   { id: '3', name: '3' },
@@ -22,7 +23,7 @@ export default function EditRatingModal (props) {
 
   const itemId = props.id
 
-  const ratingDropdown = Object.values(RATING).map((type) => {
+  const ratingDropdown = Object.values(RATINGS).map((type) => {
     return <option key={type.id}>{type.name}</option>
   })
 
@@ -67,7 +68,7 @@ export default function EditRatingModal (props) {
             <Form.Group as={Col} sm >
               <Form.Label>Rating</Form.Label>
               <Form.Select value={rating} onChange={(e) => setRating(e.target.value)}>
-                <option>Select item location...</option>
+                <option>Select item rating...</option>
                 {ratingDropdown}
               </Form.Select>
             </Form.Group>
