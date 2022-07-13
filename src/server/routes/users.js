@@ -37,7 +37,6 @@ router.get('/:userId', async (req, res) => {
 })
 
 /**
- * GET /users/:username/marketplace
  * GET /users/:userId/marketplace
  *
  * Retrieves the items in a single user's marketplace - all items, except for
