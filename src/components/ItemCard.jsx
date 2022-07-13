@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Card, Row } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import EditCardModal from './EditCardModal'
 import diy from '../images/defaultImages/diy.jpg'
 import kitchen from '../images/defaultImages/kitchen.jpg'
@@ -10,15 +10,16 @@ import { borrowItemAsync, deleteItemAsync, updateItemAsync } from '../redux/item
 import { ITEM_TYPES, STATUS } from '../constants'
 
 function ItemCard (props) {
-  const borrowed = useSelector(state => {
-    return state.items.list.find((item) => item._id === props.id).status === STATUS.BORROWED
-  })
-  const unavailable = useSelector(state => {
-    return state.items.list.find((item) => item._id === props.id).status === STATUS.NOT_AVAILABLE
-  })
-  const available = useSelector(state => {
-    return state.items.list.find((item) => item._id === props.id).status === STATUS.AVAILABLE
-  })
+  let available = false
+  let borrowed = false
+  let unavailable = false
+  if (props.status === STATUS.BORROWED) {
+    borrowed = true
+  } else if (props.status === STATUS.AVAILABLE) {
+    available = true
+  } else {
+    unavailable = true
+  }
   const [buttonText, setButtonText] = useState(available ? 'Borrow Item' : unavailable ? 'Not available' : 'Borrowed')
   const [editOpen, setEditOpen] = useState(props.modalOpen)
   const [unavailableItemText, setUnavailableItemText] = useState(unavailable ? 'Mark as available' : 'Mark as unavailable')
