@@ -6,7 +6,7 @@ import '../styles.css'
 export default function NavBar () {
   return (
     <Navbar bg="light" expand="lg">
-      <Container fluid>
+      <Container className="navbar" fluid>
         <Navbar.Brand as={NavLink} to="/marketplace">Something Borrowed</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse id="basic-navbar-nav">
