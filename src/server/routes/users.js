@@ -37,23 +37,6 @@ router.get('/:userId', async (req, res) => {
 })
 
 /**
- * GET /users/:id
- *
- * Retrieves a single user.
- *
- * @param id: the id of the user to retrieve
- * @returns a user object
- */
-router.get('/:id', (req, res) => {
-  const { id } = req.params
-  const user = User.find((user) => user.id === id)
-  res.send({
-    result: user
-  })
-})
-
-/**
- * GET /users/:username/marketplace
  * GET /users/:userId/marketplace
  *
  * Retrieves the items in a single user's marketplace - all items, except for

@@ -1,12 +1,10 @@
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
-// import Row from 'react-bootstrap/Row'
 import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 import { rateItemAsync } from '../redux/items/thunks'
 import { useDispatch } from 'react-redux'
-// import { RATING } from '../constants'
 
 import '../styles.css'
 
