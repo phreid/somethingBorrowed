@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Card, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+
 import EditCardModal from './EditCardModal'
+import EditRatingModal from './EditRatingModal'
+
 import diy from '../images/defaultImages/diy.jpg'
 import kitchen from '../images/defaultImages/kitchen.jpg'
 import outdoors from '../images/defaultImages/outdoors.jpg'
@@ -22,6 +25,7 @@ function ItemCard (props) {
   const [buttonText, setButtonText] = useState(available ? 'Borrow Item' : unavailable ? 'Not available' : 'Borrowed')
   const [editOpen, setEditOpen] = useState(props.modalOpen)
   const [unavailableItemText, setUnavailableItemText] = useState(unavailable ? 'Mark as available' : 'Mark as unavailable')
+  const [editRatingModal, setEditRatingModal] = useState(props.ratingOpen)
 
   const dispatch = useDispatch()
 
@@ -42,8 +46,20 @@ function ItemCard (props) {
     setEditOpen(true)
   }
 
+  function handleRateItem () {
+    console.log('item card: ' + props.id)
+    if (editRatingModal === true) {
+      return
+    }
+    setEditRatingModal(true)
+  }
+
   function handleCloseModal () {
     setEditOpen(false)
+  }
+
+  function handleCloseRatingModal () {
+    setEditRatingModal(false)
   }
 
   function handleMarkItemReturned () {
@@ -114,7 +130,7 @@ function ItemCard (props) {
               </Button>
             )
             : null }
-          <EditCardModal modalOpen={editOpen} setShow={handleCloseModal} id={props.id} name={props.name} description={props.description} type={props.type} location={props.location} />
+          <EditCardModal modalOpen={editOpen} setShow={handleCloseModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} />
           <Card.Title className="item-name"><strong>{props.name}</strong></Card.Title>
           <Card.Text className="card-text">
             <strong>Description:</strong> {props.description}
@@ -128,6 +144,25 @@ function ItemCard (props) {
           <Card.Text className="card-text">
             <strong>Status:</strong> {props.status}
           </Card.Text>
+          {props.rating
+            ? (
+              <>
+                <Card.Text className="card-text">
+                Rating is based on a scale of 1 to 5 where 5 is the highest quality
+                </Card.Text>
+                <Card.Text className="card-text">
+                  <strong>Rating:</strong> {props.rating}
+                </Card.Text>
+                <Card.Text className="card-text">
+                  <strong>Comments:</strong> {props.ratingComments}
+                </Card.Text>
+                <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleRateItem}>
+                Rate Item
+                </Button>
+              </>
+            )
+            : null }
+          <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} name={props.name} description={props.description} type={props.type} location={props.location} />
           {props.borrow
             ? (
               <Button disabled={!available} variant="outline-primary" size="sm" onClick={handleBorrowItem}>

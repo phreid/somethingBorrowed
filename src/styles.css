@@ -65,3 +65,12 @@ Form {
     float: right;
     margin-left: 10px;
 }
+
+.my-items-container{
+    background-color: lightblue;
+}
+
+.my-borrowed-items{
+    justify-content: center;
+    width: auto;
+}

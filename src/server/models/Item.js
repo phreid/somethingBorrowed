@@ -14,7 +14,12 @@ const ItemSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: Object.values(STATUS)
-  }
+  },
+  rating: {
+    type: String,
+    enum: ['Unrated', '1', '2', '3', '4', '5']
+  },
+  ratingComments: String
 })
 
 module.exports = mongoose.model('Item', ItemSchema)

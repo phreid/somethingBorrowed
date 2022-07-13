@@ -109,4 +109,22 @@ router.post('/:id/borrow', isLoggedIn, async (req, res) => {
   })
 })
 
+/**
+ * POST /items/:id/rating
+ *
+ * Sets an items rating and comments. Requires the sender to be logged in but not the item owner.
+ *
+ * @param id: the item id to borrow
+ * @return the updated item
+ */
+router.post('/:id/rating', isLoggedIn, async (req, res) => {
+  const { id } = req.params
+
+  const rated = await Item.findByIdAndUpdate(id, { rating: req.body.rating, ratingComments: req.body.ratingComments }, { new: true }).populate('owner')
+
+  res.send({
+    result: rated
+  })
+})
+
 module.exports = router
