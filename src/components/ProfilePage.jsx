@@ -1,9 +1,20 @@
 import NavBar from './NavBar'
 import { Card, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
-import profile from '../images/profile.jpg'
-import ItemContainer from './ItemContainer'
+import profile from '../images/profile.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { React, useEffect } from 'react'
+import { getCurrentUserAsync } from '../redux/users/thunks'
 
 function ProfilePage () {
+  const userId = useSelector(state => state.user.currentUserId)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getCurrentUserAsync(userId))
+  }, [dispatch])
+
+  const currentUser = useSelector(state => state.user.currentUser)
+  console.log('=>', currentUser)
+
   return (
     <>
       <NavBar />
@@ -14,21 +25,17 @@ function ProfilePage () {
             <div className="col-md-4">
               <Card.Img variant="top" src={profile} />
               <Card.Body>
-                <Card.Title>Jane Doe</Card.Title>
-                <Card.Text>I'm new to the neighbourhood and I enjoy baking! Looking forward to borrow many kitchen related items.</Card.Text>
+                <Card.Title>{currentUser.username}</Card.Title>
+                <Card.Text>{currentUser.bio}</Card.Text>
               </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroupItem>janedoe@email.com</ListGroupItem>
-                <ListGroupItem>(7XX)-XXX-XXXX</ListGroupItem>
-                <ListGroupItem>UBC Vancouver</ListGroupItem>
+                <ListGroupItem>{currentUser.email}</ListGroupItem>
+                <ListGroupItem>{currentUser.location}</ListGroupItem>
               </ListGroup>
               <Card.Body>
                 <Card.Link href="#">Edit Profile</Card.Link>
                 <Card.Link href="#">Sign Out</Card.Link>
               </Card.Body>
-            </div>
-            <div className="col-md-8">
-              <ItemContainer/>
             </div>
           </Row>
         </Card>

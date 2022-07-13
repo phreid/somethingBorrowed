@@ -2,19 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd23834d-0722-4350-8b98-2a986f8d0eeb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/images/profile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/profile.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ItemCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfilePage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/placeholder.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddItemForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddItemForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ItemCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ItemCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/cricut.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/cricut.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/profile.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/users/thunks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/users/thunks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/users/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/users/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/database/seed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/database/seed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/User.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,18 +38,18 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>

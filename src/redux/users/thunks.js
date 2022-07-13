@@ -20,6 +20,14 @@ export const loginAsync = createAsyncThunk(
   }
 )
 
+export const getCurrentUserAsync = createAsyncThunk(
+  'user/getCurrentUser',
+  async (userId) => {
+    const response = await axios.get(`${URL}/users/${userId}`)
+    return response.data.result
+  }
+)
+
 export const signUpAsync = createAsyncThunk(
   'user/signUpUser',
   async ({ username, password, email }, { rejectWithValue }) => {
