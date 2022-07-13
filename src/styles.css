@@ -1,3 +1,19 @@
+.navbar{
+    background-color: lightgrey;
+}
+
+.button {
+    background-color: white;
+}
+
+.form {
+    padding: 20px;
+}
+
+a {
+text-decoration: none;
+}
+
 .add-items-page-body{
     display: flex;
 }
@@ -19,6 +35,10 @@ h2 {
     text-align: center;
 }
 
+.title{
+    text-align: center;
+}
+
 Form {
     font-family: 'Montserrat Bold', sans-serif;
     align-items: center;
@@ -26,10 +46,11 @@ Form {
 }
 
 .page-container {
-    border: 2px solid black;
     margin: 10px;
     padding: 10px;
-    max-height: 768px;
+    max-height: auto;
+    background-color: lightgrey;
+    border-radius: 10px;
 }
 
 #container-border {
@@ -42,9 +63,10 @@ Form {
 
 .item-card {
     font-family: 'Montserrat Bold', sans-serif;
-    border: 2px solid black;
+    /* border: 2px solid #296EB4; */
     margin: 10px;
     padding: 10px;
+    border-radius: 10px;
 }
 
 .item-img {

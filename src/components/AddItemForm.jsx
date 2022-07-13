@@ -42,7 +42,7 @@ export default function AddItemForm (props) {
   return (
     <>
       <h2>Lend a New Item</h2>
-      <Form>
+      <Form className="form">
         <Form.Group className="mb-3">
           <Form.Label>Item Name</Form.Label>
           <Form.Control className="item-input" type="text" placeholder="Enter item name" value={name}
@@ -82,9 +82,9 @@ export default function AddItemForm (props) {
           <Form.Control className="item-input" as="textarea" rows={3} placeholder="Enter item description" value={description}
             onChange={(e) => setDescription(e.target.value)}></Form.Control>
         </Form.Group>
-        <Button variant="outline-primary" type="submit" className="me-1"
+        <Button variant="outline-primary" type="submit" className="me-1 button"
           onClick={handleSubmit}>Submit</Button>
-        <Button variant="outline-danger" type="reset">Reset</Button>
+        <Button variant="outline-danger" type="reset" className="button">Reset</Button>
       </Form>
     </>
   )

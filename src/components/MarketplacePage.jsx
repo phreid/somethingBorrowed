@@ -24,7 +24,7 @@ function MarketplacePage () {
         <div className="grid-child page-container">
           <p>placeholder</p>
         </div>
-        <div className="grid-child page-container" id="container-border">
+        <div className="grid-child page-container">
           {items.length
             ? <Container fluid className="item-container">
               {items.map(item =>

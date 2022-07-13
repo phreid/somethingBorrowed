@@ -14,7 +14,7 @@ function MyItemsPage () {
         <div className="grid-child page-container">
           <AddItemForm />
         </div>
-        <div className="grid-child page-container" id="container-border">
+        <div className="grid-child page-container">
           <h2>My Items</h2>
           <ItemContainer />
         </div>
