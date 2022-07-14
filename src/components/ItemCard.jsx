@@ -131,7 +131,7 @@ function ItemCard (props) {
             )
             : null }
           <EditCardModal modalOpen={editOpen} setShow={handleCloseModal} id={props.id} name={props.name} description={props.description} type={props.type} location={props.location} />
-          <Card.Title className="item-name"><strong>{props.name}</strong></Card.Title>
+          <Card.Title className="title"><strong>{props.name}</strong></Card.Title>
           <Card.Text className="card-text">
             <strong>Description:</strong> {props.description}
           </Card.Text >
