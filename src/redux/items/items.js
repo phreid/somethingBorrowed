@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getAllItemsAsync, addItemAsync, deleteItemAsync, updateItemAsync, borrowItemAsync } from './thunks'
+import { rateItemAsync, getAllItemsAsync, addItemAsync, deleteItemAsync, updateItemAsync, borrowItemAsync } from './thunks'
 
 const INITIAL_STATE = {
   list: []
@@ -27,6 +27,11 @@ export const itemSlice = createSlice({
       .addCase(borrowItemAsync.fulfilled, (state, action) => {
         const index = state.list.findIndex(item => item._id === action.payload._id)
         state.list[index].status = action.payload.status
+      })
+      .addCase(rateItemAsync.fulfilled, (state, action) => {
+        const index = state.list.findIndex(item => item._id === action.payload._id)
+        state.list[index].rating = action.payload.rating
+        state.list[index].ratingComments = action.payload.ratingComments
       })
   }
 })

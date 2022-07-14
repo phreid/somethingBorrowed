@@ -5,6 +5,7 @@ import MarketplacePage from './components/MarketplacePage'
 import LoginPage from './components/LoginPage'
 import ProfilePage from './components/ProfilePage'
 import LogoutPage from './components/LogoutPage'
+import UserHistoryPage from './components/UserHistoryPage'
 
 import './styles.css'
 
@@ -14,6 +15,7 @@ function App () {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/my-items" element={<MyItemsPage />} />
+        <Route path="/my-history" element={<UserHistoryPage />} />
         <Route path="/marketplace" element={<MarketplacePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/logout" element={<LogoutPage />} />

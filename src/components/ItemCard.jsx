@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { Button, Card, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import EditCardModal from './EditCardModal'
+import EditRatingModal from './EditRatingModal'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
+
 import diy from '../images/defaultImages/diy.jpg'
 import kitchen from '../images/defaultImages/kitchen.jpg'
 import outdoors from '../images/defaultImages/outdoors.jpg'
@@ -23,6 +27,7 @@ function ItemCard (props) {
   const [buttonText, setButtonText] = useState(available ? 'Borrow Item' : unavailable ? 'Not available' : 'Borrowed')
   const [editOpen, setEditOpen] = useState(props.modalOpen)
   const [unavailableItemText, setUnavailableItemText] = useState(unavailable ? 'Mark as available' : 'Mark as unavailable')
+  const [editRatingModal, setEditRatingModal] = useState(props.ratingOpen)
 
   const dispatch = useDispatch()
 
@@ -43,8 +48,19 @@ function ItemCard (props) {
     setEditOpen(true)
   }
 
+  function handleRateItem () {
+    if (editRatingModal === true) {
+      return
+    }
+    setEditRatingModal(true)
+  }
+
   function handleCloseModal () {
     setEditOpen(false)
+  }
+
+  function handleCloseRatingModal () {
+    setEditRatingModal(false)
   }
 
   function handleMarkItemReturned () {
@@ -129,6 +145,30 @@ function ItemCard (props) {
           <Card.Text className="card-text">
             <strong>Status:</strong> {props.status}
           </Card.Text>
+          <OverlayTrigger
+            key='top'
+            placement='left'
+            overlay={
+              <Tooltip>
+              Rating is based on a scale of 1 to 5 where 5 is the highest quality
+              </Tooltip>
+            }
+          >
+            <Card.Text className="card-text">
+              <strong id='rating-label'>Rating:</strong> {props.rating}
+            </Card.Text>
+          </OverlayTrigger>
+          <Card.Text className="card-text">
+            <strong>Comments:</strong> {props.ratingComments}
+          </Card.Text>
+          {props.editRating
+            ? (
+              <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleRateItem}>
+                Rate Item
+              </Button>
+            )
+            : null }
+          <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} />
           {props.borrow
             ? (
               <Button disabled={!available} variant="outline-primary" size="sm" onClick={handleBorrowItem}>

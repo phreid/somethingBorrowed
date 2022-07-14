@@ -51,3 +51,11 @@ export const borrowItemAsync = createAsyncThunk(
     return response.data.result
   }
 )
+
+export const rateItemAsync = createAsyncThunk(
+  'items/rateItem',
+  async (item) => {
+    const response = await axios.post(`${URL}/${item.id}/rating`, item)
+    return response.data.result
+  }
+)

@@ -87,3 +87,29 @@ Form {
     float: right;
     margin-left: 10px;
 }
+
+.my-items-container{
+    background-color: lightblue;
+}
+
+.my-borrowed-items{
+    justify-content: center;
+    width: auto;
+}
+
+.borrowed-items-container{
+    justify-content: center;
+    max-width: 800px;
+    background-color: lightgrey;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.card-text{
+    margin: 0;
+    padding-top: 5px;
+}
+
+#rating-label{
+    color: #2869AB;
+}
