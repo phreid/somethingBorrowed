@@ -12,8 +12,6 @@ import '../styles.css'
 export default function EditRatingModal (props) {
   const dispatch = useDispatch()
 
-  const itemId = props.id
-
   const ratingDropdown = Object.values(RATINGS).map((rating) => {
     return <option key={rating}>{rating}</option>
   })
@@ -34,7 +32,7 @@ export default function EditRatingModal (props) {
     }
 
     const item = {
-      id: itemId,
+      id: props.id,
       name: props.name,
       type: props.type,
       location: props.location,

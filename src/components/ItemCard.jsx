@@ -49,7 +49,6 @@ function ItemCard (props) {
   }
 
   function handleRateItem () {
-    console.log('item card: ' + props.id)
     if (editRatingModal === true) {
       return
     }
