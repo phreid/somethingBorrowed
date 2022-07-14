@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getCurrentUserAsync, loginAsync, logoutAsync } from './thunks'
+import { deleteUserAsync, getCurrentUserAsync, loginAsync, logoutAsync, updateUserAsync } from './thunks'
 
 const INITIAL_STATE = {
   currentUserId: localStorage.getItem('user'),
@@ -13,13 +13,21 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getCurrentUserAsync.fulfilled, (state, action) => {
-        state.currentUser = action.payload
-      })
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.currentUserId = action.payload
         state.isLoggedIn = true
         localStorage.setItem('user', action.payload)
+      })
+      .addCase(getCurrentUserAsync.fulfilled, (state, action) => {
+        state.currentUser = action.payload
+      })
+      .addCase(updateUserAsync.fulfilled, (state, action) => {
+        state.currentUser = action.payload
+      })
+      .addCase(deleteUserAsync.fulfilled, (state, action) => {
+        state.currentUserId = null
+        state.isLoggedIn = false
+        localStorage.removeItem('user')
       })
       .addCase(logoutAsync.fulfilled, (state, action) => {
         state.currentUserId = null

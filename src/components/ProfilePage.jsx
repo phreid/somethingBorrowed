@@ -4,8 +4,10 @@ import profile from '../images/profile.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { React, useEffect, useState } from 'react'
 import { getCurrentUserAsync } from '../redux/users/thunks'
+import EditUserForm from './EditUserForm'
+import DeleteUserForm from './DeleteUserForm'
 
-function ProfilePage () {
+function ProfilePage (props) {
   const userId = useSelector(state => state.user.currentUserId)
   const dispatch = useDispatch()
 
@@ -14,11 +16,12 @@ function ProfilePage () {
   }, [dispatch])
 
   const currentUser = useSelector(state => state.user.currentUser)
-
-  const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
-
+  const [showEdit, setShowEdit] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
+  const handleCloseEdit = () => setShowEdit(false)
+  const handleShowEdit = () => setShowEdit(true)
+  const handleCloseDelete = () => setShowDelete(false)
+  const handleShowDelete = () => setShowDelete(true)
   return (
     <>
       <NavBar />
@@ -32,19 +35,33 @@ function ProfilePage () {
               <ListGroupItem>{currentUser.email}</ListGroupItem>
               <ListGroupItem>{currentUser.location}</ListGroupItem>
             </ListGroup>
-            <Button variant="outline-secondary" onClick={handleShow}>Edit Profile</Button>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-              <Modal.Footer>
-                <Button variant="primary" onClick={handleClose}>
-                  Save Changes
-                </Button>
-              </Modal.Footer>
-            </Modal>
+            <Button variant="outline-secondary" onClick={handleShowEdit}>Edit Profile</Button>
+            <Button variant="outline-danger" onClick={handleShowDelete}>Delete Profile</Button>
           </Card.Body>
+
+          <Modal show={showEdit} onHide={handleCloseEdit}>
+            <Modal.Header closeButton>
+              <Modal.Title>Edit Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <EditUserForm currentUser={currentUser}/>
+            </Modal.Body>
+            <Button variant="secondary" onClick={handleCloseEdit}>
+              Close
+            </Button>
+          </Modal>
+
+          <Modal show={showDelete} onHide={handleCloseDelete}>
+            <Modal.Header closeButton>
+              <Modal.Title>Delete Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <DeleteUserForm currentUser={userId}/>
+            </Modal.Body>
+            <Button variant="secondary" onClick={handleCloseDelete}>
+              Close
+            </Button>
+          </Modal>
         </Card>
       </>
     </>
