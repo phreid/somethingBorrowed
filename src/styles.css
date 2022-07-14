@@ -48,22 +48,14 @@ Form {
 .page-container {
     margin: 10px;
     padding: 10px;
-    max-height: auto;
-    background-color: lightgrey;
-    border-radius: 10px;
-}
-
-#container-border {
-    border: 2px solid black;
-    margin: 10px;
-    padding: 10px;
-    max-height: 600px;
+    max-height: 800px;
     overflow-y: scroll;
+    background-color: #E4E4E4;
+    border-radius: 10px;
 }
 
 .item-card {
     font-family: 'Montserrat Bold', sans-serif;
-    /* border: 2px solid #296EB4; */
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
