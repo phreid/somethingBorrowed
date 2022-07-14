@@ -5,24 +5,17 @@ import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 import { rateItemAsync } from '../redux/items/thunks'
 import { useDispatch } from 'react-redux'
+import { RATINGS } from '../constants'
 
 import '../styles.css'
-
-const RATINGS = [
-  { id: '1', name: '1' },
-  { id: '2', name: '2' },
-  { id: '3', name: '3' },
-  { id: '4', name: '4' },
-  { id: '5', name: '5' }
-]
 
 export default function EditRatingModal (props) {
   const dispatch = useDispatch()
 
   const itemId = props.id
 
-  const ratingDropdown = Object.values(RATINGS).map((type) => {
-    return <option key={type.id}>{type.name}</option>
+  const ratingDropdown = Object.values(RATINGS).map((rating) => {
+    return <option key={rating}>{rating}</option>
   })
 
   const [rating, setRating] = useState(props.rating)

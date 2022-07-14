@@ -27,20 +27,21 @@ export default function UserHistoryPage () {
       <br></br>
       <div className="my-borrowed-items">
         <h2>My Borrowed Items</h2>
-        <Container fluid className="borrwed-items-container">
+        <Container fluid className="borrowed-items-container">
           {items.map(item => {
             return <ItemCard key={item._id}
               description={item.description}
+              editRating
               id={item._id}
               image={item.image}
               location={item.owner.location}
               name={item.name}
-              status={item.status}
-              type={item.type}
-              userId={item.userId}
               rating={item.rating}
               ratingComments={item.ratingComments}
               ratingOpen={item.ratingOpen}
+              status={item.status}
+              type={item.type}
+              userId={item.userId}
             />
           })}
         </Container>

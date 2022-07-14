@@ -35,6 +35,8 @@ function MarketplacePage () {
                   description={item.description}
                   type={item.type}
                   location={item.owner.location}
+                  rating={item.rating}
+                  ratingComments={item.ratingComments}
                   status={item.status}
                   borrow
                 />

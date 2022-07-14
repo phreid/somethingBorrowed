@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 import '../styles.css'
 
-export default function NavBar () {
+export default function MyItemsNavBar () {
   return (
     <Navbar className="my-items-navbar" bg="light" expand="lg">
       <Container className="my-items-container" fluid>

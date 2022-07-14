@@ -3,6 +3,8 @@ import { Button, Card, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import EditCardModal from './EditCardModal'
 import EditRatingModal from './EditRatingModal'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
 
 import diy from '../images/defaultImages/diy.jpg'
 import kitchen from '../images/defaultImages/kitchen.jpg'
@@ -144,22 +146,27 @@ function ItemCard (props) {
           <Card.Text className="card-text">
             <strong>Status:</strong> {props.status}
           </Card.Text>
-          {props.rating
+          <OverlayTrigger
+            key='top'
+            placement='left'
+            overlay={
+              <Tooltip>
+              Rating is based on a scale of 1 to 5 where 5 is the highest quality
+              </Tooltip>
+            }
+          >
+            <Card.Text className="card-text">
+              <strong id='rating-label'>Rating:</strong> {props.rating}
+            </Card.Text>
+          </OverlayTrigger>
+          <Card.Text className="card-text">
+            <strong>Comments:</strong> {props.ratingComments}
+          </Card.Text>
+          {props.editRating
             ? (
-              <>
-                <Card.Text className="card-text">
-                Rating is based on a scale of 1 to 5 where 5 is the highest quality
-                </Card.Text>
-                <Card.Text className="card-text">
-                  <strong>Rating:</strong> {props.rating}
-                </Card.Text>
-                <Card.Text className="card-text">
-                  <strong>Comments:</strong> {props.ratingComments}
-                </Card.Text>
-                <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleRateItem}>
+              <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleRateItem}>
                 Rate Item
-                </Button>
-              </>
+              </Button>
             )
             : null }
           <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} />

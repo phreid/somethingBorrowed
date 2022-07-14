@@ -1,10 +1,10 @@
-const RATING = {
+const RATINGS = {
   UNRATED: 'Unrated',
-  1: '1',
-  2: '3',
-  3: '3',
-  4: '4',
-  5: '5'
+  ONE: '1',
+  TWO: '2',
+  THREE: '3',
+  FOUR: '4',
+  FIVE: '5'
 }
 
-module.exports = RATING
+module.exports = RATINGS

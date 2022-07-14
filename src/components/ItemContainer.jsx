@@ -29,6 +29,8 @@ function ItemContainer (props) {
           location={item.owner.location}
           modalOpen={item.modalOpen}
           name={item.name}
+          rating={item.rating}
+          ratingComments={item.ratingComments}
           status={item.status}
           toggleUnavailable
           type={item.type}
