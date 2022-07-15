@@ -6,6 +6,7 @@ import { miList } from '../redux/items/marketsplaceItems'
 import ItemCard from './ItemCard'
 import NavBar from './NavBar'
 import Search from './Search'
+var { v4: uuid } = require('uuid');
 
 import '../styles/marketplace.css'
 
@@ -17,7 +18,7 @@ function MarketplacePage () {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		//console.log(items);
-		//console.log(currUser);
+		console.log(currUser);
 	  dispatch(noFilterAsync(currUser))
 	  // console.log("1"+items);
 	}, [dispatch])
@@ -37,10 +38,10 @@ function MarketplacePage () {
 		<NavBar />
 		<h1 className="page-title">Marketplace</h1>
 		<div className="grid-container">
-			<div className="grid-child page-container">
-			<Search/>
+			<div className="grid-child page-container" key = "grid-child page-container">
+				<Search/>
 			</div>
-			<div className="grid-child page-container" id="container-border">
+			<div className="grid-child page-container" id="container-border" key = {uuid()}>
 				{items.map(item => {
 				return <ItemCard key={item.id}
 					id={item.id}
