@@ -46,7 +46,6 @@ export default function ProfilePage () {
             <Modal.Body>
               <EditUserForm currentUser={currentUser}/>
             </Modal.Body>
-            <Button as="input" type="reset" value="Reset" />
           </Modal>
 
           <Modal show={showDelete} onHide={handleCloseDelete}>

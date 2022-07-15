@@ -19,7 +19,6 @@ const userSlice = createSlice({
         localStorage.setItem('user', action.payload)
       })
       .addCase(getCurrentUserAsync.fulfilled, (state, action) => {
-        console.log(action.payload)
         state.currentUser = action.payload
       })
       .addCase(updateUserAsync.fulfilled, (state, action) => {

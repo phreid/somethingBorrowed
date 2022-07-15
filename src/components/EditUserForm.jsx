@@ -5,13 +5,12 @@ import { LOCATIONS } from '../constants'
 import { updateUserAsync } from '../redux/users/thunks'
 
 export default function EditUserForm () {
-  const currentUser = useSelector(state => state.user.currentUser)
   const userId = useSelector(state => state.user.user)
-  const [username, setUsername] = useState(currentUser.username)
-  const [password, setPassword] = useState(currentUser.password)
-  const [bio, setBio] = useState(currentUser.bio)
-  const [email, setEmail] = useState(currentUser.email)
-  const [location, setLocation] = useState(currentUser.location)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [bio, setBio] = useState('')
+  const [email, setEmail] = useState('')
+  const [location, setLocation] = useState('')
 
   const locationDropdowns = Object.values(LOCATIONS).map((location) => {
     return <option key={location}>{location}</option>
@@ -32,6 +31,15 @@ export default function EditUserForm () {
     event.preventDefault()
     dispatch(updateUserAsync(updatedUser))
   }
+
+  const clearForm = () => {
+    setUsername('')
+    setPassword('')
+    setBio('')
+    setEmail('')
+    setLocation('')
+  }
+
   return (
     <div>
       <Form>
@@ -80,12 +88,12 @@ export default function EditUserForm () {
           <option>Select item location...</option>
           {locationDropdowns}
         </Form.Select>
+        <br/>
+        <Button variant="success" type="submit" onClick={onSubmit}>
+          Save and Update
+        </Button>
+        <Button variant="danger" type="button" onClick={clearForm}>Reset</Button>
       </Form>
-
-      <br/>
-      <Button variant="success" type="submit" onClick={onSubmit}>
-                Save and Update
-      </Button>
     </div>
   )
 }
