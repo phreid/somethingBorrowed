@@ -5,6 +5,7 @@ const session = require('express-session')
 const itemRouter = require('./routes/items')
 const userRouter = require('./routes/users')
 const authRouter = require('./routes/auth')
+const marketplaceItemsRouter = require('./routes/marketplaceItems')
 const connectToDatabase = require('./database')
 
 const app = express()
@@ -21,6 +22,7 @@ app.use(session({
 app.use('/items', itemRouter)
 app.use('/users', userRouter)
 app.use('/auth', authRouter)
+app.use('/marketplaceItems', marketplaceItemsRouter)
 
 const startApp = async () => {
   await connectToDatabase()

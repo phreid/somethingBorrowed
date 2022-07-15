@@ -1,8 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+const axios_ = require('axios')
 
 axios.defaults.withCredentials = true
 const URL = 'http://localhost:4000/items'
+const miURL = 'http://localhost:4000/marketplaceItems'
 
 export const getAllItemsAsync = createAsyncThunk(
   'items/getAllItems',
@@ -10,6 +12,15 @@ export const getAllItemsAsync = createAsyncThunk(
     const response = await axios.get(URL)
     return response.data.result
   }
+)
+
+export const noFilterAsync = createAsyncThunk(
+	'items/getAllItems',
+	async (currUser) => {
+		const response = await axios.get(`${URL}/loadMarketplace/${currUser}`)
+		return response.data.result
+		//return []
+	}
 )
 
 export const getOneItemAsync = createAsyncThunk(
@@ -51,3 +62,17 @@ export const borrowItemAsync = createAsyncThunk(
     return response.data.result
   }
 )
+
+export const applyFiltersAsync = createAsyncThunk(
+	'items/filter',
+	async (filters) => {
+		let axios__ = axios_ 
+		//console.log(filters)
+		const response = await axios.get(`${URL}/filter/${filters}`)
+		//console.log(response.data.result)
+		return response.data.result
+	}
+)
+
+//sliceNAME/ACTION
+
