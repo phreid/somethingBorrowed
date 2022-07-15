@@ -1,40 +1,65 @@
 import NavBar from './NavBar'
-import { Card, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
-import profile from '../images/profile.jpg'
-import ItemContainer from './ItemContainer'
+import { Button, Card, ListGroup, ListGroupItem, Modal } from 'react-bootstrap'
+import profile from '../images/profile.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { React, useEffect, useState } from 'react'
+import { getCurrentUserAsync } from '../redux/users/thunks'
+import EditUserForm from './EditUserForm'
+import DeleteUserForm from './DeleteUserForm'
 
-function ProfilePage () {
+export default function ProfilePage () {
+  const userId = useSelector(state => state.user.user)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getCurrentUserAsync(userId))
+  }, [dispatch])
+
+  const currentUser = useSelector(state => state.user.currentUser)
+  const [showEdit, setShowEdit] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
+  const handleCloseEdit = () => setShowEdit(false)
+  const handleShowEdit = () => setShowEdit(true)
+  const handleCloseDelete = () => setShowDelete(false)
+  const handleShowDelete = () => setShowDelete(true)
   return (
     <>
       <NavBar />
-      <Card.Header className="text-center" as='h4'>My Profile</Card.Header>
       <>
-        <Card className="text-center" style={{ width: '' }}>
-          <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
-            <div className="col-md-4">
-              <Card.Img variant="top" src={profile} />
-              <Card.Body>
-                <Card.Title>Jane Doe</Card.Title>
-                <Card.Text>I'm new to the neighbourhood and I enjoy baking! Looking forward to borrow many kitchen related items.</Card.Text>
-              </Card.Body>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>janedoe@email.com</ListGroupItem>
-                <ListGroupItem>(7XX)-XXX-XXXX</ListGroupItem>
-                <ListGroupItem>UBC Vancouver</ListGroupItem>
-              </ListGroup>
-              <Card.Body>
-                <Card.Link href="#">Edit Profile</Card.Link>
-                <Card.Link href="#">Sign Out</Card.Link>
-              </Card.Body>
-            </div>
-            <div className="col-md-8">
-              <ItemContainer/>
-            </div>
-          </Row>
+        <Card className="profile-card" style={{ width: '' }}>
+          <Card.Body className="text-center">
+            <Card.Img className="profile-img" variant="center" width="80" src={profile} />
+            <Card.Title>{currentUser.username}</Card.Title>
+            <Card.Text>{currentUser.bio}</Card.Text>
+            <ListGroup className="list-group-flush center">
+              <ListGroupItem>{currentUser.email}</ListGroupItem>
+              <ListGroupItem>{currentUser.location}</ListGroupItem>
+            </ListGroup>
+            <Button variant="outline-secondary" onClick={handleShowEdit}>Edit Profile</Button>
+            <Button variant="outline-danger" onClick={handleShowDelete}>Delete Account</Button>
+          </Card.Body>
+
+          <Modal show={showEdit} onHide={handleCloseEdit}>
+            <Modal.Header closeButton>
+              <Modal.Title>Edit Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <EditUserForm currentUser={currentUser}/>
+            </Modal.Body>
+            <Button as="input" type="reset" value="Reset" />
+          </Modal>
+
+          <Modal show={showDelete} onHide={handleCloseDelete}>
+            <Modal.Header closeButton>
+              <Modal.Title>Delete Account</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <DeleteUserForm currentUser={userId}/>
+            </Modal.Body>
+            <Button as="input" type="reset" value="Reset" />
+          </Modal>
         </Card>
       </>
     </>
   )
 }
-
-export default ProfilePage
