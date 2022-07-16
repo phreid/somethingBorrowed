@@ -1,32 +1,32 @@
 const connectToDatabase = require('.')
+const { LOCATIONS, STATUS } = require('../../constants')
 const Item = require('../models/Item')
 const User = require('../models/User')
-
-const STATUS = {
-  AVAILABLE: 'Available',
-  BORROWED: 'Borrowed'
-}
 
 const users = [
   {
     username: 'paul',
     password: 'paul',
-    location: 'UBC Campus'
+    email: 'paul@example.com',
+    location: LOCATIONS.UBC_CAMPUS
   },
   {
     username: 'imogene',
     password: 'imogene',
-    location: 'UBC Campus'
+    email: 'imo@example.com',
+    location: LOCATIONS.UBC_CAMPUS
   },
   {
     username: 'anusha',
     password: 'anusha',
-    location: 'UBC Campus'
+    email: 'anusha@example.com',
+    location: LOCATIONS.UBC_CAMPUS
   },
   {
     username: 'shirley',
     password: 'shirley',
-    location: 'UBC Campus'
+    email: 'shirley@example.com',
+    location: LOCATIONS.UBC_CAMPUS
   }
 ]
 

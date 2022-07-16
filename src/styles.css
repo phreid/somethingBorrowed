@@ -1,3 +1,19 @@
+.navbar{
+    background-color: lightgrey;
+}
+
+.button {
+    background-color: white;
+}
+
+.form {
+    padding: 20px;
+}
+
+a {
+text-decoration: none;
+}
+
 .add-items-page-body{
     display: flex;
 }
@@ -19,6 +35,10 @@ h2 {
     text-align: center;
 }
 
+.title{
+    text-align: center;
+}
+
 Form {
     font-family: 'Montserrat Bold', sans-serif;
     align-items: center;
@@ -26,25 +46,19 @@ Form {
 }
 
 .page-container {
-    border: 2px solid black;
     margin: 10px;
     padding: 10px;
-    max-height: 768px;
-}
-
-#container-border {
-    border: 2px solid black;
-    margin: 10px;
-    padding: 10px;
-    max-height: 600px;
+    max-height: 100%;
     overflow-y: scroll;
+    background-color: #E4E4E4;
+    border-radius: 10px;
 }
 
 .item-card {
     font-family: 'Montserrat Bold', sans-serif;
-    border: 2px solid black;
     margin: 10px;
     padding: 10px;
+    border-radius: 10px;
 }
 
 .item-img {
@@ -64,4 +78,30 @@ Form {
     display: inline-block;
     float: right;
     margin-left: 10px;
+}
+
+.my-items-container{
+    background-color: lightblue;
+}
+
+.my-borrowed-items{
+    justify-content: center;
+    width: auto;
+}
+
+.borrowed-items-container{
+    justify-content: center;
+    max-width: 800px;
+    background-color: lightgrey;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.card-text{
+    margin: 0;
+    padding-top: 5px;
+}
+
+#rating-label{
+    color: #2869AB;
 }

@@ -5,25 +5,15 @@ import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addItemAsync } from '../redux/items/thunks'
-
-const ITEM_TYPES = [
-  { id: 0, name: 'Kitchen' },
-  { id: 1, name: 'Tools' },
-  { id: 2, name: 'Outdoors' },
-  { id: 3, name: 'DIY' }
-]
-
-const LOCATIONS = [
-  { id: 0, name: 'UBC Campus' }
-]
+import { ITEM_TYPES, LOCATIONS, STATUS } from '../constants'
 
 export default function AddItemForm (props) {
-  const itemTypeDropdowns = ITEM_TYPES.map((type) => {
-    return <option key={type.id}>{type.name}</option>
+  const itemTypeDropdowns = Object.values(ITEM_TYPES).map((type) => {
+    return <option key={type}>{type}</option>
   })
 
-  const locationDropdowns = LOCATIONS.map((location) => {
-    return <option key={location.id}>{location.name}</option>
+  const locationDropdowns = Object.values(LOCATIONS).map((location) => {
+    return <option key={location}>{location}</option>
   })
 
   const [switchIsAvailable, setSwitchIsAvailable] = useState(true)
@@ -40,7 +30,8 @@ export default function AddItemForm (props) {
       name,
       type,
       location,
-      description
+      description,
+      status: switchIsAvailable ? STATUS.AVAILABLE : STATUS.NOT_AVAILABLE
     }))
     setName('')
     setType('')
@@ -51,7 +42,7 @@ export default function AddItemForm (props) {
   return (
     <>
       <h2>Lend a New Item</h2>
-      <Form>
+      <Form className="form">
         <Form.Group className="mb-3">
           <Form.Label>Item Name</Form.Label>
           <Form.Control className="item-input" type="text" placeholder="Enter item name" value={name}
@@ -91,9 +82,9 @@ export default function AddItemForm (props) {
           <Form.Control className="item-input" as="textarea" rows={3} placeholder="Enter item description" value={description}
             onChange={(e) => setDescription(e.target.value)}></Form.Control>
         </Form.Group>
-        <Button variant="outline-primary" type="submit" className="me-1"
+        <Button variant="outline-primary" type="submit" className="me-1 button"
           onClick={handleSubmit}>Submit</Button>
-        <Button variant="outline-danger" type="reset">Reset</Button>
+        <Button variant="outline-danger" type="reset" className="button">Reset</Button>
       </Form>
     </>
   )
