@@ -3,8 +3,7 @@ require('dotenv').config()
 
 let MONGO_URI
 if (process.env.LOCAL_DB) {
-  MONGO_URI = 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox.wepyv.mongodb.net/?retryWrites=true&w=majority'
-  //'mongodb://localhost:27017/dev'
+  MONGO_URI = 'mongodb://localhost:27017/dev'
   // 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox.wepyv.mongodb.net/?retryWrites=true&w=majority'
 } else {
   MONGO_URI = process.env.MONGO_URI

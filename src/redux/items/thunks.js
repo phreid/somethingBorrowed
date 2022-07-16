@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-const axios_ = require('axios')
+// const axios_ = require('axios')
 
 axios.defaults.withCredentials = true
 const URL = 'http://localhost:4000/items'
@@ -73,7 +73,7 @@ export const noFilterAsync = createAsyncThunk(
 export const applyFiltersAsync = createAsyncThunk(
 	'items/filter',
 	async (filters) => {
-		let axios__ = axios_ 
+		//let axios__ = axios_ 
 		//console.log(filters)
 		const response = await axios.get(`${URL}/filter/${filters}`)
 		//console.log(response.data.result)
