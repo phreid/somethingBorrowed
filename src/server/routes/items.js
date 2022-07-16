@@ -127,4 +127,81 @@ router.post('/:id/rating', isLoggedIn, async (req, res) => {
   })
 })
 
+router.get('/loadMarketplace/:currUser', async (req, res) => {
+	const id  = req.params.currUser
+	console.log(id)
+	//console.log(Item.find())
+	const item = await Item.find({owner: { "$ne": id } })
+	console.log(item)
+	res.send({
+	  result: item
+	})
+})
+
+router.get('/filter/:searchText', async (req, res) => {
+	const searchText = JSON.parse(req.params.searchText).searchText
+	const categoryList = JSON.parse(req.params.searchText).cList
+	const currentUser = JSON.parse(req.params.searchText).currUser
+	
+	if(searchText === "" && categoryList.length == 0){
+		const items = await Item.find({owner: { "$ne":  currentUser}}).populate('owner')
+		res.send({
+			result: items
+		})
+	}else if(!(searchText === "") && categoryList.length != 0){
+		let cList = []
+
+		let items; 
+		if(categoryList[0]){
+			cList.push('Kitchen')
+		}
+		if(categoryList[1]){
+			cList.push('Outdoors')
+		}
+		if(categoryList[2]){
+			cList.push('Tools')
+		}
+		if(categoryList[3]){
+			cList.push('DIY')
+		}
+		if(cList.length==0){
+			cList.push('Kitchen')
+			cList.push('Outdoors')
+			cList.push('Tools')
+			cList.push('DIY')
+		}
+		items = await Item.find({owner: { "$ne": currentUser }, name: { $regex: searchText }, type: {$in: cList}})
+		res.send({
+			result: items
+		})
+	}else if(searchText === "" && categoryList.length != 0){
+		let cList = []
+
+		let items; 
+		if(categoryList[0]){
+			cList.push('Kitchen')
+		}
+		if(categoryList[1]){
+			cList.push('Outdoors')
+		}
+		if(categoryList[2]){
+			cList.push('Tools')
+		}
+		if(categoryList[3]){
+			cList.push('DIY')
+		}
+		if(cList.length==0){
+			cList.push('Kitchen')
+			cList.push('Outdoors')
+			cList.push('Tools')
+			cList.push('DIY')
+		}
+		
+		items = await Item.find({owner: { "$ne": currentUser }, type: {$in: cList}})
+		res.send({
+			result: items
+		})
+	}
+})
+
 module.exports = router
