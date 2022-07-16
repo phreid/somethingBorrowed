@@ -38,7 +38,7 @@ function MarketplacePage () {
               ratingComments={item.ratingComments}
               type={item.type}
               rating={item.rating}
-              location={item.location}
+              location={item.owner.location}
             />
           })}
         </div>
