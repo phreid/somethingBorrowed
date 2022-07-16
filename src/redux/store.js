@@ -7,7 +7,7 @@ export const store = configureStore({
   reducer: {
     items: itemsReducer,
     user: userReducer,
-	m: marketsplaceItemsReducer
+    m: marketsplaceItemsReducer
   },
   devTools: true
 })

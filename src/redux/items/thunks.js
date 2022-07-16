@@ -61,21 +61,21 @@ export const rateItemAsync = createAsyncThunk(
 )
 
 export const noFilterAsync = createAsyncThunk(
-	'items/getAllItems',
-	async (currUser) => {
-		const response = await axios.get(`${URL}/loadMarketplace/${currUser}`)
-		return response.data.result
-		//return []
-	}
+  'items/getAllItems',
+  async (currUser) => {
+    const response = await axios.get(`${URL}/loadMarketplace/${currUser}`)
+    return response.data.result
+    // return []
+  }
 )
 
 export const applyFiltersAsync = createAsyncThunk(
-	'items/filter',
-	async (filters) => {
-		//let axios__ = axios_ 
-		//console.log(filters)
-		const response = await axios.get(`${URL}/filter/${filters}`)
-		//console.log(response.data.result)
-		return response.data.result
-	}
+  'items/filter',
+  async (filters) => {
+    // let axios__ = axios_
+    // console.log(filters)
+    const response = await axios.get(`${URL}/filter/${filters}`)
+    // console.log(response.data.result)
+    return response.data.result
+  }
 )

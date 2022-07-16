@@ -5,8 +5,8 @@ import { applyFiltersAsync, noFilterAsync, getAllItemsAsync } from './thunks'
 const items = require('./items')
 
 const INITIAL_STATE = {
-	list: []
-  }
+  list: []
+}
 export const marketplaceItems = createSlice({
   name: 'itemCards',
   initialState: INITIAL_STATE,

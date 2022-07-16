@@ -7,30 +7,30 @@ import { useSelector, useDispatch } from 'react-redux'
 import { applyFiltersAsync, noFilterAsync, getAllItemsAsync } from '../redux/items/thunks'
 
 function Search () {
-	const items = useSelector(state => state.m.list)
-	const currUser = useSelector(state => state.user.user)
-	const dispatch = useDispatch()
-	const [searchInput, setSearchInput] = useState('')
-	const [isCheckedList, setIsCheckedList] = useState([])
-	
-	const inputHandler = (e) => {
-		// convert input text to lower case
-		const lowerCase = e.target.value
-		
-		if (e.keyCode === 13) {
-			//console.log(lowerCase === "")
-			setSearchInput(lowerCase)
-			let c0 = document.getElementById('Kitchen').checked;
-			let c1 = document.getElementById('Outdoor').checked;
-			let c2 = document.getElementById('Tools').checked;
-			let c3 = document.getElementById('DIY').checked;
-			setIsCheckedList([c0,c1,c2,c3])
-			//dispatch(applyFiltersAsync(JSON.stringify({searchText: searchInput, cList: isCheckedList})))
-			dispatch(applyFiltersAsync(JSON.stringify({searchText: searchInput, cList: isCheckedList, currUser: currUser})))
-			// console.log("3"+JSON.stringify(items));
-			// setSearchInput('')
-			// setIsCheckedList([])
-		}
+  const items = useSelector(state => state.m.list)
+  const currUser = useSelector(state => state.user.user)
+  const dispatch = useDispatch()
+  const [searchInput, setSearchInput] = useState('')
+  const [isCheckedList, setIsCheckedList] = useState([])
+
+  const inputHandler = (e) => {
+    // convert input text to lower case
+    const lowerCase = e.target.value
+
+    if (e.keyCode === 13) {
+      // console.log(lowerCase === "")
+      setSearchInput(lowerCase)
+      const c0 = document.getElementById('Kitchen').checked
+      const c1 = document.getElementById('Outdoor').checked
+      const c2 = document.getElementById('Tools').checked
+      const c3 = document.getElementById('DIY').checked
+      setIsCheckedList([c0, c1, c2, c3])
+      // dispatch(applyFiltersAsync(JSON.stringify({searchText: searchInput, cList: isCheckedList})))
+      dispatch(applyFiltersAsync(JSON.stringify({ searchText: searchInput, cList: isCheckedList, currUser })))
+      // console.log("3"+JSON.stringify(items));
+      // setSearchInput('')
+      // setIsCheckedList([])
+    }
   	}
 
   return (
