@@ -30,11 +30,11 @@ function MarketplacePage () {
           {items.map(item => {
             return <ItemCard key={item._id}
               id={item._id}
+              borrow
               description={item.description}
               image={item.image}
               name={item.name}
               status={item.status}
-              borrow
               ratingComments={item.ratingComments}
               type={item.type}
               rating={item.rating}
