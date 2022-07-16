@@ -1,26 +1,21 @@
 import '../styles/search.css'
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { applyFiltersAsync } from '../redux/items/thunks'
 
 function Search () {
-  const currUser = useSelector(state => state.user.user)
-  const dispatch = useDispatch()
   const [searchInput, setSearchInput] = useState('')
   const [isCheckedList, setIsCheckedList] = useState([])
 
   const inputHandler = (e) => {
-    const lowerCase = e.target.value
+    const input = e.target.value
+    console.log(searchInput, isCheckedList)
 
     if (e.keyCode === 13) {
-      setSearchInput(lowerCase)
+      setSearchInput(input)
       const c0 = document.getElementById('Kitchen').checked
       const c1 = document.getElementById('Outdoor').checked
       const c2 = document.getElementById('Tools').checked
       const c3 = document.getElementById('DIY').checked
       setIsCheckedList([c0, c1, c2, c3])
-
-      dispatch(applyFiltersAsync(JSON.stringify({ searchText: searchInput, cList: isCheckedList, currUser })))
     }
   }
 
