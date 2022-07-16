@@ -12,6 +12,14 @@ export const getAllItemsAsync = createAsyncThunk(
   }
 )
 
+export const getItemByTypeAsync = createAsyncThunk(
+  'items/getItemByType',
+  async (type) => {
+    const response = await axios.get(`${URL}`, { params: { type } })
+    return response.data.result
+  }
+)
+
 export const getOneItemAsync = createAsyncThunk(
   'items/getOneItem',
   async (item) => {

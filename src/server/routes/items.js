@@ -14,7 +14,8 @@ const router = express.Router()
  * @returns a list of item objects
  */
 router.get('/', async (req, res) => {
-  const items = await Item.find().populate('owner')
+  const items = await Item.find(req.query).populate('owner')
+
   res.send({
     result: items
   })
