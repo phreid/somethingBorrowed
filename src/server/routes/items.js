@@ -130,7 +130,7 @@ router.get('/filter/:searchText', async (req, res) => {
 			cList.push('DIY')
 		}
 		//console.log(cList)
-		items = await Item.find({owner: { "$ne": '62cc9e76d1b3f9496a70c52d' }, type: {$in: cList}})
+		items = await Item.find({owner: { "$ne": currentUser }, type: {$in: cList}})
 		res.send({
 			result: items
 		})
