@@ -32,8 +32,13 @@ function ItemCard (props) {
   const dispatch = useDispatch()
 
   function handleBorrowItem () {
-    setButtonText('Borrowed')
-    dispatch(updateStatus(props))
+	setButtonText('Borrowed')
+	dispatch(borrowItemAsync(props))
+  }
+
+  function handleDeleteItem () {
+	dispatch(deleteItemAsync(props))
+	dispatch(updateStatus(props))
   }
 
   function handleEditItem () {
