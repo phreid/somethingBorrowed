@@ -22,11 +22,11 @@ function MarketplacePage () {
     <>
       <NavBar />
       <h1 className="page-title">Marketplace</h1>
-      <div className="grid-container">
-        <div className="grid-child page-container" key = "grid-child page-container">
-          <Search/>
-        </div>
-        <div className="grid-child page-container">
+      <div className="filter-container">
+        <Search/>
+      </div>
+      <div className="marketplace">
+        <div className="borrowed-items-container">
           {items.map(item => {
             return <ItemCard key={item._id}
               id={item._id}

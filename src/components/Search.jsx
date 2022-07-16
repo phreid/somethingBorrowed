@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { ITEM_TYPES } from '../constants'
 import { getAllItemsAsync, getItemByTypeAsync } from '../redux/items/thunks'
 import { useDispatch } from 'react-redux'
+import Form from 'react-bootstrap/Form'
+import { Button } from 'react-bootstrap'
 
 function Search () {
   const [itemType, setItemType] = useState('')
@@ -33,12 +35,13 @@ function Search () {
     <>
       <div className="search">
         <div className="filters">
-          <select value={itemType} onChange={handleCategory}>
-            <option>Select item type...</option>
-            {itemTypeDropdowns}
-          </select>
-          <br></br>
-          <button className="button" onClick={handleClearFilters} >Clear Filtering</button>
+          <Form.Group >
+            <Form.Select value={itemType} onChange={handleCategory}>
+              <option>Select item type...</option>
+              {itemTypeDropdowns}
+            </Form.Select>
+          </Form.Group>
+          <Button variant="outline-primary" type="submit" className="me-1 button reset-filter" onClick={handleClearFilters}>Clear Filters</Button>
         </div>
 
       </div>
