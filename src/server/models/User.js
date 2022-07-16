@@ -7,6 +7,7 @@ const UserSchema = Schema({
   username: String,
   password: String,
   email: String,
+  bio: String,
   location: {
     type: String,
     enum: Object.values(LOCATIONS)

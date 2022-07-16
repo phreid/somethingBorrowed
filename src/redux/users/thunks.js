@@ -40,6 +40,30 @@ export const signUpAsync = createAsyncThunk(
   }
 )
 
+export const getCurrentUserAsync = createAsyncThunk(
+  'user/getCurrentUser',
+  async (userId) => {
+    const response = await axios.get(`${URL}/users/${userId}`)
+    return response.data.result
+  }
+)
+
+export const updateUserAsync = createAsyncThunk(
+  'user/updateUser',
+  async (updatedUser) => {
+    const response = await axios.patch(`${URL}/users/${updatedUser.userId}`, updatedUser)
+    return response.data.result
+  }
+)
+
+export const deleteUserAsync = createAsyncThunk(
+  'user/deleteUser',
+  async (userId) => {
+    const response = await axios.delete(`${URL}/users/${userId}`)
+    return response.data.result
+  }
+)
+
 export const logoutAsync = createAsyncThunk(
   'user/logoutUser',
   async () => {
