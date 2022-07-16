@@ -1,37 +1,22 @@
-import { React, useEffect, useState } from 'react'
+import { React, useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { noFilterAsync, getAllItemsAsync } from '../redux/items/thunks'
-import { miList } from '../redux/items/marketsplaceItems'
 import ItemCard from './ItemCard'
 import NavBar from './NavBar'
 import Search from './Search'
 
-import '../styles/marketplace.css'
-const { v4: uuid } = require('uuid')
+import { getAllItemsAsync } from '../redux/items/thunks'
 
 function MarketplacePage () {
-  // working: state => state.m.list
-  // const itemstest = useSelector(state => state.itemsSliceTest.items)
-  const items = useSelector(state => state.m.list)
-  const currUser = useSelector(state => state.user.user)
+  const user = useSelector(state => state.user)
+  const items = useSelector(state => {
+    return state.items.list.filter(item => item.owner._id !== user.user)
+  })
   const dispatch = useDispatch()
+
   useEffect(() => {
-    // console.log(items);
-    console.log(currUser)
-	  dispatch(noFilterAsync(currUser))
-	  // console.log("1"+items);
+    dispatch(getAllItemsAsync())
   }, [dispatch])
-  // const t0 = useSelector(state => state.items.list)
-  // const t1 = useSelector(state => state.m.list)
-  // const t2 = useSelector(state => state.m.itemCards)
-  // const t3 = useSelector(state => state.m.initialState)
-  // const t4 = useSelector(state => state.m.list)
-  // console.log(t0)
-  // console.log(items)
-  // console.log("2 "+t2)
-  // console.log("3 "+t3)
-  // console.log("4 "+t4)
 
   return (
     <>
@@ -41,17 +26,19 @@ function MarketplacePage () {
         <div className="grid-child page-container" key = "grid-child page-container">
           <Search/>
         </div>
-        <div className="grid-child page-container" id="container-border" key = {uuid()}>
+        <div className="grid-child page-container">
           {items.map(item => {
-            return <ItemCard key={item.id}
-              id={item.id}
+            return <ItemCard key={item._id}
+              id={item._id}
               image={item.image}
               name={item.name}
-              description={item.description}
-              type={item.type}
-              location={item.location}
               status={item.status}
               borrow
+              ratingComments={item.ratingComments}
+			  type={item.type}
+			  description={item.description}
+			  rating={item.rating}
+			  location={item.location}
             />
           })}
         </div>
