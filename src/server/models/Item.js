@@ -3,7 +3,7 @@ const { ITEM_TYPES, STATUS } = require('../../constants')
 
 const Schema = mongoose.Schema
 
-const ItemSchema = new mongoose.Schema({
+const ItemSchema = new Schema({
   name: String,
   type: {
     type: String,
