@@ -99,7 +99,8 @@ router.post('/', async (req, res) => {
 /**
  * DELETE /users/:userId
  *
- * Deletes a user. Requires the sender to be logged in as the requested user.
+ * Deletes a user and all of the user's owned items. Requires the sender to be logged in
+ * as the requested user.
  *
  * @param userId: the userId to delete
  * @returns the deleted user object
