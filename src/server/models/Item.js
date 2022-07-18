@@ -23,4 +23,13 @@ const ItemSchema = new Schema({
   ratingComments: String
 })
 
+ItemSchema.pre('findOneAndDelete', async function (next) {
+  const itemId = this.getQuery()._id
+  await mongoose.model('User').updateMany(
+    { 'borrowedItems.item': itemId },
+    { $pull: { borrowedItems: { item: itemId } } }
+  )
+  next()
+})
+
 module.exports = mongoose.model('Item', ItemSchema)

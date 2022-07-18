@@ -11,7 +11,8 @@ const UserSchema = new Schema({
   location: {
     type: String,
     enum: Object.values(LOCATIONS)
-  }
+  },
+  borrowedItems: [{ _id: false, item: { type: Schema.Types.ObjectId, ref: 'Item' }, date: Date }]
 })
 
 UserSchema.pre('findOneAndDelete', async function (next) {
