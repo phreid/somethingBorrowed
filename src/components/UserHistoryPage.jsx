@@ -37,22 +37,25 @@ export default function UserHistoryPage () {
       <div className="my-borrowed-items">
         <h2>My Borrowed Items</h2>
         <Container fluid className="borrowed-items-container">
-          {userHistory.map(record => {
-            return <ItemCard key={record.item._id + record.date}
-              description={record.item.description}
-              editRating
-              id={record.item._id}
-              image={record.item.image}
-              location={record.item.owner.location}
-              name={record.item.name}
-              rating={record.item.rating}
-              ratingComments={record.item.ratingComments}
-              ratingOpen={record.item.ratingOpen}
-              status={record.item.status}
-              type={record.item.type}
-              borrowedDate={record.date}
-            />
-          })}
+          {userHistory.length
+            ? userHistory.map(record => {
+              return <ItemCard key={record.item._id + record.date}
+                description={record.item.description}
+                editRating
+                id={record.item._id}
+                image={record.item.image}
+                location={record.item.owner.location}
+                name={record.item.name}
+                rating={record.item.rating}
+                ratingComments={record.item.ratingComments}
+                ratingOpen={record.item.ratingOpen}
+                status={record.item.status}
+                type={record.item.type}
+                borrowedDate={record.date}
+              />
+            })
+            : <p className="text-center">You haven't borrowed any items yet.</p>
+          }
         </Container>
       </div>
     </>

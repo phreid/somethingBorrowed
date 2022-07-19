@@ -32,4 +32,13 @@ ItemSchema.pre('findOneAndDelete', async function (next) {
   next()
 })
 
+ItemSchema.pre('deleteMany', async function (next) {
+  const toBeDeleted = (await mongoose.model('Item').find(this.getQuery())).map((doc) => doc._id)
+  await mongoose.model('User').updateMany(
+    { 'borrowedItems.item': { $in: toBeDeleted } },
+    { $pull: { borrowedItems: { item: { $in: toBeDeleted } } } }
+  )
+  next()
+})
+
 module.exports = mongoose.model('Item', ItemSchema)

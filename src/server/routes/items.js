@@ -105,10 +105,9 @@ router.post('/:id/borrow', isLoggedIn, async (req, res) => {
   const { id: itemId } = req.params
   const userId = req.session.user
   const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED }, { new: true }).populate('owner')
-  const user = await User.findByIdAndUpdate(
+  await User.findByIdAndUpdate(
     userId, { $push: { borrowedItems: { item: borrowed._id, date: new Date() } } }, { new: true }
   )
-  console.log(user)
   res.send({
     result: borrowed
   })
