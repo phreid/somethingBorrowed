@@ -3,6 +3,7 @@ const { STATUS } = require('../../constants')
 const { isLoggedIn, isItemOwner } = require('../middleware')
 
 const Item = require('../models/Item')
+const User = require('../models/User')
 
 const router = express.Router()
 
@@ -94,16 +95,19 @@ router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
 /**
  * POST /items/:id/borrow
  *
- * Sets an items status to borrowed. Requires the sender to be logged in.
- *
- * Request body: { borrower: _username }
+ * Sets an items status to borrowed and adds it to the borrowed item history
+ * of the currently logged in user. Requires the sender to be logged in.
  *
  * @param id: the item id to borrow
  * @return the updated item
  */
 router.post('/:id/borrow', isLoggedIn, async (req, res) => {
-  const { id } = req.params
-  const borrowed = await Item.findByIdAndUpdate(id, { status: STATUS.BORROWED }, { new: true }).populate('owner')
+  const { id: itemId } = req.params
+  const userId = req.session.user
+  const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED }, { new: true }).populate('owner')
+  await User.findByIdAndUpdate(
+    userId, { $push: { borrowedItems: { item: borrowed._id, date: new Date() } } }, { new: true }
+  )
   res.send({
     result: borrowed
   })

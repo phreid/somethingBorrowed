@@ -55,6 +55,30 @@ router.get('/:userId/marketplace', isLoggedIn, isUser, async (req, res) => {
 })
 
 /**
+ * GET /users/:userId/history
+ *
+ * Retrieves a user's item borrowing history. Requires the sender to be logged in as the
+ * requested user.
+ *
+ * @param userId: the user id of the user's history to retrieve
+ * @returns a list of borrowing records containing item objects and the date the item
+ *          was borrowed
+ */
+router.get('/:userId/history', isLoggedIn, isUser, async (req, res) => {
+  const { userId } = req.params
+  const user = await User
+    .findById(userId)
+    .populate({
+      path: 'borrowedItems',
+      populate: { path: 'item', populate: 'owner' }
+    })
+
+  res.send({
+    result: user.borrowedItems
+  })
+})
+
+/**
  * GET /users/:userId/items
  *
  * Retrieves the items owned by a single user.
