@@ -3,7 +3,7 @@ import { React, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ItemCard from './ItemCard'
 import NavBar from './NavBar'
-import Search from './Search'
+import FiltersCollection from './FiltersCollection'
 
 import { getAllItemsAsync } from '../redux/items/thunks'
 
@@ -24,7 +24,7 @@ function MarketplacePage () {
       <h1 className="page-title">Marketplace</h1>
       <div className="grid-container">
         <div className="grid-child page-container" key = "grid-child page-container">
-          <Search/>
+          <FiltersCollection/>
         </div>
         <div className="grid-child page-container">
           {items.map(item => {

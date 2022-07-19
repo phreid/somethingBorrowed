@@ -1,21 +1,24 @@
 import '../styles/search.css'
 import React, { useState } from 'react'
+import { applySearchNameAsync, getAllItemsAsync } from '../redux/items/thunks'
+import { useDispatch } from 'react-redux'
 
-function Search () {
+function FiltersCollection () {
+  const dispatch = useDispatch()
   const [searchInput, setSearchInput] = useState('')
   const [isCheckedList, setIsCheckedList] = useState([])
 
   const inputHandler = (e) => {
     const input = e.target.value
-    console.log(searchInput, isCheckedList)
 
-    if (e.keyCode === 13) {
-      setSearchInput(input)
-      const c0 = document.getElementById('Kitchen').checked
-      const c1 = document.getElementById('Outdoor').checked
-      const c2 = document.getElementById('Tools').checked
-      const c3 = document.getElementById('DIY').checked
-      setIsCheckedList([c0, c1, c2, c3])
+    const keyCode = e.keyCode || e.which
+    if (input === null || input === '') {
+      dispatch(getAllItemsAsync())
+    } else if (keyCode === 13) {
+      setSearchInput('')
+	  // dispatch(getAllItemsAsync())
+	  dispatch(applySearchNameAsync(input))
+	  // placeholder='Press Enter To Search'
     }
   }
 
@@ -24,10 +27,12 @@ function Search () {
       <div className="search">
         <div className="searchBar">
           <input
-            id="outlined-basic"
-            label="Search"
-            placeholder="Press Enter to Search"
+            type="text"
+            placeholder='Press Enter To Search'
             onKeyDown={inputHandler}
+            value = {searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+
           />
 
         </div>
@@ -54,4 +59,4 @@ function Search () {
   )
 }
 
-export default Search
+export default FiltersCollection
