@@ -31,9 +31,6 @@ export default function UserHistoryPage () {
 
   return (
     <>
-      {/* <NavBar />
-      <MyItemsNavBar />
-      <br></br> */}
       <div className="my-borrowed-items">
         <h2>My Borrowed Items</h2>
         <Container fluid className="borrowed-items-container">
