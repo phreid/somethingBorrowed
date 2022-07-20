@@ -4,10 +4,10 @@ import profile from '../images/profile.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { React, useEffect, useState } from 'react'
 import { getCurrentUserAsync } from '../redux/users/thunks'
-import EditUserForm from './EditUserForm'
+import EditUserModal from './EditUserModal'
 import DeleteUserAccountForm from './DeleteUserAccountForm'
 
-export default function ProfilePage (props) {
+export default function ProfilePage () {
   const userId = useSelector(state => state.user.user)
   const currentUser = useSelector(state => state.user.currentUser)
   const dispatch = useDispatch()
@@ -16,11 +16,19 @@ export default function ProfilePage (props) {
     dispatch(getCurrentUserAsync(userId))
   }, [dispatch])
 
-  const [showEdit, setShowEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
+  const [editUserModal, setEditUserModal] = useState(false)
 
-  const handleCloseEdit = () => setShowEdit(false)
-  const handleShowEdit = () => setShowEdit(true)
+  function handleEditUser () {
+    if (editUserModal === true) {
+      return
+    }
+    setEditUserModal(true)
+  }
+
+  function handleCloseEditUserModal () {
+    setEditUserModal(false)
+  }
 
   const handleCloseDelete = () => setShowDelete(false)
   const handleShowDelete = () => setShowDelete(true)
@@ -39,18 +47,14 @@ export default function ProfilePage (props) {
               <ListGroupItem>{currentUser.location}</ListGroupItem>
             </ListGroup>
             <br/>
-            <Button variant="outline-secondary" onClick={handleShowEdit}>Edit Profile</Button>{' '}
+            <Button variant="outline-secondary" onClick={handleEditUser}>Edit Profile</Button>{' '}
             <Button variant="outline-danger" onClick={handleShowDelete}>Delete Account</Button>
           </Card.Body>
-
-          <Modal show={showEdit} onHide={handleCloseEdit}>
-            <Modal.Header closeButton>
-              <Modal.Title>Edit Profile</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <EditUserForm currentUser={currentUser}/>
-            </Modal.Body>
-          </Modal>
+          <EditUserModal
+            editUserModalOpen={editUserModal}
+            setShowEditUserModal={handleCloseEditUserModal}
+            user={currentUser}
+          />
 
           <Modal show={showDelete} onHide={handleCloseDelete}>
             <Modal.Header closeButton>
