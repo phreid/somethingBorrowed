@@ -61,9 +61,9 @@ export const rateItemAsync = createAsyncThunk(
 )
 
 export const applySearchNameAsync = createAsyncThunk(
-  'items/searchByName',
+  'items/search',
   async (searchText) => {
-	  const response = await axios.get(`${URL}/searchByName/${searchText}`)
+	  const response = await axios.get(`${URL}/search/${searchText}`)
 	  return response.data.result
   }
 )

@@ -2,13 +2,14 @@ import '../styles/search.css'
 import React, { useState } from 'react'
 import { applySearchNameAsync, getAllItemsAsync } from '../redux/items/thunks'
 import { useDispatch } from 'react-redux'
+import { Button } from 'react-bootstrap'
 
 function FiltersCollection () {
   const dispatch = useDispatch()
   const [searchInput, setSearchInput] = useState('')
-  const [isCheckedList, setIsCheckedList] = useState([])
 
   const inputHandler = (e) => {
+	// onKeyDown={inputHandler}
     const input = e.target.value
 
     const keyCode = e.keyCode || e.which
@@ -22,19 +23,37 @@ function FiltersCollection () {
     }
   }
 
+  const handleClearSearch = () => {
+    dispatch(getAllItemsAsync())
+  }
+
+  const handleApplySearch = () => {
+	if (searchInput === '') {
+		dispatch(getAllItemsAsync())
+	} else {
+		dispatch(applySearchNameAsync(searchInput))
+	}
+	setSearchInput('')
+  }
+
   return (
     <>
       <div className="search">
         <div className="searchBar">
-          <input
-            type="text"
-            placeholder='Press Enter To Search'
-            onKeyDown={inputHandler}
-            value = {searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-
-          />
-
+		  <div className="mb-2">
+			<input
+				id = "searchInput"
+				type="text"
+				placeholder='Press Enter To Search'
+				value = {searchInput}
+				onChange={(e) => setSearchInput(e.target.value)}
+			/>
+			{' '}
+			<Button size="sm" variant="outline-primary" type="submit" className="me-1 button apply-search" onClick={handleApplySearch}>Apply Search</Button>
+		  	{' '}
+		  	<Button  size="sm" variant="outline-primary" type="submit" className="me-1 button clear-search" onClick={handleClearSearch}>Clear Search</Button>
+		  </div>
+		  
         </div>
         <div className="filters">
           <div className='filter'>

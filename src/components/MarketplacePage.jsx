@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import ItemCard from './ItemCard'
 import NavBar from './NavBar'
 import FiltersCollection from './FiltersCollection'
-
 import { getAllItemsAsync } from '../redux/items/thunks'
 
 function MarketplacePage () {
