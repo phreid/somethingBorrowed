@@ -1,16 +1,17 @@
 import { React, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { LOCATIONS } from '../constants'
 import { updateUserAsync } from '../redux/users/thunks'
 
 export default function EditUserModal (props) {
-  const userId = props.user._id
-  const [username, setUsername] = useState(props.user.username)
-  const [password, setPassword] = useState(props.user.password)
-  const [bio, setBio] = useState(props.user.bio)
-  const [email, setEmail] = useState(props.user.email)
-  const [location, setLocation] = useState(props.user.location)
+  const currentUser = useSelector(state => state.user.currentUser)
+  const userId = useSelector(state => state.user.user)
+  const [username, setUsername] = useState(currentUser.username)
+  const [password, setPassword] = useState(currentUser.password)
+  const [bio, setBio] = useState(currentUser.bio)
+  const [email, setEmail] = useState(currentUser.email)
+  const [location, setLocation] = useState(currentUser.location)
 
   const locationDropdowns = Object.values(LOCATIONS).map((location) => {
     return <option key={location}>{location}</option>
@@ -61,7 +62,7 @@ export default function EditUserModal (props) {
               <Form.Label>Update Username</Form.Label>
               <Form.Control
                 type="input"
-                placeholder={props.user.username}
+                placeholder="Enter new username"
                 required
                 autoFocus
                 value={username}
@@ -72,7 +73,7 @@ export default function EditUserModal (props) {
               <Form.Label>Update Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder={props.user.password}
+                placeholder="Enter new password"
                 required
                 autoFocus
                 value={password}
@@ -85,7 +86,7 @@ export default function EditUserModal (props) {
               <Form.Label>Update Bio</Form.Label>
               <Form.Control
                 as="textarea"
-                placeholder={props.user.bio}
+                placeholder="Enter something about yourself!"
                 rows={3}
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
@@ -95,7 +96,7 @@ export default function EditUserModal (props) {
               <Form.Label>Update Email</Form.Label>
               <Form.Control
                 type="email"
-                placeholder={props.user.email}
+                placeholder="Enter new email"
                 required
                 value={email}
                 onChange={e => setEmail(e.target.value)}
