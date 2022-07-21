@@ -5,6 +5,7 @@ import { LOCATIONS } from '../constants'
 import { updateUserAsync } from '../redux/users/thunks'
 
 export default function EditUserModal (props) {
+  const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user.currentUser)
   const userId = useSelector(state => state.user.user)
   const [username, setUsername] = useState(currentUser.username)
@@ -16,8 +17,6 @@ export default function EditUserModal (props) {
   const locationDropdowns = Object.values(LOCATIONS).map((location) => {
     return <option key={location}>{location}</option>
   })
-
-  const dispatch = useDispatch()
 
   const handleClose = () => {
     props.setShowEditUserModal(false)
