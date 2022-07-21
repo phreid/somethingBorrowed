@@ -57,11 +57,11 @@ export default function EditUserModal (props) {
   }
 
   const clearForm = () => {
-    setUsername('')
-    setPassword('')
-    setBio('')
-    setEmail('')
-    setLocation('')
+    setUsername(currentUser.username)
+    setPassword(currentUser.password)
+    setBio(currentUser.bio)
+    setEmail(currentUser.email)
+    setLocation(currentUser.location)
   }
 
   return (
