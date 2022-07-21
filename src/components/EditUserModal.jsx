@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { LOCATIONS } from '../constants'
@@ -8,11 +8,31 @@ export default function EditUserModal (props) {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user.currentUser)
   const userId = useSelector(state => state.user.user)
+
   const [username, setUsername] = useState(currentUser.username)
+  useEffect(() => {
+    setUsername(currentUser.username)
+  }, [currentUser.username])
+
   const [password, setPassword] = useState(currentUser.password)
+  useEffect(() => {
+    setPassword(currentUser.password)
+  }, [currentUser.password])
+
   const [bio, setBio] = useState(currentUser.bio)
+  useEffect(() => {
+    setBio(currentUser.bio)
+  }, [currentUser.bio])
+
   const [email, setEmail] = useState(currentUser.email)
+  useEffect(() => {
+    setEmail(currentUser.email)
+  }, [currentUser.email])
+
   const [location, setLocation] = useState(currentUser.location)
+  useEffect(() => {
+    setLocation(currentUser.location)
+  }, [currentUser.location])
 
   const locationDropdowns = Object.values(LOCATIONS).map((location) => {
     return <option key={location}>{location}</option>

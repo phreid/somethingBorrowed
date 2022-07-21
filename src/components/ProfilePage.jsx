@@ -14,7 +14,7 @@ export default function ProfilePage () {
 
   useEffect(() => {
     dispatch(getCurrentUserAsync(userId))
-  }, [dispatch])
+  }, [dispatch, userId])
 
   const [showDelete, setShowDelete] = useState(false)
   const [editUserModal, setEditUserModal] = useState(false)
@@ -50,6 +50,7 @@ export default function ProfilePage () {
             <Button variant="outline-secondary" onClick={handleEditUser}>Edit Profile</Button>{' '}
             <Button variant="outline-danger" onClick={handleShowDelete}>Delete Account</Button>
           </Card.Body>
+
           <EditUserModal
             editUserModalOpen={editUserModal}
             setShowEditUserModal={handleCloseEditUserModal}
