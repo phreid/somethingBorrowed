@@ -33,7 +33,7 @@ export const itemSlice = createSlice({
         state.list[index].rating = action.payload.rating
         state.list[index].ratingComments = action.payload.ratingComments
       })
-	  .addCase(applySearchNameAsync.fulfilled, (state, action) => {
+      .addCase(applySearchNameAsync.fulfilled, (state, action) => {
         state.list = action.payload
       })
   }

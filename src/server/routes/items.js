@@ -140,9 +140,9 @@ router.post('/:id/rating', isLoggedIn, async (req, res) => {
 router.get('/search/:searchText', async (req, res) => {
   if (req.params.searchText !== undefined) {
     const searchText = req.params.searchText
-    const item = await Item.find({ name: { $regex: new RegExp(searchText, 'i') } }).populate('owner')
+    const items = await Item.find({ name: { $regex: new RegExp(searchText, 'i') } }).populate('owner')
     res.send({
-      result: item
+      result: items
     })
   }
 })
