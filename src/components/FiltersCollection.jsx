@@ -8,23 +8,8 @@ function FiltersCollection () {
   const dispatch = useDispatch()
   const [searchInput, setSearchInput] = useState('')
 
-  const inputHandler = (e) => {
-	// onKeyDown={inputHandler}
-    const input = e.target.value
-
-    const keyCode = e.keyCode || e.which
-    if (input === null || input === '') {
-      dispatch(getAllItemsAsync())
-    } else if (keyCode === 13) {
-      setSearchInput('')
-	  // dispatch(getAllItemsAsync())
-	  dispatch(applySearchNameAsync(input))
-	  // placeholder='Press Enter To Search'
-    }
-  }
-
   const handleClearSearch = () => {
-    dispatch(getAllItemsAsync())
+    setSearchInput('')
   }
 
   const handleApplySearch = () => {
