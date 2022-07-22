@@ -6,12 +6,9 @@ import EditRatingModal from './EditRatingModal'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 
-import diy from '../images/defaultImages/diy.jpg'
-import kitchen from '../images/defaultImages/kitchen.jpg'
-import outdoors from '../images/defaultImages/outdoors.jpg'
-import tools from '../images/defaultImages/tools.jpg'
+import noimage from '../images/defaultImages/noimage.png'
 import { borrowItemAsync, deleteItemAsync, updateItemAsync } from '../redux/items/thunks'
-import { ITEM_TYPES, STATUS } from '../constants'
+import { STATUS } from '../constants'
 
 function ItemCard (props) {
   let available = false
@@ -117,13 +114,9 @@ function ItemCard (props) {
             src={
               props.image
                 ? getResizedImageUrl(props.image.url, 300, 250)
-                : (
-                  ((props.type === ITEM_TYPES.DIY) && diy) ||
-                  ((props.type === ITEM_TYPES.KITCHEN) && kitchen) ||
-                  ((props.type === ITEM_TYPES.OUTDOORS) && outdoors) ||
-                  ((props.type === ITEM_TYPES.TOOLS) && tools)
-                )
-            } />
+                : noimage
+            }
+          />
         </div>
         <div className="col-md-8">
           {props.edit

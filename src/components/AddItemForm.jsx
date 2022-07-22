@@ -37,13 +37,6 @@ export default function AddItemForm (props) {
     formData.append('status', switchIsAvailable ? STATUS.AVAILABLE : STATUS.NOT_AVAILABLE)
     formData.append('image', fileInput.current.files[0])
 
-    // dispatch(addItemAsync({
-    //   name,
-    //   type,
-    //   location,
-    //   description,
-    //   status: switchIsAvailable ? STATUS.AVAILABLE : STATUS.NOT_AVAILABLE
-    // }))
     dispatch(addItemAsync(formData))
     setName('')
     setType('')
