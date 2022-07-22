@@ -105,16 +105,25 @@ function ItemCard (props) {
     }
   }
 
+  const getResizedImageUrl = (url, width, height) =>
+    url.replace('/upload', `/upload/w_${width},h_${height}`)
+
   return (
     <Card className="item-card" style={{ width: '' }}>
       <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
         <div className="col-md-4">
-          <Card.Img className="item-img" src={
-            ((props.type === ITEM_TYPES.DIY) && diy) ||
-            ((props.type === ITEM_TYPES.KITCHEN) && kitchen) ||
-            ((props.type === ITEM_TYPES.OUTDOORS) && outdoors) ||
-            ((props.type === ITEM_TYPES.TOOLS) && tools)
-          } />
+          <Card.Img
+            className="item-img"
+            src={
+              props.image
+                ? getResizedImageUrl(props.image.url, 300, 250)
+                : (
+                  ((props.type === ITEM_TYPES.DIY) && diy) ||
+                  ((props.type === ITEM_TYPES.KITCHEN) && kitchen) ||
+                  ((props.type === ITEM_TYPES.OUTDOORS) && outdoors) ||
+                  ((props.type === ITEM_TYPES.TOOLS) && tools)
+                )
+            } />
         </div>
         <div className="col-md-8">
           {props.edit
