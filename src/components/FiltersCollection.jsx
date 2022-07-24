@@ -2,7 +2,7 @@ import '../styles/search.css'
 import React, { useState } from 'react'
 import { applySearchNameAsync, getAllItemsAsync } from '../redux/items/thunks'
 import { useDispatch } from 'react-redux'
-import { Button } from 'react-bootstrap'
+import { Button, ButtonToolbar, InputGroup, Form } from 'react-bootstrap'
 
 function FiltersCollection () {
   const dispatch = useDispatch()
@@ -26,25 +26,19 @@ function FiltersCollection () {
 
   return (
     <>
-      <div className="search">
-        <div className="searchBar">
-          <div className="mb-2">
-            <input
-              id = "search_input"
-              type="text"
-              placeholder='Press Enter To Search'
-              value = {searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              title="Cancel"
-            />
-            <Button className='clear' size="sm" variant="outline-primary" type="submit" onClick={handleClearInput}>X</Button>
-            {' '}
-            <Button size="sm" variant="outline-primary" type="submit" className="me-1 button apply-search" onClick={handleApplySearch}>Apply Search</Button>
-            {' '}
-            <Button size="sm" variant="outline-primary" type="submit" className="me-1 button clear-search" onClick={handleClearSearch}>Clear Search</Button></div>
-
-        </div>
-      </div>
+      <ButtonToolbar className="d-flex justify-content-center">
+        <InputGroup className="me-3">
+          <Form.Control
+            type="text"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Enter your search"
+          />
+          <Button variant="outline-secondary" onClick={handleClearInput}>Clear</Button>
+        </InputGroup>
+        <Button className="me-1" variant="outline-primary" onClick={handleApplySearch}>Search</Button>
+        <Button variant="outline-secondary" onClick={handleClearSearch}>Reset Search</Button>
+      </ButtonToolbar>
     </>
   )
 }
