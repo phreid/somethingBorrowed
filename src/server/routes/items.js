@@ -135,14 +135,44 @@ router.post('/:id/rating', isLoggedIn, async (req, res) => {
  * @param id: the item id to retrieve
  * @returns a single item object
  */
-// /search
-// /filter
 router.get('/search/:searchText', async (req, res) => {
   if (req.params.searchText !== undefined) {
     const searchText = req.params.searchText
-    const item = await Item.find({ name: { $regex: new RegExp(searchText, 'i') } }).populate('owner')
+    const items = await Item.find({ name: { $regex: new RegExp(searchText, 'i') } }).populate('owner')
     res.send({
-      result: item
+      result: items
+    })
+  }
+})
+
+/**
+ * GET /items/filter/:filters
+ *
+ * Filtering items with selected inputs.
+ *
+ * @param filters: the JSON object that contains the filters
+ * @returns items
+ */
+router.get('/filter/:filters', async (req, res) => {
+  const rate = JSON.parse(req.params.filters).rating
+  const category = JSON.parse(req.params.filters).type
+  console.log(rate)
+  console.log(category)
+  if (req.params.filters !== undefined && rate !== undefined && category !== undefined) {
+    let items
+    if (rate === 'Unrated') {
+      if (category === 'Select item type...') {
+        items = await Item.find().populate('owner')
+      } else {
+        items = await Item.find({ type: category }).populate('owner')
+      }
+    } else if (category === 'Select item type...') {
+      items = await Item.find({ rating: rate }).populate('owner')
+    } else {
+      items = await Item.find({ rating: rate, type: category }).populate('owner')
+    }
+    res.send({
+      result: items
     })
   }
 })
