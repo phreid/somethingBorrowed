@@ -131,4 +131,24 @@ router.post('/:id/rating', isLoggedIn, async (req, res) => {
   })
 })
 
+/**
+ * GET /items/searchText/:searchText
+ *
+ * Retrieves a single item.
+ *
+ * @param id: the item id to retrieve
+ * @returns a single item object
+ */
+// /search
+// /filter
+router.get('/search/:searchText', async (req, res) => {
+  if (req.params.searchText !== undefined) {
+    const searchText = req.params.searchText
+    const items = await Item.find({ name: { $regex: new RegExp(searchText, 'i') } }).populate('owner')
+    res.send({
+      result: items
+    })
+  }
+})
+
 module.exports = router

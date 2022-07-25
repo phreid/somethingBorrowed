@@ -1,15 +1,16 @@
 import { React, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Container } from 'react-bootstrap'
 
+import { useSelector, useDispatch } from 'react-redux'
 import ItemCard from './ItemCard'
 import NavBar from './NavBar'
+import FiltersCollection from './FiltersCollection'
 import { getAllItemsAsync } from '../redux/items/thunks'
 
-import '../styles.css'
-
 function MarketplacePage () {
-  const items = useSelector(state => state.items.list)
+  const user = useSelector(state => state.user)
+  const items = useSelector(state => {
+    return state.items.list.filter(item => item.owner._id !== user.user)
+  })
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -21,29 +22,24 @@ function MarketplacePage () {
       <NavBar />
       <h1 className="page-title">Marketplace</h1>
       <div className="grid-container">
-        <div className="grid-child page-container">
-          <p>placeholder</p>
+        <div className="grid-child page-container" key = "grid-child page-container">
+          <FiltersCollection/>
         </div>
         <div className="grid-child page-container">
-          {items.length
-            ? <Container fluid className="item-container">
-              {items.map(item =>
-                <ItemCard key={item._id}
-                  id={item._id}
-                  image={item.image}
-                  name={item.name}
-                  description={item.description}
-                  type={item.type}
-                  location={item.owner.location}
-                  rating={item.rating}
-                  ratingComments={item.ratingComments}
-                  status={item.status}
-                  borrow
-                />
-              )}
-            </Container>
-            : <p>There are no items to display</p>
-          }
+          {items.map(item => {
+            return <ItemCard key={item._id}
+              id={item._id}
+              borrow
+              description={item.description}
+              image={item.image}
+              name={item.name}
+              status={item.status}
+              ratingComments={item.ratingComments}
+              type={item.type}
+              rating={item.rating}
+              location={item.owner.location}
+            />
+          })}
         </div>
       </div>
     </>
