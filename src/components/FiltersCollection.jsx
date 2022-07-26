@@ -8,26 +8,41 @@ import { ITEM_TYPES, RATINGS } from '../constants'
 function FiltersCollection () {
   const dispatch = useDispatch()
   const [searchInput, setSearchInput] = useState('')
-  const [itemType, setItemType] = useState('Select item type...')
-  const [itemRate, setItemRate] = useState('Unrated')
+  const [itemType, setItemType] = useState('')
+  const [itemRating, setItemRating] = useState('')
 
   function handleCategory (event) {
-    setItemType(event.target.value)
+    if (event.target.value === 'Select item type...') {
+      setItemType('')
+    } else {
+      setItemType(event.target.value)
+    }
   }
 
   function handleRating (event) {
-    setItemRate(event.target.value)
+    if (event.target.value === 'Select a rating...') {
+      setItemRating('')
+    } else {
+      setItemRating(event.target.value)
+    }
   }
 
   function handleApplyFilter () {
-    const jsonObj = JSON.stringify({ rating: itemRate, type: itemType })
-    console.log(jsonObj + '  line32')
+    let theRating = itemRating
+    let theType = itemType
+    if (itemRating === '') {
+      theRating = undefined
+    }
+    if (itemType === '') {
+      theType = undefined
+    }
+    const jsonObj = JSON.stringify({ rating: theRating, type: theType })
     dispatch(applyFiltersAsync(jsonObj))
   }
 
   const handleClearFilters = () => {
-    setItemType('Select item type...')
-    setItemRate('Unrated')
+    setItemType('')
+    setItemRating('')
     dispatch(getAllItemsAsync())
   }
 
@@ -78,12 +93,13 @@ function FiltersCollection () {
         </Form.Select>
       </Form.Group>
       <Form.Group >
-        <Form.Select value={itemRate} onChange={handleRating}>
+        <Form.Select value={itemRating} onChange={handleRating}>
+          <option>Select a rating...</option>
           {ratingDropdowns}
         </Form.Select>
       </Form.Group>
       <br></br>
-      <a className="search_input">
+      <a className = "searchBar">
         <Button variant="outline-primary" type="submit" className="me-1 button apply-filter" onClick={handleApplyFilter}>Apply Filters</Button>
         <Button variant="outline-secondary" className="me-1 button clear-filter" onClick={handleClearFilters}>Clear Filters</Button>
       </a>
