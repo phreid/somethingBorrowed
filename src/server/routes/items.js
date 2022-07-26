@@ -159,17 +159,15 @@ router.get('/search/:searchText', async (req, res) => {
 router.get('/filter/:filters', async (req, res) => {
   const rate = JSON.parse(req.params.filters).rating
   const category = JSON.parse(req.params.filters).type
-  console.log(rate)
-  console.log(category)
-  if (req.params.filters !== undefined && rate !== undefined && category !== undefined) {
+  if (req.params.filters !== undefined) {
     let items
-    if (rate === 'Unrated') {
-      if (category === 'Select item type...') {
+    if (rate === undefined) {
+      if (category === undefined) {
         items = await Item.find().populate('owner')
       } else {
         items = await Item.find({ type: category }).populate('owner')
       }
-    } else if (category === 'Select item type...') {
+    } else if (category === undefined) {
       items = await Item.find({ rating: rate }).populate('owner')
     } else {
       items = await Item.find({ rating: rate, type: category }).populate('owner')
