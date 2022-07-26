@@ -5,7 +5,7 @@
 	align-items: center;
 
 }
-.search_input { 
+.searchBar { 
 	display: flex;
   	flex-direction: column;
 	align-items: center;
@@ -52,14 +52,3 @@
 	border-radius: 5;
 	background-color: #8B9CB6;
 }
-
-
-#clear {
-	font-family:'Montserrat Bold';
-	background-color: #2869AB;
-	position: absolute;
-	right: 0px;
-}
-  
-
-  
