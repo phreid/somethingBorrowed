@@ -67,3 +67,11 @@ export const applySearchNameAsync = createAsyncThunk(
     return response.data.result
   }
 )
+
+export const applyFiltersAsync = createAsyncThunk(
+  'items/filterItem',
+  async (filters) => {
+    const response = await axios.get(`${URL}/filter/${filters}`)
+    return response.data.result
+  }
+)
