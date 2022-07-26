@@ -48,6 +48,14 @@ export const getCurrentUserAsync = createAsyncThunk(
   }
 )
 
+export const getUserHistoryAsync = createAsyncThunk(
+  'user/getHistory',
+  async (userId) => {
+    const response = await axios.get(`${URL}/users/${userId}/history`)
+    return response.data.result
+  }
+)
+
 export const updateUserAsync = createAsyncThunk(
   'user/updateUser',
   async (updatedUser) => {

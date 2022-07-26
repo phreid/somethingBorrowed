@@ -3,7 +3,7 @@ const { ITEM_TYPES, STATUS } = require('../../constants')
 
 const Schema = mongoose.Schema
 
-const ItemSchema = new mongoose.Schema({
+const ItemSchema = new Schema({
   name: String,
   type: {
     type: String,
@@ -21,6 +21,24 @@ const ItemSchema = new mongoose.Schema({
     default: 'Unrated'
   },
   ratingComments: String
+})
+
+ItemSchema.pre('findOneAndDelete', async function (next) {
+  const itemId = this.getQuery()._id
+  await mongoose.model('User').updateMany(
+    { 'borrowedItems.item': itemId },
+    { $pull: { borrowedItems: { item: itemId } } }
+  )
+  next()
+})
+
+ItemSchema.pre('deleteMany', async function (next) {
+  const toBeDeleted = (await mongoose.model('Item').find(this.getQuery())).map((doc) => doc._id)
+  await mongoose.model('User').updateMany(
+    { 'borrowedItems.item': { $in: toBeDeleted } },
+    { $pull: { borrowedItems: { item: { $in: toBeDeleted } } } }
+  )
+  next()
 })
 
 module.exports = mongoose.model('Item', ItemSchema)
