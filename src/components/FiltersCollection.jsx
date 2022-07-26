@@ -5,6 +5,9 @@ import { useDispatch } from 'react-redux'
 import { Button, ButtonToolbar, InputGroup, Form } from 'react-bootstrap'
 import { ITEM_TYPES, RATINGS } from '../constants'
 
+const DEFAULT_TYPE_OPTION = 'All item types'
+const DEFAULT_RATING_OPTION = 'All ratings'
+
 function FiltersCollection () {
   const dispatch = useDispatch()
   const [searchInput, setSearchInput] = useState('')
@@ -12,7 +15,7 @@ function FiltersCollection () {
   const [itemRating, setItemRating] = useState('')
 
   function handleCategory (event) {
-    if (event.target.value === 'Select item type...') {
+    if (event.target.value === DEFAULT_TYPE_OPTION) {
       setItemType('')
     } else {
       setItemType(event.target.value)
@@ -20,7 +23,7 @@ function FiltersCollection () {
   }
 
   function handleRating (event) {
-    if (event.target.value === 'Select a rating...') {
+    if (event.target.value === DEFAULT_RATING_OPTION) {
       setItemRating('')
     } else {
       setItemRating(event.target.value)
@@ -88,13 +91,13 @@ function FiltersCollection () {
       <br></br>
       <Form.Group >
         <Form.Select value={itemType} onChange={handleCategory}>
-          <option>Select item type...</option>
+          <option>{DEFAULT_TYPE_OPTION}</option>
           {itemTypeDropdowns}
         </Form.Select>
       </Form.Group>
       <Form.Group >
         <Form.Select value={itemRating} onChange={handleRating}>
-          <option>Select a rating...</option>
+          <option>{DEFAULT_RATING_OPTION}</option>
           {ratingDropdowns}
         </Form.Select>
       </Form.Group>
