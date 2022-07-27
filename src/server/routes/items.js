@@ -95,6 +95,7 @@ router.delete('/:id', isLoggedIn, isItemOwner, async (req, res) => {
  */
 router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
   const { id } = req.params
+
   const updated = await Item.findByIdAndUpdate(id, req.body, { new: true }).populate('owner')
   res.send({
     result: updated
@@ -132,8 +133,12 @@ router.post('/:id/borrow', isLoggedIn, async (req, res) => {
  */
 router.post('/:id/rating', isLoggedIn, async (req, res) => {
   const { id } = req.params
-
-  const rated = await Item.findByIdAndUpdate(id, { rating: req.body.rating, ratingComments: req.body.ratingComments }, { new: true }).populate('owner')
+  const item = await Item.findById(id)
+  const currRating = parseInt(item.rating)
+  const newRatingInput = parseInt(req.body.rating)
+  const newRating = ((currRating + newRatingInput) / 2)
+  const roundedRating = (Math.round(newRating * 10) / 10).toString()
+  const rated = await Item.findByIdAndUpdate(id, { rating: roundedRating, ratingComments: req.body.ratingComments }, { new: true }).populate('owner')
 
   res.send({
     result: rated

@@ -5,16 +5,21 @@ import { Button } from 'react-bootstrap'
 import { useState, createRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { addItemAsync } from '../redux/items/thunks'
-import { ITEM_TYPES, STATUS } from '../constants'
+import { ITEM_TYPES, LOCATIONS, STATUS } from '../constants'
 
 export default function AddItemForm (props) {
   const itemTypeDropdowns = Object.values(ITEM_TYPES).map((type) => {
     return <option key={type}>{type}</option>
   })
 
+  const locationDropdowns = Object.values(LOCATIONS).map((location) => {
+    return <option key={location}>{location}</option>
+  })
+
   const [switchIsAvailable, setSwitchIsAvailable] = useState(true)
   const [name, setName] = useState('')
   const [type, setType] = useState('')
+  const [location, setLocation] = useState('')
   const [description, setDescription] = useState('')
 
   const fileInput = createRef()
@@ -34,6 +39,7 @@ export default function AddItemForm (props) {
     dispatch(addItemAsync(formData))
     setName('')
     setType('')
+    setLocation('')
     setDescription('')
     fileInput.current.value = null
   }
@@ -53,6 +59,13 @@ export default function AddItemForm (props) {
             <Form.Select value={type} onChange={(e) => setType(e.target.value)}>
               <option>Select item type...</option>
               {itemTypeDropdowns}
+            </Form.Select>
+          </Form.Group>
+          <Form.Group as={Col} sm className="mb-3">
+            <Form.Label>Location</Form.Label>
+            <Form.Select value={location} onChange={(e) => setLocation(e.target.value)}>
+              <option>Select item location...</option>
+              {locationDropdowns}
             </Form.Select>
           </Form.Group>
         </Row>

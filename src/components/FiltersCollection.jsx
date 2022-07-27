@@ -102,7 +102,7 @@ function FiltersCollection () {
         </Form.Select>
       </Form.Group>
       <br></br>
-      <div className = "searchBar">
+      <div className="searchBar">
         <Button variant="outline-primary" type="submit" className="me-1 button apply-filter" onClick={handleApplyFilter}>Apply Filters</Button>
         <Button variant="outline-secondary" className="me-1 button clear-filter" onClick={handleClearFilters}>Clear Filters</Button>
       </div>
