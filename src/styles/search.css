@@ -1,0 +1,54 @@
+.search { 
+	font-family:'Montserrat Bold';
+	display: flex;
+  	flex-direction: column;
+	align-items: center;
+
+}
+.searchBar { 
+	display: flex;
+  	flex-direction: column;
+	align-items: center;
+
+}
+
+.filters {
+	font-family: 'Montserrat Bold';
+	color: black;
+}
+
+.filter {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.filterText{
+	margin-left: 100px;
+}
+
+.label {
+	margin-right: 3px;
+}
+
+.checkbox{
+	margin-right: 7px;
+}
+
+.filterText{
+	color: black;
+}
+
+.sider{
+	position: relative;
+	height: 80;
+	border: '1px solid steelblue';
+}
+
+.lefthandler{
+	position: absolute;
+	width: '100%';
+	height: 10;
+	margin-top: 35;
+	border-radius: 5;
+	background-color: #8B9CB6;
+}

@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 import { useState } from 'react'
 import { updateItemAsync } from '../redux/items/thunks'
 import { useDispatch } from 'react-redux'
-import { ITEM_TYPES, LOCATIONS } from '../constants'
+import { ITEM_TYPES } from '../constants'
 
 import '../styles.css'
 
@@ -18,14 +18,8 @@ export default function EditCardModal (props) {
   const itemTypeDropdowns = Object.values(ITEM_TYPES).map((type) => {
     return <option key={type}>{type}</option>
   })
-
-  const locationDropdowns = Object.values(LOCATIONS).map((location) => {
-    return <option key={location}>{location}</option>
-  })
-
   const [name, setName] = useState(props.name)
   const [type, setType] = useState(props.type)
-  const [location, setLocation] = useState(props.location)
   const [description, setDescription] = useState(props.description)
 
   const handleClose = () => {
@@ -38,7 +32,6 @@ export default function EditCardModal (props) {
       id: itemId,
       name,
       type,
-      location,
       description
     }))
 
@@ -69,13 +62,6 @@ export default function EditCardModal (props) {
                 <Form.Select placeholder={props.type} value={type} onChange={(e) => setType(e.target.value)}>
                   <option>Select an item type...</option>
                   {itemTypeDropdowns}
-                </Form.Select>
-              </Form.Group>
-              <Form.Group as={Col} sm >
-                <Form.Label>Location</Form.Label>
-                <Form.Select value={location} onChange={(e) => setLocation(e.target.value)}>
-                  <option>Select a location...</option>
-                  {locationDropdowns}
                 </Form.Select>
               </Form.Group>
             </Row>
