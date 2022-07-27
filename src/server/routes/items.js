@@ -1,11 +1,14 @@
 const express = require('express')
+const multer = require('multer')
+
 const { STATUS } = require('../../constants')
 const { isLoggedIn, isItemOwner } = require('../middleware')
-
 const Item = require('../models/Item')
 const User = require('../models/User')
+const { cloudinaryStorage } = require('../cloudinary')
 
 const router = express.Router()
+const upload = multer({ storage: cloudinaryStorage })
 
 /**
  * GET /items
@@ -47,8 +50,14 @@ router.get('/:id', async (req, res) => {
  *
  * @returns the newly created item object
  */
-router.post('/', isLoggedIn, async (req, res) => {
-  const newItem = new Item({ owner: req.session.user, ...req.body })
+router.post('/', upload.single('image'), isLoggedIn, async (req, res) => {
+  const newItem = new Item({
+    ...req.body,
+    owner: req.session.user,
+    image: req.file
+      ? { url: req.file.path, filename: req.file.filename }
+      : undefined
+  })
   await newItem.save()
   const itemWithOwner = await newItem.populate('owner')
   res.send({
