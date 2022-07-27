@@ -22,7 +22,6 @@ const ItemSchema = new Schema({
     enum: ['Unrated', '1', '2', '3', '4', '5'],
     default: 'Unrated'
   },
-  // rating: [],
   ratingComments: String,
   image: {
     url: String,
