@@ -1,11 +1,14 @@
 const express = require('express')
+const multer = require('multer')
+
 const { STATUS } = require('../../constants')
 const { isLoggedIn, isItemOwner } = require('../middleware')
-
 const Item = require('../models/Item')
 const User = require('../models/User')
+const { cloudinaryStorage } = require('../cloudinary')
 
 const router = express.Router()
+const upload = multer({ storage: cloudinaryStorage })
 
 /**
  * GET /items
@@ -47,8 +50,14 @@ router.get('/:id', async (req, res) => {
  *
  * @returns the newly created item object
  */
-router.post('/', isLoggedIn, async (req, res) => {
-  const newItem = new Item({ owner: req.session.user, ...req.body })
+router.post('/', upload.single('image'), isLoggedIn, async (req, res) => {
+  const newItem = new Item({
+    ...req.body,
+    owner: req.session.user,
+    image: req.file
+      ? { url: req.file.path, filename: req.file.filename }
+      : undefined
+  })
   await newItem.save()
   const itemWithOwner = await newItem.populate('owner')
   res.send({
@@ -86,6 +95,7 @@ router.delete('/:id', isLoggedIn, isItemOwner, async (req, res) => {
  */
 router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
   const { id } = req.params
+
   const updated = await Item.findByIdAndUpdate(id, req.body, { new: true }).populate('owner')
   res.send({
     result: updated
@@ -123,8 +133,12 @@ router.post('/:id/borrow', isLoggedIn, async (req, res) => {
  */
 router.post('/:id/rating', isLoggedIn, async (req, res) => {
   const { id } = req.params
-
-  const rated = await Item.findByIdAndUpdate(id, { rating: req.body.rating, ratingComments: req.body.ratingComments }, { new: true }).populate('owner')
+  const item = await Item.findById(id)
+  const currRating = parseInt(item.rating)
+  const newRatingInput = parseInt(req.body.rating)
+  const newRating = ((currRating + newRatingInput) / 2)
+  const roundedRating = (Math.round(newRating * 10) / 10).toString()
+  const rated = await Item.findByIdAndUpdate(id, { rating: roundedRating, ratingComments: req.body.ratingComments }, { new: true }).populate('owner')
 
   res.send({
     result: rated

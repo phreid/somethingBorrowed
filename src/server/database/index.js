@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-require('dotenv').config()
 
 let MONGO_URI
 if (process.env.LOCAL_DB) {
