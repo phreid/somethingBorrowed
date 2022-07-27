@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
@@ -12,7 +13,9 @@ import '../styles.css'
 export default function EditRatingModal (props) {
   const dispatch = useDispatch()
 
-  const ratingDropdown = Object.values(RATINGS).map((rating) => {
+  const ratingDropdown = Object.values(RATINGS)
+  .filter((rating) => rating !== RATINGS.UNRATED)
+  .map((rating) => {
     return <option key={rating}>{rating}</option>
   })
 
