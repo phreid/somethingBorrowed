@@ -1,4 +1,7 @@
 # Something Borrowed
+#### Looking for a way to cut down on your expenses? Look no further than our website! 
+#### Something Borrowed allows you to lend and borrow household items within your neighbourhood. Whether you need a lawn mower for a one-time use or a set of dishes for a dinner party, Something Borrowed has you covered. 
+#### With our website, you can save money and get the items you need without having to buy them yourself. So why not give us a try? You won't be disappointed!
 
 ## Project Description
 This team project for UBC CPSC 455 is a webapp that lets users lend or borrow household items. Initially the app will be for users in the UBC neighbourhood, but in the future it can be expanded to other areas. Users can create a profile and add items they are lending with information such as item condition etc. Users can also view, search, and filter a list of items from other users that are available to borrow, and borrow and rate items. 
