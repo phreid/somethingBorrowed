@@ -135,15 +135,21 @@ router.post('/:id/rating', isLoggedIn, async (req, res) => {
 
   const item = await Item.findById(id)
 
-  const currRating = parseInt(item.rating)
-  const newRatingInput = parseInt(req.body.rating)
-  const newRating = ((currRating + newRatingInput) / 2)
-  const roundedRating = (Math.round(newRating * 10) / 10).toString()
+  let rating
+
+  if (item.rating === 'Unrated') {
+    rating = req.body.rating
+  } else {
+    const currRating = parseInt(item.rating)
+    const newRatingInput = parseInt(req.body.rating)
+    const newRating = ((currRating + newRatingInput) / 2)
+    rating = (Math.round(newRating * 10) / 10).toString()
+  }
 
   const rated = await Item.findByIdAndUpdate(
     id,
     {
-      rating: roundedRating,
+      rating,
       ratingComments: req.body.ratingComments
     }, { new: true }).populate('owner')
 
