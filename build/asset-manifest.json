@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9ff1c25f.css",
+    "main.js": "/static/js/main.fd902210.js",
+    "static/media/tools.jpg": "/static/media/tools.9fa258422141741c8348.jpg",
+    "static/media/outdoors.jpg": "/static/media/outdoors.bdd547700273246e4f79.jpg",
+    "static/media/kitchen.jpg": "/static/media/kitchen.d932b6943d1d8313153a.jpg",
+    "static/media/diy.jpg": "/static/media/diy.c9f654bcf93fcb1bc3c5.jpg",
+    "static/media/profile.jpg": "/static/media/profile.2c98b2e7658441f47582.jpg",
+    "index.html": "/index.html",
+    "main.9ff1c25f.css.map": "/static/css/main.9ff1c25f.css.map",
+    "main.fd902210.js.map": "/static/js/main.fd902210.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9ff1c25f.css",
+    "static/js/main.fd902210.js"
+  ]
+}
