@@ -4,10 +4,19 @@ import axios from 'axios'
 axios.defaults.withCredentials = true
 const URL_BASE = '/items'
 
-export const getAllItemsAsync = createAsyncThunk(
-  'items/getAllItems',
-  async () => {
-    const response = await axios.get(URL_BASE)
+export const getItemsAsync = createAsyncThunk(
+  'items/getItems',
+  async (queryParams) => {
+    const params = new URLSearchParams(queryParams)
+
+    for (const [key, value] of [...params.entries()]) {
+      if (value === 'undefined') {
+        params.delete(key)
+      }
+    }
+    const URL_END = queryParams ? `?${params.toString()}` : ''
+
+    const response = await axios.get(URL_BASE + URL_END)
     return response.data.result
   }
 )
@@ -56,22 +65,6 @@ export const rateItemAsync = createAsyncThunk(
   'items/rateItem',
   async (item) => {
     const response = await axios.post(`${URL_BASE}/${item.id}/rating`, item)
-    return response.data.result
-  }
-)
-
-export const applySearchNameAsync = createAsyncThunk(
-  'items/search',
-  async (searchText) => {
-    const response = await axios.get(`${URL_BASE}/search/${searchText}`)
-    return response.data.result
-  }
-)
-
-export const applyFiltersAsync = createAsyncThunk(
-  'items/filterItem',
-  async (filters) => {
-    const response = await axios.get(`${URL_BASE}/filter/${filters}`)
     return response.data.result
   }
 )

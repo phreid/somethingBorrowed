@@ -3,7 +3,7 @@ import { Button, ButtonToolbar, InputGroup, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 
 import { ITEM_TYPES, RATINGS } from '../../constants'
-import { applySearchNameAsync, getAllItemsAsync, applyFiltersAsync } from '../../redux/items/thunks'
+import { getItemsAsync } from '../../redux/items/thunks'
 
 import '../../styles/search.css'
 
@@ -33,22 +33,15 @@ function FiltersCollection () {
   }
 
   function handleApplyFilter () {
-    let theRating = itemRating
-    let theType = itemType
-    if (itemRating === '') {
-      theRating = undefined
-    }
-    if (itemType === '') {
-      theType = undefined
-    }
-    const jsonObj = JSON.stringify({ rating: theRating, type: theType })
-    dispatch(applyFiltersAsync(jsonObj))
+    const rating = itemRating || undefined
+    const type = itemType || undefined
+    dispatch(getItemsAsync({ rating, type }))
   }
 
   const handleClearFilters = () => {
     setItemType('')
     setItemRating('')
-    dispatch(getAllItemsAsync())
+    dispatch(getItemsAsync())
   }
 
   const itemTypeDropdowns = Object.values(ITEM_TYPES).map((type) => {
@@ -60,15 +53,12 @@ function FiltersCollection () {
   })
 
   const handleClearSearch = () => {
-    dispatch(getAllItemsAsync())
+    setSearchInput('')
+    dispatch(getItemsAsync())
   }
 
   const handleApplySearch = () => {
-    if (searchInput === '') {
-      dispatch(getAllItemsAsync())
-    } else {
-      dispatch(applySearchNameAsync(searchInput))
-    }
+    dispatch(getItemsAsync({ search: searchInput }))
   }
 
   const handleClearInput = () => {

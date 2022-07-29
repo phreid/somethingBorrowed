@@ -1,7 +1,7 @@
 import { React, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllItemsAsync } from '../../redux/items/thunks'
+import { getItemsAsync } from '../../redux/items/thunks'
 import ItemCard from '../common/ItemCard'
 
 function ItemContainer () {
@@ -12,7 +12,7 @@ function ItemContainer () {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getAllItemsAsync())
+    dispatch(getItemsAsync())
   }, [dispatch])
 
   return (

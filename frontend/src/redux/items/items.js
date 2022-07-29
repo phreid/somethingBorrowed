@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { rateItemAsync, getAllItemsAsync, addItemAsync, deleteItemAsync, updateItemAsync, borrowItemAsync, applySearchNameAsync, applyFiltersAsync } from './thunks'
+import { rateItemAsync, getItemsAsync, addItemAsync, deleteItemAsync, updateItemAsync, borrowItemAsync } from './thunks'
 
 const INITIAL_STATE = {
   list: []
@@ -11,7 +11,7 @@ export const itemSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllItemsAsync.fulfilled, (state, action) => {
+      .addCase(getItemsAsync.fulfilled, (state, action) => {
         state.list = action.payload
       })
       .addCase(addItemAsync.fulfilled, (state, action) => {
@@ -32,12 +32,6 @@ export const itemSlice = createSlice({
         const index = state.list.findIndex(item => item._id === action.payload._id)
         state.list[index].rating = action.payload.rating
         state.list[index].ratingComments = action.payload.ratingComments
-      })
-      .addCase(applySearchNameAsync.fulfilled, (state, action) => {
-        state.list = action.payload
-      })
-      .addCase(applyFiltersAsync.fulfilled, (state, action) => {
-        state.list = action.payload
       })
   }
 })
