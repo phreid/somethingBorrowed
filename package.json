@@ -23,7 +23,8 @@
     "seed-database": "node database/seed.js",
     "seed-database-local": "LOCAL_DB=true node database/seed.js",
     "heroku-postbuild": "cd frontend && npm install --only=dev && npm install && npm run build",
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "eslint --fix --ext .js,.jsx ."
   },
   "eslintConfig": {
     "extends": [
