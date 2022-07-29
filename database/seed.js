@@ -1,5 +1,7 @@
+require('dotenv').config()
+
 const connectToDatabase = require('.')
-const { LOCATIONS, STATUS } = require('../../constants')
+const { LOCATIONS, STATUS } = require('../constants')
 const Item = require('../models/Item')
 const User = require('../models/User')
 
