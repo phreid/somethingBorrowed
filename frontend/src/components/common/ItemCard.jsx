@@ -6,9 +6,10 @@ import { useDispatch } from 'react-redux'
 
 import { STATUS } from '../../constants'
 import noimage from '../../images/defaultImages/noimage.png'
-import { borrowItemAsync, deleteItemAsync, updateItemAsync } from '../../redux/items/thunks'
+import { deleteItemAsync, updateItemAsync } from '../../redux/items/thunks'
 import EditItemModal from '../my-items/EditItemModal'
 import EditRatingModal from '../my-items/EditRatingModal'
+import RequestModal from './RequestModal'
 
 function ItemCard (props) {
   let available = false
@@ -21,16 +22,20 @@ function ItemCard (props) {
   } else {
     unavailable = true
   }
-  const [buttonText, setButtonText] = useState(available ? 'Borrow Item' : unavailable ? 'Not available' : 'Borrowed')
+  const [buttonText, setButtonText] = useState(available ? 'Request Item' : unavailable ? 'Not available' : 'Borrowed')
   const [editOpen, setEditOpen] = useState(props.modalOpen)
   const [unavailableItemText, setUnavailableItemText] = useState(unavailable ? 'Mark as available' : 'Mark as unavailable')
   const [editRatingModal, setEditRatingModal] = useState(props.ratingOpen)
+  const [requestModalOpen, setRequestModalOpen] = useState(props.requestOpen)
 
   const dispatch = useDispatch()
 
-  function handleBorrowItem () {
-    setButtonText('Borrowed')
-    dispatch(borrowItemAsync(props))
+  function handleRequestItem () {
+    if (requestModalOpen === true) {
+      return
+    }
+
+    setRequestModalOpen(true)
   }
 
   function handleDeleteItem () {
@@ -58,6 +63,10 @@ function ItemCard (props) {
 
   function handleCloseRatingModal () {
     setEditRatingModal(false)
+  }
+
+  function handleCloseRequestModal () {
+    setRequestModalOpen(false)
   }
 
   function handleMarkItemReturned () {
@@ -181,11 +190,12 @@ function ItemCard (props) {
           <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} />
           {props.borrow
             ? (
-              <Button disabled={!available} variant="outline-primary" size="sm" onClick={handleBorrowItem}>
+              <Button disabled={!available} variant="outline-primary" size="sm" onClick={handleRequestItem}>
                 {buttonText}
               </Button>
             )
             : null }
+          <RequestModal requestOpen={requestModalOpen} setShow={handleCloseRequestModal} id={props.id} name={props.name} />
           {props.changeToReturned
             ? (
               <Button className="card-buttons" disabled={!borrowed} variant="outline-primary" size="sm" onClick={handleMarkItemReturned}>
