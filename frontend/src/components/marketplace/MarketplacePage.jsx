@@ -38,6 +38,7 @@ function MarketplacePage () {
               type={item.type}
               rating={item.rating}
               location={item.owner.location}
+              requestOpen={item.requestOpen}
             />
           })}
         </div>
