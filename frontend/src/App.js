@@ -5,6 +5,7 @@ import LogoutPage from './components/auth/LogoutPage'
 import MarketplacePage from './components/marketplace/MarketplacePage'
 import MyItemsPage from './components/my-items/MyItemsPage'
 import ProfilePage from './components/profile/ProfilePage'
+import PendingRequests from './components/requests/PendingRequests'
 
 import './styles.css'
 
@@ -13,6 +14,7 @@ function App () {
     <>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/requests" element={<PendingRequests />} />
         <Route path="/my-items" element={<MyItemsPage />} />
         <Route path="/marketplace" element={<MarketplacePage />} />
         <Route path="/profile" element={<ProfilePage />} />
