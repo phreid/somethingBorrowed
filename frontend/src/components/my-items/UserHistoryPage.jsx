@@ -31,9 +31,9 @@ export default function UserHistoryPage () {
 
   return (
     <>
-      <div className="my-borrowed-items">
+      <div className="single-column-page">
         <h2>My Borrowed Items</h2>
-        <Container fluid className="borrowed-items-container">
+        <Container fluid className="single-column-page-container">
           {userHistory.length
             ? userHistory.map(record => {
               return <ItemCard key={record.item._id + record.date}

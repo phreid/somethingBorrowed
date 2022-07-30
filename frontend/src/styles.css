@@ -52,9 +52,17 @@ Form {
     overflow-y: scroll;
     background-color: #E4E4E4;
     border-radius: 10px;
+    min-height: 800px;
 }
 
 .item-card {
+    font-family: 'Montserrat Bold', sans-serif;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.request-card {
     font-family: 'Montserrat Bold', sans-serif;
     margin: 10px;
     padding: 10px;
@@ -80,21 +88,26 @@ Form {
     margin-left: 10px;
 }
 
+.cancel-request-btn{
+    float: left;
+}
+
 .my-items-container{
     background-color: lightblue;
 }
 
-.my-borrowed-items{
+.single-column-page{
     justify-content: center;
     width: auto;
 }
 
-.borrowed-items-container{
+.single-column-page-container{
     justify-content: center;
     max-width: 800px;
     background-color: lightgrey;
     border-radius: 10px;
     padding: 10px;
+    min-height: 800px;
 }
 
 .card-text{

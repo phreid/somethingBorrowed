@@ -13,6 +13,7 @@ export default function NavBar () {
           <Nav className="ms-auto">
             <Nav.Link as={NavLink} to="/marketplace">Marketplace</Nav.Link>
             <Nav.Link as={NavLink} to="/my-items">My Items</Nav.Link>
+            <Nav.Link as={NavLink} to="/requests">Requests</Nav.Link>
             <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>
             <Nav.Link as={NavLink} to="/logout">Logout</Nav.Link>
           </Nav>
