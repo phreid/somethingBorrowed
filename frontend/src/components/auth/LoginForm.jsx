@@ -3,6 +3,7 @@ import { Form, Button, Stack } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { loginAsync } from '../../redux/users/thunks'
+import '../../styles.css'
 
 export default function LoginForm ({ onLoginError }) {
   const dispatch = useDispatch()
@@ -31,10 +32,10 @@ export default function LoginForm ({ onLoginError }) {
       <Form onSubmit={handleSubmit}>
         <Stack gap={4} className="mx-auto">
           <Stack gap={2}>
-            <Form.Control type="text" placeholder="Username" required onChange={e => setUsername(e.target.value)}/>
-            <Form.Control type="password" placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
+            <Form.Control className='form-input' type="text" placeholder="Username" required onChange={e => setUsername(e.target.value)}/>
+            <Form.Control className='form-input' type="password" placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
           </Stack>
-          <Button variant="primary" type="submit">
+          <Button className='button-input' variant="primary" type="submit">
             Login
           </Button>
         </Stack>
