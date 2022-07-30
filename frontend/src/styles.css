@@ -1,3 +1,7 @@
+button:focus {
+    box-shadow: none !important;
+}
+
 .navbar{
     background-color: lightgrey;
 }
