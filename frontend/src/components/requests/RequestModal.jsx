@@ -20,7 +20,7 @@ export default function RequestModal (props) {
 
   const handleSubmit = (e) => {
     alert('request submitted')
-
+    onDateNeeded()
     handleClose()
   }
 
@@ -52,7 +52,7 @@ export default function RequestModal (props) {
             <Row>
               <Form.Group as={Col} sm >
                 <Form.Label>What day do you need the item?</Form.Label>
-                <Calendar onChange={onDateNeeded} value={dateNeeded} />
+                <Calendar value={dateNeeded} />
               </Form.Group>
               <Form.Group >
                 <Form.Label>Additional notes</Form.Label>
