@@ -89,7 +89,20 @@ Form {
 }
 
 .cancel-request-btn{
-    float: left;
+    max-width: 150px;
+}
+
+.header{
+    display: flex;
+}
+
+.request-buttons{
+    margin-left: auto;
+}
+
+.received-request-btn{
+    margin: 0px 10px 0px 10px;
+    max-width: 150px;
 }
 
 .my-items-container{
