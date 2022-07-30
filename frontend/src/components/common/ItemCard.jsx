@@ -9,7 +9,7 @@ import noimage from '../../images/defaultImages/noimage.png'
 import { deleteItemAsync, updateItemAsync } from '../../redux/items/thunks'
 import EditItemModal from '../my-items/EditItemModal'
 import EditRatingModal from '../my-items/EditRatingModal'
-import RequestModal from './RequestModal'
+import RequestModal from '../requests/RequestModal'
 
 function ItemCard (props) {
   let available = false
