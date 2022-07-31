@@ -1,14 +1,30 @@
-import { React } from 'react'
+import { React, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { getAllRequestsAsync } from '../../redux/requests/thunks'
 
 import RequestCard from './RequestCard'
 
 import '../../styles.css'
 
 export default function ReceivedRequests () {
-  const requests = [{ key: 1, name: 'Garden spade', daysRequested: '7', requestNotes: 'Just need it to plant my garden beds', requestor: 'Tom' },
-    { key: 2, name: 'Ladder', daysRequested: '3', requestNotes: 'Can pick up and return as I have a truck', requestor: 'Jane' },
-    { key: 3, name: 'Ladder', daysRequested: '4', requestNotes: 'Available to meet after 5pm weekdays', requestor: 'Alex' }]
+  const user = useSelector(state => state.user)
+  console.log('user: ' + user)
+
+  // TODO: filter with .filter(request => request.itemOwner === user.user)
+  const requests = useSelector(state => {
+    return state.items.list
+  })
+
+  console.log('received requests')
+  console.log(requests)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllRequestsAsync())
+  }, [dispatch])
 
   return (
     <>
@@ -16,12 +32,12 @@ export default function ReceivedRequests () {
         <h2>My Received Requests</h2>
         <Container fluid className="single-column-page-container">
           {requests.length
-            ? requests.map(item => {
-              return <RequestCard key={item.key}
-                name={item.name}
-                daysRequested={item.daysRequested}
-                requestNotes={item.requestNotes}
-                requestor={item.requestor}
+            ? requests.map(request => {
+              return <RequestCard key={request.key}
+                itemName={request.itemName}
+                daysNeededFor={request.daysNeededFor}
+                reqestorNotes={request.reqestorNotes}
+                requestorName={request.requestorName}
                 received
               />
             })
