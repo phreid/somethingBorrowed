@@ -70,11 +70,9 @@ const items = [
 
 const requests = [
   {
-    itemName: 'Hand blender',
-    itemId: '62e377b7352a0124fbe64242',
-    itemOwner: '62e377b7352a0124fbe64236',
-    requestorName: 'imogene',
-    requestorId: '62e377b7352a0124fbe64232',
+    item: 'Hand blender',
+    itemOwner: 'shirley',
+    requestor: 'imogene',
     requestorEmail: 'imo@example.com',
     reqestorNotes: 'I would like to borrow this item',
     daysNeededFor: 7,
@@ -82,11 +80,9 @@ const requests = [
     status: REQUEST_STATUS.PENDING
   },
   {
-    itemName: 'Cricut crafting tool',
-    itemId: '62e377b7352a0124fbe64239',
-    itemOwner: '62e377b7352a0124fbe64230',
-    requestorName: 'imogene',
-    requestorId: '62e377b7352a0124fbe64232',
+    item: 'Cricut crafting tool',
+    itemOwner: 'paul',
+    requestor: 'imogene',
     requestorEmail: 'imo@example.com',
     reqestorNotes: 'I would like to borrow this item',
     daysNeededFor: 5,
@@ -117,17 +113,15 @@ const seedDatabase = async () => {
 
   console.log('adding requests...')
   for (const request of requests) {
-    const requestor = await User.findOne({ username: request.requestorName })
+    const requestor = await User.findOne({ username: request.requestor })
     const owner = await User.findOne({ username: request.itemOwner })
-    const item = await Item.findOne({ name: request.itemName })
+    const item = await Item.findOne({ name: request.item })
     const document = new Request({
       ...request,
-      itemName: item.name,
-      itemId: item._id,
+      item: item.name,
       itemOwner: owner._id,
       itemOwnerLocation: owner.location,
-      requestorName: requestor.username,
-      requestorId: requestor._id,
+      requestor: requestor._id,
       requestorEmail: requestor.email,
       requestorLocation: requestor.location
     })

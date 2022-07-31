@@ -14,7 +14,7 @@ export default function ReceivedRequests () {
 
   // TODO: filter with .filter(request => request.itemOwner === user.user)
   const requests = useSelector(state => {
-    return state.items.list
+    return state.requests.list
   })
 
   console.log('received requests')

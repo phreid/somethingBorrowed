@@ -5,14 +5,12 @@ const { REQUEST_STATUS } = require('../constants')
 const Schema = mongoose.Schema
 
 const RequestSchema = new Schema({
-  itemName: { type: Schema.Types.ObjectId, ref: 'Item' },
-  itemId: { type: Schema.Types.ObjectId, ref: 'Item' },
+  item: { type: Schema.Types.ObjectId, ref: 'Item' },
   itemOwner: { type: Schema.Types.ObjectId, ref: 'User' },
-  itemOwnerLocation: { type: Schema.Types.ObjectId, ref: 'User' },
-  requestorName: { type: Schema.Types.ObjectId, ref: 'User' },
-  requestorId: { type: Schema.Types.ObjectId, ref: 'User' },
-  requestorEmail: { type: Schema.Types.ObjectId, ref: 'User' },
-  requestorLocation: { type: Schema.Types.ObjectId, ref: 'User' },
+  itemOwnerLocation: String,
+  requestor: { type: Schema.Types.ObjectId, ref: 'User' },
+  requestorEmail: String,
+  requestorLocation: String,
   reqestorNotes: String,
   daysNeededFor: Number,
   dateNeededOn: String,
@@ -21,5 +19,7 @@ const RequestSchema = new Schema({
     enum: Object.values(REQUEST_STATUS)
   }
 })
+
+// TODO - update middleware to delete requests associated with a deleted Item or User
 
 module.exports = mongoose.model('Request', RequestSchema)
