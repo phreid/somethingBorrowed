@@ -7,8 +7,8 @@ import { getItemsAsync } from '../../redux/items/thunks'
 
 import '../../styles/search.css'
 
-const DEFAULT_TYPE_OPTION = 'All item types'
-const DEFAULT_RATING_OPTION = 'All ratings'
+const DEFAULT_TYPE_OPTION = 'All item types!'
+const DEFAULT_RATING_OPTION = 'All ratings!'
 
 function FiltersCollection () {
   const dispatch = useDispatch()
