@@ -52,6 +52,7 @@ function FiltersCollection () {
   const handleClearFilters = () => {
     setItemType('')
     setItemRating('')
+    setItemStatus('')
     dispatch(getItemsAsync())
   }
 
