@@ -67,7 +67,8 @@ function ItemCard (props) {
       name: props.name,
       type: props.type,
       description: props.description,
-      location: props.location
+      location: props.location,
+      numberOfTimesBorrowed: props.times
     }
 
     setButtonText('Available')
@@ -84,7 +85,8 @@ function ItemCard (props) {
         name: props.name,
         type: props.type,
         description: props.description,
-        location: props.location
+        location: props.location,
+        numberOfTimesBorrowed: props.times
       }
       dispatch(updateItemAsync(item))
       setUnavailableItemText('Mark not available')
@@ -95,7 +97,8 @@ function ItemCard (props) {
         name: props.name,
         type: props.type,
         description: props.description,
-        location: props.location
+        location: props.location,
+        numberOfTimesBorrowed: props.times
       }
       dispatch(updateItemAsync(item))
       setUnavailableItemText('Mark as available')

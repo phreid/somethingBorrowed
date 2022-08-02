@@ -130,8 +130,10 @@ router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
  */
 router.post('/:id/borrow', isLoggedIn, async (req, res) => {
   const { id: itemId } = req.params
+  const item = await Item.findById(itemId)
+  const newNumberOfTimesBorrowed = item.numberOfTimesBorrowed + 1;
   const userId = req.session.user
-  const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED }, { new: true }).populate('owner')
+  const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED, numberOfTimesBorrowed: newNumberOfTimesBorrowed }, { new: true }).populate('owner')
   await User.findByIdAndUpdate(
     userId, { $push: { borrowedItems: { item: borrowed._id, date: new Date() } } }, { new: true }
   )

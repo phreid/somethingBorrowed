@@ -5,6 +5,7 @@ import { getItemsAsync } from '../../redux/items/thunks'
 import ItemCard from '../common/ItemCard'
 import NavBar from '../common/NavBar'
 import FiltersCollection from './FiltersCollection'
+import ControlledCarousel from './ControlledCarousel'
 
 function MarketplacePage () {
   const user = useSelector(state => state.user)
@@ -24,6 +25,10 @@ function MarketplacePage () {
       <div className="grid-container">
         <div className="grid-child page-container" key = "grid-child page-container">
           <FiltersCollection/>
+          <br></br>
+          <br></br>
+          <br></br>
+          <ControlledCarousel items={items}/>
         </div>
         <div className="grid-child page-container">
           {items.map(item => {
