@@ -42,17 +42,21 @@ export default function ProfilePage () {
         <Card className="profile-card" style={{ width: '' }}>
           <Card.Body className="text-center">
             <Card.Img className="profile-img" variant="center" width="100" src={profile} />
-            <ListGroup className="list-group-flush center">
+            <ListGroup className="list-group-flush right">
               <ListGroupItem><Card.Title>{currentUser.username}</Card.Title></ListGroupItem>
               <ListGroupItem><Card.Text>{currentUser.bio}</Card.Text></ListGroupItem>
               <ListGroupItem>{currentUser.email}</ListGroupItem>
-              <ListGroupItem>{currentUser.location}</ListGroupItem>
             </ListGroup>
             <br/>
             <Button variant="outline-secondary" onClick={handleEditUser}>Edit Profile</Button>{' '}
             <Button variant="outline-danger" onClick={handleShowDelete}>Delete Account</Button>
+            <br/>
+            <div>
+              <ListGroupItem>{currentUser.location}</ListGroupItem>
+              <Location user={currentUser}></Location>
+            </div>
           </Card.Body>
-          <Location currentLocation={currentUser.location}></Location>
+
           <EditUserModal
             editUserModalOpen={editUserModal}
             setShowEditUserModal={handleCloseEditUserModal}
