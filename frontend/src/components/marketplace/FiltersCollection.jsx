@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, ButtonToolbar, InputGroup, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 
-import { ITEM_TYPES, RATINGS, STATUS } from '../../constants'
+import { ITEM_TYPES, RATINGS, STATUS, LOCATIONS } from '../../constants'
 import { getItemsAsync } from '../../redux/items/thunks'
 
 import '../../styles/search.css'
@@ -10,6 +10,7 @@ import '../../styles/search.css'
 const DEFAULT_TYPE_OPTION = 'All item types'
 const DEFAULT_RATING_OPTION = 'All ratings'
 const DEFAULT_STATUS_OPTION = 'All status'
+const DEFAULT_LOCATION_OPTION = 'All locations'
 
 function FiltersCollection () {
   const dispatch = useDispatch()
@@ -17,6 +18,7 @@ function FiltersCollection () {
   const [itemType, setItemType] = useState('')
   const [itemRating, setItemRating] = useState('')
   const [itemSatus, setItemStatus] = useState('')
+  const [itemlocation, setItemLocation] = useState('')
 
   function handleStatus (event) {
     if (event.target.value === DEFAULT_STATUS_OPTION) {
@@ -42,18 +44,23 @@ function FiltersCollection () {
     }
   }
 
-  function handleApplyFilter () {
-    const rating = itemRating || undefined
-    const type = itemType || undefined
-    const status = itemSatus || undefined
-    dispatch(getItemsAsync({ rating, type, status }))
+  function handleLocation (event) {
+    if (event.target.value === DEFAULT_LOCATION_OPTION) {
+      setItemLocation('')
+    } else {
+      setItemLocation(event.target.value)
+    }
   }
 
   const handleClearFilters = () => {
     setItemType('')
     setItemRating('')
     setItemStatus('')
-    dispatch(getItemsAsync())
+    setItemLocation('')
+  }
+
+  const handleClearInput = () => {
+	setSearchInput('')
   }
 
   const itemTypeDropdowns = Object.values(ITEM_TYPES).map((type) => {
@@ -68,19 +75,26 @@ function FiltersCollection () {
     return <option key={status}>{status}</option>
   })
 
-  const handleClearSearch = () => {
-    setSearchInput('')
-    dispatch(getItemsAsync())
-  }
+  const locationDropdowns = Object.values(LOCATIONS).map((location) => {
+    return <option key={location}>{location}</option>
+  })
 
-  const handleApplySearch = () => {
-    dispatch(getItemsAsync())
+  const handleResetAll = () => {
+    setSearchInput('')
+    setItemType('')
+    setItemRating('')
+    setItemStatus('')
+    setItemLocation('')
     dispatch(getItemsAsync({ search: searchInput }))
-    // setSearchInput('')
   }
 
-  const handleClearInput = () => {
-    setSearchInput('')
+  const handleApplyAll = () => {
+    const search = searchInput || undefined
+    const rating = itemRating || undefined
+    const type = itemType || undefined
+    const status = itemSatus || undefined
+    const location = itemlocation || undefined
+    dispatch(getItemsAsync({ search, rating, type, status, location }))
   }
 
   return (
@@ -95,8 +109,6 @@ function FiltersCollection () {
           />
           <Button variant="outline-secondary" onClick={handleClearInput}>Clear</Button>
         </InputGroup>
-        <Button className="me-1" variant="outline-primary" onClick={handleApplySearch}>Search</Button>
-        <Button variant="outline-secondary" onClick={handleClearSearch}>Reset Search</Button>
       </ButtonToolbar>
       <br></br>
       <Form.Group >
@@ -117,10 +129,18 @@ function FiltersCollection () {
           {statusDropdowns}
         </Form.Select>
       </Form.Group>
+      <Form.Group >
+        <Form.Select value={itemlocation} onChange={handleLocation}>
+          <option>{DEFAULT_LOCATION_OPTION}</option>
+          {locationDropdowns}
+        </Form.Select>
+      </Form.Group>
       <br></br>
       <div className = "searchBar">
-        <Button variant="outline-primary" type="submit" className="me-1 button apply-filter" onClick={handleApplyFilter}>Apply Filters</Button>
         <Button variant="outline-secondary" className="me-1 button clear-filter" onClick={handleClearFilters}>Clear Filters</Button>
+        <br></br>
+        <Button variant="outline-primary" className="me-1 button apply-all" onClick={handleApplyAll}>Apply All</Button>
+        <Button variant="outline-primary" className="me-1 button apply-all" onClick={handleResetAll}>Reset All</Button>
       </div>
     </>
   )
