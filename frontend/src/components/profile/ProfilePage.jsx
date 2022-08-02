@@ -7,6 +7,7 @@ import { getCurrentUserAsync } from '../../redux/users/thunks'
 import NavBar from '../common/NavBar'
 import DeleteUserAccountForm from './DeleteUserAccountForm'
 import EditUserModal from './EditUserModal'
+import Location from './Location'
 
 export default function ProfilePage () {
   const userId = useSelector(state => state.user.user)
@@ -51,7 +52,7 @@ export default function ProfilePage () {
             <Button variant="outline-secondary" onClick={handleEditUser}>Edit Profile</Button>{' '}
             <Button variant="outline-danger" onClick={handleShowDelete}>Delete Account</Button>
           </Card.Body>
-
+          <Location currentLocation={currentUser.location}></Location>
           <EditUserModal
             editUserModalOpen={editUserModal}
             setShowEditUserModal={handleCloseEditUserModal}
