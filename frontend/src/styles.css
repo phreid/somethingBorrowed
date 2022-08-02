@@ -92,8 +92,16 @@ Form {
     margin-left: 10px;
 }
 
-.cancel-request-btn{
-    max-width: 150px;
+.pending-request-btn{
+    max-width: 200px;
+    background-color: white;
+    color: black;
+    margin: 10px 10px 0px 10px;
+}
+
+.pending-request-btn:hover {
+    background-color: lightgrey;
+    color: black;
 }
 
 .header{
@@ -106,7 +114,8 @@ Form {
 
 .received-request-btn{
     margin: 0px 10px 0px 10px;
-    max-width: 150px;
+    max-width: 200px;
+    background-color: white;
 }
 
 .my-items-container{
@@ -177,4 +186,22 @@ Form {
      padding-left: 20px;
      justify-content: center;
      padding-top: 5px;
+}
+
+.pending-card{
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffe869;
+}
+
+.accepted-card{
+    margin: 10px;
+    padding: 10px;
+    background-color: #81cc95;
+}
+
+.request-card-status{
+    color: #424242;
+    margin-left: auto;
+    float: right;
 }

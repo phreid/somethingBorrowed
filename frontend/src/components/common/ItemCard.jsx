@@ -195,7 +195,7 @@ function ItemCard (props) {
               </Button>
             )
             : null }
-          <RequestModal requestOpen={requestModalOpen} setShow={handleCloseRequestModal} id={props.id} name={props.name} />
+          <RequestModal requestOpen={requestModalOpen} setShow={handleCloseRequestModal} id={props.id} name={props.name} owner={props.owner} requestor={props.loggedInUser} item={props.id} />
           {props.changeToReturned
             ? (
               <Button className="card-buttons" disabled={!borrowed} variant="outline-primary" size="sm" onClick={handleMarkItemReturned}>
