@@ -56,7 +56,7 @@ export const updateItemAsync = createAsyncThunk(
 export const borrowItemAsync = createAsyncThunk(
   'items/borrowItem',
   async (item) => {
-    const response = await axios.post(`${URL_BASE}/${item.id}/borrow`)
+    const response = await axios.post(`${URL_BASE}/${item._id}/borrow`)
     return response.data.result
   }
 )

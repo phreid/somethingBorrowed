@@ -13,7 +13,8 @@ const RequestSchema = new Schema({
   dateNeededOn: String,
   status: {
     type: String,
-    enum: Object.values(REQUEST_STATUS)
+    enum: Object.values(REQUEST_STATUS),
+    default: REQUEST_STATUS.PENDING
   }
 })
 
