@@ -8,6 +8,7 @@ require('dotenv').config()
 const itemRouter = require('./routes/items')
 const userRouter = require('./routes/users')
 const authRouter = require('./routes/auth')
+const requestRouter = require('./routes/requests')
 const connectToDatabase = require('./database')
 
 const app = express()
@@ -24,6 +25,7 @@ app.use(session({
 app.use('/items', itemRouter)
 app.use('/users', userRouter)
 app.use('/auth', authRouter)
+app.use('/requests', requestRouter)
 
 app.use(express.static(path.join(__dirname, 'frontend', 'build')))
 
