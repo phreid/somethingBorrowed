@@ -33,6 +33,7 @@ export default function PendingRequests () {
               {requests.length
                 ? requests.map(request => {
                   return <RequestCard key={request._id}
+                    id={request._id}
                     item={request.item.name}
                     daysNeededFor={request.daysNeededFor}
                     dateNeededOn={request.dateNeededOn}

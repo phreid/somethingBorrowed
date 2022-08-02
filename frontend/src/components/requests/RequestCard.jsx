@@ -1,9 +1,14 @@
 import React from 'react'
 import { Button, Card } from 'react-bootstrap'
 
+import { useDispatch } from 'react-redux'
+import { deleteRequestAsync } from '../../redux/requests/thunks'
+
 export default function RequestCard (props) {
+  const dispatch = useDispatch()
+
   function handleCancelRequest () {
-    alert('Request is cancelled')
+    dispatch(deleteRequestAsync(props.id))
   }
 
   function handleAcceptRequest () {
