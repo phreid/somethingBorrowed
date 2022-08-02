@@ -1,8 +1,8 @@
 import { React, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { getAllItemsAsync } from '../../redux/items/thunks'
 import { getAllRequestsAsync } from '../../redux/requests/thunks'
+import { getItemsAsync } from '../../redux/items/thunks'
 import ItemCard from '../common/ItemCard'
 import NavBar from '../common/NavBar'
 import FiltersCollection from './FiltersCollection'
@@ -22,8 +22,8 @@ function MarketplacePage () {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getAllItemsAsync())
     dispatch(getAllRequestsAsync())
+    dispatch(getItemsAsync())
   }, [dispatch])
 
   return (

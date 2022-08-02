@@ -115,8 +115,8 @@ function ItemCard (props) {
     url.replace('/upload', `/upload/w_${width},h_${height}`)
 
   return (
-    <Card className="item-card" style={{ width: '' }}>
-      <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
+    <Card className="item-card">
+      <Row>
         <div className="col-md-4">
           <Card.Img
             className="item-img"
