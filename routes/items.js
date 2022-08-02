@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
   const query = {
     ...(search ? { name: { $regex: new RegExp(search, 'i') } } : {}),
     ...(type ? { type } : {}),
-    ...(rating ? { rating } : {}),
+    ...(rating ? { rating : { $regex: "^" + rating } } : {}),
     ...(status ? { status } : {}),
     ...(location ? { owner: { $in: usersInLocation } } : {})
   }
