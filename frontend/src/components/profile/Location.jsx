@@ -27,7 +27,7 @@ function LocationMap (props) {
 
   return (
     <>
-      <Button variant="outline-secondary" onClick={handleUpdate}>Update Location</Button>
+      <Button variant="outline-primary" onClick={handleUpdate}>Update Location</Button>
       <br/>
       <Map
         google={props.google}
@@ -85,5 +85,5 @@ function LocationMap (props) {
 }
 
 export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY
+  apiKey: process.env.REACT_APP_MAPS_API_KEY
 })(LocationMap)
