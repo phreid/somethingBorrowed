@@ -43,7 +43,7 @@ const items = [
     description: 'Good condition crafting tool, updated with latest software.',
     owner: 'paul',
     status: STATUS.AVAILABLE,
-	numberOfTimesBorrowed: 0
+    numberOfTimesBorrowed: 0
   },
   {
     name: 'Bicyle pump',
@@ -51,7 +51,7 @@ const items = [
     description: 'Bicycle pump with three valve attachments.',
     owner: 'imogene',
     status: STATUS.BORROWED,
-	numberOfTimesBorrowed: 0
+    numberOfTimesBorrowed: 0
   },
   {
     name: 'Gardening tools',
@@ -59,7 +59,7 @@ const items = [
     description: 'Spade and clippers.',
     owner: 'anusha',
     status: STATUS.BORROWED,
-	numberOfTimesBorrowed: 0
+    numberOfTimesBorrowed: 0
   },
   {
     name: 'Hand blender',
@@ -67,7 +67,7 @@ const items = [
     description: 'Kitchen-aid hand blender with whisk attachment.',
     owner: 'shirley',
     status: STATUS.AVAILABLE,
-	numberOfTimesBorrowed: 0
+    numberOfTimesBorrowed: 0
   }
 ]
 

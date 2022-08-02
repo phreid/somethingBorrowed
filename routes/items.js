@@ -29,9 +29,9 @@ router.get('/', async (req, res) => {
 
   const usersInLocation = location ? (await User.find({ location })).map((user) => user._id) : undefined
   const query = {
-    ...(search ? {$or:[{name:{ $regex: new RegExp( "^"+search, 'i') }},{name:{ $regex: new RegExp( " "+search, 'i') }}]} : {}),
+    ...(search ? { $or: [{ name: { $regex: new RegExp('^' + search, 'i') } }, { name: { $regex: new RegExp(' ' + search, 'i') } }] } : {}),
     ...(type ? { type } : {}),
-    ...(rating ? { rating : { $regex: "^" + rating } } : {}),
+    ...(rating ? { rating: { $regex: '^' + rating } } : {}),
     ...(status ? { status } : {}),
     ...(location ? { owner: { $in: usersInLocation } } : {})
   }
@@ -131,7 +131,7 @@ router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
 router.post('/:id/borrow', isLoggedIn, async (req, res) => {
   const { id: itemId } = req.params
   const item = await Item.findById(itemId)
-  const newNumberOfTimesBorrowed = item.numberOfTimesBorrowed + 1;
+  const newNumberOfTimesBorrowed = item.numberOfTimesBorrowed + 1
   const userId = req.session.user
   const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED, numberOfTimesBorrowed: newNumberOfTimesBorrowed }, { new: true }).populate('owner')
   await User.findByIdAndUpdate(
