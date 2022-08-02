@@ -143,7 +143,7 @@ router.post('/:id/rating', isLoggedIn, async (req, res) => {
     const currRating = parseInt(item.rating)
     const newRatingInput = parseInt(req.body.rating)
     const newRating = ((currRating + newRatingInput) / 2)
-    rating = (Math.round(newRating * 10) / 10).toString()
+    rating = (Math.round(newRating)).toString()
   }
 
   const rated = await Item.findByIdAndUpdate(
