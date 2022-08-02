@@ -85,7 +85,7 @@ function FiltersCollection () {
     setItemRating('')
     setItemStatus('')
     setItemLocation('')
-    dispatch(getItemsAsync({ search: searchInput }))
+    dispatch(getItemsAsync())
   }
 
   const handleApplyAll = () => {
