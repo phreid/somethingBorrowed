@@ -10,7 +10,6 @@ function ItemContainer () {
     return state.items.list.filter(item => item.owner._id === user.user)
   })
   const dispatch = useDispatch()
-  // console.log(items[0].numberOfTimesBorrowed)
   useEffect(() => {
     dispatch(getItemsAsync())
   }, [dispatch])
