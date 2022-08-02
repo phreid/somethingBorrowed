@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 }
 
 export const requestsSlice = createSlice({
-  name: 'items',
+  name: 'requests',
   initialState: INITIAL_STATE,
   reducers: {},
   extraReducers: (builder) => {
