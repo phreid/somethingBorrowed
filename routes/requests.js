@@ -2,6 +2,7 @@ const express = require('express')
 
 const Request = require('../models/Request')
 const { isLoggedIn } = require('../middleware')
+const { REQUEST_STATUS } = require('../constants')
 
 const router = express.Router()
 
@@ -51,9 +52,30 @@ router.post('/', isLoggedIn, async (req, res) => {
  */
 router.delete('/:id', isLoggedIn, async (req, res) => {
   const { id } = req.params
+
   const deleted = await Request.findByIdAndDelete(id).populate(['item', 'itemOwner', 'requestor'])
+
   res.send({
     result: deleted
+  })
+})
+
+/**
+ * POST /requests/:id/accept
+ *
+ * Sets an items status to borrowed and adds it to the borrowed item history
+ * of the currently logged in user. Requires the sender to be logged in.
+ *
+ * @param id: the item id to borrow
+ * @return the updated item
+ */
+router.post('/:id/accept', isLoggedIn, async (req, res) => {
+  const { id: itemId } = req.params
+
+  const accepted = await Request.findByIdAndUpdate(itemId, { status: REQUEST_STATUS.ACCEPTED }, { new: true }).populate(['item', 'itemOwner', 'requestor'])
+
+  res.send({
+    result: accepted
   })
 })
 

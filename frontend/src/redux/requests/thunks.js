@@ -22,8 +22,16 @@ export const addRequestAsync = createAsyncThunk(
 
 export const deleteRequestAsync = createAsyncThunk(
   'items/deleteRequest',
-  async (id) => {
-    const response = await axios.delete(`${URL_BASE}/${id}`)
+  async (request) => {
+    const response = await axios.delete(`${URL_BASE}/${request.id}`)
+    return response.data.result
+  }
+)
+
+export const acceptRequestAsync = createAsyncThunk(
+  'items/acceptRequest',
+  async (request) => {
+    const response = await axios.post(`${URL_BASE}/${request.id}/accept`)
     return response.data.result
   }
 )

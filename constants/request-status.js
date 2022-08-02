@@ -1,7 +1,7 @@
 const REQUEST_STATUS = {
   PENDING: 'Pending',
   ACCEPTED: 'Accepted',
-  REJECTED: 'Rejected',
+  DECLINED: 'Declined',
   AVAILABLE: 'Available',
   BORROWED: 'Borrowed'
 }
