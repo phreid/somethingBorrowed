@@ -74,7 +74,9 @@ function FiltersCollection () {
   }
 
   const handleApplySearch = () => {
+    dispatch(getItemsAsync())
     dispatch(getItemsAsync({ search: searchInput }))
+    // setSearchInput('')
   }
 
   const handleClearInput = () => {
