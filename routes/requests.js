@@ -12,7 +12,7 @@ const router = express.Router()
  * @returns a list of requests
  */
 router.get('/', async (req, res) => {
-  const requests = await Request.find()
+  const requests = await Request.find().populate(['item', 'itemOwner', 'requestor'])
   res.send({
     result: requests
   })

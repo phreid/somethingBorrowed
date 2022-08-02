@@ -17,7 +17,7 @@ export default function RequestCard (props) {
   return (
     <Card className="request-card" style={{ width: '' }}>
       <div className="header">
-        <Card.Title className="request-title"><strong>{props.name}</strong></Card.Title>
+        <Card.Title className="request-title"><strong>{props.item}</strong></Card.Title>
         <div className="request-buttons">
           {props.received
             ? (
@@ -38,15 +38,18 @@ export default function RequestCard (props) {
       {props.received
         ? (
           <Card.Text className="card-text">
-            <strong>Requestor:</strong> {props.requestor}
+            <strong>Requestor:</strong> {props.requestorName}
           </Card.Text>
         )
         : null }
       <Card.Text className="card-text">
-        <strong>Days requested:</strong> {props.daysRequested}
+        <strong>Days requested:</strong> {props.daysNeededFor}
       </Card.Text >
       <Card.Text className="card-text">
-        <strong>Requestor Notes:</strong> {props.requestNotes}
+        <strong>Date requested:</strong> {props.dateNeededOn}
+      </Card.Text >
+      <Card.Text className="card-text">
+        <strong>Requestor Notes:</strong> {props.reqestorNotes}
       </Card.Text>
       {props.pending
         ? (

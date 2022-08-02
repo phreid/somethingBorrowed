@@ -7,10 +7,7 @@ const Schema = mongoose.Schema
 const RequestSchema = new Schema({
   item: { type: Schema.Types.ObjectId, ref: 'Item' },
   itemOwner: { type: Schema.Types.ObjectId, ref: 'User' },
-  itemOwnerLocation: String,
   requestor: { type: Schema.Types.ObjectId, ref: 'User' },
-  requestorEmail: String,
-  requestorLocation: String,
   reqestorNotes: String,
   daysNeededFor: Number,
   dateNeededOn: String,

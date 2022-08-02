@@ -73,7 +73,6 @@ const requests = [
     item: 'Hand blender',
     itemOwner: 'shirley',
     requestor: 'imogene',
-    requestorEmail: 'imo@example.com',
     reqestorNotes: 'I would like to borrow this item',
     daysNeededFor: 7,
     dateNeededOn: '08-08-2022',
@@ -83,7 +82,6 @@ const requests = [
     item: 'Cricut crafting tool',
     itemOwner: 'paul',
     requestor: 'imogene',
-    requestorEmail: 'imo@example.com',
     reqestorNotes: 'I would like to borrow this item',
     daysNeededFor: 5,
     dateNeededOn: '08-09-2022',
@@ -97,6 +95,7 @@ const seedDatabase = async () => {
 
   await Item.deleteMany({})
   await User.deleteMany({})
+  await Request.deleteMany({})
 
   console.log('adding users...')
   for (const user of users) {
@@ -118,12 +117,9 @@ const seedDatabase = async () => {
     const item = await Item.findOne({ name: request.item })
     const document = new Request({
       ...request,
-      item: item.name,
+      item: item._id,
       itemOwner: owner._id,
-      itemOwnerLocation: owner.location,
-      requestor: requestor._id,
-      requestorEmail: requestor.email,
-      requestorLocation: requestor.location
+      requestor: requestor._id
     })
     await document.save()
   }

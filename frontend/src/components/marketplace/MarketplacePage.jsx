@@ -8,6 +8,7 @@ import FiltersCollection from './FiltersCollection'
 
 function MarketplacePage () {
   const user = useSelector(state => state.user)
+  console.log(user)
   const items = useSelector(state => {
     return state.items.list.filter(item => item.owner._id !== user.user)
   })

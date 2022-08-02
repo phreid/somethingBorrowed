@@ -10,15 +10,9 @@ import '../../styles.css'
 
 export default function ReceivedRequests () {
   const user = useSelector(state => state.user)
-  console.log('user: ' + user)
-
-  // TODO: filter with .filter(request => request.itemOwner === user.user)
   const requests = useSelector(state => {
-    return state.requests.list
+    return state.requests.list.filter(request => request.itemOwner._id === user.user)
   })
-
-  console.log('received requests')
-  console.log(requests)
 
   const dispatch = useDispatch()
 
@@ -33,11 +27,12 @@ export default function ReceivedRequests () {
         <Container fluid className="single-column-page-container">
           {requests.length
             ? requests.map(request => {
-              return <RequestCard key={request.key}
-                itemName={request.itemName}
+              return <RequestCard key={request._id}
+                item={request.item.name}
                 daysNeededFor={request.daysNeededFor}
+                dateNeededOn={request.dateNeededOn}
                 reqestorNotes={request.reqestorNotes}
-                requestorName={request.requestorName}
+                requestorName={request.requestor.username}
                 received
               />
             })
