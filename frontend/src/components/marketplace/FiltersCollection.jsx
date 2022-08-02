@@ -60,7 +60,7 @@ function FiltersCollection () {
   }
 
   const handleClearInput = () => {
-	setSearchInput('')
+    setSearchInput('')
   }
 
   const itemTypeDropdowns = Object.values(ITEM_TYPES).map((type) => {
