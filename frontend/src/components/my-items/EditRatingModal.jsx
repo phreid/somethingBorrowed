@@ -5,7 +5,8 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import { useDispatch } from 'react-redux'
 
-import { RATINGS } from '../../constants'
+import { Rating } from '@mui/material'
+
 import { rateItemAsync } from '../../redux/items/thunks'
 
 import '../../styles.css'
@@ -13,17 +14,16 @@ import '../../styles.css'
 export default function EditRatingModal (props) {
   const dispatch = useDispatch()
 
-  const ratingDropdown = Object.values(RATINGS)
-    .filter((rating) => rating !== RATINGS.UNRATED)
-    .map((rating) => {
-      return <option key={rating}>{rating}</option>
-    })
-
-  const [rating, setRating] = useState(props.rating)
+  const [rating, setRating] = useState(0)
   const [ratingComments, setRatingComments] = useState(props.ratingComments)
 
   const handleClose = () => {
     props.setShowRatingModal(false)
+  }
+
+  const handleReset = () => {
+    setRating(0)
+    setRatingComments('')
   }
 
   const handleSubmit = (e) => {
@@ -40,7 +40,7 @@ export default function EditRatingModal (props) {
       type: props.type,
       location: props.location,
       description: props.description,
-      rating,
+      rating: rating.toString(),
       ratingComments
     }
 
@@ -64,10 +64,13 @@ export default function EditRatingModal (props) {
           <Form>
             <Form.Group as={Col} sm >
               <Form.Label>Rating</Form.Label>
-              <Form.Select value={rating} onChange={(e) => setRating(e.target.value)}>
-                <option>Select item rating...</option>
-                {ratingDropdown}
-              </Form.Select>
+              <Rating
+                name="simple-controlled"
+                value={rating}
+                onChange={(event, newValue) => {
+                  setRating(newValue)
+                }}
+              />
             </Form.Group>
             <Form.Group >
               <Form.Label>Comments</Form.Label>
@@ -76,7 +79,7 @@ export default function EditRatingModal (props) {
             </Form.Group>
             <Button variant="primary" type="submit" className="me-1"
               onClick={handleSubmit}>Submit Changes</Button>
-            <Button variant="danger" type="reset">Reset</Button>
+            <Button variant="danger" type="reset" onClick={handleReset}>Reset</Button>
           </Form>
         </Modal.Body>
       </Modal>
