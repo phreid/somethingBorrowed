@@ -20,7 +20,7 @@ export default function NavBar () {
   return (
     <Navbar bg="light" expand="lg">
       <Container className="navbar" fluid>
-        <Navbar.Brand as={NavLink} to="/marketplace">
+        <Navbar.Brand className='navbar-name' as={NavLink} to="/marketplace">
           <img
             alt=""
             src={navbarLogo}

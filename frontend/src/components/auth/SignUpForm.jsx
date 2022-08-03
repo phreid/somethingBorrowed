@@ -35,12 +35,12 @@ export default function SignUpForm () {
         <Form onSubmit={handleSubmit}>
           <Stack gap={4} className="mx-auto">
             <Stack gap={2}>
-              <Form.Control type="email" placeholder="Email" required onChange={e => setEmail(e.target.value)}/>
-              <Form.Control type="text" placeholder="User name" required onChange={e => setUsername(e.target.value)}/>
-              <Form.Control type="password" placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
+              <Form.Control className='signup-input' type="email" placeholder="Email" required onChange={e => setEmail(e.target.value)}/>
+              <Form.Control className='signup-input' type="text" placeholder="User name" required onChange={e => setUsername(e.target.value)}/>
+              <Form.Control className='signup-input' type="password" placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
             </Stack>
             <Stack gap={2}>
-              <Button variant="primary" type="submit">
+              <Button className='signup-modal-button' variant="primary" type="submit">
                 Sign up
               </Button>
             </Stack>

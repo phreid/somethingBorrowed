@@ -35,7 +35,7 @@ export default function LoginForm ({ onLoginError }) {
             <Form.Control className='form-input' type="text" placeholder="Username" required onChange={e => setUsername(e.target.value)}/>
             <Form.Control className='form-input' type="password" placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
           </Stack>
-          <Button className='button-input' variant="primary" type="submit">
+          <Button className='login-page-button' type="submit">
             Login
           </Button>
         </Stack>
