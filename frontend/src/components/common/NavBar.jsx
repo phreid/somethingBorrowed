@@ -4,6 +4,7 @@ import { PersonCircle } from 'react-bootstrap-icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getCurrentUserAsync } from '../../redux/users/thunks'
+import navbarLogo from '../../images/navbarLogo.svg'
 
 import '../../styles.css'
 
@@ -19,7 +20,15 @@ export default function NavBar () {
   return (
     <Navbar bg="light" expand="lg">
       <Container className="navbar" fluid>
-        <Navbar.Brand as={NavLink} to="/marketplace">Something Borrowed</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/marketplace">
+          <img
+            alt=""
+            src={navbarLogo}
+            width="50"
+            height="50"
+            className="d-inline-block align-top"
+          />{' '}
+          Something Borrowed</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
