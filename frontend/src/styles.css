@@ -4,13 +4,16 @@ button:focus {
 /********************* Navbar *****************/
 .navbar{
     background-color: #DEF4FF;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .navbar-light .navbar-brand {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', sans-serif;
     font-size: 2rem;
-    color: #094C60 ;
+    color: #094C60;
 }
+
 
 /********************* Login Page *****************/
 .form-input {
@@ -49,7 +52,7 @@ button:focus {
 
 /********************* Signup Modal *****************/
 .signup-form {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', sans-serif;
     font-size: 1.5rem;
     color: #094C60;
 }

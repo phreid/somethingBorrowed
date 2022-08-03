@@ -16,7 +16,7 @@ function FiltersCollection () {
   const [searchInput, setSearchInput] = useState('')
   const [itemType, setItemType] = useState('')
   const [itemRating, setItemRating] = useState('')
-  const [itemSatus, setItemStatus] = useState('')
+  const [itemStatus, setItemStatus] = useState('')
 
   function handleStatus (event) {
     if (event.target.value === DEFAULT_STATUS_OPTION) {
@@ -45,7 +45,7 @@ function FiltersCollection () {
   function handleApplyFilter () {
     const rating = itemRating || undefined
     const type = itemType || undefined
-    const status = itemSatus || undefined
+    const status = itemStatus || undefined
     dispatch(getItemsAsync({ rating, type, status }))
   }
 
@@ -110,7 +110,7 @@ function FiltersCollection () {
         </Form.Select>
       </Form.Group>
       <Form.Group >
-        <Form.Select value={itemSatus} onChange={handleStatus}>
+        <Form.Select value={itemStatus} onChange={handleStatus}>
           <option>{DEFAULT_STATUS_OPTION}</option>
           {statusDropdowns}
         </Form.Select>
