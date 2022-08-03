@@ -85,5 +85,5 @@ function LocationMap (props) {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'api here'
+  apiKey: process.env.REACT_APP_MAPS_API_KEY
 })(LocationMap)
