@@ -18,6 +18,4 @@ const RequestSchema = new Schema({
   }
 })
 
-// TODO - update middleware to delete requests associated with a deleted Item or User
-
 module.exports = mongoose.model('Request', RequestSchema)
