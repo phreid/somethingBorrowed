@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getAllRequestsAsync, addRequestAsync, deleteRequestAsync, acceptRequestAsync } from './thunks'
+import { getAllRequestsAsync, addRequestAsync, deleteRequestAsync, acceptRequestAsync, deleteNotAcceptedRequestAsync } from './thunks'
 
 const INITIAL_STATE = {
   list: []
@@ -18,6 +18,11 @@ export const requestsSlice = createSlice({
         state.list.push(action.payload)
       })
       .addCase(deleteRequestAsync.fulfilled, (state, action) => {
+        state.list = state.list.filter(request => request._id !== action.payload._id)
+      })
+      .addCase(deleteNotAcceptedRequestAsync.fulfilled, (state, action) => {
+        console.log('hits reducer')
+        console.log(action.payload)
         state.list = state.list.filter(request => request._id !== action.payload._id)
       })
       .addCase(acceptRequestAsync.fulfilled, (state, action) => {

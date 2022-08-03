@@ -28,6 +28,14 @@ export const deleteRequestAsync = createAsyncThunk(
   }
 )
 
+export const deleteNotAcceptedRequestAsync = createAsyncThunk(
+  'items/deleteNotAcceptedRequest',
+  async (item) => {
+    const response = await axios.delete(`${URL_BASE}/${item._id}/deleteRemaining`)
+    return response.data.result
+  }
+)
+
 export const acceptRequestAsync = createAsyncThunk(
   'items/acceptRequest',
   async (request) => {
