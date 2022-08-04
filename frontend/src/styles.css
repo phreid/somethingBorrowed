@@ -75,15 +75,6 @@ button:focus {
     color: #094C60;
 }
 
-
-.button {
-    background-color: white;
-}
-
-a {
-text-decoration: none;
-}
-
 /********************* Add Items Form *****************/
 .add-items-page-body{
     display: flex;
@@ -165,17 +156,7 @@ Form {
     color: #094C60;
 }
 
-h2 {
-    font-family: 'Montserrat Bold', sans-serif;
-    text-align: center;
-    color: green;
-}
-
-.title{
-    text-align: center;
-}
-
-
+/********************* Card container *****************/
 .page-container {
     margin: 10px;
     padding: 10px;
@@ -187,13 +168,6 @@ h2 {
 }
 
 .item-card {
-    font-family: 'Montserrat Bold', sans-serif;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.request-card {
     font-family: 'Montserrat Bold', sans-serif;
     margin: 10px;
     padding: 10px;
@@ -217,6 +191,58 @@ h2 {
     display: inline-block;
     float: right;
     margin-left: 10px;
+}
+
+.my-items-container{
+    background-color: lightblue;
+}
+
+/********************* Single Columns *****************/
+.single-column-page{
+    justify-content: center;
+    width: auto;
+}
+
+.single-column-page-container{
+    justify-content: center;
+    max-width: 800px;
+    background-color: lightgrey;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 800px;
+}
+
+/********************* Edit Item Modal *****************/
+.edit-item-modal-heading {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.5rem;
+    color: #094C60;
+}
+
+.edit-item-modal-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.edit-item-form-button {
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.edit-item-form-button:hover {
+    background-color:#ffffff;
+    color: #094C60;
+}
+
+/********************* Requests Page *****************/
+.request-card {
+    font-family: 'Montserrat Bold', sans-serif;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .pending-request-btn{
@@ -243,24 +269,6 @@ h2 {
     margin: 0px 10px 0px 10px;
     max-width: 200px;
     background-color: white;
-}
-
-.my-items-container{
-    background-color: lightblue;
-}
-
-.single-column-page{
-    justify-content: center;
-    width: auto;
-}
-
-.single-column-page-container{
-    justify-content: center;
-    max-width: 800px;
-    background-color: lightgrey;
-    border-radius: 10px;
-    padding: 10px;
-    min-height: 800px;
 }
 
 .card-text{

@@ -32,6 +32,7 @@ export default function UserHistoryPage () {
   return (
     <>
       <div className="single-column-page">
+        <br/>
         <Container fluid className="single-column-page-container">
           {userHistory.length
             ? userHistory.map(record => {
