@@ -29,8 +29,8 @@ app.use('/requests', requestRouter)
 
 app.use(express.static(path.join(__dirname, 'frontend', 'build')))
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'public', 'index.html'))
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
 })
 
 const startApp = async () => {
