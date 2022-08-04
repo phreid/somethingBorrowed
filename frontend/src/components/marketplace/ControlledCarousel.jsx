@@ -22,27 +22,28 @@ function ControlledCarousel () {
     dispatch(getItemsAsync())
   }, [dispatch])
 
-  const itemList = items.map((item) => {
+  const displayedInCarouselItems = items.map((item) => {
     if (item.numberOfTimesBorrowed == null || item.numberOfTimesBorrowed < RECOMMANDATION_STANDARD) {
       return null
     }
     return <Carousel.Item><ItemCard key={item._id}
       id={item._id}
       borrow
-      description={item.description}
+      description={item.numberOfTimesBorrowed}
       image={item.image}
       name={item.name}
       status={item.status}
       ratingComments={item.ratingComments}
       type={item.type}
       rating={item.rating}
-      location={item.owner.location}/>
+      location={item.owner.location}
+    />
     </Carousel.Item>
   })
 
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
-      {itemList}
+      {displayedInCarouselItems}
     </Carousel>
   )
 }

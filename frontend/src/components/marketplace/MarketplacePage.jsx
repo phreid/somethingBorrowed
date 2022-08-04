@@ -7,7 +7,7 @@ import NavBar from '../common/NavBar'
 import FiltersCollection from './FiltersCollection'
 import ControlledCarousel from './ControlledCarousel'
 
-import '../../styles/mobileLayout.css'
+import '../../styles.css'
 
 function MarketplacePage () {
   const user = useSelector(state => state.user)
@@ -25,7 +25,7 @@ function MarketplacePage () {
       <NavBar />
       <h1 className="page-title">Marketplace</h1>
       <div className="row">
-        <div className="col">
+        <div className="col grid-child page-container">
           <ControlledCarousel/>
         </div>
       </div>

@@ -27,7 +27,10 @@ const ItemSchema = new Schema({
     url: String,
     filename: String
   },
-  numberOfTimesBorrowed: Number
+  numberOfTimesBorrowed: {
+    type: Number,
+    default: 0
+  }
 })
 
 ItemSchema.pre('findOneAndDelete', async function (next) {

@@ -30,7 +30,6 @@ export default function AddItemForm (props) {
     formData.append('description', description)
     formData.append('status', switchIsAvailable ? STATUS.AVAILABLE : STATUS.NOT_AVAILABLE)
     formData.append('image', fileInput.current.files[0])
-    formData.append('numberOfTimesBorrowed', 0)
 
     dispatch(addItemAsync(formData))
     setName('')
