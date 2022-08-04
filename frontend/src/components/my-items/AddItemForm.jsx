@@ -107,7 +107,7 @@ export default function AddItemForm (props) {
         {showAlert
           ? (
             <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
-            Please enter a {missingField}
+            Missing a required field: {missingField}
             </Alert>
           )
           : null }
