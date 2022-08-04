@@ -6,6 +6,8 @@ import { deleteRequestAsync, acceptRequestAsync } from '../../redux/requests/thu
 import { borrowItemAsync } from '../../redux/items/thunks'
 
 import { REQUEST_STATUS } from '../../constants'
+import pending from '../../images/pending.svg'
+import accepted from '../../images/accepted.svg'
 
 export default function RequestCard (props) {
   const [status, setStatus] = useState(props.status)
@@ -41,6 +43,13 @@ export default function RequestCard (props) {
               {status === REQUEST_STATUS.PENDING
                 ? (
                   <Card.Title className="request-card-status">
+                    <img
+                      alt=""
+                      src={pending}
+                      width="20"
+                      height="25"
+                      className="d-inline-block align-top"
+                    />{' '}
                     <strong>Pending Response</strong>
                   </Card.Title>
                 )
@@ -48,6 +57,13 @@ export default function RequestCard (props) {
               {status === REQUEST_STATUS.ACCEPTED
                 ? (
                   <Card.Title className="request-card-status">
+                    <img
+                      alt=""
+                      src={accepted}
+                      width="20"
+                      height="25"
+                      className="d-inline-block align-top"
+                    />{' '}
                     <strong>Accepted</strong>
                   </Card.Title>
                 )

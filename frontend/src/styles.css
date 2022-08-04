@@ -1,6 +1,12 @@
 button:focus {
     box-shadow: none !important;
 }
+
+.title{
+    text-align: center;
+}
+
+
 /********************* Navbar *****************/
 .navbar{
     background-color: #DEF4FF;
@@ -148,12 +154,14 @@ Form {
     font-family: 'Fredoka One', sans-serif;
     font-size: 2rem;
     color: #094C60;
+    text-align: center;
 }
 
 .my-items-heading {
     font-family: 'Fredoka One', sans-serif;
     font-size: 2rem;
     color: #094C60;
+    text-align: center;
 }
 
 /********************* Card container *****************/
@@ -187,10 +195,39 @@ Form {
     object-fit: contain;
 }
 
-.card-buttons{
+.item-card-edit-button{
     display: inline-block;
     float: right;
     margin-left: 10px;
+    border-radius: 25px;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.item-card-edit-button:hover {
+    background-color:#ffffff;
+    color: #094C60;
+}
+
+.item-card-delete-button{
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+    border-radius: 25px;
+}
+
+.card-buttons {
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.card-buttons:hover {
+    background-color:#ffffff;
+    color: #094C60;
 }
 
 .my-items-container{
@@ -246,15 +283,16 @@ Form {
 }
 
 .pending-request-btn{
-    max-width: 200px;
-    background-color: white;
-    color: black;
-    margin: 10px 10px 0px 10px;
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    background-color:#094C60;
+    color: #ffffff;
 }
 
 .pending-request-btn:hover {
-    background-color: lightgrey;
-    color: black;
+    background-color:#ffffff;
+    color: #094C60;
 }
 
 .header{
@@ -299,7 +337,7 @@ Form {
 .pending-card{
     margin: 10px;
     padding: 10px;
-    background-color: #ffe869;
+    background-color: #DEF4FF;
 }
 
 .accepted-card{

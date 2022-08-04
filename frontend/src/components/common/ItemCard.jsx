@@ -130,14 +130,14 @@ function ItemCard (props) {
         <div className="col-md-8">
           {props.edit
             ? (
-              <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleEditItem}>
+              <Button className='item-card-edit-button' variant="outline-primary" size="sm" onClick={handleEditItem}>
                 Edit Item
               </Button>
             )
             : null }
           {props.delete
             ? (
-              <Button variant="outline-danger" size="sm" className="card-buttons" onClick={handleDeleteItem}>
+              <Button className='item-card-delete-button' variant="outline-danger" size="sm" onClick={handleDeleteItem}>
                 Delete
               </Button>
             )
