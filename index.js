@@ -22,10 +22,10 @@ app.use(session({
   saveUninitialized: true
 }))
 
-app.use('/items', itemRouter)
-app.use('/users', userRouter)
-app.use('/auth', authRouter)
-app.use('/requests', requestRouter)
+app.use('/api/items', itemRouter)
+app.use('/api/users', userRouter)
+app.use('/api/auth', authRouter)
+app.use('/api/requests', requestRouter)
 
 app.use(express.static(path.join(__dirname, 'frontend', 'build')))
 
