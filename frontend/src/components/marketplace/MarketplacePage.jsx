@@ -7,6 +7,8 @@ import NavBar from '../common/NavBar'
 import FiltersCollection from './FiltersCollection'
 import ControlledCarousel from './ControlledCarousel'
 
+import '../../styles/mobileLayout.css'
+
 function MarketplacePage () {
   const user = useSelector(state => state.user)
   const items = useSelector(state => {
@@ -22,15 +24,16 @@ function MarketplacePage () {
     <>
       <NavBar />
       <h1 className="page-title">Marketplace</h1>
-      <div className="grid-container">
-        <div className="grid-child page-container" key = "grid-child page-container">
-          <FiltersCollection/>
-          <br></br>
-          <br></br>
-          <br></br>
-          <ControlledCarousel items={items}/>
+      <div className="row">
+        <div className="col">
+          <ControlledCarousel/>
         </div>
-        <div className="grid-child page-container">
+      </div>
+      <div className="row">
+        <div className="col-lg col-sm col-xs mx-8 grid-child page-container" key = "grid-child page-container">
+          <FiltersCollection/>
+        </div>
+        <div className="col-lg col-sm col-xs mx-8 grid-child page-container">
           {items.map(item => {
             return <ItemCard key={item._id}
               id={item._id}
@@ -43,6 +46,9 @@ function MarketplacePage () {
               type={item.type}
               rating={item.rating}
               location={item.owner.location}
+              requestOpen={item.requestOpen}
+              owner={item.owner._id}
+              loggedInUser={user.user}
             />
           })}
         </div>
