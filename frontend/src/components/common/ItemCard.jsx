@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Card, Row } from 'react-bootstrap'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Tooltip from 'react-bootstrap/Tooltip'
 import { useDispatch } from 'react-redux'
 
-import { STATUS } from '../../constants'
+import { Rating } from '@mui/material'
+
+import { STATUS, RATINGS } from '../../constants'
 import noimage from '../../images/defaultImages/noimage.png'
 import { deleteItemAsync, updateItemAsync } from '../../redux/items/thunks'
 import EditItemModal from '../my-items/EditItemModal'
@@ -27,8 +27,17 @@ function ItemCard (props) {
   const [unavailableItemText, setUnavailableItemText] = useState(unavailable ? 'Mark as available' : 'Mark as unavailable')
   const [editRatingModal, setEditRatingModal] = useState(props.ratingOpen)
   const [requestModalOpen, setRequestModalOpen] = useState(props.requestOpen)
+  const [rating, setRating] = useState(0)
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (props.rating === RATINGS.UNRATED) {
+      setRating(0)
+    } else {
+      setRating(parseInt(props.rating))
+    }
+  }, [props.rating])
 
   function handleRequestItem () {
     if (requestModalOpen === true) {
@@ -115,8 +124,8 @@ function ItemCard (props) {
     url.replace('/upload', `/upload/w_${width},h_${height}`)
 
   return (
-    <Card className="item-card" style={{ width: '' }}>
-      <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
+    <Card className="item-card">
+      <Row>
         <div className="col-md-4">
           <Card.Img
             className="item-img"
@@ -164,21 +173,25 @@ function ItemCard (props) {
           <Card.Text className="card-text">
             <strong>Status:</strong> {props.status}
           </Card.Text>
-          <OverlayTrigger
-            key='top'
-            placement='left'
-            overlay={
-              <Tooltip>
-              Rating is based on a scale of 1 to 5 where 5 is the highest quality
-              </Tooltip>
-            }
-          >
-            <Card.Text className="card-text">
-              <strong id='rating-label'>Rating:</strong> {props.rating}
-            </Card.Text>
-          </OverlayTrigger>
+          {props.rating === RATINGS.UNRATED
+            ? (
+              <Card.Text className="card-text">
+                <strong>Rating:</strong> {props.rating}
+              </Card.Text>
+            )
+            : null }
+          {props.rating !== RATINGS.UNRATED
+            ? (
+              <div>
+                <Card.Text className="card-text">
+                  <strong>Rating:</strong>
+                </Card.Text>
+                <Rating name="read-only" value={rating} readOnly />
+              </div>
+            )
+            : null }
           <Card.Text className="card-text">
-            <strong>Comments:</strong> {props.ratingComments}
+            <strong>Comments:</strong> {props.ratingComments ? props.ratingComments : 'No comments yet'}
           </Card.Text>
           {props.editRating
             ? (
@@ -187,7 +200,7 @@ function ItemCard (props) {
               </Button>
             )
             : null }
-          <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} />
+          <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} props />
           {props.borrow
             ? (
               <Button disabled={!available} variant="outline-primary" size="sm" onClick={handleRequestItem}>
@@ -195,7 +208,7 @@ function ItemCard (props) {
               </Button>
             )
             : null }
-          <RequestModal requestOpen={requestModalOpen} setShow={handleCloseRequestModal} id={props.id} name={props.name} />
+          <RequestModal requestOpen={requestModalOpen} setShow={handleCloseRequestModal} id={props.id} name={props.name} owner={props.owner} requestor={props.loggedInUser} item={props.id} />
           {props.changeToReturned
             ? (
               <Button className="card-buttons" disabled={!borrowed} variant="outline-primary" size="sm" onClick={handleMarkItemReturned}>

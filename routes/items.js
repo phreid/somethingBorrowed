@@ -13,12 +13,31 @@ const upload = multer({ storage: cloudinaryStorage })
 /**
  * GET /items
  *
- * Retrieves all items.
+ * Retrieves a list of items. Pass optional query parameters to search
+ * or filter the list:
+ *
+ * search: search for a term in the item name
+ * type: filter by item type
+ * rating: filter by item rating
+ * status: filter by item status
+ * location: filter by location
  *
  * @returns a list of item objects
  */
 router.get('/', async (req, res) => {
-  const items = await Item.find().populate('owner')
+  const { search, type, rating, status, location } = req.query
+
+  const usersInLocation = location ? (await User.find({ location })).map((user) => user._id) : undefined
+
+  const query = {
+    ...(search ? { name: { $regex: new RegExp(search, 'i') } } : {}),
+    ...(type ? { type } : {}),
+    ...(rating ? { rating } : {}),
+    ...(status ? { status } : {}),
+    ...(location ? { owner: { $in: usersInLocation } } : {})
+  }
+
+  const items = await Item.find(query).populate('owner')
   res.send({
     result: items
   })
@@ -143,7 +162,7 @@ router.post('/:id/rating', isLoggedIn, async (req, res) => {
     const currRating = parseInt(item.rating)
     const newRatingInput = parseInt(req.body.rating)
     const newRating = ((currRating + newRatingInput) / 2)
-    rating = (Math.round(newRating * 10) / 10).toString()
+    rating = (Math.round(newRating)).toString()
   }
 
   const rated = await Item.findByIdAndUpdate(
@@ -156,53 +175,6 @@ router.post('/:id/rating', isLoggedIn, async (req, res) => {
   res.send({
     result: rated
   })
-})
-
-/**
- * GET /items/searchText/:searchText
- *
- * Retrieves a single item.
- *
- * @param id: the item id to retrieve
- * @returns a single item object
- */
-router.get('/search/:searchText', async (req, res) => {
-  if (req.params.searchText !== undefined) {
-    const searchText = req.params.searchText
-    const items = await Item.find({ name: { $regex: new RegExp(searchText, 'i') } }).populate('owner')
-    res.send({
-      result: items
-    })
-  }
-})
-/**
- * GET /items/filter/:filters
- *
- * Filtering items with selected inputs.
- *
- * @param filters: the JSON object that contains the filters
- * @returns items
- */
-router.get('/filter/:filters', async (req, res) => {
-  const rate = JSON.parse(req.params.filters).rating
-  const category = JSON.parse(req.params.filters).type
-  if (req.params.filters !== undefined) {
-    let items
-    if (rate === undefined) {
-      if (category === undefined) {
-        items = await Item.find().populate('owner')
-      } else {
-        items = await Item.find({ type: category }).populate('owner')
-      }
-    } else if (category === undefined) {
-      items = await Item.find({ rating: rate }).populate('owner')
-    } else {
-      items = await Item.find({ rating: rate, type: category }).populate('owner')
-    }
-    res.send({
-      result: items
-    })
-  }
 })
 
 module.exports = router

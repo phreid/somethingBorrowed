@@ -1,0 +1,84 @@
+const express = require('express')
+
+const Request = require('../models/Request')
+const { isLoggedIn, canDeleteRequest, isRequestOwner } = require('../middleware')
+const { REQUEST_STATUS } = require('../constants')
+
+const router = express.Router()
+
+/**
+ * GET /requests
+ *
+ * Retrieves all requests.
+ *
+ * @returns a list of requests
+ */
+router.get('/', async (req, res) => {
+  const requests = await Request.find().populate(['item', 'itemOwner', 'requestor'])
+  res.send({
+    result: requests
+  })
+})
+
+/**
+ * POST /requests
+ *
+ * Creates a new request and adds it to the collection.
+ * Requires the sender to be logged in.
+ *
+ * Request body: an request object
+ *
+ * @returns the newly created request object
+ */
+router.post('/', isLoggedIn, async (req, res) => {
+  const newRequest = new Request({
+    ...req.body,
+    requestor: req.session.user
+  })
+  await newRequest.save()
+  const request = await newRequest.populate(['item', 'itemOwner', 'requestor'])
+  res.send({
+    result: request
+  })
+})
+
+/**
+ * DELETE /requests/:id
+ *
+ * Removes an request from the collection. Requires the sender to be logged in as either
+ * the item owner or requestor.
+ *
+ * @param id: the request id to delete
+ * @returns the deleted request object
+ */
+router.delete('/:id', isLoggedIn, canDeleteRequest, async (req, res) => {
+  const { id } = req.params
+
+  const deleted = await Request.findByIdAndDelete(id).populate(['item', 'itemOwner', 'requestor'])
+
+  res.send({
+    result: deleted
+  })
+})
+
+/**
+ * POST /requests/:id/accept
+ *
+ * Sets an items status to borrowed and adds it to the borrowed item history
+ * of the currently logged in user. Requires the sender to be logged in as the owner
+ * of the requested item.
+ *
+ * @param id: the request id to accept
+ * @return the accepted request
+ */
+router.post('/:id/accept', isLoggedIn, isRequestOwner, async (req, res) => {
+  const { id } = req.params
+
+  const accepted = await Request.findByIdAndUpdate(id, { status: REQUEST_STATUS.ACCEPTED }, { new: true }).populate(['item', 'itemOwner', 'requestor'])
+
+  res.send({
+    result: accepted
+  })
+})
+
+module.exports = router

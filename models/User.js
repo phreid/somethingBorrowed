@@ -15,8 +15,15 @@ const UserSchema = new Schema({
   borrowedItems: [{ _id: false, item: { type: Schema.Types.ObjectId, ref: 'Item' }, date: Date }]
 })
 
+/**
+ * This middleware does two things when a User is deleted:
+ *  1. Deletes the users owned items
+ *  2. Deletes any requests made by the user
+ */
 UserSchema.pre('findOneAndDelete', async function (next) {
-  await mongoose.model('Item').deleteMany({ owner: this.getQuery()._id })
+  const userId = this.getQuery()._id
+  await mongoose.model('Item').deleteMany({ owner: userId })
+  await mongoose.model('Request').deleteMany({ requestor: userId })
   next()
 })
 
