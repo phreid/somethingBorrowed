@@ -1,7 +1,7 @@
 const express = require('express')
 
 const Request = require('../models/Request')
-const { isLoggedIn } = require('../middleware')
+const { isLoggedIn, canDeleteRequest, isRequestOwner } = require('../middleware')
 const { REQUEST_STATUS } = require('../constants')
 
 const router = express.Router()
@@ -45,12 +45,13 @@ router.post('/', isLoggedIn, async (req, res) => {
 /**
  * DELETE /requests/:id
  *
- * Removes an request from the collection.
+ * Removes an request from the collection. Requires the sender to be logged in as either
+ * the item owner or requestor.
  *
  * @param id: the request id to delete
  * @returns the deleted request object
  */
-router.delete('/:id', isLoggedIn, async (req, res) => {
+router.delete('/:id', isLoggedIn, canDeleteRequest, async (req, res) => {
   const { id } = req.params
 
   const deleted = await Request.findByIdAndDelete(id).populate(['item', 'itemOwner', 'requestor'])
@@ -64,15 +65,16 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
  * POST /requests/:id/accept
  *
  * Sets an items status to borrowed and adds it to the borrowed item history
- * of the currently logged in user. Requires the sender to be logged in.
+ * of the currently logged in user. Requires the sender to be logged in as the owner
+ * of the requested item.
  *
- * @param id: the item id to borrow
- * @return the updated item
+ * @param id: the request id to accept
+ * @return the accepted request
  */
-router.post('/:id/accept', isLoggedIn, async (req, res) => {
-  const { id: itemId } = req.params
+router.post('/:id/accept', isLoggedIn, isRequestOwner, async (req, res) => {
+  const { id } = req.params
 
-  const accepted = await Request.findByIdAndUpdate(itemId, { status: REQUEST_STATUS.ACCEPTED }, { new: true }).populate(['item', 'itemOwner', 'requestor'])
+  const accepted = await Request.findByIdAndUpdate(id, { status: REQUEST_STATUS.ACCEPTED }, { new: true }).populate(['item', 'itemOwner', 'requestor'])
 
   res.send({
     result: accepted
