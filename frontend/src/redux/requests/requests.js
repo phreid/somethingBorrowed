@@ -21,9 +21,7 @@ export const requestsSlice = createSlice({
         state.list = state.list.filter(request => request._id !== action.payload._id)
       })
       .addCase(deleteNotAcceptedRequestAsync.fulfilled, (state, action) => {
-        console.log('hits reducer')
-        console.log(action.payload)
-        state.list = state.list.filter(request => request._id !== action.payload._id)
+        console.log('delete remaining')
       })
       .addCase(acceptRequestAsync.fulfilled, (state, action) => {
         const index = state.list.findIndex(item => item._id === action.payload._id)

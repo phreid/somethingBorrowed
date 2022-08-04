@@ -68,15 +68,10 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
  * @param id: the request id to delete
  * @returns the deleted request object
  */
- router.delete('/:item/deleteRemaining', isLoggedIn, async (req, res) => {
-  const { item } = req.params
+ router.delete('/:id/deleteRemaining', isLoggedIn, async (req, res) => {
+  const { id: itemId } = req.params
 
-  console.log(req.params) // returns { item: '62e9715ef611b9d04a2cce3f' }
-  // console.log(req.params._id) // undefined
-  // console.log(item._id) // undefined
-  const sameItems = await Request.find({ item: { _id: { $ne: item } } }).populate(['item', 'itemOwner', 'requestor'])
-  console.log(sameItems)
-  const deleted = await Request.findByIdAndDelete(sameItems._id).populate(['item', 'itemOwner', 'requestor'])
+  const deleted = await Request.deleteMany({ item: itemId, status: REQUEST_STATUS.PENDING })
 
   res.send({
     result: deleted
