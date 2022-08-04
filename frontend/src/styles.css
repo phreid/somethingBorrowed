@@ -80,22 +80,71 @@ button:focus {
     background-color: white;
 }
 
-.form {
-    padding: 20px;
-}
-
 a {
 text-decoration: none;
 }
 
+/********************* Add Items Form *****************/
 .add-items-page-body{
     display: flex;
+}
+
+.nav-link {
+    color: #DEF4FF;
+}
+
+.nav-link:hover {
+    color: #DEF4FF;
+}
+
+
+Form {
+    font-family: 'Montserrat Bold', sans-serif;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.form {
+    padding: 20px;
+}
+
+.item-name-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.item-type-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.item-image-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.item-desc-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.add-item-form-button {
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.add-item-form-button:hover {
+    background-color:#ffffff;
+    color: #094C60;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 10px;
 }
 
 .page-title {
@@ -104,20 +153,28 @@ text-decoration: none;
     text-align: center;
 }
 
+.add-item-heading {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2rem;
+    color: #094C60;
+}
+
+.my-items-heading {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2rem;
+    color: #094C60;
+}
+
 h2 {
     font-family: 'Montserrat Bold', sans-serif;
     text-align: center;
+    color: green;
 }
 
 .title{
     text-align: center;
 }
 
-Form {
-    font-family: 'Montserrat Bold', sans-serif;
-    align-items: center;
-    font-size: 1.2rem;
-}
 
 .page-container {
     margin: 10px;

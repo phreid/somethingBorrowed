@@ -1,5 +1,5 @@
 import { useState, createRef } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Stack } from 'react-bootstrap'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
@@ -40,17 +40,17 @@ export default function AddItemForm (props) {
 
   return (
     <>
-      <h2>Lend a New Item</h2>
+      <h2 className='add-item-heading'>Lend a New Item</h2>
       <Form className="form" encType="multipart/form-data">
         <Form.Group className="mb-3">
           <Form.Label>Item Name</Form.Label>
-          <Form.Control className="item-input" type="text" placeholder="Enter item name" value={name}
+          <Form.Control className='item-name-input' type="text" placeholder="Enter item name" value={name}
             onChange={(e) => setName(e.target.value)}></Form.Control>
         </Form.Group>
         <Row>
           <Form.Group as={Col} sm className="mb-3">
             <Form.Label>Type</Form.Label>
-            <Form.Select value={type} onChange={(e) => setType(e.target.value)}>
+            <Form.Select className='item-type-input' value={type} onChange={(e) => setType(e.target.value)}>
               <option>Select item type...</option>
               {itemTypeDropdowns}
             </Form.Select>
@@ -60,6 +60,7 @@ export default function AddItemForm (props) {
           <Form.Group as={Col} xs={8} controlId="formFileDisabled" className="mb-3">
             <Form.Label>Upload an image</Form.Label>
             <Form.Control
+              className='item-image-input'
               type="file"
               ref={fileInput} />
           </Form.Group>
@@ -73,12 +74,14 @@ export default function AddItemForm (props) {
         </Row>
         <Form.Group className="mb-3">
           <Form.Label>Description</Form.Label>
-          <Form.Control className="item-input" as="textarea" rows={3} placeholder="Enter item description" value={description}
+          <Form.Control className="item-desc-input" as="textarea" rows={3} placeholder="Enter item description" value={description}
             onChange={(e) => setDescription(e.target.value)}></Form.Control>
         </Form.Group>
-        <Button variant="outline-primary" type="submit" className="me-1 button"
-          onClick={handleSubmit}>Submit</Button>
-        <Button variant="outline-danger" type="reset" className="button">Reset</Button>
+        <Stack gap={2}>
+          <Button type="submit" className="add-item-form-button"
+            onClick={handleSubmit}>Submit</Button>
+          <Button type="reset" className="add-item-form-button">Reset</Button>
+        </Stack>
       </Form>
     </>
   )
