@@ -96,9 +96,10 @@ router.delete('/:id', isLoggedIn, canDeleteRequest, catchError(async (req, res) 
  * @return the accepted request
  */
 router.post('/:id/accept', isLoggedIn, isRequestOwner, catchError(async (req, res) => {
-  const { id } = req.params
+  const { id: itemId } = req.params
 
-  const accepted = await Request.findByIdAndUpdate(id, { status: REQUEST_STATUS.ACCEPTED }, { new: true }).populate(['item', 'itemOwner', 'requestor'])
+  const accepted = await Request.findByIdAndUpdate(itemId, { status: REQUEST_STATUS.ACCEPTED }, { new: true }).populate(['item', 'itemOwner', 'requestor'])
+  await Request.deleteMany({ item: accepted.item._id, status: REQUEST_STATUS.PENDING })
 
   if (!accepted) {
     throw new ApiError(404, 'Request not found.')
