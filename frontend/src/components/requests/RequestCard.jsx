@@ -15,8 +15,8 @@ export default function RequestCard (props) {
     dispatch(deleteRequestAsync(props))
   }
 
-  function handleAcceptRequest () {
-    dispatch(acceptRequestAsync(props))
+  async function handleAcceptRequest () {
+    await dispatch(acceptRequestAsync(props))
     setStatus(REQUEST_STATUS.ACCEPTED)
   }
 

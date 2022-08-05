@@ -1,8 +1,8 @@
 const express = require('express')
 
-const { isLoggedIn, isUser } = require('../middleware')
+const { isLoggedIn, isUser } = require('../middleware/auth')
+const { catchError, ApiError } = require('../middleware/error')
 const User = require('../models/User')
-const Item = require('../models/Item')
 
 const router = express.Router()
 
@@ -13,12 +13,12 @@ const router = express.Router()
  *
  * @returns a list of user objects
  */
-router.get('/', async (req, res) => {
+router.get('/', catchError(async (req, res) => {
   const users = await User.find()
   res.send({
     result: users
   })
-})
+}))
 
 /**
  * GET /users/:userId
@@ -28,31 +28,18 @@ router.get('/', async (req, res) => {
  * @param userId: the user id of the user to retrieve
  * @returns a user object
  */
-router.get('/:userId', async (req, res) => {
+router.get('/:userId', catchError(async (req, res) => {
   const { userId } = req.params
   const user = await User.findById(userId)
+
+  if (!user) {
+    throw new ApiError(404, 'User not found.')
+  }
+
   res.send({
     result: user
   })
-})
-
-/**
- * GET /users/:userId/marketplace
- *
- * Retrieves the items in a single user's marketplace - all items, except for
- * those owned by the user. Requires the sender to be logged in as the requested
- * user.
- *
- * @param userId: the user id of the user's marketplace to retrieve
- * @returns a list of item objects
- */
-router.get('/:userId/marketplace', isLoggedIn, isUser, async (req, res) => {
-  const { userId } = req.params
-  const items = await Item.find({ owner: { $ne: userId } })
-  res.send({
-    result: items
-  })
-})
+}))
 
 /**
  * GET /users/:userId/history
@@ -64,7 +51,7 @@ router.get('/:userId/marketplace', isLoggedIn, isUser, async (req, res) => {
  * @returns a list of borrowing records containing item objects and the date the item
  *          was borrowed
  */
-router.get('/:userId/history', isLoggedIn, isUser, async (req, res) => {
+router.get('/:userId/history', isLoggedIn, isUser, catchError(async (req, res) => {
   const { userId } = req.params
   const user = await User
     .findById(userId)
@@ -73,26 +60,14 @@ router.get('/:userId/history', isLoggedIn, isUser, async (req, res) => {
       populate: { path: 'item', populate: 'owner' }
     })
 
+  if (!user) {
+    throw new ApiError(404, 'User not found.')
+  }
+
   res.send({
     result: user.borrowedItems
   })
-})
-
-/**
- * GET /users/:userId/items
- *
- * Retrieves the items owned by a single user.
- *
- * @param userId: the userId of the user whose items to retrieve
- * @returns a list of item objects
- */
-router.get('/:userId/items', async (req, res) => {
-  const { userId } = req.params
-  const ownedItems = await Item.find({ owner: userId })
-  res.send({
-    result: ownedItems
-  })
-})
+}))
 
 /**
  * POST /users
@@ -109,16 +84,18 @@ router.get('/:userId/items', async (req, res) => {
  *
  * @returns if successful, returns the new user object
  */
-router.post('/', async (req, res) => {
+router.post('/', catchError(async (req, res) => {
   const existingUser = await User.findOne({ username: req.body.username })
-  if (existingUser) { return res.sendStatus(403) }
+  if (existingUser) {
+    throw new ApiError(403, 'User already registered.')
+  }
 
   const newUser = new User({ ...req.body })
   await newUser.save()
   res.send({
     result: newUser
   })
-})
+}))
 
 /**
  * DELETE /users/:userId
@@ -129,13 +106,18 @@ router.post('/', async (req, res) => {
  * @param userId: the userId to delete
  * @returns the deleted user object
  */
-router.delete('/:userId', isLoggedIn, isUser, async (req, res) => {
+router.delete('/:userId', isLoggedIn, isUser, catchError(async (req, res) => {
   const { userId } = req.params
   const deleted = await User.findByIdAndDelete(userId)
+
+  if (!deleted) {
+    throw new ApiError(404, 'User not found')
+  }
+
   res.send({
     result: deleted
   })
-})
+}))
 
 /**
  * PATCH /users/:userId
@@ -147,12 +129,17 @@ router.delete('/:userId', isLoggedIn, isUser, async (req, res) => {
  * @param userId: the user id to update
  * @returns the updated user object
  */
-router.patch('/:userId', isLoggedIn, isUser, async (req, res) => {
+router.patch('/:userId', isLoggedIn, isUser, catchError(async (req, res) => {
   const { userId } = req.params
   const updated = await User.findByIdAndUpdate(userId, req.body, { new: true })
+
+  if (!updated) {
+    throw new ApiError(404, 'User not found.')
+  }
+
   res.send({
     result: updated
   })
-})
+}))
 
 module.exports = router

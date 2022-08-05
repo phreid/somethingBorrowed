@@ -2,7 +2,8 @@ const express = require('express')
 const multer = require('multer')
 
 const { STATUS } = require('../constants')
-const { isLoggedIn, isItemOwner } = require('../middleware')
+const { isLoggedIn, isItemOwner } = require('../middleware/auth')
+const { catchError, ApiError } = require('../middleware/error')
 const Item = require('../models/Item')
 const User = require('../models/User')
 const { cloudinaryStorage } = require('../cloudinary')
@@ -24,15 +25,14 @@ const upload = multer({ storage: cloudinaryStorage })
  *
  * @returns a list of item objects
  */
-router.get('/', async (req, res) => {
+router.get('/', catchError(async (req, res) => {
   const { search, type, rating, status, location } = req.query
 
   const usersInLocation = location ? (await User.find({ location })).map((user) => user._id) : undefined
-
   const query = {
-    ...(search ? { name: { $regex: new RegExp(search, 'i') } } : {}),
+    ...(search ? { $or: [{ name: { $regex: new RegExp('^' + search, 'i') } }, { name: { $regex: new RegExp(' ' + search, 'i') } }] } : {}),
     ...(type ? { type } : {}),
-    ...(rating ? { rating } : {}),
+    ...(rating ? { rating: { $regex: '^' + rating } } : {}),
     ...(status ? { status } : {}),
     ...(location ? { owner: { $in: usersInLocation } } : {})
   }
@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
   res.send({
     result: items
   })
-})
+}))
 
 /**
  * GET /items/:id
@@ -51,13 +51,18 @@ router.get('/', async (req, res) => {
  * @param id: the item id to retrieve
  * @returns a single item object
  */
-router.get('/:id', async (req, res) => {
+router.get('/:id', catchError(async (req, res) => {
   const { id } = req.params
   const item = await Item.findById(id).populate('owner')
+
+  if (!item) {
+    throw new ApiError(404, 'Item not found.')
+  }
+
   res.send({
     result: item
   })
-})
+}))
 
 /**
  * POST /items
@@ -69,7 +74,7 @@ router.get('/:id', async (req, res) => {
  *
  * @returns the newly created item object
  */
-router.post('/', upload.single('image'), isLoggedIn, async (req, res) => {
+router.post('/', upload.single('image'), isLoggedIn, catchError(async (req, res) => {
   const newItem = new Item({
     ...req.body,
     owner: req.session.user,
@@ -82,7 +87,7 @@ router.post('/', upload.single('image'), isLoggedIn, async (req, res) => {
   res.send({
     result: itemWithOwner
   })
-})
+}))
 
 /**
  * DELETE /items/:id
@@ -93,13 +98,18 @@ router.post('/', upload.single('image'), isLoggedIn, async (req, res) => {
  * @param id: the item id to delete
  * @returns the deleted item object
  */
-router.delete('/:id', isLoggedIn, isItemOwner, async (req, res) => {
+router.delete('/:id', isLoggedIn, isItemOwner, catchError(async (req, res) => {
   const { id } = req.params
   const deleted = await Item.findByIdAndDelete(id).populate('owner')
+
+  if (!deleted) {
+    throw new ApiError(404, 'Item not found.')
+  }
+
   res.send({
     result: deleted
   })
-})
+}))
 
 /**
  * PATCH /items/:id
@@ -112,13 +122,18 @@ router.delete('/:id', isLoggedIn, isItemOwner, async (req, res) => {
  * @param id: the item id to update
  * @returns the updated item object
  */
-router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
+router.patch('/:id', isLoggedIn, isItemOwner, catchError(async (req, res) => {
   const { id } = req.params
   const updated = await Item.findByIdAndUpdate(id, req.body, { new: true }).populate('owner')
+
+  if (!updated) {
+    throw new ApiError(404, 'Item not found.')
+  }
+
   res.send({
     result: updated
   })
-})
+}))
 
 /**
  * POST /items/:id/borrow
@@ -129,17 +144,27 @@ router.patch('/:id', isLoggedIn, isItemOwner, async (req, res) => {
  * @param id: the item id to borrow
  * @return the updated item
  */
-router.post('/:id/borrow', isLoggedIn, async (req, res) => {
+router.post('/:id/borrow', isLoggedIn, catchError(async (req, res) => {
   const { id: itemId } = req.params
   const userId = req.session.user
   const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED }, { new: true }).populate('owner')
-  await User.findByIdAndUpdate(
+
+  if (!borrowed) {
+    throw new ApiError(404, 'Item not found.')
+  }
+
+  const user = await User.findByIdAndUpdate(
     userId, { $push: { borrowedItems: { item: borrowed._id, date: new Date() } } }, { new: true }
   )
+
+  if (!user) {
+    throw new ApiError(404, 'User not found.')
+  }
+
   res.send({
     result: borrowed
   })
-})
+}))
 
 /**
  * POST /items/:id/rating
@@ -149,10 +174,14 @@ router.post('/:id/borrow', isLoggedIn, async (req, res) => {
  * @param id: the item id to borrow
  * @return the updated item
  */
-router.post('/:id/rating', isLoggedIn, async (req, res) => {
+router.post('/:id/rating', isLoggedIn, catchError(async (req, res) => {
   const { id } = req.params
 
   const item = await Item.findById(id)
+
+  if (!item) {
+    throw new ApiError('Item not found.')
+  }
 
   let rating
 
@@ -175,6 +204,6 @@ router.post('/:id/rating', isLoggedIn, async (req, res) => {
   res.send({
     result: rated
   })
-})
+}))
 
 module.exports = router

@@ -8,7 +8,7 @@ export const loginAsync = createAsyncThunk(
   'user/loginUser',
   async ({ username, password }, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/auth/login', { username, password })
+      const response = await axios.post('/api/auth/login', { username, password })
       return response.data.result
     } catch (error) {
       if (!error.response) { throw error }
@@ -23,7 +23,7 @@ export const signUpAsync = createAsyncThunk(
   'user/signUpUser',
   async ({ username, password, email }, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/users', {
+      const response = await axios.post('/api/users', {
         username,
         password,
         email,
@@ -42,7 +42,7 @@ export const signUpAsync = createAsyncThunk(
 export const getCurrentUserAsync = createAsyncThunk(
   'user/getCurrentUser',
   async (userId) => {
-    const response = await axios.get(`/users/${userId}`)
+    const response = await axios.get(`api/users/${userId}`)
     return response.data.result
   }
 )
@@ -50,7 +50,7 @@ export const getCurrentUserAsync = createAsyncThunk(
 export const getUserHistoryAsync = createAsyncThunk(
   'user/getHistory',
   async (userId) => {
-    const response = await axios.get(`/users/${userId}/history`)
+    const response = await axios.get(`api/users/${userId}/history`)
     return response.data.result
   }
 )
@@ -58,7 +58,7 @@ export const getUserHistoryAsync = createAsyncThunk(
 export const updateUserAsync = createAsyncThunk(
   'user/updateUser',
   async (updatedUser) => {
-    const response = await axios.patch(`/users/${updatedUser.userId}`, updatedUser)
+    const response = await axios.patch(`api/users/${updatedUser.userId}`, updatedUser)
     return response.data.result
   }
 )
@@ -66,7 +66,7 @@ export const updateUserAsync = createAsyncThunk(
 export const deleteUserAsync = createAsyncThunk(
   'user/deleteUser',
   async (userId) => {
-    const response = await axios.delete(`/users/${userId}`)
+    const response = await axios.delete(`api/users/${userId}`)
     return response.data.result
   }
 )
@@ -74,7 +74,7 @@ export const deleteUserAsync = createAsyncThunk(
 export const logoutAsync = createAsyncThunk(
   'user/logoutUser',
   async () => {
-    const response = await axios.post('/auth/logout')
+    const response = await axios.post('api/auth/logout')
     return response.data
   }
 )

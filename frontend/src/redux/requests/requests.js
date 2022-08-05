@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { REQUEST_STATUS } from '../../constants'
 import { getAllRequestsAsync, addRequestAsync, deleteRequestAsync, acceptRequestAsync } from './thunks'
 
 const INITIAL_STATE = {
@@ -21,8 +22,9 @@ export const requestsSlice = createSlice({
         state.list = state.list.filter(request => request._id !== action.payload._id)
       })
       .addCase(acceptRequestAsync.fulfilled, (state, action) => {
-        const index = state.list.findIndex(item => item._id === action.payload._id)
+        const index = state.list.findIndex(request => request._id === action.payload._id)
         state.list[index].status = action.payload.status
+        state.list = state.list.filter(request => !(request.item._id === action.payload.item._id && request.status === REQUEST_STATUS.PENDING))
       })
   }
 })

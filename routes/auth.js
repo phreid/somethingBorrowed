@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { isLoggedIn } = require('../middleware')
+const { isLoggedIn } = require('../middleware/auth')
 const User = require('../models/User')
 
 /**
