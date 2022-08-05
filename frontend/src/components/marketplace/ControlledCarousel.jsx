@@ -29,7 +29,7 @@ function ControlledCarousel () {
     return <Carousel.Item><ItemCard key={item._id}
       id={item._id}
       borrow
-      description={item.numberOfTimesBorrowed}
+      description={item.description}
       image={item.image}
       name={item.name}
       status={item.status}

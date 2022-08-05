@@ -25,7 +25,7 @@ function MarketplacePage () {
       <NavBar />
       <h1 className="page-title">Marketplace</h1>
       <div className="row">
-        <div className="col grid-child page-container">
+        <div className="col grid-child page-container box-one" max-width="50pc">
           <ControlledCarousel/>
         </div>
       </div>
