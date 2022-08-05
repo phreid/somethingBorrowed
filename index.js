@@ -9,6 +9,7 @@ const itemRouter = require('./routes/items')
 const userRouter = require('./routes/users')
 const authRouter = require('./routes/auth')
 const requestRouter = require('./routes/requests')
+const { errorHandler } = require('./middleware/error')
 const connectToDatabase = require('./database')
 
 const app = express()
@@ -32,6 +33,8 @@ app.use(express.static(path.join(__dirname, 'frontend', 'build')))
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
 })
+
+app.use(errorHandler)
 
 const startApp = async () => {
   await connectToDatabase()
