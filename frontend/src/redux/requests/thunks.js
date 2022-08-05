@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 axios.defaults.withCredentials = true
-const URL_BASE = '/requests'
+const URL_BASE = 'api/requests'
 
 export const getAllRequestsAsync = createAsyncThunk(
   'items/getAllRequests',
