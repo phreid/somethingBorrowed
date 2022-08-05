@@ -29,11 +29,10 @@ router.get('/', catchError(async (req, res) => {
   const { search, type, rating, status, location } = req.query
 
   const usersInLocation = location ? (await User.find({ location })).map((user) => user._id) : undefined
-
   const query = {
-    ...(search ? { name: { $regex: new RegExp(search, 'i') } } : {}),
+    ...(search ? { $or: [{ name: { $regex: new RegExp('^' + search, 'i') } }, { name: { $regex: new RegExp(' ' + search, 'i') } }] } : {}),
     ...(type ? { type } : {}),
-    ...(rating ? { rating } : {}),
+    ...(rating ? { rating: { $regex: '^' + rating } } : {}),
     ...(status ? { status } : {}),
     ...(location ? { owner: { $in: usersInLocation } } : {})
   }
@@ -147,8 +146,10 @@ router.patch('/:id', isLoggedIn, isItemOwner, catchError(async (req, res) => {
  */
 router.post('/:id/borrow', isLoggedIn, catchError(async (req, res) => {
   const { id: itemId } = req.params
+  const item = await Item.findById(itemId)
+  const newNumberOfTimesBorrowed = item.numberOfTimesBorrowed + 1
   const userId = req.session.user
-  const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED }, { new: true }).populate('owner')
+  const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED, numberOfTimesBorrowed: newNumberOfTimesBorrowed }, { new: true }).populate('owner')
 
   if (!borrowed) {
     throw new ApiError(404, 'Item not found.')

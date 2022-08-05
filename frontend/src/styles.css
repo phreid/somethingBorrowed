@@ -66,6 +66,15 @@ Form {
     border-radius: 10px;
 }
 
+.featured-card {
+    font-family: 'Montserrat Bold', sans-serif;
+    margin: 10px 10px 50px 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 800px;
+    max-height: auto;
+}
+
 .request-card {
     font-family: 'Montserrat Bold', sans-serif;
     margin: 10px;
@@ -205,3 +214,11 @@ Form {
     margin-left: auto;
     float: right;
 }
+
+.carousel{
+	background-color: lightblue;
+    margin: 20px;
+	max-width: auto;
+	max-height: auto;
+    border-radius: 10px;
+  }

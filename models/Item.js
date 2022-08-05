@@ -26,6 +26,10 @@ const ItemSchema = new Schema({
   image: {
     url: String,
     filename: String
+  },
+  numberOfTimesBorrowed: {
+    type: Number,
+    default: 0
   }
 })
 
