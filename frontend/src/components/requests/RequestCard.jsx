@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 
 import { useDispatch } from 'react-redux'
-import { deleteRequestAsync, acceptRequestAsync, deleteNotAcceptedRequestAsync, getAllRequestsAsync } from '../../redux/requests/thunks'
+import { deleteRequestAsync, acceptRequestAsync } from '../../redux/requests/thunks'
 import { borrowItemAsync } from '../../redux/items/thunks'
 
 import { REQUEST_STATUS } from '../../constants'
@@ -18,8 +18,6 @@ export default function RequestCard (props) {
   async function handleAcceptRequest () {
     await dispatch(acceptRequestAsync(props))
     setStatus(REQUEST_STATUS.ACCEPTED)
-    await dispatch(deleteNotAcceptedRequestAsync(props))
-    await dispatch(getAllRequestsAsync())
   }
 
   function handleRejectRequest () {
