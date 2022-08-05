@@ -4,7 +4,7 @@ import ItemCard from '../common/ItemCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { getItemsAsync } from '../../redux/items/thunks'
 
-const RECOMMANDATION_STANDARD = -1
+const RECOMMANDATION_STANDARD = 1
 
 function ControlledCarousel () {
   const [index, setIndex] = useState(0)
@@ -17,16 +17,18 @@ function ControlledCarousel () {
   const items = useSelector(state => {
     return state.items.list.filter(item => item.owner._id !== user.user)
   })
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getItemsAsync())
   }, [dispatch])
 
-  const displayedInCarouselItems = items.map((item) => {
-    if (item.numberOfTimesBorrowed == null || item.numberOfTimesBorrowed < RECOMMANDATION_STANDARD) {
-      return null
-    }
-    return <Carousel.Item><ItemCard key={item._id}
+  const displayedInCarouselItems = items.filter((item) => item.numberOfTimesBorrowed > RECOMMANDATION_STANDARD)
+
+  console.log(displayedInCarouselItems)
+
+  const display = displayedInCarouselItems.map((item) => {
+    return <Carousel.Item key={item._id}><ItemCard
       id={item._id}
       borrow
       description={item.description}
@@ -37,13 +39,16 @@ function ControlledCarousel () {
       type={item.type}
       rating={item.rating}
       location={item.owner.location}
+      numberOfTimesBorrowed={item.numberOfTimesBorrowed}
+      featured
     />
     </Carousel.Item>
   })
 
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
-      {displayedInCarouselItems}
+      <h5>Most Borrowed Items</h5>
+      {display}
     </Carousel>
   )
 }

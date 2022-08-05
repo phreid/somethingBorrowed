@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Card, Row } from 'react-bootstrap'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Tooltip from 'react-bootstrap/Tooltip'
 import { useDispatch } from 'react-redux'
 
-import { STATUS } from '../../constants'
+import { Rating } from '@mui/material'
+
+import { STATUS, RATINGS } from '../../constants'
 import noimage from '../../images/defaultImages/noimage.png'
-import { borrowItemAsync, deleteItemAsync, updateItemAsync } from '../../redux/items/thunks'
+import { deleteItemAsync, updateItemAsync } from '../../redux/items/thunks'
 import EditItemModal from '../my-items/EditItemModal'
 import EditRatingModal from '../my-items/EditRatingModal'
+import RequestModal from '../requests/RequestModal'
 
 function ItemCard (props) {
   let available = false
@@ -21,16 +22,29 @@ function ItemCard (props) {
   } else {
     unavailable = true
   }
-  const [buttonText, setButtonText] = useState(available ? 'Borrow Item' : unavailable ? 'Not available' : 'Borrowed')
+  const [buttonText, setButtonText] = useState(available ? 'Request Item' : unavailable ? 'Not available' : 'Borrowed')
   const [editOpen, setEditOpen] = useState(props.modalOpen)
   const [unavailableItemText, setUnavailableItemText] = useState(unavailable ? 'Mark as available' : 'Mark as unavailable')
   const [editRatingModal, setEditRatingModal] = useState(props.ratingOpen)
+  const [requestModalOpen, setRequestModalOpen] = useState(props.requestOpen)
+  const [rating, setRating] = useState(0)
 
   const dispatch = useDispatch()
 
-  function handleBorrowItem () {
-    setButtonText('Borrowed')
-    dispatch(borrowItemAsync(props))
+  useEffect(() => {
+    if (props.rating === RATINGS.UNRATED) {
+      setRating(0)
+    } else {
+      setRating(parseInt(props.rating))
+    }
+  }, [props.rating])
+
+  function handleRequestItem () {
+    if (requestModalOpen === true) {
+      return
+    }
+
+    setRequestModalOpen(true)
   }
 
   function handleDeleteItem () {
@@ -58,6 +72,10 @@ function ItemCard (props) {
 
   function handleCloseRatingModal () {
     setEditRatingModal(false)
+  }
+
+  function handleCloseRequestModal () {
+    setRequestModalOpen(false)
   }
 
   function handleMarkItemReturned () {
@@ -108,9 +126,10 @@ function ItemCard (props) {
   const getResizedImageUrl = (url, width, height) =>
     url.replace('/upload', `/upload/w_${width},h_${height}`)
 
+  const style = props.featured ? 'featured-card' : 'item-card'
   return (
-    <Card className="item-card" style={{ width: '' }}>
-      <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
+    <Card className={style}>
+      <Row>
         <div className="col-md-4">
           <Card.Img
             className="item-img"
@@ -158,22 +177,32 @@ function ItemCard (props) {
           <Card.Text className="card-text">
             <strong>Status:</strong> {props.status}
           </Card.Text>
-          <OverlayTrigger
-            key='top'
-            placement='left'
-            overlay={
-              <Tooltip>
-              Rating is based on a scale of 1 to 5 where 5 is the highest quality
-              </Tooltip>
-            }
-          >
-            <Card.Text className="card-text">
-              <strong id='rating-label'>Rating:</strong> {props.rating}
-            </Card.Text>
-          </OverlayTrigger>
+          {props.rating === RATINGS.UNRATED
+            ? (
+              <Card.Text className="card-text">
+                <strong>Rating:</strong> {props.rating}
+              </Card.Text>
+            )
+            : null }
+          {props.rating !== RATINGS.UNRATED
+            ? (
+              <div>
+                <Card.Text className="card-text">
+                  <strong>Rating:</strong> <Rating name="read-only" value={rating} readOnly />
+                </Card.Text>
+              </div>
+            )
+            : null }
           <Card.Text className="card-text">
-            <strong>Comments:</strong> {props.ratingComments}
+            <strong>Comments:</strong> {props.ratingComments ? props.ratingComments : 'No comments yet'}
           </Card.Text>
+          {props.featured
+            ? (
+              <Card.Text className="card-text">
+                <strong>Number of Times Borrowed:</strong> {props.numberOfTimesBorrowed}
+              </Card.Text>
+            )
+            : null }
           {props.editRating
             ? (
               <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleRateItem}>
@@ -181,14 +210,15 @@ function ItemCard (props) {
               </Button>
             )
             : null }
-          <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} />
+          <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} props />
           {props.borrow
             ? (
-              <Button disabled={!available} variant="outline-primary" size="sm" onClick={handleBorrowItem}>
+              <Button disabled={!available} variant="outline-primary" size="sm" onClick={handleRequestItem}>
                 {buttonText}
               </Button>
             )
             : null }
+          <RequestModal requestOpen={requestModalOpen} setShow={handleCloseRequestModal} id={props.id} name={props.name} owner={props.owner} requestor={props.loggedInUser} item={props.id} />
           {props.changeToReturned
             ? (
               <Button className="card-buttons" disabled={!borrowed} variant="outline-primary" size="sm" onClick={handleMarkItemReturned}>

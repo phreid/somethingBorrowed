@@ -1,3 +1,7 @@
+button:focus {
+    box-shadow: none !important;
+}
+
 .navbar{
     background-color: lightgrey;
 }
@@ -35,6 +39,11 @@ h2 {
     text-align: center;
 }
 
+h5 {
+    font-family: 'Montserrat Bold', sans-serif;
+    text-align: center;
+}
+
 .title{
     text-align: center;
 }
@@ -52,9 +61,26 @@ Form {
     overflow-y: scroll;
     background-color: #E4E4E4;
     border-radius: 10px;
+    min-height: 800px;
 }
 
 .item-card {
+    font-family: 'Montserrat Bold', sans-serif;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.featured-card {
+    font-family: 'Montserrat Bold', sans-serif;
+    margin: 10px 10px 50px 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 800px;
+    max-height: auto;
+}
+
+.request-card {
     font-family: 'Montserrat Bold', sans-serif;
     margin: 10px;
     padding: 10px;
@@ -80,21 +106,48 @@ Form {
     margin-left: 10px;
 }
 
+.pending-request-btn{
+    max-width: 200px;
+    background-color: white;
+    color: black;
+    margin: 10px 10px 0px 10px;
+}
+
+.pending-request-btn:hover {
+    background-color: lightgrey;
+    color: black;
+}
+
+.header{
+    display: flex;
+}
+
+.request-buttons{
+    margin-left: auto;
+}
+
+.received-request-btn{
+    margin: 0px 10px 0px 10px;
+    max-width: 200px;
+    background-color: white;
+}
+
 .my-items-container{
     background-color: lightblue;
 }
 
-.my-borrowed-items{
+.single-column-page{
     justify-content: center;
     width: auto;
 }
 
-.borrowed-items-container{
+.single-column-page-container{
     justify-content: center;
     max-width: 800px;
     background-color: lightgrey;
     border-radius: 10px;
     padding: 10px;
+    min-height: 800px;
 }
 
 .card-text{
@@ -133,10 +186,44 @@ Form {
     height: 100%;
 }
 
-.box-one{
+.counter-input .form-control {
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 100px;
+    border: 1px solid black;
+    justify-content: center;
+}
+
+.counter-input .input-group-addon {
+     background-color: lightgrey;
+     padding-right: 20px;
+     padding-left: 20px;
+     justify-content: center;
+     padding-top: 5px;
+}
+
+.pending-card{
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffe869;
+}
+
+.accepted-card{
+    margin: 10px;
+    padding: 10px;
+    background-color: #81cc95;
+}
+
+.request-card-status{
+    color: #424242;
+    margin-left: auto;
+    float: right;
+}
+
+.carousel{
 	background-color: lightblue;
-	float: none;
-    margin: 0 auto;
-	max-width: 70pc;
-	max-height: 20pc;
+    margin: 20px;
+	max-width: auto;
+	height: 400px;
+    border-radius: 10px;
   }

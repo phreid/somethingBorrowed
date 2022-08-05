@@ -52,13 +52,6 @@ function FiltersCollection () {
     }
   }
 
-  const handleClearFilters = () => {
-    setItemType('')
-    setItemRating('')
-    setItemStatus('')
-    setItemLocation('')
-  }
-
   const handleClearInput = () => {
     setSearchInput('')
   }
@@ -137,8 +130,6 @@ function FiltersCollection () {
       </Form.Group>
       <br></br>
       <div className = "searchBar">
-        <Button variant="outline-secondary" className="me-1 button clear-filter" onClick={handleClearFilters}>Clear Filters</Button>
-        <br></br>
         <Button variant="outline-primary" className="me-1 button apply-all" onClick={handleApplyAll}>Apply All</Button>
         <Button variant="outline-primary" className="me-1 button apply-all" onClick={handleResetAll}>Reset All</Button>
       </div>

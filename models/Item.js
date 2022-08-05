@@ -33,6 +33,12 @@ const ItemSchema = new Schema({
   }
 })
 
+/**
+ * This middleware does three things when an Item is deleted:
+ *  1. Deletes its image in Cloudinary
+ *  2. Removes the item from all users' borrowed history
+ *  3. Deletes any requests for the item
+ */
 ItemSchema.pre('findOneAndDelete', async function (next) {
   const itemId = this.getQuery()._id
 
@@ -45,9 +51,18 @@ ItemSchema.pre('findOneAndDelete', async function (next) {
     { 'borrowedItems.item': itemId },
     { $pull: { borrowedItems: { item: itemId } } }
   )
+
+  await mongoose.model('Request').deleteMany(
+    { item: itemId }
+  )
+
   next()
 })
 
+/**
+ * This middleware does the same three things as the findOneAndDelete
+ * middleware, but when many items are deleted at once.
+ */
 ItemSchema.pre('deleteMany', async function (next) {
   const toBeDeleted = await mongoose.model('Item').find(this.getQuery()).lean()
   for (const item of toBeDeleted) {
@@ -61,6 +76,11 @@ ItemSchema.pre('deleteMany', async function (next) {
     { 'borrowedItems.item': { $in: ids } },
     { $pull: { borrowedItems: { item: { $in: ids } } } }
   )
+
+  await mongoose.model('Request').deleteMany(
+    { item: { $in: ids } }
+  )
+
   next()
 })
 
