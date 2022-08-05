@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/Row'
+import Alert from 'react-bootstrap/Alert'
 import CounterInput from 'react-bootstrap-counter'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
@@ -17,15 +18,32 @@ export default function RequestModal (props) {
   const [dateNeededOn, setDateNeededOn] = useState(new Date())
   const [reqestorNotes, setReqestorNotes] = useState('')
   const [daysNeededFor, setDaysNeededFor] = useState(1)
+  const [showAlert, setShowAlert] = useState(false)
 
   const dispatch = useDispatch()
 
   const handleClose = () => {
     props.setShow(false)
+    setShowAlert(false)
+  }
+
+  const handleReset = () => {
+    setDateNeededOn(new Date())
+    setReqestorNotes('')
+    setDaysNeededFor(1)
+  }
+
+  const isDateBeforeToday = (date) => {
+    return new Date(date.toDateString()) < new Date(new Date().toDateString())
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    if (isDateBeforeToday(dateNeededOn)) {
+      setShowAlert(true)
+      return
+    }
 
     const adjustedDate = dateNeededOn.toDateString()
 
@@ -73,7 +91,17 @@ export default function RequestModal (props) {
             <Row>
               <Form.Group as={Col} sm >
                 <Form.Label>What day do you need the item?</Form.Label>
-                <Calendar value={dateNeededOn} onChange={(value) => setDateNeededOn(value)} />
+                <Calendar value={dateNeededOn} onChange={(value) => {
+                  setShowAlert(false)
+                  setDateNeededOn(value)
+                }} />
+                {showAlert
+                  ? (
+                    <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
+            Please select a future date
+                    </Alert>
+                  )
+                  : null }
               </Form.Group>
               <Form.Group >
                 <Form.Label>Additional notes</Form.Label>
@@ -83,7 +111,7 @@ export default function RequestModal (props) {
             </Row>
             <Button variant="primary" type="submit" className="me-1"
               onClick={handleSubmit}>Submit Request</Button>
-            <Button variant="danger" type="reset">Reset</Button>
+            <Button variant="danger" type="reset" onClick={handleReset}>Reset</Button>
           </Form>
         </Modal.Body>
       </Modal>

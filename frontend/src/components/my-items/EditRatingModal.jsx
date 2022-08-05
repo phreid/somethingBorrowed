@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
+import Alert from 'react-bootstrap/Alert'
 import { useDispatch } from 'react-redux'
 
 import { Rating } from '@mui/material'
@@ -16,6 +17,7 @@ export default function EditRatingModal (props) {
 
   const [rating, setRating] = useState(0)
   const [ratingComments, setRatingComments] = useState(props.ratingComments)
+  const [showAlert, setShowAlert] = useState(false)
 
   const handleClose = () => {
     props.setShowRatingModal(false)
@@ -29,8 +31,8 @@ export default function EditRatingModal (props) {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (rating === 'Select item rating...') {
-      alert('Please select a valid rating')
+    if (rating < 1) {
+      setShowAlert(true)
       return
     }
 
@@ -47,6 +49,7 @@ export default function EditRatingModal (props) {
     dispatch(rateItemAsync(item))
 
     handleClose()
+    setRating(0)
   }
 
   return (
@@ -68,9 +71,17 @@ export default function EditRatingModal (props) {
                 name="simple-controlled"
                 value={rating}
                 onChange={(event, newValue) => {
+                  setShowAlert(false)
                   setRating(newValue)
                 }}
               />
+              {showAlert
+                ? (
+                  <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
+                      Please enter a rating
+                  </Alert>
+                )
+                : null }
             </Form.Group>
             <Form.Group >
               <Form.Label>Comments</Form.Label>
