@@ -29,11 +29,10 @@ router.get('/', catchError(async (req, res) => {
   const { search, type, rating, status, location } = req.query
 
   const usersInLocation = location ? (await User.find({ location })).map((user) => user._id) : undefined
-
   const query = {
-    ...(search ? { name: { $regex: new RegExp(search, 'i') } } : {}),
+    ...(search ? { $or: [{ name: { $regex: new RegExp('^' + search, 'i') } }, { name: { $regex: new RegExp(' ' + search, 'i') } }] } : {}),
     ...(type ? { type } : {}),
-    ...(rating ? { rating } : {}),
+    ...(rating ? { rating: { $regex: '^' + rating } } : {}),
     ...(status ? { status } : {}),
     ...(location ? { owner: { $in: usersInLocation } } : {})
   }
