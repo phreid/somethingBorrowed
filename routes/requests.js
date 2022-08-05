@@ -61,24 +61,6 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
 })
 
 /**
- * DELETE /requests/:item
- *
- * Removes all requests for a item
- *
- * @param id: the request id to delete
- * @returns the deleted request object
- */
- router.delete('/:id/deleteRemaining', isLoggedIn, async (req, res) => {
-  const { id: itemId } = req.params
-
-  const deleted = await Request.deleteMany({ item: itemId, status: REQUEST_STATUS.PENDING })
-
-  res.send({
-    result: deleted
-  })
-})
-
-/**
  * POST /requests/:id/accept
  *
  * Sets an items status to borrowed and adds it to the borrowed item history
@@ -91,6 +73,7 @@ router.post('/:id/accept', isLoggedIn, async (req, res) => {
   const { id: itemId } = req.params
 
   const accepted = await Request.findByIdAndUpdate(itemId, { status: REQUEST_STATUS.ACCEPTED }, { new: true }).populate(['item', 'itemOwner', 'requestor'])
+  await Request.deleteMany({ item: accepted.item._id, status: REQUEST_STATUS.PENDING })
 
   res.send({
     result: accepted
