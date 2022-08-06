@@ -33,10 +33,8 @@ function MarketplacePage () {
     <>
       <NavBar />
       <h1 className="page-title">Marketplace</h1>
-      <div>
-        <div className="page-container-carousel carouselContainer">
-          <ControlledCarousel/>
-        </div>
+      <div >
+        <ControlledCarousel className="col-lg col-sm col-xs mx-8 grid-child page-container"/>
       </div>
       <div className="row">
         <div className="col-lg col-sm col-xs mx-8 grid-child page-container" key = "grid-child page-container">
