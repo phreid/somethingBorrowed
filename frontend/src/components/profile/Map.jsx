@@ -74,16 +74,16 @@ export default function Map (props) {
   const currentUser = useSelector(state => state.user.currentUser)
   const userId = useSelector(state => state.user.user)
 
-  const [location, setLocation] = useState(currentUser.location)
+  const [userLocation, setUserLocation] = useState(currentUser.location)
   useEffect(() => {
-    setLocation(currentUser.location)
+    setUserLocation(currentUser.location)
   }, [currentUser.location])
 
   const handleUpdate = (event) => {
     event.preventDefault()
     dispatch(updateUserAsync({
       userId,
-      location
+      location: userLocation
     })).unwrap()
   }
 
@@ -104,7 +104,7 @@ export default function Map (props) {
             }}
             title={location.name}
             onClick={() => (
-              setLocation(location.name)
+              setUserLocation(location.name)
             )}
           />
         ))}
