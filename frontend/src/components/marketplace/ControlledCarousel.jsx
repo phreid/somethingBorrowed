@@ -27,7 +27,7 @@ function ControlledCarousel () {
   const displayedInCarouselItems = items.filter((item) => item.numberOfTimesBorrowed > RECOMMANDATION_STANDARD)
 
   const display = displayedInCarouselItems.map((item) => {
-    return <Carousel.Item key={item._id} data-bs-interval={null}><ItemCard
+    return <Carousel.Item key={item._id} className="img-fluid"><ItemCard
       id={item._id}
       borrow
       description={item.description}
@@ -45,9 +45,9 @@ function ControlledCarousel () {
   })
 
   return (
-    <Carousel className="page-container-carousel" activeIndex={index} onSelect={handleSelect} data-bs-interval={null}>
+    <Carousel className="page-container-carousel" activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
       <Carousel.Item key="LOGOPlaceholder" >
-        <img src={logo} alt='logo' height="400"/>
+        <img src={logo} alt='logo' className="LOGOPlaceholder"/>
       </Carousel.Item>
       {display}
     </Carousel>
