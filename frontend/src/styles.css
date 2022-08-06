@@ -245,11 +245,11 @@ Form {
 .carousel .carousel-inner .carousel-item .featured-card{
 	margin: auto;
 	margin-top: 1.5%;
-	margin-bottom: 4%;
+	margin-bottom: 3%;
 }
 
 .carousel .carousel-inner .carousel-item .LOGOPlaceholder{
-	width: 50%;
+   width: 50%;
    margin: auto;
    margin-top: 1.5%;
 

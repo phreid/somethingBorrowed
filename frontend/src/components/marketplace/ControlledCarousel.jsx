@@ -47,7 +47,7 @@ function ControlledCarousel () {
   return (
     <Carousel className="page-container-carousel" activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
       <Carousel.Item key="LOGOPlaceholder" >
-        <img src={logo} alt='logo' className="LOGOPlaceholder"/>
+        <img src={logo} alt='logo' height="300" className="LOGOPlaceholder" />
       </Carousel.Item>
       {display}
     </Carousel>
