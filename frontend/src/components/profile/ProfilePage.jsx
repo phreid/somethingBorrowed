@@ -46,13 +46,13 @@ export default function ProfilePage () {
               <ListGroupItem><Card.Title>{currentUser.username}</Card.Title></ListGroupItem>
               <ListGroupItem><Card.Text>{currentUser.bio}</Card.Text></ListGroupItem>
               <ListGroupItem>{currentUser.email}</ListGroupItem>
-              <ListGroupItem>{currentUser.location}</ListGroupItem>
             </ListGroup>
             <br/>
             <Button variant="outline-secondary" onClick={handleEditUser}>Edit Profile</Button>{' '}
             <Button variant="outline-danger" onClick={handleShowDelete}>Delete Account</Button>
             <ListGroupItem>
-              <Map/>
+              <ListGroupItem>{currentUser.location}</ListGroupItem>
+              <Map user={currentUser} />
             </ListGroupItem>
           </Card.Body>
 

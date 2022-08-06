@@ -6,13 +6,16 @@ import App from './App'
 import { store } from './redux/store'
 
 import './index.css'
+import { LoadScript } from '@react-google-maps/api'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <LoadScript googleMapsApiKey = {process.env.REACT_APP_MAPS_API_KEY} >
+          <App />
+        </LoadScript>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

@@ -1,9 +1,12 @@
-import React from 'react'
-import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api'
+import React, { useEffect, useState } from 'react'
+import { GoogleMap, MarkerF } from '@react-google-maps/api'
+import { useDispatch, useSelector } from 'react-redux'
+import { Button } from 'react-bootstrap'
+import { updateUserAsync } from '../../redux/users/thunks'
 
 const containerStyle = {
-  width: '1080px',
-  height: '400px'
+  width: 'auto',
+  height: '480px'
 }
 
 const center = {
@@ -25,8 +28,8 @@ const allLocations = {
         loc_id: 2,
         name: 'Point Grey',
         desc: 'Point Grey',
-        lat: 49.271370,
-        lng: -123.175980
+        lat: 49.2610,
+        lng: -123.2001
       },
       {
         loc_id: 3,
@@ -66,17 +69,31 @@ const allLocations = {
     ]
 }
 
-export default function Map () {
+export default function Map (props) {
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.user.currentUser)
+  const userId = useSelector(state => state.user.user)
+  const [location, setLocation] = useState(currentUser.location)
+  useEffect(() => {
+    setLocation(currentUser.location)
+  }, [currentUser.location])
+
+  const handleUpdate = async (event) => {
+    event.preventDefault()
+    await dispatch(updateUserAsync({
+      userId,
+      location
+    })).unwrap()
+  }
+
   return (
-    <LoadScript
-      googleMapsApiKey = {process.env.REACT_APP_MAPS_API_KEY}
-    >
+    <>
+      <Button variant="outline-primary" onClick={handleUpdate}>Update Location</Button>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
         zoom={12}
       >
-        { /* Child components, such as markers, info windows, etc. */ }
         {allLocations.locations.map(location => (
           <MarkerF
             key={location.loc_id}
@@ -84,9 +101,13 @@ export default function Map () {
               lat: location.lat,
               lng: location.lng
             }}
+            title={location.name}
+            onClick={() => (
+              setLocation(location.name)
+            )}
           />
         ))}
       </GoogleMap>
-    </LoadScript>
+    </>
   )
 }
