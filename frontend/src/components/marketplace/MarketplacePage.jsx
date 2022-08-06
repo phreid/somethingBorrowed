@@ -33,7 +33,7 @@ function MarketplacePage () {
     <>
       <NavBar />
       <h1 className="page-title">Marketplace</h1>
-      <div className="row">
+      <div>
         <div className="carousel">
           <ControlledCarousel/>
         </div>
