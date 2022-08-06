@@ -73,14 +73,15 @@ export default function Map (props) {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user.currentUser)
   const userId = useSelector(state => state.user.user)
+
   const [location, setLocation] = useState(currentUser.location)
   useEffect(() => {
     setLocation(currentUser.location)
   }, [currentUser.location])
 
-  const handleUpdate = async (event) => {
+  const handleUpdate = (event) => {
     event.preventDefault()
-    await dispatch(updateUserAsync({
+    dispatch(updateUserAsync({
       userId,
       location
     })).unwrap()
