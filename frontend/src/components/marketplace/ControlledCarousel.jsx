@@ -26,10 +26,8 @@ function ControlledCarousel () {
 
   const displayedInCarouselItems = items.filter((item) => item.numberOfTimesBorrowed > RECOMMANDATION_STANDARD)
 
-  console.log(displayedInCarouselItems.length === 0)
-
   const display = displayedInCarouselItems.map((item) => {
-    return <Carousel.Item key={item._id}><ItemCard
+    return <Carousel.Item key={item._id} data-bs-interval={null}><ItemCard
       id={item._id}
       borrow
       description={item.description}
@@ -48,7 +46,7 @@ function ControlledCarousel () {
 
   if (displayedInCarouselItems.length === 0) {
     return (
-      <Carousel activeIndex={index} onSelect={handleSelect} >
+      <Carousel activeIndex={index} onSelect={handleSelect} interval={null} data-bs-interval={null}>
         <Carousel.Item key="LOGOPlaceholder" >
           <img className='d-block w-50 col-12' src={logo} alt='logo' height="400"/>
         </Carousel.Item>
@@ -57,8 +55,7 @@ function ControlledCarousel () {
   }
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
-      <h5>Most Borrowed Items</h5>
+    <Carousel activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
       {display}
     </Carousel>
   )
