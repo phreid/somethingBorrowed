@@ -84,7 +84,7 @@ export default function Map (props) {
     dispatch(updateUserAsync({
       userId,
       location: userLocation
-    })).unwrap()
+    }))
   }
 
   return (
