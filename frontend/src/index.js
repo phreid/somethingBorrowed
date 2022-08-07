@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import { store } from './redux/store'
+import { LoadScript } from '@react-google-maps/api'
 
 import './index.css'
 
@@ -12,7 +13,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <LoadScript googleMapsApiKey = {process.env.REACT_APP_MAPS_API_KEY} >
+          <App />
+        </LoadScript>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

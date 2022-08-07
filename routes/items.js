@@ -147,7 +147,10 @@ router.patch('/:id', isLoggedIn, isItemOwner, catchError(async (req, res) => {
 router.post('/:id/borrow', isLoggedIn, catchError(async (req, res) => {
   const { id: itemId } = req.params
   const userId = req.session.user
-  const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED }, { new: true }).populate('owner')
+  const item = await Item.findById(itemId)
+  const newNumberOfTimesBorrowed = item.numberOfTimesBorrowed + 1
+  const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED, numberOfTimesBorrowed: newNumberOfTimesBorrowed }, { new: true }).populate('owner')
+
 
   if (!borrowed) {
     throw new ApiError(404, 'Item not found.')

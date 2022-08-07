@@ -1,11 +1,11 @@
 const LOCATIONS = {
-  UBC_CAMPUS: 'UBC Campus',
+  UBC_CAMPUS: 'UBC',
   POINT_GREY: 'Point Grey',
-  DUNBAR: 'Dunbar',
+  DUNBAR: 'Yaletown',
   KITSILANO: 'Kitsilano',
-  ARBUTUS: 'Arbutus',
-  SOUTHLANDS: 'Southlands',
-  KERRISDALE: 'Kerrisdale'
+  ARBUTUS: 'Kerrisdale',
+  SOUTHLANDS: 'Dunbar',
+  KERRISDALE: 'Oakridge'
 }
 
 module.exports = LOCATIONS

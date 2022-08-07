@@ -85,7 +85,8 @@ function ItemCard (props) {
       name: props.name,
       type: props.type,
       description: props.description,
-      location: props.location
+      location: props.location,
+      numberOfTimesBorrowed: props.times
     }
 
     setButtonText('Available')
@@ -102,7 +103,8 @@ function ItemCard (props) {
         name: props.name,
         type: props.type,
         description: props.description,
-        location: props.location
+        location: props.location,
+        numberOfTimesBorrowed: props.times
       }
       dispatch(updateItemAsync(item))
       setUnavailableItemText('Mark not available')
@@ -113,7 +115,8 @@ function ItemCard (props) {
         name: props.name,
         type: props.type,
         description: props.description,
-        location: props.location
+        location: props.location,
+        numberOfTimesBorrowed: props.times
       }
       dispatch(updateItemAsync(item))
       setUnavailableItemText('Mark as available')
@@ -123,8 +126,9 @@ function ItemCard (props) {
   const getResizedImageUrl = (url, width, height) =>
     url.replace('/upload', `/upload/w_${width},h_${height}`)
 
+  const style = props.featured ? 'featured-card' : 'item-card'
   return (
-    <Card className="item-card">
+    <Card className={style}>
       <Row>
         <div className="col-md-4">
           <Card.Img
@@ -184,15 +188,21 @@ function ItemCard (props) {
             ? (
               <div>
                 <Card.Text className="card-text">
-                  <strong>Rating:</strong>
+                  <strong>Rating:</strong> <Rating name="read-only" value={rating} readOnly />
                 </Card.Text>
-                <Rating name="read-only" value={rating} readOnly />
               </div>
             )
             : null }
           <Card.Text className="card-text">
             <strong>Comments:</strong> {props.ratingComments ? props.ratingComments : 'No comments yet'}
           </Card.Text>
+          {props.featured
+            ? (
+              <Card.Text className="card-text">
+                <strong>Number of Times Borrowed:</strong> {props.numberOfTimesBorrowed}
+              </Card.Text>
+            )
+            : null }
           {props.editRating
             ? (
               <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleRateItem}>
