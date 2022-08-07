@@ -157,10 +157,12 @@ Form {
     text-align: center;
 }
 
-.my-items-heading {
-    font-family: 'Fredoka One', sans-serif;
-    font-size: 2rem;
-    color: #094C60;
+h5 {
+    font-family: 'Montserrat Bold', sans-serif;
+    text-align: center;
+}
+
+.title{
     text-align: center;
 }
 
@@ -176,6 +178,23 @@ Form {
 }
 
 .item-card {
+    font-family: 'Montserrat Bold', sans-serif;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.featured-card {
+    font-family: 'Montserrat Bold', sans-serif;
+    margin: 10px 10px 50px 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 800px;
+    max-height: auto;
+}
+
+.request-card {
     font-family: 'Montserrat Bold', sans-serif;
     margin: 10px;
     padding: 10px;
@@ -351,3 +370,39 @@ Form {
     margin-left: auto;
     float: right;
 }
+
+
+
+
+
+
+
+
+
+.carousel{
+	background-color: lightblue;
+  }
+
+  .carousel .carousel-inner {
+	height: 360px !important;
+  }
+
+.carousel .carousel-inner .carousel-item {
+	justify-content: center;
+	overflow-y: scroll;
+	max-height: 100%;
+}
+
+.carousel .carousel-inner .carousel-item .featured-card{
+	margin: auto;
+	margin-top: 1.5%;
+	margin-bottom: 3%;
+}
+
+.carousel .carousel-inner .carousel-item .carouselText{
+	font-family: 'Montserrat Bold', sans-serif;
+	color: rgb(85, 134, 246);
+    text-align: center;
+	margin-top: 9%;
+}
+

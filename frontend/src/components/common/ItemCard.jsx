@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Card, Row } from 'react-bootstrap'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Tooltip from 'react-bootstrap/Tooltip'
 import { useDispatch } from 'react-redux'
 
-import { STATUS } from '../../constants'
+import { Rating } from '@mui/material'
+
+import { STATUS, RATINGS } from '../../constants'
 import noimage from '../../images/defaultImages/noimage.png'
 import { deleteItemAsync, updateItemAsync } from '../../redux/items/thunks'
 import EditItemModal from '../my-items/EditItemModal'
@@ -27,8 +27,17 @@ function ItemCard (props) {
   const [unavailableItemText, setUnavailableItemText] = useState(unavailable ? 'Mark as available' : 'Mark as unavailable')
   const [editRatingModal, setEditRatingModal] = useState(props.ratingOpen)
   const [requestModalOpen, setRequestModalOpen] = useState(props.requestOpen)
+  const [rating, setRating] = useState(0)
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (props.rating === RATINGS.UNRATED) {
+      setRating(0)
+    } else {
+      setRating(parseInt(props.rating))
+    }
+  }, [props.rating])
 
   function handleRequestItem () {
     if (requestModalOpen === true) {
@@ -76,7 +85,8 @@ function ItemCard (props) {
       name: props.name,
       type: props.type,
       description: props.description,
-      location: props.location
+      location: props.location,
+      numberOfTimesBorrowed: props.times
     }
 
     setButtonText('Available')
@@ -93,7 +103,8 @@ function ItemCard (props) {
         name: props.name,
         type: props.type,
         description: props.description,
-        location: props.location
+        location: props.location,
+        numberOfTimesBorrowed: props.times
       }
       dispatch(updateItemAsync(item))
       setUnavailableItemText('Mark not available')
@@ -104,7 +115,8 @@ function ItemCard (props) {
         name: props.name,
         type: props.type,
         description: props.description,
-        location: props.location
+        location: props.location,
+        numberOfTimesBorrowed: props.times
       }
       dispatch(updateItemAsync(item))
       setUnavailableItemText('Mark as available')
@@ -114,8 +126,9 @@ function ItemCard (props) {
   const getResizedImageUrl = (url, width, height) =>
     url.replace('/upload', `/upload/w_${width},h_${height}`)
 
+  const style = props.featured ? 'featured-card' : 'item-card'
   return (
-    <Card className="item-card">
+    <Card className={style}>
       <Row>
         <div className="col-md-4">
           <Card.Img
@@ -164,22 +177,32 @@ function ItemCard (props) {
           <Card.Text className="card-text">
             <strong>Status:</strong> {props.status}
           </Card.Text>
-          <OverlayTrigger
-            key='top'
-            placement='left'
-            overlay={
-              <Tooltip>
-              Rating is based on a scale of 1 to 5 where 5 is the highest quality
-              </Tooltip>
-            }
-          >
-            <Card.Text className="card-text">
-              <strong id='rating-label'>Rating:</strong> {props.rating}
-            </Card.Text>
-          </OverlayTrigger>
+          {props.rating === RATINGS.UNRATED
+            ? (
+              <Card.Text className="card-text">
+                <strong>Rating:</strong> {props.rating}
+              </Card.Text>
+            )
+            : null }
+          {props.rating !== RATINGS.UNRATED
+            ? (
+              <div>
+                <Card.Text className="card-text">
+                  <strong>Rating:</strong> <Rating name="read-only" value={rating} readOnly />
+                </Card.Text>
+              </div>
+            )
+            : null }
           <Card.Text className="card-text">
-            <strong>Comments:</strong> {props.ratingComments}
+            <strong>Comments:</strong> {props.ratingComments ? props.ratingComments : 'No comments yet'}
           </Card.Text>
+          {props.featured
+            ? (
+              <Card.Text className="card-text">
+                <strong>Number of Times Borrowed:</strong> {props.numberOfTimesBorrowed}
+              </Card.Text>
+            )
+            : null }
           {props.editRating
             ? (
               <Button variant="outline-primary" size="sm" className="card-buttons" onClick={handleRateItem}>
@@ -187,7 +210,7 @@ function ItemCard (props) {
               </Button>
             )
             : null }
-          <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} />
+          <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} props />
           {props.borrow
             ? (
               <Button disabled={!available} variant="outline-primary" size="sm" onClick={handleRequestItem}>

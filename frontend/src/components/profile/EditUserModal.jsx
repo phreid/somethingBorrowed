@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { LOCATIONS } from '../../constants'
 import { updateUserAsync } from '../../redux/users/thunks'
 
 export default function EditUserModal (props) {
@@ -29,15 +28,6 @@ export default function EditUserModal (props) {
     setEmail(currentUser.email)
   }, [currentUser.email])
 
-  const [location, setLocation] = useState(currentUser.location)
-  useEffect(() => {
-    setLocation(currentUser.location)
-  }, [currentUser.location])
-
-  const locationDropdowns = Object.values(LOCATIONS).map((location) => {
-    return <option key={location}>{location}</option>
-  })
-
   const handleClose = () => {
     props.setShowEditUserModal(false)
   }
@@ -49,8 +39,7 @@ export default function EditUserModal (props) {
       username,
       password,
       bio,
-      email,
-      location
+      email
     })).unwrap()
 
     handleClose()
@@ -61,7 +50,6 @@ export default function EditUserModal (props) {
     setPassword(currentUser.password)
     setBio(currentUser.bio)
     setEmail(currentUser.email)
-    setLocation(currentUser.location)
   }
 
   return (
@@ -121,14 +109,6 @@ export default function EditUserModal (props) {
                 onChange={e => setEmail(e.target.value)}
               />
             </Form.Group>
-            <Form.Label>Update Location</Form.Label>
-            <Form.Select
-              required
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}>
-              <option>Select item location...</option>
-              {locationDropdowns}
-            </Form.Select>
             <br/>
             <div className='modal-buttons text-center' >
               <Button variant="success" type="submit">

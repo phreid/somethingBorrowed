@@ -48,7 +48,7 @@ export default function SignUpForm () {
         </Form>
         {
           showAlert &&
-          <Alert className='p-2' variant='danger'>
+          <Alert className='p-2' variant='warning'>
             This username is already in use.
           </Alert>
         }
