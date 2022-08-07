@@ -40,10 +40,10 @@ const allLocations = {
       },
       {
         loc_id: 4,
-        name: 'Yaletown',
-        desc: 'Yaletown',
-        lat: 49.2757,
-        lng: -123.1199
+        name: 'Arbutus',
+        desc: 'Arbutus',
+        lat: 49.2571,
+        lng: -123.1662
       },
       {
         loc_id: 5,
@@ -61,10 +61,10 @@ const allLocations = {
       },
       {
         loc_id: 7,
-        name: 'Oakridge',
-        desc: 'Oakridge',
-        lat: 49.2261,
-        lng: -123.1166
+        name: 'Southlands',
+        desc: 'Southlands',
+        lat: 49.2500,
+        lng: -123.1852
       }
     ]
 }
@@ -84,7 +84,7 @@ export default function Map (props) {
     dispatch(updateUserAsync({
       userId,
       location: userLocation
-    })).unwrap()
+    }))
   }
 
   return (

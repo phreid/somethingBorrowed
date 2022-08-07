@@ -1,4 +1,3 @@
-
 const LOCATIONS = {
   UBC_CAMPUS: 'UBC',
   POINT_GREY: 'Point Grey',
