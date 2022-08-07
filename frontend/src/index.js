@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <LoadScript googleMapsApiKey = {process.env.REACT_APP_MAPS_API_KEY} >
+        <LoadScript googleMapsApiKey = 'AIzaSyA9yd1CN0Yp-sCIQWev2S3fYZBrIwinrL8' >
           <App />
         </LoadScript>
       </BrowserRouter>
