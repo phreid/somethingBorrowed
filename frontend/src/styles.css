@@ -248,10 +248,10 @@ Form {
 	margin-bottom: 3%;
 }
 
-.carousel .carousel-inner .carousel-item .LOGOPlaceholder{
-   width: 50%;
-   margin: auto;
-   margin-top: 1.5%;
-
+.carousel .carousel-inner .carousel-item .carouselText{
+	font-family: 'Montserrat Bold', sans-serif;
+	color: rgb(85, 134, 246);
+    text-align: center;
+	margin-top: 9%;
 }
 

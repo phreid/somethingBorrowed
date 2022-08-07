@@ -3,7 +3,6 @@ import Carousel from 'react-bootstrap/Carousel'
 import ItemCard from '../common/ItemCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { getItemsAsync } from '../../redux/items/thunks'
-import logo from '../../images/carousellogo.png'
 
 const RECOMMANDATION_STANDARD = 1
 
@@ -27,7 +26,7 @@ function ControlledCarousel () {
   const displayedInCarouselItems = items.filter((item) => item.numberOfTimesBorrowed > RECOMMANDATION_STANDARD)
 
   const display = displayedInCarouselItems.map((item) => {
-    return <Carousel.Item key={item._id} className="img-fluid"><ItemCard
+    return <Carousel.Item key={item._id}><ItemCard
       id={item._id}
       borrow
       description={item.description}
@@ -44,10 +43,14 @@ function ControlledCarousel () {
     </Carousel.Item>
   })
 
+  if (displayedInCarouselItems.length === 0) {
+    return <></>
+  }
+
   return (
     <Carousel className="page-container-carousel" activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
       <Carousel.Item key="LOGOPlaceholder" >
-        <img src={logo} alt='logo' height="300" className="LOGOPlaceholder" />
+        <h1 className='carouselText'>Most Borrowed Items</h1>
       </Carousel.Item>
       {display}
     </Carousel>
