@@ -6,6 +6,9 @@ import { getItemsAsync } from '../../redux/items/thunks'
 import ItemCard from '../common/ItemCard'
 import NavBar from '../common/NavBar'
 import FiltersCollection from './FiltersCollection'
+import ControlledCarousel from './ControlledCarousel'
+
+import '../../styles.css'
 
 function MarketplacePage () {
   const user = useSelector(state => state.user)
@@ -30,11 +33,14 @@ function MarketplacePage () {
     <>
       <NavBar />
       <h1 className="page-title">Marketplace</h1>
-      <div className="grid-container">
-        <div className="grid-child page-container" key = "grid-child page-container">
+      <div >
+        <ControlledCarousel/>
+      </div>
+      <div className="row">
+        <div className="col-lg col-sm col-xs mx-8 grid-child page-container" key = "grid-child page-container">
           <FiltersCollection/>
         </div>
-        <div className="grid-child page-container">
+        <div className="col-lg col-sm col-xs mx-8 grid-child page-container">
           {noRequestedItems.map(item => {
             return <ItemCard key={item._id}
               id={item._id}
