@@ -43,8 +43,14 @@ function ControlledCarousel () {
     </Carousel.Item>
   })
 
-  if (displayedInCarouselItems.length === 0) {
-    return <></>
+  if (display.length === 0) {
+    return (
+      <Carousel className="page-container-carousel" activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
+        <Carousel.Item key="LOGOPlaceholder" >
+          <h1 className='carouselText'>Keep Exploring...</h1>
+        </Carousel.Item>
+      </Carousel>
+    )
   }
 
   return (
