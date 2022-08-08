@@ -194,9 +194,8 @@ Form {
     color: #094C60;
 }
 
-.grid-container {
+.container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
 }
 
@@ -529,7 +528,7 @@ h5 {
     background-color: #094C60;
     color: #ffffff;
  }
-    
+
 .tooltip-label{
     color: #2869AB;
 }
