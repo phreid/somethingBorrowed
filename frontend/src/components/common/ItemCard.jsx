@@ -13,7 +13,7 @@ import EditItemModal from '../my-items/EditItemModal'
 import EditRatingModal from '../my-items/EditRatingModal'
 import RequestModal from '../requests/RequestModal'
 
-const MAX_STRING_LENGTH = 50
+const MAX_STRING_LENGTH = 15
 
 function ItemCard (props) {
   let available = false
@@ -149,9 +149,11 @@ function ItemCard (props) {
     url.replace('/upload', `/upload/w_${width},h_${height}`)
 
   const style = props.featured ? 'featured-card' : 'item-card'
+  const size = props.featured ? 2 : 1
+
   return (
     <Card className={style} style={{ width: '' }}>
-      <Row>
+      <Row sm={size}>
         <div className="col-md-4">
           <Card.Img
             className="item-img"
