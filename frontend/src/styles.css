@@ -12,6 +12,11 @@ button:focus {
     font-size: x-large;
 }
 
+body{
+    background-color: #DEF4FF;
+    height: 100%;
+}
+
 /********************* Alerts *****************/
 .login-alert-popup {
     width: 50%;
@@ -570,7 +575,7 @@ h5 {
   }
 
   .carousel .carousel-inner {
-	height: 350px !important;
+	height: 360px !important;
   }
 
 .carousel .carousel-inner .carousel-item {

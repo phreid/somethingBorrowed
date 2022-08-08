@@ -7,10 +7,14 @@ const UserSchema = new Schema({
   username: String,
   password: String,
   email: String,
-  bio: String,
+  bio: {
+    type: String,
+    default: 'No bio description yet'
+  },
   location: {
     type: String,
-    enum: Object.values(LOCATIONS)
+    enum: Object.values(LOCATIONS),
+    default: LOCATIONS.ARBUTUS
   },
   borrowedItems: [{ _id: false, item: { type: Schema.Types.ObjectId, ref: 'Item' }, date: Date }]
 })

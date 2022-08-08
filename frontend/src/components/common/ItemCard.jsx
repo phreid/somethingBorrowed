@@ -271,7 +271,7 @@ function ItemCard (props) {
           <EditRatingModal ratingOpen={editRatingModal} setShowRatingModal={handleCloseRatingModal} id={props.id} rating={props.rating} ratingComments={props.ratingComments} props />
           {props.borrow
             ? (
-              <Button disabled={!available} variant="outline-primary" size="sm" onClick={handleRequestItem}>
+              <Button className="card-buttons" disabled={!available} variant="outline-primary" size="sm" onClick={handleRequestItem}>
                 {buttonText}
               </Button>
             )
