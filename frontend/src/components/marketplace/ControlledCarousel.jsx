@@ -45,7 +45,7 @@ function ControlledCarousel () {
 
   if (display.length === 0) {
     return (
-      <Carousel className="page-container-carousel" activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
+      <Carousel activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
         <Carousel.Item key="LOGOPlaceholder" >
           <h1 className='base-carousel-text'>Keep Exploring...</h1>
         </Carousel.Item>
@@ -54,7 +54,7 @@ function ControlledCarousel () {
   }
 
   return (
-    <Carousel className="page-container-carousel" activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
+    <Carousel activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
       <Carousel.Item key="LOGOPlaceholder" >
         <h1 className='base-carousel-text'>Most Borrowed Items</h1>
       </Carousel.Item>

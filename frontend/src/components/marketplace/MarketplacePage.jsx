@@ -35,7 +35,7 @@ function MarketplacePage () {
   return (
     <>
       <NavBar />
-      <div key = "grid-child page-container">
+      <div key="page-container">
         <ControlledCarousel/>
       </div>
       <FiltersCollection/>
