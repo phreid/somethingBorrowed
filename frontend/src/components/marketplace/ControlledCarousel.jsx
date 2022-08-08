@@ -23,7 +23,7 @@ function ControlledCarousel () {
     dispatch(getItemsAsync())
   }, [dispatch])
 
-  const displayedInCarouselItems = items.filter((item) => item.numberOfTimesBorrowed > RECOMMANDATION_STANDARD)
+  const displayedInCarouselItems = items.filter((item) => item.numberOfTimesBorrowed >= RECOMMANDATION_STANDARD)
 
   const display = displayedInCarouselItems.map((item) => {
     return <Carousel.Item key={item._id}><ItemCard

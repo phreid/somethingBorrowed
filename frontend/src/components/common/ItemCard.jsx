@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Card, Row } from 'react-bootstrap'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
 import { useDispatch } from 'react-redux'
 
 import { Rating } from '@mui/material'
@@ -10,6 +12,8 @@ import { deleteItemAsync, updateItemAsync } from '../../redux/items/thunks'
 import EditItemModal from '../my-items/EditItemModal'
 import EditRatingModal from '../my-items/EditRatingModal'
 import RequestModal from '../requests/RequestModal'
+
+const MAX_STRING_LENGTH = 50
 
 function ItemCard (props) {
   let available = false
@@ -28,6 +32,10 @@ function ItemCard (props) {
   const [editRatingModal, setEditRatingModal] = useState(props.ratingOpen)
   const [requestModalOpen, setRequestModalOpen] = useState(props.requestOpen)
   const [rating, setRating] = useState(0)
+  const [descriptionDisplayed, setDescriptionDisplayed] = useState(props.description)
+  const [ratingCommentsDisplayed, setRatingCommentsDisplayed] = useState(props.ratingComments)
+  const [descTruncated, setDescTruncated] = useState(false)
+  const [commentsTruncated, setCommentsTruncated] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -37,7 +45,21 @@ function ItemCard (props) {
     } else {
       setRating(parseInt(props.rating))
     }
-  }, [props.rating])
+
+    if (props.description.length > MAX_STRING_LENGTH) {
+      setDescriptionDisplayed(props.description.substring(0, MAX_STRING_LENGTH - 3) + '...')
+      setDescTruncated(true)
+    } else {
+      setDescriptionDisplayed(props.description)
+    }
+
+    if (props.ratingComments.length > MAX_STRING_LENGTH) {
+      setRatingCommentsDisplayed(props.ratingComments.substring(0, MAX_STRING_LENGTH - 3) + '...')
+      setCommentsTruncated(true)
+    } else {
+      setRatingCommentsDisplayed(props.ratingComments)
+    }
+  }, [props.rating, props.description, props.ratingComments])
 
   function handleRequestItem () {
     if (requestModalOpen === true) {
@@ -161,13 +183,31 @@ function ItemCard (props) {
             ? (
               <Card.Text className="card-text">
                 <strong>Last borrowed on: </strong>
-                {new Date(props.borrowedDate).toLocaleString()}
+                {props.borrowedDate ? new Date(props.borrowedDate).toLocaleString() : 'Not yet borrowed'}
               </Card.Text>
             )
             : null }
-          <Card.Text className="card-text">
-            <strong>Description:</strong> {props.description}
-          </Card.Text >
+          {descTruncated
+            ? (
+              <OverlayTrigger
+                key='top'
+                placement='left'
+                overlay={
+                  <Tooltip>
+                    {props.description}
+                  </Tooltip>
+                }
+              >
+                <Card.Text className="card-text">
+                  <strong className='tooltip-label'>Description:</strong> {props.description ? descriptionDisplayed : 'No description yet'}
+                </Card.Text >
+              </OverlayTrigger>
+            )
+            : (
+              <Card.Text className="card-text">
+                <strong>Description:</strong> {props.description ? descriptionDisplayed : 'No description yet'}
+              </Card.Text >
+            )}
           <Card.Text className="card-text">
             <strong>Type:</strong> {props.type}
           </Card.Text>
@@ -193,9 +233,27 @@ function ItemCard (props) {
               </div>
             )
             : null }
-          <Card.Text className="card-text">
-            <strong>Comments:</strong> {props.ratingComments ? props.ratingComments : 'No comments yet'}
-          </Card.Text>
+          {commentsTruncated
+            ? (
+              <OverlayTrigger
+                key='top'
+                placement='left'
+                overlay={
+                  <Tooltip>
+                    {props.ratingComments}
+                  </Tooltip>
+                }
+              >
+                <Card.Text className="card-text">
+                  <strong className='tooltip-label'>Comments:</strong> {props.ratingComments ? ratingCommentsDisplayed : 'No description yet'}
+                </Card.Text>
+              </OverlayTrigger>
+            )
+            : (
+              <Card.Text className="card-text">
+                <strong>Comments:</strong> {props.ratingComments ? ratingCommentsDisplayed : 'No description yet'}
+              </Card.Text>
+            )}
           {props.featured
             ? (
               <Card.Text className="card-text">
