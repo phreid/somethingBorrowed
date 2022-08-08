@@ -190,7 +190,7 @@ function ItemCard (props) {
           {descTruncated
             ? (
               <OverlayTrigger
-                key='top'
+                key='description'
                 placement='left'
                 overlay={
                   <Tooltip>
@@ -236,7 +236,7 @@ function ItemCard (props) {
           {commentsTruncated
             ? (
               <OverlayTrigger
-                key='top'
+                key='comments'
                 placement='left'
                 overlay={
                   <Tooltip>

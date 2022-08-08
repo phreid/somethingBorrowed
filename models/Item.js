@@ -11,7 +11,10 @@ const ItemSchema = new Schema({
     type: String,
     enum: Object.values(ITEM_TYPES)
   },
-  description: String,
+  description: {
+    type: String,
+    default: 'No description yet'
+  },
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   status: {
     type: String,
@@ -22,7 +25,10 @@ const ItemSchema = new Schema({
     enum: ['Unrated', '1', '2', '3', '4', '5'],
     default: 'Unrated'
   },
-  ratingComments: String,
+  ratingComments: {
+    type: String,
+    default: 'No comments yet'
+  },
   image: {
     url: String,
     filename: String
