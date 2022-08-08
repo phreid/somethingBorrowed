@@ -14,4 +14,5 @@ jobs:
           node-version: '14'    
       - run: npm ci
       - run: npm install eslint
+      - run: npm install eslint-config-react-app
       - run: npm run lint
