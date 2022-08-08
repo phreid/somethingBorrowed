@@ -13,18 +13,18 @@ function MyItemsPage () {
     <>
       <NavBar />
       <Tabs fill justify className='mt-3 mb-3' defaultActiveKey='my-items'>
-        <Tab eventKey='my-items' title='Manage My Items'>
+        <Tab className='tab-content' eventKey='my-items' title='Manage My Items'>
           <div className="grid-container">
-            <div className="grid-child page-container">
+            <div className="item-form-container">
               <AddItemForm />
             </div>
-            <div className="grid-child page-container">
-              <h2>My Items</h2>
+            <div className="page-container">
+              <h2 className='add-item-heading'>My Items</h2>
               <ItemContainer />
             </div>
           </div>
         </Tab>
-        <Tab eventKey='my-history' title='Borrowing History'>
+        <Tab className='tab-content' eventKey='my-history' title='Borrowing History'>
           <UserHistoryPage />
         </Tab>
       </Tabs>

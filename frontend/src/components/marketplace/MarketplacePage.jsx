@@ -1,5 +1,6 @@
 import { React, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Container } from 'react-bootstrap'
 
 import { getAllRequestsAsync } from '../../redux/requests/thunks'
 import { getItemsAsync } from '../../redux/items/thunks'
@@ -9,6 +10,8 @@ import FiltersCollection from './FiltersCollection'
 import ControlledCarousel from './ControlledCarousel'
 
 import '../../styles.css'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 function MarketplacePage () {
   const user = useSelector(state => state.user)
@@ -32,17 +35,15 @@ function MarketplacePage () {
   return (
     <>
       <NavBar />
-      <h1 className="page-title">Marketplace</h1>
-      <div >
+      <div key="page-container">
         <ControlledCarousel/>
       </div>
-      <div className="row">
-        <div className="col-lg col-sm col-xs mx-8 grid-child page-container" key = "grid-child page-container">
-          <FiltersCollection/>
-        </div>
-        <div className="col-lg col-sm col-xs mx-8 grid-child page-container">
+      <FiltersCollection/>
+      <Container fluid className="single-column-marketplace-container">
+        <Row>
           {noRequestedItems.map(item => {
-            return <ItemCard key={item._id}
+            return <Col sm={6} key={item._id}> <ItemCard
+              key={item._id}
               id={item._id}
               borrow
               description={item.description}
@@ -57,9 +58,10 @@ function MarketplacePage () {
               owner={item.owner._id}
               loggedInUser={user.user}
             />
+            </Col>
           })}
-        </div>
-      </div>
+        </Row>
+      </Container>
     </>
   )
 }

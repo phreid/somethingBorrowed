@@ -28,9 +28,9 @@ export default function PendingRequests () {
     <>
       <NavBar />
       <Tabs fill justify className='mt-3 mb-3' defaultActiveKey='pending'>
-        <Tab eventKey='pending' title='Items Requested'>
+        <Tab className='tab-content' eventKey='pending' title='Items Requested'>
           <div className="single-column-page">
-            <h2>Items Requested</h2>
+            <br/>
             <Container fluid className="single-column-page-container">
               {requests.length
                 ? requests.map(request => {
@@ -45,12 +45,12 @@ export default function PendingRequests () {
                     requested
                   />
                 })
-                : <p className="text-center">You have no pending requests.</p>
+                : <p className="info-text-center">You have no pending requests.</p>
               }
             </Container>
           </div>
         </Tab>
-        <Tab eventKey='received' title='Received Requests'>
+        <Tab className='tab-content' eventKey='received' title='Received Requests'>
           <ReceivedRequests />
         </Tab>
       </Tabs>
