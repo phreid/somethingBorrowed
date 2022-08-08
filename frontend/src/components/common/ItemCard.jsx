@@ -11,6 +11,8 @@ import EditItemModal from '../my-items/EditItemModal'
 import EditRatingModal from '../my-items/EditRatingModal'
 import RequestModal from '../requests/RequestModal'
 
+const MAX_STRING_LENGTH = 50
+
 function ItemCard (props) {
   let available = false
   let borrowed = false
@@ -28,6 +30,8 @@ function ItemCard (props) {
   const [editRatingModal, setEditRatingModal] = useState(props.ratingOpen)
   const [requestModalOpen, setRequestModalOpen] = useState(props.requestOpen)
   const [rating, setRating] = useState(0)
+  const [descriptionDisplayed, setDescriptionDisplayed] = useState(props.description)
+  const [ratingCommentsDisplayed, setRatingCommentsDisplayed] = useState(props.ratingComments)
 
   const dispatch = useDispatch()
 
@@ -37,7 +41,21 @@ function ItemCard (props) {
     } else {
       setRating(parseInt(props.rating))
     }
-  }, [props.rating])
+
+    if (props.description.length > MAX_STRING_LENGTH) {
+      setDescriptionDisplayed(props.description.substring(0, MAX_STRING_LENGTH - 3) + '...')
+    } else {
+      setDescriptionDisplayed(props.description)
+    }
+
+    if (props.ratingComments.length > MAX_STRING_LENGTH) {
+      setRatingCommentsDisplayed(props.ratingComments.substring(0, MAX_STRING_LENGTH - 3) + '...')
+    } else {
+      setRatingCommentsDisplayed(props.ratingComments)
+    }
+  }, [props.rating, props.description, props.ratingComments])
+
+  // {props.ratingComments > MAX_STRING_LENGTH ? props.ratingComments.substring(0, MAX_STRING_LENGTH - 3) : props.ratingComments}
 
   function handleRequestItem () {
     if (requestModalOpen === true) {
@@ -161,12 +179,12 @@ function ItemCard (props) {
             ? (
               <Card.Text className="card-text">
                 <strong>Last borrowed on: </strong>
-                {new Date(props.borrowedDate).toLocaleString()}
+                {props.borrowedDate ? new Date(props.borrowedDate).toLocaleString() : 'Not yet borrowed'}
               </Card.Text>
             )
             : null }
           <Card.Text className="card-text">
-            <strong>Description:</strong> {props.description}
+            <strong>Description:</strong> {props.description ? descriptionDisplayed : 'No description yet'}
           </Card.Text >
           <Card.Text className="card-text">
             <strong>Type:</strong> {props.type}
@@ -194,7 +212,7 @@ function ItemCard (props) {
             )
             : null }
           <Card.Text className="card-text">
-            <strong>Comments:</strong> {props.ratingComments ? props.ratingComments : 'No comments yet'}
+            <strong>Comments:</strong> {props.ratingComments ? ratingCommentsDisplayed : 'No description yet'}
           </Card.Text>
           {props.featured
             ? (
