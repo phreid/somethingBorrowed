@@ -18,12 +18,12 @@ function MyItemsPage () {
         <Tab className='tab-content' eventKey='my-items' title='Manage My Items'>
           <Container fluid className="container">
             <Row>
-              <Col xs={12} sm={12} lg={6}>
+              <Col xs={19} sm={12} lg={6}>
                 <div className="item-form-container">
                   <AddItemForm />
                 </div>
               </Col>
-              <Col xs={12} sm={12} lg={6}>
+              <Col xs={19} sm={12} lg={6}>
                 <div className="page-container">
                   <h2 className='add-item-heading'>My Items</h2>
                   <ItemContainer />
