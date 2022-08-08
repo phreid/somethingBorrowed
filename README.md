@@ -51,3 +51,6 @@ Wrote the backend server and database code. Built the frontend login/signup flow
 
 ### Imogene McDonald
 Built the requests functionality, including backend database models and endpoints, and the interface components. Developed the item card actions and conditionally rendered elements of the cards. Wrote most modals needed to edit, rate or request items.
+
+### Anusha Saleem
+Built the profile page, developed its Edit/Delete Profile modals and its subsequent actions to connect to the backend. Implemented Google Maps into the project for picking a user's location. Created browser tab logo, navbar logo and login page logo for the app. Styled almost all components and page layouts of the app.
