@@ -10,8 +10,8 @@ import FiltersCollection from './FiltersCollection'
 import ControlledCarousel from './ControlledCarousel'
 
 import '../../styles.css'
-import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 function MarketplacePage () {
   const user = useSelector(state => state.user)
@@ -39,10 +39,11 @@ function MarketplacePage () {
         <ControlledCarousel/>
       </div>
       <FiltersCollection/>
-      <Container className='market-item-container'>
+      <Container fluid className="single-column-marketplace-container">
         <Row>
           {noRequestedItems.map(item => {
-            return <Col xs={12} md={6}> <ItemCard key={item._id}
+            return <Col sm={6} key={item._id}> <ItemCard
+              key={item._id}
               id={item._id}
               borrow
               description={item.description}

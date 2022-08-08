@@ -6,6 +6,12 @@ button:focus {
     text-align: center;
 }
 
+.info-text-center {
+    text-align: center;
+    color: #094C60;
+    font-size: x-large;
+}
+
 /********************* Alerts *****************/
 .login-alert-popup {
     width: 50%;
@@ -212,13 +218,22 @@ h5 {
     text-align: center;
 }
 
+.item-form-container {
+    margin: 10px;
+    padding: 10px;
+    max-height: 100vh;
+    background-color: #DEF4FF;
+    border-radius: 10px;
+    min-height: 800px;
+}
+
 /********************* Card container *****************/
 .page-container {
     margin: 10px;
     padding: 10px;
-    max-height: 100%;
+    max-height: 100vh;
     overflow-y: scroll;
-    background-color: #E4E4E4;
+    background-color: #A4DEF9;
     border-radius: 10px;
     min-height: 800px;
 }
@@ -236,7 +251,7 @@ h5 {
     padding: 10px;
     border-radius: 10px;
     max-width: 800px;
-    max-height: auto;
+    max-height: fit-content;
 }
 
 .request-card {
@@ -315,7 +330,7 @@ h5 {
 .single-column-page-container{
     justify-content: center;
     max-width: 800px;
-    background-color: lightgrey;
+    background-color: #A4DEF9;
     border-radius: 10px;
     padding: 10px;
     min-height: 800px;
@@ -586,9 +601,10 @@ h5 {
 }
 
 .filter-btn-div {
-    margin-left: 40%;
+    margin-left: 43%;
     padding-top:0;
     margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .filter-btn {
@@ -607,7 +623,10 @@ h5 {
 
 /********************* Marketplace Items *****************/
 
-.market-item-container {
-    padding: 0;
-    margin: 0;
+.single-column-marketplace-container{
+    overflow-x: hidden;
+    justify-content: center;
+    background-color: #DEF4FF;
+    border-radius: 10px;
+    padding: 10px;
 }

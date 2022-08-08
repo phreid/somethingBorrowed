@@ -42,7 +42,7 @@ export default function ReceivedRequests () {
                 received
               />
             })
-            : <p className="text-center">You have no received requests.</p>
+            : <p className="info-text-center">You have no received requests.</p>
           }
         </Container>
       </div>

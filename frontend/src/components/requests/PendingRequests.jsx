@@ -45,7 +45,7 @@ export default function PendingRequests () {
                     requested
                   />
                 })
-                : <p className="text-center">You have no pending requests.</p>
+                : <p className="info-text-center">You have no pending requests.</p>
               }
             </Container>
           </div>
