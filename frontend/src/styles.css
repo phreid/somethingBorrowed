@@ -17,6 +17,23 @@ body{
     height: 100%;
 }
 
+/********************* Page Layouts *****************/
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.page-container {
+    margin: 10px;
+    padding: 10px;
+    max-height: 100vh;
+    overflow-y: scroll;
+    background-color: #A4DEF9;
+    border-radius: 10px;
+    min-height: 800px;
+}
+
 /********************* Alerts *****************/
 .login-alert-popup {
     width: 50%;
@@ -199,12 +216,6 @@ Form {
     color: #094C60;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-}
-
 .page-title {
     margin-top: 10px;
     font-family: 'Montserrat Bold', sans-serif;
@@ -233,16 +244,6 @@ h5 {
 }
 
 /********************* Card container *****************/
-.page-container {
-    margin: 10px;
-    padding: 10px;
-    max-height: 100vh;
-    overflow-y: scroll;
-    background-color: #A4DEF9;
-    border-radius: 10px;
-    min-height: 800px;
-}
-
 .item-card {
     font-family: 'Montserrat Bold', sans-serif;
     margin: 10px;
