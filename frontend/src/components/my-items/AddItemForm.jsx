@@ -46,7 +46,7 @@ export default function AddItemForm (props) {
     const formData = new FormData()
     formData.append('name', name)
     formData.append('type', type)
-    formData.append('description', description)
+    formData.append('description', description === '' ? 'No description yet' : description)
     formData.append('status', switchIsAvailable ? STATUS.AVAILABLE : STATUS.NOT_AVAILABLE)
     formData.append('image', fileInput.current.files[0])
 
