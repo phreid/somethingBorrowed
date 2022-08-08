@@ -7,21 +7,21 @@ Something Borrowed is a free sustainable solution to endless buying, so sign up!
 
 ## Project Goals
 ### Minimal 
- - Should be able to create an account and enter basic profile information like name and password ✔️
- - Should be able to log in and out of the app ✔️
- - Should be able to view a list of items available for borrowing from other users ✔️
- - Should be able to create/delete/edit/view my owned items ✔️
- - Should be able to select an item from the list of items and borrow it on a first-come first-served basis ✔️
+:white_check_mark: Should be able to create an account and enter basic profile information like name and password
+:white_check_mark: Should be able to log in and out of the app
+:white_check_mark: Should be able to view a list of items available for borrowing from other users
+:white_check_mark: Should be able to create/delete/edit/view my owned items
+:white_check_mark: Should be able to select an item from the list of items and borrow it on a first-come first-served basis
 ### Standard
- - Should be able to change the status of an item I own from “borrowed” to “returned” ✔️
- - Should be able to rate an item ✔️
- - Should be able to search for items ✔️
- - Should be able to filter items in the list (e.g. by rating, category) ✔️
- - Should be able to add basic location information to my profile, where the location is based on a set number of pre-filled neighbourhoods ✔️
+:white_check_mark: Should be able to change the status of an item I own from “borrowed” to “returned”
+:white_check_mark: Should be able to rate an item
+:white_check_mark: Should be able to search for items
+:white_check_mark: Should be able to filter items in the list (e.g. by rating, category)
+:white_check_mark: Should be able to add basic location information to my profile, where the location is based on a set number of pre-filled neighbourhoods
 ### Stretch
- - Should be able to view a list of the items I’ve borrowed, and only be able to rate item’s I’ve borrowed ✔️
- - Should be able to send a request to borrow an item, view a list of requests for my items, and accept or decline a request ✔️
- - Should be able to filter items based on their distance from my current geolocation ✖️
+:white_check_mark: Should be able to view a list of the items I’ve borrowed, and only be able to rate item’s I’ve borrowed
+:white_check_mark: Should be able to send a request to borrow an item, view a list of requests for my items, and accept or decline a request
+❌ Should be able to filter items based on their distance from my current geolocation
 
 ## Tech Description
 ### HTML & CSS
@@ -41,8 +41,12 @@ Our app is deployed with Heroku, and we used automatic deployment from GitHub. W
 ## Above & Beyond Functionality
 
 ## Next Steps
+Our main focus would be to finish the implementation of the location services by using the Google Maps API to give a more precise location for a user and allow users to search for items in the Marketplace based on more accurate proximity of other users/items. We would also add to the functionality of the app to create a more realistic user experience, which would include including a messaging service so users can communicate via the app rather than with personal emails.
 
 ## Contributions
 
 ### Paul Reid
 Wrote the backend server and database code. Built the frontend login/signup flow, the add item functionality, and the image uploading feature.
+
+### Imogene McDonald
+Built the requests functionality, including backend database models and endpoints, and the interface components. Developed the item card actions and conditionally rendered elements of the cards. Wrote most modals needed to edit, rate or request items.
