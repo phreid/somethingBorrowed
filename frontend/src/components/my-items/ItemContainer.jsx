@@ -15,7 +15,7 @@ function ItemContainer () {
   }, [dispatch])
 
   return (
-    <Container fluid className="item-container">
+    <Container fluid>
       {items.map(item => {
         return <ItemCard key={item._id}
           changeToReturned

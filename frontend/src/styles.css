@@ -12,6 +12,41 @@ button:focus {
     font-size: x-large;
 }
 
+body{
+    background-color: #DEF4FF;
+    height: 100%;
+}
+
+/********************* Pages *****************/
+.page-container {
+    margin: 10px;
+    padding: 10px;
+    max-height: 100vh;
+    overflow-y: scroll;
+    background-color: #A4DEF9;
+    border-radius: 10px;
+    min-height: 800px;
+}
+
+/********************* Single Columns *****************/
+.single-column-page{
+    justify-content: center;
+    width: auto;
+    display: flex;
+}
+
+.single-column-page-container{
+    justify-content: center;
+    max-width: 800px;
+    background-color: #A4DEF9;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 100vh;
+    margin: 10px;
+    min-width: auto;
+    overflow-y: scroll;
+}
+
 /********************* Alerts *****************/
 .login-alert-popup {
     width: 50%;
@@ -194,9 +229,8 @@ Form {
     color: #094C60;
 }
 
-.grid-container {
+.container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
 }
 
@@ -228,16 +262,6 @@ h5 {
 }
 
 /********************* Card container *****************/
-.page-container {
-    margin: 10px;
-    padding: 10px;
-    max-height: 100vh;
-    overflow-y: scroll;
-    background-color: #A4DEF9;
-    border-radius: 10px;
-    min-height: 800px;
-}
-
 .item-card {
     font-family: 'Montserrat Bold', sans-serif;
     margin: 10px;
@@ -251,6 +275,7 @@ h5 {
     padding: 10px;
     border-radius: 10px;
     max-width: 800px;
+    width: fit-content;
     max-height: fit-content;
 }
 
@@ -319,21 +344,6 @@ h5 {
 
 .my-items-container{
     background-color: lightblue;
-}
-
-/********************* Single Columns *****************/
-.single-column-page{
-    justify-content: center;
-    width: auto;
-}
-
-.single-column-page-container{
-    justify-content: center;
-    max-width: 800px;
-    background-color: #A4DEF9;
-    border-radius: 10px;
-    padding: 10px;
-    min-height: 100vh;
 }
 
 /********************* Edit Item Modal *****************/
@@ -529,7 +539,7 @@ h5 {
     background-color: #094C60;
     color: #ffffff;
  }
-    
+
 .tooltip-label{
     color: #2869AB;
 }
@@ -570,7 +580,7 @@ h5 {
   }
 
   .carousel .carousel-inner {
-	height: 350px !important;
+	height: 360px !important;
   }
 
 .carousel .carousel-inner .carousel-item {
