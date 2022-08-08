@@ -240,7 +240,7 @@ function ItemCard (props) {
                 placement='left'
                 overlay={
                   <Tooltip>
-                    {props.description}
+                    {props.ratingComments}
                   </Tooltip>
                 }
               >
