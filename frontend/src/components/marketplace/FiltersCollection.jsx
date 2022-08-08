@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, ButtonToolbar, InputGroup, Form } from 'react-bootstrap'
+import { Button, ButtonToolbar, InputGroup, Form, Table } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 
 import { ITEM_TYPES, RATINGS, STATUS, LOCATIONS } from '../../constants'
@@ -91,49 +91,57 @@ function FiltersCollection () {
   }
 
   return (
-    <>
-      <ButtonToolbar className="d-flex justify-content-center">
-        <InputGroup className="me-3">
-          <Form.Control
-            type="text"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Enter your search"
-          />
-          <Button variant="outline-secondary" onClick={handleClearInput}>Clear</Button>
-        </InputGroup>
-      </ButtonToolbar>
-      <br></br>
-      <Form.Group >
-        <Form.Select value={itemType} onChange={handleCategory}>
-          <option>{DEFAULT_TYPE_OPTION}</option>
-          {itemTypeDropdowns}
-        </Form.Select>
-      </Form.Group>
-      <Form.Group >
-        <Form.Select value={itemRating} onChange={handleRating}>
-          <option>{DEFAULT_RATING_OPTION}</option>
-          {ratingDropdowns}
-        </Form.Select>
-      </Form.Group>
-      <Form.Group >
-        <Form.Select value={itemStatus} onChange={handleStatus}>
-          <option>{DEFAULT_STATUS_OPTION}</option>
-          {statusDropdowns}
-        </Form.Select>
-      </Form.Group>
-      <Form.Group >
-        <Form.Select value={itemLocation} onChange={handleLocation}>
-          <option>{DEFAULT_LOCATION_OPTION}</option>
-          {locationDropdowns}
-        </Form.Select>
-      </Form.Group>
-      <br></br>
-      <div className = "searchBar">
-        <Button variant="outline-primary" className="me-1 button apply-all" onClick={handleApplyAll}>Apply All</Button>
-        <Button variant="outline-primary" className="me-1 button apply-all" onClick={handleResetAll}>Reset All</Button>
-      </div>
-    </>
+    <Table responsive>
+      <tr>
+        <td>
+          <ButtonToolbar className="d-flex justify-content-center">
+            <InputGroup className="me-3">
+              <Form.Control
+                type="text"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                placeholder="Enter your search"
+              />
+              <Button className='clear-filter-btn' variant="outline-secondary" onClick={handleClearInput}>Clear</Button>
+            </InputGroup>
+          </ButtonToolbar>
+        </td>
+        <td>
+          <Form.Group >
+            <Form.Select value={itemType} onChange={handleCategory}>
+              <option>{DEFAULT_TYPE_OPTION}</option>
+              {itemTypeDropdowns}
+            </Form.Select>
+          </Form.Group>
+        </td>
+        <td>
+          <Form.Group >
+            <Form.Select value={itemRating} onChange={handleRating}>
+              <option>{DEFAULT_RATING_OPTION}</option>
+              {ratingDropdowns}
+            </Form.Select>
+          </Form.Group>
+        </td>
+        <td>
+          <Form.Group >
+            <Form.Select value={itemStatus} onChange={handleStatus}>
+              <option>{DEFAULT_STATUS_OPTION}</option>
+              {statusDropdowns}
+            </Form.Select>
+          </Form.Group>
+        </td>
+        <td>
+          <Form.Group >
+            <Form.Select value={itemLocation} onChange={handleLocation}>
+              <option>{DEFAULT_LOCATION_OPTION}</option>
+              {locationDropdowns}
+            </Form.Select>
+          </Form.Group>
+        </td>
+        <Button className='filter-btn' onClick={handleApplyAll}>Apply All</Button>{' '}
+        <Button className='filter-btn' onClick={handleResetAll}>Reset All</Button>
+      </tr>
+    </Table>
   )
 }
 

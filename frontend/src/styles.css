@@ -577,3 +577,24 @@ h5 {
     color: #DEF4FF;
     text-align: center;
 }
+
+/********************* Filters *****************/
+.clear-filter-btn {
+    max-width: 200px;
+    background-color: #094C60;
+    color: #ffffff;
+}
+
+.filter-btn {
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-right: 5px;
+    max-width: 200px;
+    background-color: #094C60;
+    color: #ffffff;
+}
+
+.filter-btn:hover {
+    background-color:#ffffff;
+    color: #094C60;
+}

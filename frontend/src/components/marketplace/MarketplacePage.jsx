@@ -35,29 +35,25 @@ function MarketplacePage () {
       <div >
         <ControlledCarousel/>
       </div>
-      <div className="row">
-        <div className="col-lg col-sm col-xs mx-8 grid-child page-container" key = "grid-child page-container">
-          <FiltersCollection/>
-        </div>
-        <div className="col-lg col-sm col-xs mx-8 grid-child page-container">
-          {noRequestedItems.map(item => {
-            return <ItemCard key={item._id}
-              id={item._id}
-              borrow
-              description={item.description}
-              image={item.image}
-              name={item.name}
-              status={item.status}
-              ratingComments={item.ratingComments}
-              type={item.type}
-              rating={item.rating}
-              location={item.owner.location}
-              requestOpen={item.requestOpen}
-              owner={item.owner._id}
-              loggedInUser={user.user}
-            />
-          })}
-        </div>
+      <FiltersCollection/>
+      <div>
+        {noRequestedItems.map(item => {
+          return <ItemCard key={item._id}
+            id={item._id}
+            borrow
+            description={item.description}
+            image={item.image}
+            name={item.name}
+            status={item.status}
+            ratingComments={item.ratingComments}
+            type={item.type}
+            rating={item.rating}
+            location={item.owner.location}
+            requestOpen={item.requestOpen}
+            owner={item.owner._id}
+            loggedInUser={user.user}
+          />
+        })}
       </div>
     </>
   )
