@@ -513,6 +513,7 @@ h5 {
     float: right;
 }
 
+
 /********************* Profile *****************/
 .user-heading {
     font-family: 'Fredoka One', sans-serif;
@@ -527,6 +528,10 @@ h5 {
     max-width: 200px;
     background-color: #094C60;
     color: #ffffff;
+ }
+    
+.tooltip-label{
+    color: #2869AB;
 }
 
 .profile-btn:hover {

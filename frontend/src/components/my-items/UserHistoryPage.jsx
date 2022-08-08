@@ -34,6 +34,7 @@ export default function UserHistoryPage () {
   return (
     <>
       <br/>
+      <h2 className='add-item-heading'>Borrowing History</h2>
       <Container fluid className="single-column-marketplace-container">
         <Row>
           {userHistory.length
