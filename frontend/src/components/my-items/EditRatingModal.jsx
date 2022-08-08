@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Stack } from 'react-bootstrap'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
@@ -61,12 +61,12 @@ export default function EditRatingModal (props) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add Item Rating</Modal.Title>
+          <Modal.Title className='add-item-rating'>Add Item Rating</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group as={Col} sm >
-              <Form.Label>Rating</Form.Label>
+              <Form.Label>Rating</Form.Label><br/>
               <Rating
                 name="simple-controlled"
                 value={rating}
@@ -77,7 +77,7 @@ export default function EditRatingModal (props) {
               />
               {showAlert
                 ? (
-                  <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
+                  <Alert className='edit-rating-alert-popup' variant="warning" onClose={() => setShowAlert(false)} dismissible>
                       Please enter a rating
                   </Alert>
                 )
@@ -85,12 +85,14 @@ export default function EditRatingModal (props) {
             </Form.Group>
             <Form.Group >
               <Form.Label>Comments</Form.Label>
-              <Form.Control as="textarea" rows={3} value={ratingComments}
+              <Form.Control className='item-comment-input' as="textarea" rows={3} value={ratingComments}
                 onChange={(e) => setRatingComments(e.target.value)}></Form.Control>
             </Form.Group>
-            <Button variant="primary" type="submit" className="me-1"
-              onClick={handleSubmit}>Submit Changes</Button>
-            <Button variant="danger" type="reset" onClick={handleReset}>Reset</Button>
+            <Stack gap={2}>
+              <Button className='edit-rating-form-button' type="submit"
+                onClick={handleSubmit}>Submit Changes</Button>
+              <Button className='edit-rating-form-button' type="reset" onClick={handleReset}>Reset</Button>
+            </Stack>
           </Form>
         </Modal.Body>
       </Modal>

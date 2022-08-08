@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Stack } from 'react-bootstrap'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
@@ -68,13 +68,13 @@ export default function EditItemModal (props) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Edit Your Item</Modal.Title>
+          <Modal.Title className='edit-item-modal-heading'>Edit Your Item</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group>
               <Form.Label>Item Name</Form.Label>
-              <Form.Control type="text" placeholder={props.name} value={name}
+              <Form.Control className='edit-item-modal-input' type="text" placeholder={props.name} value={name}
                 onChange={(e) => {
                   setShowAlert(false)
                   setName(e.target.value)
@@ -83,7 +83,7 @@ export default function EditItemModal (props) {
             <Row>
               <Form.Group as={Col} sm >
                 <Form.Label>Type</Form.Label>
-                <Form.Select placeholder={props.type} value={type} onChange={(e) => {
+                <Form.Select className='edit-item-modal-input' placeholder={props.type} value={type} onChange={(e) => {
                   setShowAlert(false)
                   setType(e.target.value)
                 }}>
@@ -94,15 +94,18 @@ export default function EditItemModal (props) {
             </Row>
             <Form.Group >
               <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={3} placeholder={props.description} value={description}
+              <Form.Control className='edit-item-modal-input' as="textarea" rows={3} placeholder={props.description} value={description}
                 onChange={(e) => setDescription(e.target.value)}></Form.Control>
             </Form.Group>
-            <Button variant="primary" type="submit" className="me-1"
-              onClick={handleSubmit}>Submit Changes</Button>
-            <Button variant="danger" type="reset" onClick={handleReset}>Reset</Button>
+            <br/>
+            <Stack gap={2}>
+              <Button className='edit-item-form-button' type="submit"
+                onClick={handleSubmit}>Submit Changes</Button>
+              <Button className='edit-item-form-button' type="reset" onClick={handleReset}>Reset</Button>
+            </Stack>
             {showAlert
               ? (
-                <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
+                <Alert className='edit-item-alert-popup' variant="warning" onClose={() => setShowAlert(false)} dismissible>
             Missing a required field: {missingField}
                 </Alert>
               )

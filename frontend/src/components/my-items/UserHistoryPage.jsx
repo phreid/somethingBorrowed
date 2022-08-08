@@ -6,6 +6,8 @@ import { getUserHistoryAsync } from '../../redux/users/thunks'
 import ItemCard from '../common/ItemCard'
 
 import '../../styles.css'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default function UserHistoryPage () {
   const user = useSelector(state => state.user.user)
@@ -31,12 +33,13 @@ export default function UserHistoryPage () {
 
   return (
     <>
-      <div className="single-column-page">
-        <h2>My Borrowed Items</h2>
-        <Container fluid className="single-column-page-container">
+      <br/>
+      <h2 className='add-item-heading'>Borrowing History</h2>
+      <Container fluid className="single-column-marketplace-container">
+        <Row>
           {userHistory.length
             ? userHistory.map(record => {
-              return <ItemCard key={record.item._id + record.date}
+              return <Col sm={6} key={record.item._id}> <ItemCard key={record.item._id + record.date}
                 description={record.item.description}
                 editRating
                 id={record.item._id}
@@ -50,11 +53,12 @@ export default function UserHistoryPage () {
                 type={record.item.type}
                 borrowedDate={record.date}
               />
+              </Col>
             })
             : <p className="text-center">You haven't borrowed any items yet.</p>
           }
-        </Container>
-      </div>
+        </Row>
+      </Container>
     </>
   )
 }

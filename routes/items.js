@@ -151,7 +151,6 @@ router.post('/:id/borrow', isLoggedIn, catchError(async (req, res) => {
   const newNumberOfTimesBorrowed = item.numberOfTimesBorrowed + 1
   const borrowed = await Item.findByIdAndUpdate(itemId, { status: STATUS.BORROWED, numberOfTimesBorrowed: newNumberOfTimesBorrowed }, { new: true }).populate('owner')
 
-
   if (!borrowed) {
     throw new ApiError(404, 'Item not found.')
   }

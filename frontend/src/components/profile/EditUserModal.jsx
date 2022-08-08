@@ -61,13 +61,14 @@ export default function EditUserModal (props) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Edit Profile</Modal.Title>
+          <Modal.Title className='user-modal-heading' >Edit Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Update Username</Form.Label>
               <Form.Control
+                className='edit-user'
                 type="input"
                 placeholder="Enter new username"
                 required
@@ -79,6 +80,7 @@ export default function EditUserModal (props) {
             <Form.Group className="mb-3">
               <Form.Label>Update Password</Form.Label>
               <Form.Control
+                className='edit-user'
                 type="password"
                 placeholder="Enter new password"
                 required
@@ -92,6 +94,7 @@ export default function EditUserModal (props) {
             >
               <Form.Label>Update Bio</Form.Label>
               <Form.Control
+                className='edit-user'
                 as="textarea"
                 placeholder="Enter something about yourself!"
                 rows={3}
@@ -102,6 +105,7 @@ export default function EditUserModal (props) {
             <Form.Group className="mb-3">
               <Form.Label>Update Email</Form.Label>
               <Form.Control
+                className='edit-user'
                 type="email"
                 placeholder="Enter new email"
                 required
@@ -111,10 +115,10 @@ export default function EditUserModal (props) {
             </Form.Group>
             <br/>
             <div className='modal-buttons text-center' >
-              <Button variant="success" type="submit">
+              <Button className='profile-btn' type="submit">
                   Save and Update
               </Button>{'  '}
-              <Button variant="danger" type="button" onClick={clearForm}>Reset</Button>
+              <Button className='profile-btn' type="button" onClick={clearForm}>Reset</Button>
             </div>
           </Form>
         </Modal.Body>
