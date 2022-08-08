@@ -17,8 +17,8 @@ function FiltersCollection () {
   const [searchInput, setSearchInput] = useState('')
   const [itemType, setItemType] = useState('')
   const [itemRating, setItemRating] = useState('')
-  const [itemSatus, setItemStatus] = useState('')
-  const [itemlocation, setItemLocation] = useState('')
+  const [itemStatus, setItemStatus] = useState('')
+  const [itemLocation, setItemLocation] = useState('')
 
   function handleStatus (event) {
     if (event.target.value === DEFAULT_STATUS_OPTION) {
@@ -85,8 +85,8 @@ function FiltersCollection () {
     const search = searchInput || undefined
     const rating = itemRating || undefined
     const type = itemType || undefined
-    const status = itemSatus || undefined
-    const location = itemlocation || undefined
+    const status = itemStatus || undefined
+    const location = itemLocation || undefined
     dispatch(getItemsAsync({ search, rating, type, status, location }))
   }
 
@@ -117,13 +117,13 @@ function FiltersCollection () {
         </Form.Select>
       </Form.Group>
       <Form.Group >
-        <Form.Select value={itemSatus} onChange={handleStatus}>
+        <Form.Select value={itemStatus} onChange={handleStatus}>
           <option>{DEFAULT_STATUS_OPTION}</option>
           {statusDropdowns}
         </Form.Select>
       </Form.Group>
       <Form.Group >
-        <Form.Select value={itemlocation} onChange={handleLocation}>
+        <Form.Select value={itemLocation} onChange={handleLocation}>
           <option>{DEFAULT_LOCATION_OPTION}</option>
           {locationDropdowns}
         </Form.Select>

@@ -25,7 +25,7 @@ export default function ReceivedRequests () {
   return (
     <>
       <div className="single-column-page">
-        <h2>My Received Requests</h2>
+        <br/>
         <Container fluid className="single-column-page-container">
           {requests.length
             ? requests.map(request => {

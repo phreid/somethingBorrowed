@@ -18,7 +18,7 @@ export default function LoginPage () {
         <img className='logo-image' src={logo} alt='logo'/>
         <Stack gap={2}>
           <LoginForm className='login-form' onLoginError={() => setShowAlert(true)} />
-          <Button className='button-input' variant="secondary" onClick={handleShow}>
+          <Button className='login-page-button' onClick={handleShow}>
                   Sign up
           </Button>
         </Stack>
@@ -32,7 +32,7 @@ export default function LoginPage () {
 
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Title className='signup-form' id="contained-modal-title-vcenter">
               Welcome to Something Borrowed
           </Modal.Title>
         </Modal.Header>

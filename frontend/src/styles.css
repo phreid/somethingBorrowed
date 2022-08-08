@@ -2,30 +2,144 @@ button:focus {
     box-shadow: none !important;
 }
 
-.navbar{
-    background-color: lightgrey;
+.title{
+    text-align: center;
 }
 
-.button {
-    background-color: white;
+/********************* Navbar *****************/
+.navbar{
+    background-color: #DEF4FF;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.navbar-light .navbar-brand {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2rem;
+    color: #094C60;
+}
+
+/********************* Login Page *****************/
+.form-input {
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.login-page-button {
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.login-page-button:hover {
+    background-color:#DEF4FF;
+    color: #094C60;
+}
+
+.base {
+    background-color:#DEF4FF;
+    padding-bottom: 140px;
+}
+
+.logo-image {
+    width: 72%;
+    height: 70vh;
+}
+
+.login-form {
+    width: 100%;
+    height: 100%;
+}
+
+/********************* Signup Modal *****************/
+.signup-form {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.5rem;
+    color: #094C60;
+}
+
+.signup-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.signup-modal-button {
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.signup-modal-button:hover {
+    background-color:#ffffff;
+    color: #094C60;
+}
+
+/********************* Add Items Form *****************/
+.add-items-page-body{
+    display: flex;
+}
+
+.nav-link {
+    color: #DEF4FF;
+}
+
+.nav-link:hover {
+    color: #DEF4FF;
+}
+
+
+Form {
+    font-family: 'Montserrat Bold', sans-serif;
+    align-items: center;
+    font-size: 1.2rem;
 }
 
 .form {
     padding: 20px;
 }
 
-a {
-text-decoration: none;
+.item-name-input {
+    border-radius: 25px;
+    width: 100%;
 }
 
-.add-items-page-body{
-    display: flex;
+.item-type-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.item-image-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.item-desc-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.add-item-form-button {
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.add-item-form-button:hover {
+    background-color:#ffffff;
+    color: #094C60;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 10px;
 }
 
 .page-title {
@@ -34,8 +148,10 @@ text-decoration: none;
     text-align: center;
 }
 
-h2 {
-    font-family: 'Montserrat Bold', sans-serif;
+.add-item-heading {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2rem;
+    color: #094C60;
     text-align: center;
 }
 
@@ -44,16 +160,7 @@ h5 {
     text-align: center;
 }
 
-.title{
-    text-align: center;
-}
-
-Form {
-    font-family: 'Montserrat Bold', sans-serif;
-    align-items: center;
-    font-size: 1.2rem;
-}
-
+/********************* Card container *****************/
 .page-container {
     margin: 10px;
     padding: 10px;
@@ -100,22 +207,118 @@ Form {
     object-fit: contain;
 }
 
-.card-buttons{
+.item-card-edit-button{
     display: inline-block;
     float: right;
     margin-left: 10px;
+    border-radius: 25px;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.item-card-edit-button:hover {
+    background-color:#ffffff;
+    color: #094C60;
+}
+
+.item-card-delete-button{
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+    border-radius: 25px;
+}
+
+.card-buttons {
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.header{
+    display: flex;
+}
+
+.request-buttons{
+    margin-left: auto;
+}
+
+.card-buttons:hover {
+    background-color:#ffffff;
+    color: #094C60;
+}
+
+.my-items-container{
+    background-color: lightblue;
+}
+
+/********************* Single Columns *****************/
+.single-column-page{
+    justify-content: center;
+    width: auto;
+}
+
+.single-column-page-container{
+    justify-content: center;
+    max-width: 800px;
+    background-color: lightgrey;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 800px;
+}
+
+/********************* Edit Item Modal *****************/
+.edit-item-modal-heading {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.5rem;
+    color: #094C60;
+}
+
+.edit-item-modal-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.edit-item-form-button {
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.edit-item-form-button:hover {
+    background-color:#ffffff;
+    color: #094C60;
+}
+
+/********************* Requests Page *****************/
+.request-card {
+    font-family: 'Montserrat Bold', sans-serif;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .pending-request-btn{
-    max-width: 200px;
-    background-color: white;
-    color: black;
-    margin: 10px 10px 0px 10px;
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.button-input {
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
 }
 
 .pending-request-btn:hover {
-    background-color: lightgrey;
-    color: black;
+    background-color:#ffffff;
+    color: #094C60;
 }
 
 .header{
@@ -132,24 +335,6 @@ Form {
     background-color: white;
 }
 
-.my-items-container{
-    background-color: lightblue;
-}
-
-.single-column-page{
-    justify-content: center;
-    width: auto;
-}
-
-.single-column-page-container{
-    justify-content: center;
-    max-width: 800px;
-    background-color: lightgrey;
-    border-radius: 10px;
-    padding: 10px;
-    min-height: 800px;
-}
-
 .card-text{
     margin: 0;
     padding-top: 5px;
@@ -157,33 +342,6 @@ Form {
 
 #rating-label{
     color: #2869AB;
-}
-
-.form-input {
-    border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
-}
-
-.button-input {
-    border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
-}
-
-.base {
-    background-color:#DEF4FF;
-    padding-bottom: 140px;
-}
-
-.logo-image {
-    width: 72%;
-    height: 70vh;
-}
-
-.login-form {
-    width: 100%;
-    height: 100%;
 }
 
 .counter-input .form-control {
@@ -205,7 +363,7 @@ Form {
 .pending-card{
     margin: 10px;
     padding: 10px;
-    background-color: #ffe869;
+    background-color: #DEF4FF;
 }
 
 .accepted-card{
@@ -220,14 +378,7 @@ Form {
     float: right;
 }
 
-
-
-
-
-
-
-
-
+/********************* Carousel *****************/
 .carousel{
 	background-color: lightblue;
   }
