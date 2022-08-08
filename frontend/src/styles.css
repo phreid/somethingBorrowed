@@ -372,34 +372,56 @@ h5 {
 }
 
 
+/********************* MarketplacePage *****************/
+.page-container-FiltersCollectionContainer{
+	margin: 10px;
+    padding: 10px;
+    max-height: 100%;
+    overflow-y: scroll;
+    background-color: #E4E4E4;
+    border-radius: 10px;
+    min-height: 800px;
+}
 
+@media screen and (max-width: 991px) {
+    .page-container-FiltersCollectionContainer{
+		background-color: #E4E4E4;
+		height: 401px;
+		min-height: 400px;
+		max-height: 450px;
+		overflow-y: scroll;
+		margin: 10px;
+		padding: 10px;
+	}
+}
 
-
-
-
-
-
+/********************* Carousel *****************/
 .carousel{
 	background-color: lightblue;
+	overflow-x: none
   }
 
   .carousel .carousel-inner {
 	height: 360px !important;
+	overflow-x: none;
   }
 
 .carousel .carousel-inner .carousel-item {
 	justify-content: center;
 	overflow-y: scroll;
+	overflow-x: none;
 	max-height: 100%;
 }
 
 .carousel .carousel-inner .carousel-item .featured-card{
+	overflow-x: none;
 	margin: auto;
 	margin-top: 1.5%;
 	margin-bottom: 3%;
 }
 
 .carousel .carousel-inner .carousel-item .carouselText{
+	overflow-x: none;
 	font-family: 'Montserrat Bold', sans-serif;
 	color: rgb(85, 134, 246);
     text-align: center;

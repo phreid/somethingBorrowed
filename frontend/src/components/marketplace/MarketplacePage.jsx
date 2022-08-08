@@ -37,10 +37,10 @@ function MarketplacePage () {
         <ControlledCarousel/>
       </div>
       <div className="row">
-        <div className="col-lg col-sm col-xs mx-8 grid-child page-container" key = "grid-child page-container">
+        <div className="col page-container-FiltersCollectionContainer" key = "grid-child page-container">
           <FiltersCollection/>
         </div>
-        <div className="col-lg col-sm col-xs mx-8 grid-child page-container">
+        <div className="col-lg mx-8 grid-child page-container">
           {noRequestedItems.map(item => {
             return <ItemCard key={item._id}
               id={item._id}
