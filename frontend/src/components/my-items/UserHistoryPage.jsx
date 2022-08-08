@@ -32,7 +32,7 @@ export default function UserHistoryPage () {
   return (
     <>
       <div className="single-column-page">
-        <h2>My Borrowed Items</h2>
+        <h2>Borrowing History</h2>
         <Container fluid className="single-column-page-container">
           {userHistory.length
             ? userHistory.map(record => {

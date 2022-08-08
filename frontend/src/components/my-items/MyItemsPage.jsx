@@ -24,7 +24,7 @@ function MyItemsPage () {
             </div>
           </div>
         </Tab>
-        <Tab eventKey='my-history' title='My Borrowed Items'>
+        <Tab eventKey='my-history' title='Borrowing History'>
           <UserHistoryPage />
         </Tab>
       </Tabs>

@@ -190,7 +190,7 @@ function ItemCard (props) {
           {descTruncated
             ? (
               <OverlayTrigger
-                key='top'
+                key='description'
                 placement='left'
                 overlay={
                   <Tooltip>
@@ -199,13 +199,13 @@ function ItemCard (props) {
                 }
               >
                 <Card.Text className="card-text">
-                  <strong className='tooltip-label'>Description:</strong> {props.description ? descriptionDisplayed : 'No description yet'}
+                  <strong className='tooltip-label'>Description:</strong> {descriptionDisplayed}
                 </Card.Text >
               </OverlayTrigger>
             )
             : (
               <Card.Text className="card-text">
-                <strong>Description:</strong> {props.description ? descriptionDisplayed : 'No description yet'}
+                <strong>Description:</strong> {descriptionDisplayed}
               </Card.Text >
             )}
           <Card.Text className="card-text">
@@ -236,7 +236,7 @@ function ItemCard (props) {
           {commentsTruncated
             ? (
               <OverlayTrigger
-                key='top'
+                key='comments'
                 placement='left'
                 overlay={
                   <Tooltip>
@@ -245,13 +245,13 @@ function ItemCard (props) {
                 }
               >
                 <Card.Text className="card-text">
-                  <strong className='tooltip-label'>Comments:</strong> {props.ratingComments ? ratingCommentsDisplayed : 'No description yet'}
+                  <strong className='tooltip-label'>Comments:</strong> {ratingCommentsDisplayed}
                 </Card.Text>
               </OverlayTrigger>
             )
             : (
               <Card.Text className="card-text">
-                <strong>Comments:</strong> {props.ratingComments ? ratingCommentsDisplayed : 'No description yet'}
+                <strong>Comments:</strong> {ratingCommentsDisplayed}
               </Card.Text>
             )}
           {props.featured
