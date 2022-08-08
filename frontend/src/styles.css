@@ -546,23 +546,21 @@ h5 {
 
 /********************* Carousel *****************/
 .carousel{
-	background-color: #ffffff;
+	background-color: #094C60;
   }
 
   .carousel .carousel-inner {
-	height: 360px !important;
+	height: 350px !important;
   }
 
 .carousel .carousel-inner .carousel-item {
 	justify-content: center;
-	overflow-y: scroll;
+	overflow-y: clip;
 	max-height: 100%;
 }
 
 .carousel .carousel-inner .carousel-item .featured-card{
-	margin: auto;
-	margin-top: 1.5%;
-	margin-bottom: 3%;
+    margin: 1.5% auto 3%;
 }
 
 .carousel .carousel-inner .carousel-item .carouselText{
@@ -572,3 +570,10 @@ h5 {
 	margin-top: 9%;
 }
 
+.base-carousel-text {
+    padding-top: 145px;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 3rem;
+    color: #DEF4FF;
+    text-align: center;
+}

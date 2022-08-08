@@ -47,7 +47,7 @@ function ControlledCarousel () {
     return (
       <Carousel className="page-container-carousel" activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
         <Carousel.Item key="LOGOPlaceholder" >
-          <h1 className='carouselText'>Keep Exploring...</h1>
+          <h1 className='base-carousel-text'>Keep Exploring...</h1>
         </Carousel.Item>
       </Carousel>
     )
@@ -56,7 +56,7 @@ function ControlledCarousel () {
   return (
     <Carousel className="page-container-carousel" activeIndex={index} onSelect={handleSelect} data-bs-interval={null} interval={null}>
       <Carousel.Item key="LOGOPlaceholder" >
-        <h1 className='carouselText'>Most Borrowed Items</h1>
+        <h1 className='base-carousel-text'>Most Borrowed Items</h1>
       </Carousel.Item>
       {display}
     </Carousel>
