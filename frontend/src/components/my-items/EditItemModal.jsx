@@ -105,7 +105,7 @@ export default function EditItemModal (props) {
             </Stack>
             {showAlert
               ? (
-                <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
+                <Alert className='edit-item-alert-popup' variant="warning" onClose={() => setShowAlert(false)} dismissible>
             Missing a required field: {missingField}
                 </Alert>
               )

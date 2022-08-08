@@ -6,6 +6,56 @@ button:focus {
     text-align: center;
 }
 
+/********************* Alerts *****************/
+.login-alert-popup {
+    width: 50%;
+    margin-top: 10px;
+    border-radius: 25px;
+    text-align: center;
+    color: black;
+    background-color: #F78F85;
+}
+
+.signup-alert-popup {
+    margin-top: 10px;
+    border-radius: 25px;
+    text-align: center;
+    color: black;
+    background-color: #F78F85;
+}
+
+.edit-item-alert-popup {
+    margin-top: 10px;
+    border-radius: 25px;
+    text-align: center;
+    color: black;
+    background-color: #F78F85;
+}
+
+.add-item-alert-popup {
+    margin-top: 10px;
+    border-radius: 25px;
+    text-align: center;
+    color: black;
+    background-color: #F78F85;
+}
+
+.edit-rating-alert-popup {
+    margin-top: 10px;
+    border-radius: 25px;
+    text-align: center;
+    color: black;
+    background-color: #F78F85;
+}
+
+.request-alert-popup {
+    margin-top: 10px;
+    border-radius: 25px;
+    text-align: center;
+    color: black;
+    background-color: #F78F85;
+}
+
 /********************* Navbar *****************/
 .navbar{
     background-color: #DEF4FF;
@@ -85,11 +135,13 @@ button:focus {
 }
 
 .nav-link {
-    color: #DEF4FF;
+    color: #094C60;
+    background-color: #DEF4FF;
 }
 
 .nav-link:hover {
-    color: #DEF4FF;
+    color: #094C60;
+    text-decoration-line: underline;
 }
 
 
@@ -294,7 +346,68 @@ h5 {
     color: #094C60;
 }
 
+/********************* Edit Rating Modal *****************/
+.add-item-rating {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.5rem;
+    color: #094C60;
+}
+
+.item-comment-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.edit-rating-form-button {
+    margin-top: 10px;
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.edit-rating-form-button:hover {
+    background-color:#ffffff;
+    color: #094C60;
+}
+
+
+
 /********************* Requests Page *****************/
+.request-item-heading {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.5rem;
+    color: #094C60;
+}
+
+.request-counter {
+    margin-left: 35%;
+}
+
+.request-calendar {
+    margin-left: 25%;
+}
+
+.request-desc-input {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.request-form-button {
+    margin-top: 10px;
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    background-color:#094C60;
+    color: #ffffff;
+}
+
+.request-form-button:hover {
+    background-color:#ffffff;
+    color: #094C60;
+}
+
 .request-card {
     font-family: 'Montserrat Bold', sans-serif;
     margin: 10px;
@@ -330,9 +443,16 @@ h5 {
 }
 
 .received-request-btn{
+    border-radius: 25px;
     margin: 0px 10px 0px 10px;
     max-width: 200px;
-    background-color: white;
+    background-color: #094C60;
+    color: #ffffff;
+}
+
+.received-request-btn:hover {
+    background-color:#ffffff;
+    color: #094C60;
 }
 
 .card-text{
@@ -378,9 +498,55 @@ h5 {
     float: right;
 }
 
+/********************* Profile *****************/
+.user-heading {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2rem;
+    color: #094C60;
+    text-align: center;
+}
+
+.profile-btn{
+    border-radius: 25px;
+    margin: 0px 10px 0px 10px;
+    max-width: 200px;
+    background-color: #094C60;
+    color: #ffffff;
+}
+
+.profile-btn:hover {
+    background-color:#ffffff;
+    color: #094C60;
+}
+
+.profile-card {
+    height: fit-content;
+}
+
+.user-modal-heading {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2rem;
+    color: #094C60;
+    text-align: center;
+}
+
+.edit-user {
+    border-radius: 25px;
+    width: 100%;
+}
+
+.map-div {
+    margin-top: 20px;
+}
+
+.delete-acc-btn {
+    border-radius: 25px;
+    width: 100%;
+}
+
 /********************* Carousel *****************/
 .carousel{
-	background-color: lightblue;
+	background-color: #ffffff;
   }
 
   .carousel .carousel-inner {

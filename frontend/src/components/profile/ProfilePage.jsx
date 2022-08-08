@@ -43,13 +43,13 @@ export default function ProfilePage () {
           <Card.Body className="text-center">
             <Card.Img className="profile-img" variant="center" width="100" src={profile} />
             <ListGroup className="list-group-flush center">
-              <ListGroupItem><Card.Title>{currentUser.username}</Card.Title></ListGroupItem>
+              <ListGroupItem><Card.Title className='user-heading'>{currentUser.username}</Card.Title></ListGroupItem>
               <ListGroupItem><Card.Text>{currentUser.bio}</Card.Text></ListGroupItem>
               <ListGroupItem>{currentUser.email}</ListGroupItem>
             </ListGroup>
             <br/>
-            <Button variant="outline-secondary" onClick={handleEditUser}>Edit Profile</Button>{' '}
-            <Button variant="outline-danger" onClick={handleShowDelete}>Delete Account</Button>
+            <Button className='profile-btn' onClick={handleEditUser}>Edit Profile</Button>{' '}
+            <Button className='profile-btn' onClick={handleShowDelete}>Delete Account</Button>
             <ListGroupItem>
               <ListGroupItem>{currentUser.location}</ListGroupItem>
               <Map user={currentUser} />
@@ -64,7 +64,7 @@ export default function ProfilePage () {
 
           <Modal show={showDelete} onHide={handleCloseDelete}>
             <Modal.Header closeButton>
-              <Modal.Title>Delete Account</Modal.Title>
+              <Modal.Title className='user-heading'>Delete Account</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <DeleteUserAccountForm currentUser={userId}/>

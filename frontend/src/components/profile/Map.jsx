@@ -89,26 +89,28 @@ export default function Map (props) {
 
   return (
     <>
-      <Button variant="outline-primary" onClick={handleUpdate}>Update Location</Button>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={12}
-      >
-        {allLocations.locations.map(location => (
-          <MarkerF
-            key={location.loc_id}
-            position={{
-              lat: location.lat,
-              lng: location.lng
-            }}
-            title={location.name}
-            onClick={() => (
-              setUserLocation(location.name)
-            )}
-          />
-        ))}
-      </GoogleMap>
+      <Button className='profile-btn' onClick={handleUpdate}>Update Location</Button>
+      <div className='map-div'>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={12}
+        >
+          {allLocations.locations.map(location => (
+            <MarkerF
+              key={location.loc_id}
+              position={{
+                lat: location.lat,
+                lng: location.lng
+              }}
+              title={location.name}
+              onClick={() => (
+                setUserLocation(location.name)
+              )}
+            />
+          ))}
+        </GoogleMap>
+      </div>
     </>
   )
 }

@@ -109,7 +109,7 @@ export default function AddItemForm (props) {
         </Stack>
         {showAlert
           ? (
-            <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
+            <Alert className='add-item-alert-popup' variant="warning" onClose={() => setShowAlert(false)} dismissible>
             Missing a required field: {missingField}
             </Alert>
           )

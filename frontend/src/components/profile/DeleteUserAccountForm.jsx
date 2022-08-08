@@ -23,7 +23,7 @@ export default function DeleteUserAccountForm () {
       </strong>
       <br/>
       <div className='modal-buttons text-center' >
-        <Button variant="danger" onClick={onSubmit}>Yes</Button>
+        <Button className='delete-acc-btn' variant="danger" onClick={onSubmit}>Yes</Button>
       </div>
     </div>
   )

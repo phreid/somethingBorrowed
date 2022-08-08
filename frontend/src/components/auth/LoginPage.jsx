@@ -24,7 +24,7 @@ export default function LoginPage () {
         </Stack>
         {
           showAlert &&
-                <Alert className='p-2' variant='warning'>
+                <Alert className='login-alert-popup' variant='warning'>
                   Incorrect username.
                 </Alert>
         }

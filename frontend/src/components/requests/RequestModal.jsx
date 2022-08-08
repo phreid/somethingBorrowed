@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Button } from 'react-bootstrap'
+import { Button, Stack } from 'react-bootstrap'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
@@ -73,7 +73,7 @@ export default function RequestModal (props) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Request Item</Modal.Title>
+          <Modal.Title className='request-item-heading'>Request Item</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -85,19 +85,19 @@ export default function RequestModal (props) {
             <Row>
               <Form.Group as={Col} sm >
                 <Form.Label>How many days would you like to borrow it for?</Form.Label>
-                <CounterInput value={daysNeededFor} min={1} max={100} onChange={(value) => setDaysNeededFor(value)} />
+                <CounterInput className='request-counter' value={daysNeededFor} min={1} max={100} onChange={(value) => setDaysNeededFor(value)} />
               </Form.Group>
-            </Row>
+            </Row> <br/>
             <Row>
               <Form.Group as={Col} sm >
                 <Form.Label>What day do you need the item?</Form.Label>
-                <Calendar value={dateNeededOn} onChange={(value) => {
+                <Calendar className='request-calendar' value={dateNeededOn} onChange={(value) => {
                   setShowAlert(false)
                   setDateNeededOn(value)
                 }} />
                 {showAlert
                   ? (
-                    <Alert variant="warning" onClose={() => setShowAlert(false)} dismissible>
+                    <Alert className='request-alert-popup' variant="warning" onClose={() => setShowAlert(false)} dismissible>
             Please select a future date
                     </Alert>
                   )
@@ -105,13 +105,15 @@ export default function RequestModal (props) {
               </Form.Group>
               <Form.Group >
                 <Form.Label>Additional notes</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder="Tell the owner why you would like to borrow this item" value={reqestorNotes}
+                <Form.Control className='request-desc-input' as="textarea" rows={3} placeholder="Tell the owner why you would like to borrow this item" value={reqestorNotes}
                   onChange={(e) => setReqestorNotes(e.target.value)}></Form.Control>
               </Form.Group>
             </Row>
-            <Button variant="primary" type="submit" className="me-1"
-              onClick={handleSubmit}>Submit Request</Button>
-            <Button variant="danger" type="reset" onClick={handleReset}>Reset</Button>
+            <Stack gap={2}>
+              <Button className='request-form-button' type="submit"
+                onClick={handleSubmit}>Submit Request</Button>
+              <Button className='request-form-button' type="reset" onClick={handleReset}>Reset</Button>
+            </Stack>
           </Form>
         </Modal.Body>
       </Modal>
