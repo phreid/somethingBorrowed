@@ -585,6 +585,12 @@ h5 {
     color: #ffffff;
 }
 
+.filter-btn-div {
+    margin-left: 40%;
+    padding-top:0;
+    margin-top: 0;
+}
+
 .filter-btn {
     border-radius: 25px;
     margin-top: 10px;
@@ -597,4 +603,11 @@ h5 {
 .filter-btn:hover {
     background-color:#ffffff;
     color: #094C60;
+}
+
+/********************* Marketplace Items *****************/
+
+.market-item-container {
+    padding: 0;
+    margin: 0;
 }

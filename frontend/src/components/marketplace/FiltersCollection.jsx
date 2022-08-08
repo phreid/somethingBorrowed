@@ -91,57 +91,63 @@ function FiltersCollection () {
   }
 
   return (
-    <Table responsive>
-      <tr>
-        <td>
-          <ButtonToolbar className="d-flex justify-content-center">
-            <InputGroup className="me-3">
-              <Form.Control
-                type="text"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="Enter your search"
-              />
-              <Button className='clear-filter-btn' variant="outline-secondary" onClick={handleClearInput}>Clear</Button>
-            </InputGroup>
-          </ButtonToolbar>
-        </td>
-        <td>
-          <Form.Group >
-            <Form.Select value={itemType} onChange={handleCategory}>
-              <option>{DEFAULT_TYPE_OPTION}</option>
-              {itemTypeDropdowns}
-            </Form.Select>
-          </Form.Group>
-        </td>
-        <td>
-          <Form.Group >
-            <Form.Select value={itemRating} onChange={handleRating}>
-              <option>{DEFAULT_RATING_OPTION}</option>
-              {ratingDropdowns}
-            </Form.Select>
-          </Form.Group>
-        </td>
-        <td>
-          <Form.Group >
-            <Form.Select value={itemStatus} onChange={handleStatus}>
-              <option>{DEFAULT_STATUS_OPTION}</option>
-              {statusDropdowns}
-            </Form.Select>
-          </Form.Group>
-        </td>
-        <td>
-          <Form.Group >
-            <Form.Select value={itemLocation} onChange={handleLocation}>
-              <option>{DEFAULT_LOCATION_OPTION}</option>
-              {locationDropdowns}
-            </Form.Select>
-          </Form.Group>
-        </td>
+    <>
+      <Table responsive>
+        <tbody>
+          <tr>
+            <td>
+              <ButtonToolbar className="d-flex justify-content-center">
+                <InputGroup className="me-3">
+                  <Form.Control
+                    type="text"
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    placeholder="Enter your search"
+                  />
+                  <Button className='clear-filter-btn' variant="outline-secondary" onClick={handleClearInput}>Clear</Button>
+                </InputGroup>
+              </ButtonToolbar>
+            </td>
+            <td>
+              <Form.Group >
+                <Form.Select value={itemType} onChange={handleCategory}>
+                  <option>{DEFAULT_TYPE_OPTION}</option>
+                  {itemTypeDropdowns}
+                </Form.Select>
+              </Form.Group>
+            </td>
+            <td>
+              <Form.Group >
+                <Form.Select value={itemRating} onChange={handleRating}>
+                  <option>{DEFAULT_RATING_OPTION}</option>
+                  {ratingDropdowns}
+                </Form.Select>
+              </Form.Group>
+            </td>
+            <td>
+              <Form.Group >
+                <Form.Select value={itemStatus} onChange={handleStatus}>
+                  <option>{DEFAULT_STATUS_OPTION}</option>
+                  {statusDropdowns}
+                </Form.Select>
+              </Form.Group>
+            </td>
+            <td>
+              <Form.Group >
+                <Form.Select value={itemLocation} onChange={handleLocation}>
+                  <option>{DEFAULT_LOCATION_OPTION}</option>
+                  {locationDropdowns}
+                </Form.Select>
+              </Form.Group>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+      <div className='filter-btn-div'>
         <Button className='filter-btn' onClick={handleApplyAll}>Apply All</Button>{' '}
         <Button className='filter-btn' onClick={handleResetAll}>Reset All</Button>
-      </tr>
-    </Table>
+      </div>
+    </>
   )
 }
 

@@ -128,7 +128,7 @@ function ItemCard (props) {
 
   const style = props.featured ? 'featured-card' : 'item-card'
   return (
-    <Card className={style}>
+    <Card className={style} style={{ width: '' }}>
       <Row>
         <div className="col-md-4">
           <Card.Img
