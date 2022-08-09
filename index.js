@@ -18,7 +18,7 @@ const port = process.env.PORT || 4000
 app.use(express.json())
 app.use(cors({ origin: true, credentials: true }))
 app.use(session({
-  secret: 'test-secret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
