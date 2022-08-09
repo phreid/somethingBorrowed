@@ -525,11 +525,32 @@ h5 {
 
 
 /********************* Profile *****************/
+.profile-img {
+    margin-left: 20%;
+}
+
 .user-heading {
+    margin-top: 20px;
     font-family: 'Fredoka One', sans-serif;
-    font-size: 2rem;
+    font-size: 3.5rem;
     color: #094C60;
     text-align: center;
+}
+
+.profile-text {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #094C60;
+}
+
+.profile-loc-text {
+    text-align: center;
+    font-size: 2rem;
+    color: #094C60;
+}
+
+.button-div {
+   text-align: center;
 }
 
 .profile-btn{
@@ -566,7 +587,8 @@ h5 {
 }
 
 .map-div {
-    margin-top: 20px;
+    width: auto;
+    margin: 10px;
 }
 
 .delete-acc-btn {
@@ -574,6 +596,14 @@ h5 {
     width: 100%;
 }
 
+.single-column-profile-container{
+    justify-content: center;
+    max-width: 100vw;
+    max-height: 100vh;
+    background-color: #A4DEF9;
+    border-radius: 10px;
+    padding: 10px;
+}
 /********************* Carousel *****************/
 .carousel{
 	background-color: #094C60;
