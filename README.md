@@ -54,3 +54,6 @@ Built the requests functionality, including backend database models and endpoint
 
 ### Anusha Saleem
 Built the profile page, developed its Edit/Delete Profile modals and its subsequent actions to connect to the backend. Implemented Google Maps into the project for picking a user's location. Created browser tab logo, navbar logo and login page logo for the app. Styled almost all components and page layouts of the app.
+
+### Hanting Du
+Built the marketplace page, including the styling of the page and the search and filtering features.  Implemented the associated code that connect the frontend actions to its backend requests. Contributed to the marketplace page layouts under the mobile size.
