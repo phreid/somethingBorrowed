@@ -26,7 +26,7 @@ function ControlledCarousel () {
   const displayedInCarouselItems = items.filter((item) => item.numberOfTimesBorrowed >= RECOMMENDATION_STANDARD)
 
   const display = displayedInCarouselItems.map((item) => {
-    return <Carousel.Item className="carousel-container" key={item._id}><ItemCard
+    return <Carousel.Item key={item._id}><ItemCard
       id={item._id}
       borrow
       description={item.description}
