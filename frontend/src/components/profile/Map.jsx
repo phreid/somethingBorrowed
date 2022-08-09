@@ -89,7 +89,10 @@ export default function Map (props) {
 
   return (
     <>
-      <Button className='profile-btn' onClick={handleUpdate}>Update Location</Button>
+      <div className='button-div'>
+        <Button className='profile-btn' onClick={handleUpdate}>Update Location</Button>
+      </div>
+      <br/>
       <div className='map-div'>
         <GoogleMap
           mapContainerStyle={containerStyle}

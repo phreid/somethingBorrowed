@@ -153,7 +153,7 @@ function ItemCard (props) {
 
   return (
     <Card className={style} style={{ width: '' }}>
-      <Row sm={size}>
+      <Row xs={2} sm={size}>
         <div className="col-md-4">
           <Card.Img
             className="item-img"
@@ -259,7 +259,7 @@ function ItemCard (props) {
           {props.featured
             ? (
               <Card.Text className="card-text">
-                <strong>Number of Times Borrowed:</strong> {props.numberOfTimesBorrowed}
+                <strong>Times Borrowed:</strong> {props.numberOfTimesBorrowed}
               </Card.Text>
             )
             : null }
