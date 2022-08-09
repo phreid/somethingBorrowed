@@ -28,16 +28,16 @@ Something Borrowed is a free sustainable solution to endless buying, so sign up!
 To improve consistency, we use CSS classes to create a uniform look for elements such as buttons and page section containers. We minimized the use of HTML by using a React component library that contains pre-built components and adds to the consistency of the UI, rather than writing components from scratch.
 
 ### React & Redux
-We used React with the react-bootstrap library to create functional components with a consistent style. We used react-router for client-side routing, using a custom protected route component to redirect users to the login page when they try to navigate to a page they're not authorized to visit. Redux was used to manage state and perform some client-side filtering.
+We used React with the react-bootstrap library to create functional components. We used react-router for client-side routing, using a custom protected route component to redirect users to the login page when they try to navigate to a page they're not authorized to visit. Redux was used to manage state, which made it easy to restrict our Marketplace page to not show users their own items.
 
 ### Node & Express
-Our project used a Node server with Express for our backend. We used a simple session-based authentication scheme for user sign-in and authorization, and used Express middleware functions to easily add authentication/authorization checks to our API routes. We also wrote Express middleware for API error handling, and all of our routes send appropriate messages when an error occurs.
+Our project used a Node server with Express for our backend. Express made it easy to create a simple session-based authentication scheme for user sign-in and authorization, and its middleware feature allowed us to add authentication/authorization checks to our API routes in a clear and maintainable way. We also wrote Express middleware for API error handling, and all of our routes send appropriate messages when an error occurs.
 
 ### NoSQL with MongoDB
 We used MongoDB to store our user, item, and request data, and Mongoose for our ODM. MongoDB was helpful as it allows for a flexible schema, which we had to update well into the development process to accomodate for the new requests feature. We wrote Mongoose middleware to do cleanup when we delete resources, for example automatically deleting uploaded images from our image storage when a user deletes an item.
 
 ### Release Engineering
-Our app is deployed with Heroku, and we used automatic deployment from GitHub. We set Config Vars in Heroku to keep our API keys secret.
+Our app is deployed with Heroku, and we used automatic deployment from GitHub. We created a Github Actions workflow that runs our project linter when a pull request is made to our production and development branches, which helps maintain a consistent style in our codebase.
 
 ## Above & Beyond Functionality
 
