@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react'
-import { Button, Card, ListGroup, ListGroupItem, Modal } from 'react-bootstrap'
+import { Button, Card, Modal, Container, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
 import profile from '../../images/profile.png'
@@ -8,6 +8,8 @@ import NavBar from '../common/NavBar'
 import DeleteUserAccountForm from './DeleteUserAccountForm'
 import EditUserModal from './EditUserModal'
 import Map from './Map'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default function ProfilePage () {
   const userId = useSelector(state => state.user.user)
@@ -38,40 +40,47 @@ export default function ProfilePage () {
   return (
     <>
       <NavBar />
-      <>
-        <Card className="profile-card" style={{ width: '' }}>
-          <Card.Body className="text-center">
-            <Card.Img className="profile-img" variant="center" width="100" src={profile} />
-            <ListGroup className="list-group-flush center">
-              <ListGroupItem><Card.Title className='user-heading'>{currentUser.username}</Card.Title></ListGroupItem>
-              <ListGroupItem><Card.Text>{currentUser.bio}</Card.Text></ListGroupItem>
-              <ListGroupItem>{currentUser.email}</ListGroupItem>
-            </ListGroup>
+      <br/>
+      <br/>
+      <Container fluid className="single-column-profile-container">
+        <Row>
+          <Col xs={12} sm={12} md={4} lg={4}>
+            <Image fluid rounded className="profile-img" width="60%" src={profile} />
+            <hr/>
+            <div className='button-div'>
+              <Button className='profile-btn' onClick={handleEditUser}>Edit Profile</Button>{' '}
+              <Button className='profile-btn' onClick={handleShowDelete}>Delete Account</Button>
+            </div>
+            <hr/>
+            <Card.Title className='user-heading'>{currentUser.username}</Card.Title>
+            <Card.Text className='profile-text'>{currentUser.bio}</Card.Text>
+            <hr/>
+            <Card.Text className='profile-text'>{currentUser.email}</Card.Text>
             <br/>
-            <Button className='profile-btn' onClick={handleEditUser}>Edit Profile</Button>{' '}
-            <Button className='profile-btn' onClick={handleShowDelete}>Delete Account</Button>
-            <ListGroupItem>
-              <ListGroupItem>{currentUser.location}</ListGroupItem>
-              <Map user={currentUser} />
-            </ListGroupItem>
-          </Card.Body>
+          </Col>
 
-          <EditUserModal
-            editUserModalOpen={editUserModal}
-            setShowEditUserModal={handleCloseEditUserModal}
-            user={currentUser}
-          />
+          <Col xs={12} sm={12} md={8} lg={8}>
+            <Card.Text className='profile-loc-text'>{currentUser.location}</Card.Text>
+            <hr/>
+            <Map user={currentUser} />
+          </Col>
+        </Row>
+      </Container>
+      <EditUserModal
+        editUserModalOpen={editUserModal}
+        setShowEditUserModal={handleCloseEditUserModal}
+        user={currentUser}
+      />
 
-          <Modal show={showDelete} onHide={handleCloseDelete}>
-            <Modal.Header closeButton>
-              <Modal.Title className='user-heading'>Delete Account</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <DeleteUserAccountForm currentUser={userId}/>
-            </Modal.Body>
-          </Modal>
-        </Card>
-      </>
+      <Modal show={showDelete} onHide={handleCloseDelete}>
+        <Modal.Header closeButton>
+          <Modal.Title className='user-heading'>Delete Account</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <DeleteUserAccountForm currentUser={userId}/>
+        </Modal.Body>
+      </Modal>
+
     </>
   )
 }
