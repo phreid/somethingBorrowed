@@ -261,11 +261,6 @@ h5 {
     min-height: 800px;
 }
 
-.carousel-container{
-    margin: 10px;
-    width: fit-content;
-}
-
 /********************* Card container *****************/
 .item-card {
     font-family: 'Montserrat Bold', sans-serif;
@@ -625,7 +620,7 @@ h5 {
 }
 
 .carousel .carousel-inner .carousel-item .featured-card{
-    margin: 1.5% auto 3%;
+    margin: 1.5% auto 1.5% auto;
 }
 
 .carousel .carousel-inner .carousel-item .carouselText{
