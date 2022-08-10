@@ -40,6 +40,11 @@ We used MongoDB to store our user, item, and request data, and Mongoose for our 
 Our app is deployed with Heroku, and we used automatic deployment from GitHub. We created a Github Actions workflow that runs our project linter when a pull request is made to our production and development branches, which helps maintain a consistent style in our codebase.
 
 ## Above & Beyond Functionality
+### External APIs
+Our project uses two external APIs:
+
+1. We use the Cloudinary API for image storage, upload, and transformations. 
+2. On our profile page, we use the Google Maps API to show the user a map of available neigbourhoods for their location.
 
 ## Next Steps
 Our main focus would be to finish the implementation of the location services by using the Google Maps API to give a more precise location for a user and allow users to search for items in the Marketplace based on more accurate proximity of other users/items. We would also add to the functionality of the app to create a more realistic user experience, which would include including a messaging service so users can communicate via the app rather than with personal emails.
@@ -47,7 +52,7 @@ Our main focus would be to finish the implementation of the location services by
 ## Contributions
 
 ### Paul Reid
-Wrote the backend server and database code. Built the frontend login/signup flow, the add item functionality, and the image uploading feature.
+Wrote the backend server and database code. Built the frontend login/signup flow, the add item functionality, and the image uploading feature. Deployed the site and created the Github Actions workflow.
 
 ### Imogene McDonald
 Built the requests functionality, including backend database models and endpoints, and the interface components. Developed the item card actions and conditionally rendered elements of the cards. Wrote most modals needed to edit, rate or request items.
