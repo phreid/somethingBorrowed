@@ -46,6 +46,9 @@ Our project uses two external APIs:
 1. We use the Cloudinary API for image storage, upload, and transformations. 
 2. On our profile page, we use the Google Maps API to show the user a map of available neigbourhoods for their location.
 
+### Responsiveness
+Our site is responsive and usable on mobile devices.
+
 ## Next Steps
 Our main focus would be to finish the implementation of the location services by using the Google Maps API to give a more precise location for a user and allow users to search for items in the Marketplace based on more accurate proximity of other users/items. We would also add to the functionality of the app to create a more realistic user experience, which would include including a messaging service so users can communicate via the app rather than with personal emails.
 
